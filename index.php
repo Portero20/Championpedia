@@ -40,6 +40,7 @@
         <br>
         <br>
         <input type="submit">
+        <input type="text">
     </form>
     <script src="/node.js"></script>
     
