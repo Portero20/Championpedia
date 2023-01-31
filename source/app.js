@@ -1,10 +1,13 @@
 const express = require('express')
 const app = express()
-const {port, start} = require('./modules/port')
+const bodyParser = require('body-parser');
+const { port, start } = require('./modules/port')
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+// req.body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
+// iniciando el servidor
 app.get('/', (req, res) => {
     res.send("Hello World!")
 })
