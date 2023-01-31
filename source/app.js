@@ -4,12 +4,14 @@ const bodyParser = require('body-parser');
 const { port, start } = require('./modules/port')
 
 // req.body
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()); // para analizar aplicación/json
+app.use(bodyParser.urlencoded({ extended: false })); // para analizar la aplicación/x-www-form-urlencoded
 
-// iniciando el servidor
 app.get('/', (req, res) => {
     res.send("Hello World!")
 })
 
+// iniciando el servidor
 app.listen(port, start)
+
+app.use("/database", require("./routes/database.routes"))
