@@ -92,11 +92,9 @@ module.exports = {
             organizer varchar(100) not null,
             champion varchar(100) not null,
             suchampion varchar(100) not null,
-            thophie_image int(11) not null,
         
             primary key (id),
-            foreign key (category) references categories(id),
-            foreign key (thophie_image) references images(id)
+            foreign key (category) references categories(id)
         );`, (error) => {
             if (error) throw error;
 
@@ -117,13 +115,9 @@ module.exports = {
             stadium varchar(100) not null,
             coach varchar(100) not null,
             nickName varchar(50) null,
-            uniform_image int(11) not null,
-            shield_image int(11) not null,
             
             primary key (id),
-            foreign key (category) references categories(id),
-            foreign key (uniform_image) references images(id),
-            foreign key (shield_image) references images(id)
+            foreign key (category) references categories(id)
         );`, (error) => {
             if (error) throw error;
 
