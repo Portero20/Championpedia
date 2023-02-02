@@ -5,7 +5,7 @@ module.exports = {
     create: (req, res) => {
         try {
             const now = moment().format("YYYY/MM/DD HH:mm:ss")
-            
+
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
 
@@ -29,7 +29,7 @@ module.exports = {
             }
 
             if (req.body.category.toLowerCase() == "copas") {
-                database.query(`INSERT INTO thophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, suchampion) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 3,'${now}','','${req.body.fullName}','${req.body.campus}','${req.body.foundation}','${req.body.organizer}','${req.body.champion}','${req.body.subchampion}');`, (error) => {
+                database.query(`INSERT INTO thophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 3,'${now}','','${req.body.fullName}','${req.body.campus}','${req.body.foundation}','${req.body.organizer}','${req.body.champion}','${req.body.subchampion}');`, (error) => {
                     if (error) throw error;
 
                     console.log("trophy created successfully");

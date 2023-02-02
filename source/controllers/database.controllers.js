@@ -91,7 +91,7 @@ module.exports = {
             foundation datetime not null,
             organizer varchar(100) not null,
             champion varchar(100) not null,
-            suchampion varchar(100) not null,
+            subchampion varchar(100) not null,
         
             primary key (id),
             foreign key (category) references categories(id)
