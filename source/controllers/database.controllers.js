@@ -156,6 +156,14 @@ module.exports = {
             console.log("Table of imagesArticles created successfully");
         })
 
+        database.query(`INSERT INTO categories (id, category)
+            values ("1", "Futbolistas"),("2", "Equipos"),("3", "Copas")
+        ;`, (error) => {
+            if (error) throw error;
+
+            console.log("table categories completed");
+        })
+
         return res.send(`Database created with all its tables and relations`)
     }
 }

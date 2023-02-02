@@ -4,18 +4,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const { port, start } = require('./modules/port')
 
-// Permitir recibir solicitudes de otros dominios
-app.use(cors())
-
-// req.body
-app.use(bodyParser.json()); // para analizar aplicación/json
-app.use(bodyParser.urlencoded({ extended: false })); // para analizar la aplicación/x-www-form-urlencoded
-
 app.get('/', (req, res) => {
     res.send("Hello World!")
 })
-
 // iniciando el servidor
 app.listen(port, start)
 
+// req.body
+app.use(bodyParser.urlencoded({ extended: true })); // para analizar la aplicación/x-www-form-urlencoded
+app.use(bodyParser.json()); // para analizar aplicación/json
+
+// Permitir recibir solicitudes de otros dominios
+app.use(cors());
+
 app.use("/database", require("./routes/database.routes"))
+app.use("/article", require("./routes/articles.routes"))
