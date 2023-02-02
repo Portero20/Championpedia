@@ -18,6 +18,7 @@ module.exports = {
         database.query(`CREATE TABLE tags (
             id int(11) not null unique auto_increment,
             tag varchar(50) not null,
+            identifier varchar(255) not null,
 
             primary key (id)
         );`, (error) => {
@@ -40,7 +41,8 @@ module.exports = {
         database.query(`CREATE TABLE images (
             id int(11) not null unique auto_increment,
             image blob,
-            
+            identifier varchar(255) not null,
+
             primary key (id)
         );`, (error) => {
             if (error) throw error;
@@ -51,7 +53,7 @@ module.exports = {
         database.query(`CREATE TABLE players (
             id int(11) not null unique auto_increment,
             title varchar(100) not null,
-            text text not null,
+            text longtext not null,
             author varchar(50) not null,
             category int(11) not null,
             date datetime not null,
@@ -69,6 +71,7 @@ module.exports = {
             goals int(11) not null,
             debut datetime not null,
             retire datetime null,
+            identifier varchar(255) not null,
             
             primary key (id),
             foreign key (category) references categories(id)
@@ -78,10 +81,10 @@ module.exports = {
             console.log("Table of players created successfully");
         })
 
-        database.query(`CREATE TABLE thophies (
+        database.query(`CREATE TABLE trophies (
             id int(11) not null unique auto_increment,
             title varchar(100) not null,
-            text text not null,
+            text longtext not null,
             author varchar(50) not null,
             category int(11) not null,
             date datetime not null,
@@ -92,19 +95,20 @@ module.exports = {
             organizer varchar(100) not null,
             champion varchar(100) not null,
             subchampion varchar(100) not null,
+            identifier varchar(255) not null,
         
             primary key (id),
             foreign key (category) references categories(id)
         );`, (error) => {
             if (error) throw error;
 
-            console.log("Table of thophies created successfully");
+            console.log("Table of trophies created successfully");
         })
 
         database.query(`CREATE TABLE teams (
             id int(11) not null unique auto_increment,
             title varchar(100) not null,
-            text text not null,
+            text longtext not null,
             author varchar(50) not null,
             category int(11) not null,
             date datetime not null,
@@ -115,6 +119,7 @@ module.exports = {
             stadium varchar(100) not null,
             coach varchar(100) not null,
             nickName varchar(50) null,
+            identifier varchar(255) not null,
             
             primary key (id),
             foreign key (category) references categories(id)
@@ -124,36 +129,88 @@ module.exports = {
             console.log("Table of teams created successfully");
         })
 
-        database.query(`CREATE TABLE tagsArticles (
+        database.query(`CREATE TABLE tagsTrophies (
             id int(11) not null unique auto_increment,
-            article_id int(11) not null,
+            thophy_id int(11) not null,
             tag_id int(11) not null,
             
             primary key (id),
             foreign key (tag_id) references tags(id),
-            foreign key (article_id) references players(id),
-            foreign key (article_id) references thophies(id),
-            foreign key (article_id) references teams(id)
+            foreign key (thophy_id) references trophies(id)
         );`, (error) => {
             if (error) throw error;
 
-            console.log("Table of tagsArticles created successfully");
+            console.log("Table of tagsTrophies created successfully");
         })
 
-        database.query(`CREATE TABLE imagesArticles (
+        database.query(`CREATE TABLE tagsPlayers (
             id int(11) not null unique auto_increment,
-            article_id int(11) not null,
+            player_id int(11) not null,
+            tag_id int(11) not null,
+            
+            primary key (id),
+            foreign key (tag_id) references tags(id),
+            foreign key (player_id) references players(id)
+        );`, (error) => {
+            if (error) throw error;
+
+            console.log("Table of tagsPlayers created successfully");
+        })
+
+        database.query(`CREATE TABLE tagsTeams (
+            id int(11) not null unique auto_increment,
+            team_id int(11) not null,
+            tag_id int(11) not null,
+            
+            primary key (id),
+            foreign key (tag_id) references tags(id),
+            foreign key (team_id) references teams(id)
+        );`, (error) => {
+            if (error) throw error;
+
+            console.log("Table of tagsTeams created successfully");
+        })
+
+        database.query(`CREATE TABLE imagesTrophies (
+            id int(11) not null unique auto_increment,
+            thophy_id int(11) not null,
             image_id int(11) not null,
             
             primary key (id),
             foreign key (image_id) references images(id),
-            foreign key (article_id) references players(id),
-            foreign key (article_id) references thophies(id),
-            foreign key (article_id) references teams(id)
+            foreign key (thophy_id) references trophies(id)
         );`, (error) => {
             if (error) throw error;
 
-            console.log("Table of imagesArticles created successfully");
+            console.log("Table of imagesTrophies created successfully");
+        })
+
+        database.query(`CREATE TABLE imagesPlayers (
+            id int(11) not null unique auto_increment,
+            player_id int(11) not null,
+            image_id int(11) not null,
+            
+            primary key (id),
+            foreign key (image_id) references images(id),
+            foreign key (player_id) references players(id)
+        );`, (error) => {
+            if (error) throw error;
+
+            console.log("Table of imagesPlayers created successfully");
+        })
+
+        database.query(`CREATE TABLE imagesTeams (
+            id int(11) not null unique auto_increment,
+            team_id int(11) not null,
+            image_id int(11) not null,
+            
+            primary key (id),
+            foreign key (image_id) references images(id),
+            foreign key (team_id) references teams(id)
+        );`, (error) => {
+            if (error) throw error;
+
+            console.log("Table of imagesTeams created successfully");
         })
 
         database.query(`INSERT INTO categories (id, category)
@@ -161,7 +218,7 @@ module.exports = {
         ;`, (error) => {
             if (error) throw error;
 
-            console.log("table categories completed");
+            console.log("Table categories completed");
         })
 
         return res.send(`Database created with all its tables and relations`)
