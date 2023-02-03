@@ -13,8 +13,6 @@ module.exports = {
                 console.log("Using Database");
             })
 
-            console.log(req.files && req.files.length > 0 ? req.files[0].filename : "default.png")
-
             if (req.body.category.toLowerCase() == "futbolistas") {
 
                 // Inserto los datos en la tabla players
@@ -170,7 +168,7 @@ module.exports = {
                                                                         } else {
                                                                             idImage = result[0].id
 
-                                                                            //Inserto el id de la fila players y el id de la imagen
+                                                                            //Inserto el id de la fila teams y el id de la imagen
                                                                             database.query(`INSERT INTO imagesteams(id, team_id, image_id) VALUES ('','${idTeam}','${idImage}')`, (error) => {
                                                                                 if (error) {
                                                                                     return console.log(error)
@@ -261,7 +259,7 @@ module.exports = {
                                                                         } else {
                                                                             idImage = result[0].id
 
-                                                                            //Inserto el id de la fila players y el id de la imagen
+                                                                            //Inserto el id de la fila trophies y el id de la imagen
                                                                             database.query(`INSERT INTO imagestrophies(id, thophy_id, image_id) VALUES ('','${idTrophy}','${idImage}')`, (error) => {
                                                                                 if (error) {
                                                                                     return console.log(error)
@@ -289,7 +287,29 @@ module.exports = {
                     })
             }
 
-            return res.status(200).json("Ok");
+            return res.status(200).json(`Tabla ${req.body.category} created successfully`);
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    },
+
+    categories: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+
+                console.log("Using Database");
+            })
+            
+            database.query(`SELECT category FROM categories`, function (err, result, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    let categories = result.map(c => {return c.category})
+
+                    return res.status(200).json(categories);
+                }
+            })
         } catch (error) {
             return res.status(500).json(error)
         }
