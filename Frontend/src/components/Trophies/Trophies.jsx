@@ -7,9 +7,6 @@ const Trophies = () => {
     return (
         <div>
             <div>
-
-                <form action="">
-
                     <div className='flexTrophies'>
 
                         <label>Titulo:</label>
@@ -42,8 +39,7 @@ const Trophies = () => {
                         <label>Imagen:</label>
                         <input type="file" name='file' id="file" className='inputJugadores' />
                     </div>
-
-                </form>
+            
             </div>
         </div>
     )

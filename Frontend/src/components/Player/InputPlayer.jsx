@@ -9,8 +9,6 @@ const InputPlayer = () => {
 
         <div className='containerJugadores'>
 
-            <form action="">
-
                 <div className='flexJugadores'>
 
                     <label>Titulo:</label>
@@ -65,8 +63,6 @@ const InputPlayer = () => {
                     <input type="file" name='file' id="file" className='inputJugadores'/>
 
                 </div>
-
-            </form>
 
         </div>
 
