@@ -13,9 +13,6 @@ const Team = () => {
                     <label>Titulo:</label>
                     <input type="text" name="title" id="title" placeholder='Probando' className='inputs__team' />
 
-                    <label>Texto:</label>
-                    <input type="text" name="text" id="text" placeholder='Probando' className='inputs__team' />
-
                     <label>Autor:</label>
                     <input type="text" name="author" id="author" placeholder='Probando' className='inputs__team' />
 
@@ -23,7 +20,7 @@ const Team = () => {
                     <input type="text" name="fullName" id="fullName" placeholder='Probando' className='inputs__team' />
 
                     <label>Fundación:</label>
-                    <input type="text" name="foundation" id="foundation" placeholder='Probando' className='inputs__team' />
+                    <input type="date" name="foundation" id="foundation" placeholder='Probando' className='inputs__team' />
 
                     <label>Presidente:</label>
                     <input type="text" name="president" id="president" placeholder='Probando' className='inputs__team' />

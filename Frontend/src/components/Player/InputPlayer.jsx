@@ -14,9 +14,6 @@ const InputPlayer = () => {
                     <label>Titulo:</label>
                     <input type="text" name="title" id="title" placeholder='Probando' className='inputJugadores' />
 
-                    <label>Texto:</label>
-                    <input type="text" name="text" id="text" placeholder='Probando' className='inputJugadores'/>
-
                     <label>Autor:</label>
                     <input type="text" name="author" id="author" placeholder='Probando' className='inputJugadores'/>
 

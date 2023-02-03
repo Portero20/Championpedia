@@ -12,9 +12,6 @@ const Trophies = () => {
                         <label>Titulo:</label>
                         <input type="text" name="title" id="title" placeholder='Probando' className='inputsTrophies' />
 
-                        <label>Texto:</label>
-                        <input type="text" name="text" id="text" placeholder='Probando' className='inputsTrophies' />
-
                         <label>Autor:</label>
                         <input type="text" name="author" id="author" placeholder='Probando' className='inputsTrophies' />
 
@@ -25,7 +22,7 @@ const Trophies = () => {
                         <input type="text" name="campus" id="campus" placeholder='Probando' className='inputsTrophies' />
 
                         <label>Fundación:</label>
-                        <input type="text" name="foundation" id="foundation" placeholder='Probando' className='inputsTrophies' />
+                        <input type="date" name="foundation" id="foundation" placeholder='Probando' className='inputsTrophies' />
 
                         <label>Organizador:</label>
                         <input type="text" name="organizer" id="organizer" placeholder='Probando' className='inputsTrophies' />

@@ -19,10 +19,6 @@ const CreateArticle = () => {
 
   const [selected, setSelected] = useState('');
 
-  console.log(content);
-
-  console.log(selected);
-
   const config = {
 
     readonly: false,
@@ -68,48 +64,118 @@ const CreateArticle = () => {
 
     e.preventDefault();
 
-    let file = document.getElementById("file");
-    let title = document.getElementById("title").value;
-    let text = document.getElementById("text").value;
-    let author = document.getElementById("author").value;
-    let fullName = document.getElementById("fullName").value;
-    let category = document.getElementById("category").value;
-    let nickName = document.getElementById("nickName").value;
-    let born = document.getElementById("born").value;
-    let death = document.getElementById("death").value;
-    let height = document.getElementById("height").value;
-    let weight = document.getElementById("weight").value;
-    let nationality = document.getElementById("nationality").value;
-    let position = document.getElementById("position").value;
-    let team = document.getElementById("team").value;
-    let numbers = document.getElementById("numbers").value;
-    let goals = document.getElementById("goals").value;
-    let debut = document.getElementById("debut").value;
-    let retire = document.getElementById("retire").value;
+    if (selected == "futbolistas") {
 
-    let formData = new FormData();
+      let file = document.getElementById("file");
+      let title = document.getElementById("title").value;
+      let text = content
+      let author = document.getElementById("author").value;
+      let fullName = document.getElementById("fullName").value;
+      let nickName = document.getElementById("nickName").value;
+      let category = document.getElementById("category").value;
+      let born = document.getElementById("born").value;
+      let death = document.getElementById("death").value;
+      let height = document.getElementById("height").value;
+      let weight = document.getElementById("weight").value;
+      let nationality = document.getElementById("nationality").value;
+      let position = document.getElementById("position").value;
+      let team = document.getElementById("team").value;
+      let numbers = document.getElementById("numbers").value;
+      let goals = document.getElementById("goals").value;
+      let debut = document.getElementById("debut").value;
+      let retire = document.getElementById("retire").value;
+      let tags = document.getElementById("tags").value;
 
-    formData.append("title", title);
-    formData.append("text", text);
-    formData.append("author", author);
-    formData.append("fullName", fullName);
-    formData.append("category", category);
-    formData.append("file", file.files[0]);
-    formData.append("nickName", nickName);
-    formData.append("born", born);
-    formData.append("death", death);
-    formData.append("height", height);
-    formData.append("weight", weight);
-    formData.append("nationality", nationality);
-    formData.append("position", position);
-    formData.append("team", team);
-    formData.append("numbers", numbers);
-    formData.append("goals", goals);
-    formData.append("debut", debut);
-    formData.append("retire", retire);
+      let formData = new FormData();
 
-    let result = await newArticle(formData)
+      formData.append("file", file.files[0]);
+      formData.append("title", title);
+      formData.append("text", text);
+      formData.append("author", author);
+      formData.append("fullName", fullName);
+      formData.append("nickName", nickName);
+      formData.append("category", category);
+      formData.append("born", born);
+      formData.append("death", death);
+      formData.append("height", height);
+      formData.append("weight", weight);
+      formData.append("nationality", nationality);
+      formData.append("position", position);
+      formData.append("team", team);
+      formData.append("numbers", numbers);
+      formData.append("goals", goals);
+      formData.append("debut", debut);
+      formData.append("retire", retire);
+      formData.append("tags", tags);
 
+
+      let result = await newArticle(formData)
+
+    }
+
+    if (selected == "copas") {
+
+      let file = document.getElementById("file");
+      let title = document.getElementById("title").value;
+      let text = content
+      let author = document.getElementById("author").value;
+      let fullName = document.getElementById("fullName").value;
+      let category = document.getElementById("category").value;
+      let campus = document.getElementById("campus").value;
+      let foundation = document.getElementById("foundation").value;
+      let organizer = document.getElementById("organizer").value;
+      let champion = document.getElementById("champion").value;
+      let subchampion = document.getElementById("subchampion").value
+      let tags = document.getElementById("tags").value;
+
+      let formData = new FormData();
+
+      formData.append("title", title);
+      formData.append("text", text);
+      formData.append("author", author);
+      formData.append("fullName", fullName);
+      formData.append("category", category);
+      formData.append("file", file.files[0]);
+      formData.append("campus", campus);
+      formData.append("foundation", foundation);
+      formData.append("organizer", organizer);
+      formData.append("champion", champion);
+      formData.append("subchampion", subchampion);
+      formData.append("tags", tags);
+
+      let result = await newArticle(formData)
+
+    }
+
+    if (selected == "equipos") {
+      let file = document.getElementById("file");
+      let title = document.getElementById("title").value;
+      let text = content
+      let author = document.getElementById("author").value;
+      let fullName = document.getElementById("fullName").value;
+      let category = document.getElementById("category").value;
+      let foundation = document.getElementById("foundation").value;
+      let president = document.getElementById("president").value;
+      let stadium = document.getElementById("stadium").value;
+      let coach = document.getElementById("coach").value
+      let tags = document.getElementById("tags").value;
+
+      let formData = new FormData();
+
+      formData.append("title", title);
+      formData.append("text", text);
+      formData.append("author", author);
+      formData.append("fullName", fullName);
+      formData.append("category", category);
+      formData.append("file", file.files[0]);
+      formData.append("foundation", foundation);
+      formData.append("president", president);
+      formData.append("stadium", stadium);
+      formData.append("coach", coach);
+      formData.append("tags", tags);
+
+      let result = await newArticle(formData)
+    }
   }
 
   return (
@@ -168,7 +234,7 @@ const CreateArticle = () => {
             </div>
 
             <label className='agregarEtiqueta'>Agregar etiquetas</label>
-            <input type="text" placeholder='Escribe las etiquetas...' className='inputComas' name='tags' />
+            <input type="text" placeholder='Escribe las etiquetas...' className='inputComas' name='tags' id="tags" />
 
           </div>
 
