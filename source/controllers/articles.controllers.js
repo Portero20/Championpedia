@@ -30,6 +30,7 @@ module.exports = {
                                     console.error(err);
                                 } else {
                                     idPlayer = result[0].id
+                                    articleId = result[0]
 
                                     let tags = req.body.tags.split(",").map(tag => {
                                         return `('', "${tag}", "${uniqueSuffix}")`
@@ -82,8 +83,9 @@ module.exports = {
                                                                                     return console.log(error)
                                                                                 } else {
                                                                                     console.log("ImagesPlayers created successfully");
-                                                                                }
 
+                                                                                }
+                                                                                return res.status(200).json(articleId);
                                                                             })
                                                                         }
                                                                     })
@@ -122,6 +124,7 @@ module.exports = {
                                     console.error(err);
                                 } else {
                                     idTeam = result[0].id
+                                    articleId = result[0]
 
                                     let tags = req.body.tags.split(",").map(tag => {
                                         return `('', "${tag}", "${uniqueSuffix}")`
@@ -174,7 +177,10 @@ module.exports = {
                                                                                     return console.log(error)
                                                                                 } else {
                                                                                     console.log("imagesTeams created successfully");
+                                                            
                                                                                 }
+
+                                                                                return res.status(200).json(articleId);
 
                                                                             })
                                                                         }
@@ -213,6 +219,7 @@ module.exports = {
                                     console.error(err);
                                 } else {
                                     idTrophy = result[0].id
+                                    articleId = result[0]
 
                                     let tags = req.body.tags.split(",").map(tag => {
                                         return `('', "${tag}", "${uniqueSuffix}")`
@@ -267,6 +274,8 @@ module.exports = {
                                                                                     console.log("imagesTeams created successfully");
                                                                                 }
 
+                                                                                return res.status(200).json(articleId);
+
                                                                             })
                                                                         }
                                                                     })
@@ -286,8 +295,6 @@ module.exports = {
                         }
                     })
             }
-
-            return res.status(200).json(`Tabla ${req.body.category} created successfully`);
         } catch (error) {
             return res.status(500).json(error)
         }
@@ -300,12 +307,12 @@ module.exports = {
 
                 console.log("Using Database");
             })
-            
+
             database.query(`SELECT category FROM categories`, function (err, result, filed) {
                 if (err) {
                     return console.log(err)
                 } else {
-                    let categories = result.map(c => {return c.category})
+                    let categories = result.map(c => { return c.category })
 
                     return res.status(200).json(categories);
                 }
@@ -315,14 +322,14 @@ module.exports = {
         }
     },
 
-    detailPLayer: (req, res) => {
+    detailPlayer: (req, res) => {
         try {
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-    
+
                 console.log("Using Database");
             })
-            console.log(req.params.id)
+
             database.query(`SELECT * FROM players WHERE id = ${req.params.id}`, function (err, result, filed) {
                 if (err) {
                     return console.log(err)
@@ -339,10 +346,10 @@ module.exports = {
         try {
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-    
+
                 console.log("Using Database");
             })
-            console.log(req.params.id)
+
             database.query(`SELECT * FROM teams WHERE id = ${req.params.id}`, function (err, result, filed) {
                 if (err) {
                     return console.log(err)
@@ -359,10 +366,10 @@ module.exports = {
         try {
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-    
+
                 console.log("Using Database");
             })
-            console.log(req.params.id)
+
             database.query(`SELECT * FROM trophies WHERE id = ${req.params.id}`, function (err, result, filed) {
                 if (err) {
                     return console.log(err)
