@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import React from 'react'
 import Team from '../Teams/Team';
 import Trophies from '../Trophies/Trophies';
+import { newArticle } from '../../services/articles';
 
 const CreateArticle = () => {
 
@@ -37,7 +38,7 @@ const CreateArticle = () => {
 
   //Condicional para categorias
 
-  let input;
+  let input = <h2>Elige una categoria</h2>
 
   if (selected == "futbolistas") {
 
@@ -50,10 +51,6 @@ const CreateArticle = () => {
   } else if (selected == "equipos") {
 
     input = <Team />
-
-  } else {
-
-    console.log("Error");
 
   }
 
@@ -71,7 +68,47 @@ const CreateArticle = () => {
 
     e.preventDefault();
 
+    let file = document.getElementById("file");
+    let title = document.getElementById("title").value;
+    let text = document.getElementById("text").value;
+    let author = document.getElementById("author").value;
+    let fullName = document.getElementById("fullName").value;
+    let category = document.getElementById("category").value;
+    let nickName = document.getElementById("nickName").value;
+    let born = document.getElementById("born").value;
+    let death = document.getElementById("death").value;
+    let height = document.getElementById("height").value;
+    let weight = document.getElementById("weight").value;
+    let nationality = document.getElementById("nationality").value;
+    let position = document.getElementById("position").value;
+    let team = document.getElementById("team").value;
+    let numbers = document.getElementById("numbers").value;
+    let goals = document.getElementById("goals").value;
+    let debut = document.getElementById("debut").value;
+    let retire = document.getElementById("retire").value;
 
+    let formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("text", text);
+    formData.append("author", author);
+    formData.append("fullName", fullName);
+    formData.append("category", category);
+    formData.append("file", file.files[0]);
+    formData.append("nickName", nickName);
+    formData.append("born", born);
+    formData.append("death", death);
+    formData.append("height", height);
+    formData.append("weight", weight);
+    formData.append("nationality", nationality);
+    formData.append("position", position);
+    formData.append("team", team);
+    formData.append("numbers", numbers);
+    formData.append("goals", goals);
+    formData.append("debut", debut);
+    formData.append("retire", retire);
+
+    let result = await newArticle(formData)
 
   }
 
@@ -90,7 +127,7 @@ const CreateArticle = () => {
               <label className='labelCategoria'>Selecciona la categoria:</label>
 
 
-              <select className='selectCat' name='category' onChange={handlerChange}>
+              <select className='selectCat' name='category' id="category" onChange={handlerChange}>
 
 
                 <option value="categorias">Categorias</option>
