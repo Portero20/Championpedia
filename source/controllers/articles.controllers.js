@@ -313,5 +313,65 @@ module.exports = {
         } catch (error) {
             return res.status(500).json(error)
         }
+    },
+
+    detailPLayer: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+    
+                console.log("Using Database");
+            })
+            console.log(req.params.id)
+            database.query(`SELECT * FROM players WHERE id = ${req.params.id}`, function (err, result, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    return res.status(200).json(result);
+                }
+            })
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    },
+
+    detailTeam: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+    
+                console.log("Using Database");
+            })
+            console.log(req.params.id)
+            database.query(`SELECT * FROM teams WHERE id = ${req.params.id}`, function (err, result, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    return res.status(200).json(result);
+                }
+            })
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    },
+
+    detailTrophy: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+    
+                console.log("Using Database");
+            })
+            console.log(req.params.id)
+            database.query(`SELECT * FROM trophies WHERE id = ${req.params.id}`, function (err, result, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    return res.status(200).json(result);
+                }
+            })
+        } catch (error) {
+            return res.status(500).json(error)
+        }
     }
 }
