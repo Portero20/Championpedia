@@ -1,0 +1,98 @@
+//extend para ViewArticle
+%titulo {
+
+    text-align: center;
+
+}
+
+%parrafoView {
+
+    font-size: .8rem;
+    margin-right: 2rem;
+    text-align: justify;
+    line-height: 1rem;
+    word-break: keep-all;
+    margin-left: 1rem;
+
+}
+
+.containerView {
+
+    display: grid;
+    grid-template-columns: 70% auto;
+    grid-template-rows:  auto;
+
+    &-titulo {
+
+        @extend %titulo;
+
+    }
+
+    .descripcionView {
+
+
+        .parrafoView {
+
+            @extend %parrafoView;
+
+
+        }
+
+    }
+
+    .jugadorContainer {
+
+        margin-top: 2rem;
+        margin-right: 1rem;
+        background-color: grey;
+        max-width: 100vh;
+        
+        .imagen__jugadorFlex{
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        
+
+        .peleIMG {
+
+            width: 16rem;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+
+
+        }
+
+        .datosPersonales{
+    
+            text-align: center;
+    
+        }
+
+        .parrafosPersonales{
+
+            line-height: 2.5rem;
+            text-align: left;
+            font-size: 1rem;
+
+            .parrafoJugador{
+
+                margin-left: .5rem;
+
+            }
+
+            .spanParrafo{
+
+                font-weight: 700;
+
+            }
+
+
+        }
+
+    }
+
+
+}
