@@ -1,0 +1,36 @@
+//each inputs players
+
+$inputPlayers:(
+
+    border: none,
+    outline: none,
+    height: 30px,
+    border-radius: .4rem,
+
+);
+
+.inputJugadores{
+
+    border: map-get($inputPlayers, border);
+    outline: map-get($inputPlayers, outline);
+    height: map-get($inputPlayers , height );
+    border-radius: map-get($inputPlayers , border-radius );
+    
+
+}
+
+//each inputs Team
+
+@each $teams in inputs {
+
+    .#{$teams}__team {
+
+        border: none;
+        outline: none;
+        height: 30px;
+        border-radius: .4rem;
+
+
+    }
+
+}

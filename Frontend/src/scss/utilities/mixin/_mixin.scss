@@ -1,0 +1,20 @@
+//mixin inputs Trophies
+
+@mixin inputsTrophies {
+
+
+
+    border: none;
+    outline: none;
+    height: 30px;
+    border-radius: .4rem;
+
+
+
+}
+
+.inputsTrophies {
+
+    @include inputsTrophies();
+
+}

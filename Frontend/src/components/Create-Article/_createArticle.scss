@@ -1,0 +1,104 @@
+/* estilos vista create artice */
+
+.formularioCategorias {
+
+    .flexInputs {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+
+        .flexUbicar {
+
+            .containerCategoria {
+
+                margin-bottom: 1rem;
+
+                .labelCategoria {
+
+                    margin-right: 1rem;
+
+                }
+
+                .selectCat {
+
+                    border: none;
+                    outline: none;
+                    width: 10rem;
+                    height: 1.5rem;
+                    border-radius: .5rem;
+                    margin-bottom: 1rem;
+
+                }
+
+            }
+
+
+        }
+
+
+    }
+
+    .joditEditor {
+        color: black;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .moverInputs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+
+        .moverButtons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .inputsEtiquetas {
+
+            .agregarEtiqueta {
+        
+                margin-right: 1rem;
+        
+            }
+        
+            .inputComas {
+        
+                border: none;
+                outline: none;
+                border-radius: 20px;
+                height: 49px;
+                width: 467px;
+        
+                &::placeholder {
+        
+                    text-align: center;
+        
+                }
+        
+                &:hover::after {
+        
+                    background-color: #add8e6;
+                    border-radius: 4px;
+                    bottom: 100%;
+                    content: 'Recuerda poner comas para las etiquetas';
+                    display: block;
+                    left: 100%;
+                    padding: 1em;
+                    position: absolute;
+                    width: 280px;
+                    z-index: 1;
+        
+                }
+        
+            }
+        
+        }
+    }
+
+}
