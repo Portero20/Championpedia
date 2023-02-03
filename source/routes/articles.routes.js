@@ -5,7 +5,7 @@ const articleCreateMiddleware = require("../middlewares/articleCreate.middleware
 
 router.post("/create", articleCreateMiddleware, articlesControllers.create)
 router.get("/categories", articlesControllers.categories)
-router.get("/futbolistas/:id", articlesControllers.detailPLayer)
+router.get("/futbolistas/:id", articlesControllers.detailPlayer)
 router.get("/equipos/:id", articlesControllers.detailTeam)
 router.get("/copas/:id", articlesControllers.detailTrophy)
 
