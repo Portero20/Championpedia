@@ -14,7 +14,7 @@ const CreateArticle = () => {
 
   const editor = useRef(null);
 
-  const [content,setContent] = useState('');
+  const [content, setContent] = useState('');
 
   const [selected, setSelected] = useState('');
 
@@ -27,7 +27,7 @@ const CreateArticle = () => {
     readonly: false,
     height: 380,
 
-    "uploader":{
+    "uploader": {
       "insertImageAsBase64URI": true
     },
 
@@ -38,28 +38,28 @@ const CreateArticle = () => {
   //Condicional para categorias
 
   let input;
-  
-  if(selected == "futbolistas"){
 
-    input = <InputPlayer/>
+  if (selected == "futbolistas") {
 
-  }else if(selected == "copas"){
+    input = <InputPlayer />
 
-    input = <Trophies/>
+  } else if (selected == "copas") {
 
-  }else if(selected == "equipos"){
+    input = <Trophies />
 
-    input = <Team/>
+  } else if (selected == "equipos") {
 
-  }else{
+    input = <Team />
+
+  } else {
 
     console.log("Error");
 
   }
 
   //función para cuando cambie el select
-  
-  function handlerChange(e){
+
+  function handlerChange(e) {
 
     setSelected((e.target.value.toLowerCase()));
 
@@ -67,14 +67,16 @@ const CreateArticle = () => {
 
   //función para el formulario
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async (e) => {
 
     e.preventDefault();
+
+
 
   }
 
   return (
-    
+
     <div className="AppContainer">
 
 
@@ -89,7 +91,7 @@ const CreateArticle = () => {
 
 
               <select className='selectCat' name='category' onChange={handlerChange}>
-                
+
 
                 <option value="categorias">Categorias</option>
                 <option value="futbolistas">Jugadores</option>
@@ -104,7 +106,7 @@ const CreateArticle = () => {
             <div className="inputsCategorias">
               {input}
             </div>
-          
+
 
           </div>
 
@@ -113,29 +115,29 @@ const CreateArticle = () => {
 
         <div className="joditEditor">
 
-          <JoditEditor ref={editor} value={content} onChange={newContent=>setContent(newContent)} config={config}/>
-          
+          <JoditEditor ref={editor} value={content} onChange={newContent => setContent(newContent)} config={config} />
+
         </div>
 
         <div className="moverInputs">
 
-          <div className="inputsEtiquetas">      
+          <div className="inputsEtiquetas">
 
             <div className='tooltip-container'>
 
               <i className="fa-solid fa-question questionIcon"></i>
               <span className='tooltip'>No te olvides de poner comas y espacios.</span>
-              
+
             </div>
-            
+
             <label className='agregarEtiqueta'>Agregar etiquetas</label>
-            <input type="text" placeholder='Escribe las etiquetas...' className='inputComas' name='tags'/>
-            
+            <input type="text" placeholder='Escribe las etiquetas...' className='inputComas' name='tags' />
+
           </div>
 
           <div className="moverButtons">
-              
-            <button type="submit" className='agregarArticulo botonLink'>Crear</button>            
+
+            <button type="submit" className='agregarArticulo botonLink'>Crear</button>
             <button className='agregarArticulo'>Cancelar</button>
 
           </div>
