@@ -13,6 +13,8 @@ module.exports = {
                 console.log("Using Database");
             })
 
+            console.log(req.files && req.files.length > 0 ? req.files[0].filename : "default.png")
+
             if (req.body.category.toLowerCase() == "futbolistas") {
 
                 // Inserto los datos en la tabla players
@@ -60,6 +62,36 @@ module.exports = {
                                                             return console.log(error)
                                                         } else {
                                                             console.log("TagsPlayers created successfully");
+
+                                                            //Inserto la imagen en la tabla images
+                                                            database.query(`INSERT INTO images(id, image, identifier) VALUES ('','${req.files[0].filename}','${uniqueSuffix}')`, (error) => {
+                                                                if (error) {
+                                                                    return console.log(error)
+                                                                } else {
+                                                                    console.log("Images created successfully");
+
+                                                                    // Selecciono los ids de las images
+                                                                    database.query(`SELECT id FROM images WHERE identifier = "${uniqueSuffix}"`, function (err, result, filed) {
+                                                                        let idImage;
+                                                                        if (err) {
+                                                                            console.error(err);
+                                                                        } else {
+                                                                            idImage = result[0].id
+
+                                                                            //Inserto el id de la fila players y el id de la imagen
+                                                                            database.query(`INSERT INTO imagesplayers(id, player_id, image_id) VALUES ('','${idPlayer}','${idImage}')`, (error) => {
+                                                                                if (error) {
+                                                                                    return console.log(error)
+                                                                                } else {
+                                                                                    console.log("ImagesPlayers created successfully");
+                                                                                }
+
+                                                                            })
+                                                                        }
+                                                                    })
+                                                                }
+
+                                                            })
                                                         }
 
                                                     })
@@ -122,6 +154,36 @@ module.exports = {
                                                             return console.log(error)
                                                         } else {
                                                             console.log("TagsTeams created successfully");
+
+                                                            //Inserto la imagen en la tabla images
+                                                            database.query(`INSERT INTO images(id, image, identifier) VALUES ('','${req.files[0].filename}','${uniqueSuffix}')`, (error) => {
+                                                                if (error) {
+                                                                    return console.log(error)
+                                                                } else {
+                                                                    console.log("Images created successfully");
+
+                                                                    // Selecciono los ids de las images
+                                                                    database.query(`SELECT id FROM images WHERE identifier = "${uniqueSuffix}"`, function (err, result, filed) {
+                                                                        let idImage;
+                                                                        if (err) {
+                                                                            console.error(err);
+                                                                        } else {
+                                                                            idImage = result[0].id
+
+                                                                            //Inserto el id de la fila players y el id de la imagen
+                                                                            database.query(`INSERT INTO imagesteams(id, team_id, image_id) VALUES ('','${idTeam}','${idImage}')`, (error) => {
+                                                                                if (error) {
+                                                                                    return console.log(error)
+                                                                                } else {
+                                                                                    console.log("imagesTeams created successfully");
+                                                                                }
+
+                                                                            })
+                                                                        }
+                                                                    })
+                                                                }
+
+                                                            })
                                                         }
 
                                                     })
@@ -183,6 +245,36 @@ module.exports = {
                                                             return console.log(error)
                                                         } else {
                                                             console.log("TagsTrophies created successfully");
+
+                                                            //Inserto la imagen en la tabla images
+                                                            database.query(`INSERT INTO images(id, image, identifier) VALUES ('','${req.files[0].filename}','${uniqueSuffix}')`, (error) => {
+                                                                if (error) {
+                                                                    return console.log(error)
+                                                                } else {
+                                                                    console.log("Images created successfully");
+
+                                                                    // Selecciono los ids de las images
+                                                                    database.query(`SELECT id FROM images WHERE identifier = "${uniqueSuffix}"`, function (err, result, filed) {
+                                                                        let idImage;
+                                                                        if (err) {
+                                                                            console.error(err);
+                                                                        } else {
+                                                                            idImage = result[0].id
+
+                                                                            //Inserto el id de la fila players y el id de la imagen
+                                                                            database.query(`INSERT INTO imagestrophies(id, thophy_id, image_id) VALUES ('','${idTrophy}','${idImage}')`, (error) => {
+                                                                                if (error) {
+                                                                                    return console.log(error)
+                                                                                } else {
+                                                                                    console.log("imagesTeams created successfully");
+                                                                                }
+
+                                                                            })
+                                                                        }
+                                                                    })
+                                                                }
+
+                                                            })
                                                         }
 
                                                     })
@@ -197,7 +289,7 @@ module.exports = {
                     })
             }
 
-            return res.status(200).json()
+            return res.status(200).json("Ok");
         } catch (error) {
             return res.status(500).json(error)
         }
