@@ -1,6 +1,6 @@
 /* estilos vista create artice */
 
-.AppContainer{
+.AppContainer {
 
     display: flex;
     justify-content: center;
@@ -20,89 +20,110 @@
             align-items: center;
             justify-content: flex-start;
             flex-direction: row;
-    
+
             .flexUbicar {
-    
+
                 .containerCategoria {
-    
+
                     margin-bottom: 1rem;
-    
+
                     .labelCategoria {
-    
+
                         margin-right: 1rem;
-    
+
                     }
-    
+
                     .selectCat {
-    
+
                         border: none;
                         outline: none;
                         width: 10rem;
                         height: 1.5rem;
                         border-radius: .5rem;
                         margin-bottom: 1rem;
-    
+
                     }
-    
+
                 }
-    
-    
+
+
             }
-    
-    
+
+
         }
-    
+
         .joditEditor {
             color: black;
             margin-bottom: 1rem;
             margin-top: 1rem;
         }
-    
+
         .moverInputs {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-    
-    
+
+
             .moverButtons {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 gap: 1rem;
-    
-                .botonLink{
-    
+
+                .agregarArticulo {
+                    border-radius: 8px;
+                    border: 1px solid transparent;
+                    padding: 0.6em 1.2em;
+                    font-size: 1em;
+                    font-weight: 500;
+                    font-family: inherit;
+                    background-color: #646cff;
+                    cursor: pointer;
+                    transition: border-color 0.25s;
+                }
+
+                .agregarArticulo:hover {
+                    border-color: #ffff;
+                }
+
+                .agregarArticulo:focus,
+                .agregarArticulo:focus-visible {
+                    outline: 4px auto -webkit-focus-ring-color;
+                }
+
+                .botonLink {
+
                     color: white;
-    
+
                 }
-    
+
             }
-    
+
             .inputsEtiquetas {
-    
+
                 .agregarEtiqueta {
-            
+
                     margin-right: 1rem;
-            
+
                 }
-            
+
                 .inputComas {
-            
+
                     border: none;
                     outline: none;
                     border-radius: 20px;
                     height: 49px;
                     width: 467px;
-            
+
                     &::placeholder {
-            
+
                         text-align: center;
-            
+
                     }
-            
+
                     &:hover::after {
-            
+
                         background-color: #add8e6;
                         border-radius: 4px;
                         bottom: 100%;
@@ -113,14 +134,14 @@
                         position: absolute;
                         width: 280px;
                         z-index: 1;
-            
+
                     }
-            
+
                 }
-            
+
             }
         }
-    
+
     }
 
 }
