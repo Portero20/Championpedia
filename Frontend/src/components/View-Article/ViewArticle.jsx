@@ -10,7 +10,7 @@ return (
 
       <div className='containerView__estilo'>
 
-        <h1>El rey Pele</h1>
+        <h4>El rey Pele</h4>
 
       </div>
 

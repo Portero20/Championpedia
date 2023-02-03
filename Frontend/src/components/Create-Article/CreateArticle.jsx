@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 
 import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
+import { Link } from 'react-router-dom';
 import React from 'react'
 import Team from '../Teams/Team';
 import Trophies from '../Trophies/Trophies';
@@ -64,12 +65,20 @@ const CreateArticle = () => {
 
   }
 
+  //función para el formulario
+
+  const handleSubmit = (e) =>{
+
+    e.preventDefault();
+
+  }
+
   return (
     
-    <div className="App">
+    <div className="AppContainer">
 
 
-      <form method="post" encType='multipart/form-data' className='formularioCategorias'>
+      <form method="post" action={`/articulo/${selected}`} encType='multipart/form-data' className='formularioCategorias' onSubmit={handleSubmit}>
 
         <div className='flexInputs'>
           <div className="flexUbicar">
@@ -92,7 +101,7 @@ const CreateArticle = () => {
 
             </div>
 
-            <div class="inputsCategorias">
+            <div className="inputsCategorias">
               {input}
             </div>
           
@@ -125,8 +134,8 @@ const CreateArticle = () => {
           </div>
 
           <div className="moverButtons">
-
-            <input type="submit" value="Agregar" className='agregarArticulo'/>
+              
+            <button type="submit" className='agregarArticulo botonLink'>Crear</button>            
             <button className='agregarArticulo'>Cancelar</button>
 
           </div>
