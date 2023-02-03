@@ -12,9 +12,6 @@ const Trophies = () => {
                         <label>Titulo:</label>
                         <input type="text" name="title" id="title" placeholder='Probando' className='inputsTrophies' />
 
-                        <label>Autor:</label>
-                        <input type="text" name="author" id="author" placeholder='Probando' className='inputsTrophies' />
-
                         <label>Nombre completo:</label>
                         <input type="text" name="fullName" id="fullName" placeholder='Probando' className='inputsTrophies' />
 
@@ -35,6 +32,10 @@ const Trophies = () => {
 
                         <label>Imagen:</label>
                         <input type="file" name='file' id="file" className='inputJugadores' />
+
+                        <label>Autor:</label>
+                        <input type="text" name="author" id="author" placeholder='Probando' className='inputsTrophies' />
+
                     </div>
             
             </div>
