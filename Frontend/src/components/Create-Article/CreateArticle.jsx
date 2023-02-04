@@ -7,8 +7,10 @@ import React from 'react'
 import Team from '../Teams/Team';
 import Trophies from '../Trophies/Trophies';
 import { newArticle, allCategories } from '../../services/articles';
+import { useNavigate } from "react-router-dom";
 
 const CreateArticle = () => {
+  const navigate = useNavigate();
 
   const editor = useRef(null);
 
@@ -119,7 +121,7 @@ const CreateArticle = () => {
 
 
       let result = await newArticle(formData)
-
+      navigate(`/articulo/${selected}/${result.id}`)
     }
 
     if (selected == "copas") {
@@ -153,7 +155,7 @@ const CreateArticle = () => {
       formData.append("tags", tags);
 
       let result = await newArticle(formData)
-
+      navigate(`/articulo/${selected}/${result.id}`)
     }
 
     if (selected == "equipos") {
@@ -186,6 +188,7 @@ const CreateArticle = () => {
       formData.append("tags", tags);
 
       let result = await newArticle(formData)
+      navigate(`/articulo/${selected}/${result.id}`)
     }
   }
 
@@ -194,7 +197,7 @@ const CreateArticle = () => {
     <div className="AppContainer">
 
 
-      <form method="post" action={`/articulo/${selected}`} encType='multipart/form-data' className='formularioCategorias' onSubmit={handleSubmit}>
+      <form method="post" encType='multipart/form-data' className='formularioCategorias' onSubmit={handleSubmit}>
 
         <div className='flexInputs'>
           <div className="flexUbicar">
