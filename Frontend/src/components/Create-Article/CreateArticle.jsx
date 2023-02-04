@@ -153,6 +153,7 @@ const CreateArticle = () => {
       let text = content
       let author = document.getElementById("author").value;
       let fullName = document.getElementById("fullName").value;
+      let nickName = document.getElementById("nickName").value;
       let category = document.getElementById("category").value;
       let foundation = document.getElementById("foundation").value;
       let president = document.getElementById("president").value;
@@ -166,6 +167,7 @@ const CreateArticle = () => {
       formData.append("text", text);
       formData.append("author", author);
       formData.append("fullName", fullName);
+      formData.append("nickName", nickName);
       formData.append("category", category);
       formData.append("file", file.files[0]);
       formData.append("foundation", foundation);
