@@ -177,7 +177,7 @@ module.exports = {
                                                                                     return console.log(error)
                                                                                 } else {
                                                                                     console.log("imagesTeams created successfully");
-                                                            
+
                                                                                 }
 
                                                                                 return res.status(200).json(articleId);
@@ -334,7 +334,30 @@ module.exports = {
                 if (err) {
                     return console.log(err)
                 } else {
-                    return res.status(200).json(result);
+                    let article = result
+
+                    database.query(`SELECT DISTINCT tags.tag from tags inner join tagsplayers on tags.id = tagsplayers.tag_id inner join players on tagsplayers.player_id = ${req.params.id};`, function (err, result, filed) {
+                        if (err) {
+                            return console.log(err)
+                        } else {
+                            let tags = result.map(t => t.tag)
+
+                            database.query(`SELECT DISTINCT images.image from images inner join imagesplayers on images.id = imagesplayers.image_id inner JOIN players on imagesplayers.player_id = ${req.params.id};`, function (err, result, filed) {
+                                if (err) {
+                                    return console.log(err)
+                                } else {
+                                    let image = result[0].image
+
+                                    let data = {
+                                        article: article,
+                                        tags: tags,
+                                        image: image
+                                    }
+                                    return res.status(200).json(data);
+                                }
+                            })
+                        }
+                    })
                 }
             })
         } catch (error) {
@@ -354,7 +377,30 @@ module.exports = {
                 if (err) {
                     return console.log(err)
                 } else {
-                    return res.status(200).json(result);
+                    let article = result
+
+                    database.query(`select DISTINCT tags.tag from tags inner join tagsteams on tags.id = tagsteams.tag_id inner join teams on tagsteams.team_id = ${req.params.id};`, function (err, result, filed) {
+                        if (err) {
+                            return console.log(err)
+                        } else {
+                            let tags = result.map(t => t.tag)
+
+                            database.query(`SELECT DISTINCT images.image from images inner join imagesteams on images.id = imagesteams.image_id inner join teams on imagesteams.team_id = ${req.params.id};`, function (err, result, filed) {
+                                if (err) {
+                                    return console.log(err)
+                                } else {
+                                    let image = result[0].image
+
+                                    let data = {
+                                        article: article,
+                                        tags: tags,
+                                        image: image
+                                    }
+                                    return res.status(200).json(data);
+                                }
+                            })
+                        }
+                    })
                 }
             })
         } catch (error) {
@@ -374,7 +420,30 @@ module.exports = {
                 if (err) {
                     return console.log(err)
                 } else {
-                    return res.status(200).json(result);
+                    let article = result
+
+                    database.query(`select DISTINCT tags.tag from tags inner join tagstrophies on tags.id = tagstrophies.tag_id inner join trophies on tagstrophies.thophy_id = ${req.params.id};`, function (err, result, filed) {
+                        if (err) {
+                            return console.log(err)
+                        } else {
+                            let tags = result.map(t => t.tag)
+
+                            database.query(`SELECT DISTINCT images.image from images inner join imagestrophies on images.id = imagestrophies.image_id inner join trophies on imagestrophies.thophy_id = ${req.params.id};`, function (err, result, filed) {
+                                if (err) {
+                                    return console.log(err)
+                                } else {
+                                    let image = result[0].image
+
+                                    let data = {
+                                        article: article,
+                                        tags: tags,
+                                        image: image
+                                    }
+                                    return res.status(200).json(data);
+                                }
+                            })
+                        }
+                    })
                 }
             })
         } catch (error) {
