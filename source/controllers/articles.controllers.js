@@ -1,5 +1,6 @@
 const database = require('../sql/dbConnection');
 const moment = require("moment");
+const { resolve } = require("path")
 
 module.exports = {
     create: (req, res) => {
@@ -449,5 +450,10 @@ module.exports = {
         } catch (error) {
             return res.status(500).json(error)
         }
+    },
+
+    images: (req, res) => {
+        let imagenUrl = req.query.imagen
+        res.sendFile(resolve(__dirname, "../../uploads/articles/" + imagenUrl))
     }
 }

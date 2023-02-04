@@ -8,6 +8,7 @@ router.get("/categories", articlesControllers.categories)
 router.get("/futbolistas/:id", articlesControllers.detailPlayer)
 router.get("/equipos/:id", articlesControllers.detailTeam)
 router.get("/copas/:id", articlesControllers.detailTrophy)
+router.get("/images", articlesControllers.images)
 
 
 module.exports = router
