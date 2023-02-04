@@ -13,3 +13,13 @@ export async function newArticle(formData) {
         console.log(error)
     }
 }
+
+export async function allCategories() {
+    try {
+        let query = await fetch(`http://localhost:3000/article/categories`)
+        let data = await query.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}

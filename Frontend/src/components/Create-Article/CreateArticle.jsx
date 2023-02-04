@@ -1,15 +1,12 @@
 import '../Create-Article/_createArticle.scss';
 import '../../scss/base/_font.scss';
-
-import { useRef, useState } from 'react';
-
+import { useRef, useState, useEffect } from 'react';
 import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
-import { Link } from 'react-router-dom';
 import React from 'react'
 import Team from '../Teams/Team';
 import Trophies from '../Trophies/Trophies';
-import { newArticle } from '../../services/articles';
+import { newArticle, allCategories } from '../../services/articles';
 
 const CreateArticle = () => {
 
@@ -18,6 +15,8 @@ const CreateArticle = () => {
   const [content, setContent] = useState('');
 
   const [selected, setSelected] = useState('');
+
+  const [categories, setCategories] = useState('');
 
   const config = {
 
@@ -49,6 +48,13 @@ const CreateArticle = () => {
     input = <Team />
 
   }
+
+  // Categories
+  useEffect(() => {
+    allCategories().then(setCategories)
+  }, [])
+
+  console.log(categories)
 
   //función para cuando cambie el select
 
