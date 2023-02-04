@@ -54,7 +54,10 @@ const CreateArticle = () => {
     allCategories().then(setCategories)
   }, [])
 
-  console.log(categories)
+  let categorias;
+  if (categories) {
+    categorias = categories.map((c, i) => { return <option key={i} value={c}>{c}</option> })
+  }
 
   //función para cuando cambie el select
 
@@ -205,9 +208,7 @@ const CreateArticle = () => {
 
 
                 <option value="categorias">Categorias</option>
-                <option value="futbolistas">Jugadores</option>
-                <option value="copas">Copas</option>
-                <option value="equipos">Equipos</option>
+                {categorias}
 
 
               </select>
