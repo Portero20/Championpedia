@@ -15,11 +15,6 @@ const ViewArticle = () => {
 
   let urlImage = `http://localhost:3000/article/images?imagen=${article.image}`
 
-
-  // Escucha Daniel los datos llegan bien (podes hacer un console.log de article para comprobar),
-  // pero cuando ingreso a article.article[0].title o otra cosa me tira error y no puede continuar asi q aca lo dejo)
-
-
   return (
 
     <div>
@@ -43,7 +38,7 @@ const ViewArticle = () => {
           <div className='imagen__jugadorFlex'>
 
             {/* acá en src seria / src={urlImage} / pero la saque para q no te tire error cuando entres a la pagina */}
-            <img src={pele} alt="" className='peleIMG' />
+            <img src={urlImage} alt="" className='peleIMG' />
           </div>
 
           <div className='datosPersonales'>
