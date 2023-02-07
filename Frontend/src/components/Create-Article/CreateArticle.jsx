@@ -121,7 +121,7 @@ const CreateArticle = () => {
 
 
       let result = await newArticle(formData)
-      navigate(`/articulo/${selected}/${result.id}`)
+      navigate(`/articulo/${selected}/${result}`)
     }
 
     if (selected == "copas") {
@@ -155,7 +155,7 @@ const CreateArticle = () => {
       formData.append("tags", tags);
 
       let result = await newArticle(formData)
-      navigate(`/articulo/${selected}/${result.id}`)
+      navigate(`/articulo/${selected}/${result}`)
     }
 
     if (selected == "equipos") {
@@ -188,7 +188,7 @@ const CreateArticle = () => {
       formData.append("tags", tags);
 
       let result = await newArticle(formData)
-      navigate(`/articulo/${selected}/${result.id}`)
+      navigate(`/articulo/${selected}/${result}`)
     }
   }
 
