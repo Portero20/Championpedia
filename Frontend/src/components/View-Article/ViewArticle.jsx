@@ -11,9 +11,11 @@ const ViewArticle = () => {
 
   useEffect(() => {
     detail(category, id).then(setarticle)
-  }, [category, id])
+  }, [id])
 
   let urlImage = `http://localhost:3000/article/images?imagen=${article.image}`
+
+  console.log(article)
 
   return (
 
