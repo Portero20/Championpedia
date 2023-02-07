@@ -39,10 +39,10 @@ const InputPlayer = () => {
                     <input type="number" name="goals" id="goals" placeholder='Probando' className='inputJugadores'/>
 
                     <label>Altura:</label>
-                    <input type="number" name="height" id="height" placeholder='Probando' className='inputJugadores'/>
+                    <input type="text" name="height" id="height" placeholder='Probando' className='inputJugadores'/>
 
                     <label>Peso</label>
-                    <input type="number" name="weight" id="weight" placeholder='Probando' className='inputJugadores'/>
+                    <input type="text" name="weight" id="weight" placeholder='Probando' className='inputJugadores'/>
 
                     <label>Posicion:</label>
                     <input type="text" name="position" id="position" placeholder='Probando' className='inputJugadores'/>
