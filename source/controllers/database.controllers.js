@@ -18,7 +18,6 @@ module.exports = {
         database.query(`CREATE TABLE tags (
             id int(11) not null unique auto_increment,
             tag varchar(50) not null,
-            identifier varchar(255) not null,
 
             primary key (id)
         );`, (error) => {
@@ -41,7 +40,6 @@ module.exports = {
         database.query(`CREATE TABLE images (
             id int(11) not null unique auto_increment,
             image text not null,
-            identifier varchar(255) not null,
 
             primary key (id)
         );`, (error) => {
@@ -71,7 +69,6 @@ module.exports = {
             goals int(11) not null,
             debut datetime not null,
             retire datetime null,
-            identifier varchar(255) not null,
             
             primary key (id),
             foreign key (category) references categories(id)
@@ -95,7 +92,6 @@ module.exports = {
             organizer varchar(100) not null,
             champion varchar(100) not null,
             subchampion varchar(100) not null,
-            identifier varchar(255) not null,
         
             primary key (id),
             foreign key (category) references categories(id)
@@ -119,7 +115,6 @@ module.exports = {
             stadium varchar(100) not null,
             coach varchar(100) not null,
             nickName varchar(50) null,
-            identifier varchar(255) not null,
             
             primary key (id),
             foreign key (category) references categories(id)

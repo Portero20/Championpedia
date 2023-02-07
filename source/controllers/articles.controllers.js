@@ -6,7 +6,6 @@ module.exports = {
     create: (req, res) => {
         try {
             const now = moment().format("YYYY/MM/DD HH:mm:ss")
-            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
             let category;
 
             if (req.body.category.toLowerCase() == "futbolistas") {
@@ -25,11 +24,11 @@ module.exports = {
             let query;
 
             if (category == "players") {
-                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire, identifier) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 1,'${now}','','${req.body.fullName}','${req.body.nickName}','${req.body.born}','${req.body.death}','${req.body.height}','${req.body.weight}','${req.body.nationality}','${req.body.position}','${req.body.team}','${req.body.numbers}','${req.body.goals}','${req.body.debut}','${req.body.retire}','${req.body.author + "-" + uniqueSuffix}');`
+                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 1,'${now}','','${req.body.fullName}','${req.body.nickName}','${req.body.born}','${req.body.death}','${req.body.height}','${req.body.weight}','${req.body.nationality}','${req.body.position}','${req.body.team}','${req.body.numbers}','${req.body.goals}','${req.body.debut}','${req.body.retire}');`
             } else if (category == "teams") {
-                query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName, identifier) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 2,'${now}','','${req.body.fullName}','${req.body.foundation}','${req.body.president}','${req.body.stadium}','${req.body.coach}','${req.body.nickName}','${req.body.author + "-" + uniqueSuffix}');`
+                query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 2,'${now}','','${req.body.fullName}','${req.body.foundation}','${req.body.president}','${req.body.stadium}','${req.body.coach}','${req.body.nickName}');`
             } else if (category == "trophies") {
-                query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion, identifier) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 3,'${now}','','${req.body.fullName}','${req.body.campus}','${req.body.foundation}','${req.body.organizer}','${req.body.champion}','${req.body.subchampion}','${req.body.author + "-" + uniqueSuffix}');`
+                query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 3,'${now}','','${req.body.fullName}','${req.body.campus}','${req.body.foundation}','${req.body.organizer}','${req.body.champion}','${req.body.subchampion}');`
             }
 
             database.query(query, (err, results, fields) => {
@@ -43,7 +42,7 @@ module.exports = {
                 }
 
                 let tags = req.body.tags.split(",").map(tag => {
-                    return `('', "${tag}", "${uniqueSuffix}")`
+                    return `('', "${tag}")`
                 })
 
                 database.query(`INSERT INTO tags VALUES ${tags}`, (err, results) => {
@@ -73,7 +72,7 @@ module.exports = {
                             console.log(`Tags${category} created successfully`);
                         }
 
-                        database.query(`INSERT INTO images VALUES ('', '${req.files[0].filename}','${uniqueSuffix}')`, (err, results)=> {
+                        database.query(`INSERT INTO images VALUES ('', '${req.files[0].filename}')`, (err, results)=> {
                             let imageId
 
                             if (err) {
