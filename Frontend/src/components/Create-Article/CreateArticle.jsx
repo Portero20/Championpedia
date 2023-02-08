@@ -120,7 +120,7 @@ const CreateArticle = () => {
       formData.append("tags", tags);
 
 
-      let result = await newArticle(formData)
+      let result = await newArticle(selected, formData)
       navigate(`/articulo/${selected}/${result}`)
     }
 
@@ -154,7 +154,7 @@ const CreateArticle = () => {
       formData.append("subchampion", subchampion);
       formData.append("tags", tags);
 
-      let result = await newArticle(formData)
+      let result = await newArticle(selected, formData)
       navigate(`/articulo/${selected}/${result}`)
     }
 
@@ -187,7 +187,7 @@ const CreateArticle = () => {
       formData.append("coach", coach);
       formData.append("tags", tags);
 
-      let result = await newArticle(formData)
+      let result = await newArticle(selected, formData)
       navigate(`/articulo/${selected}/${result}`)
     }
   }

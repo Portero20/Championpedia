@@ -51,7 +51,7 @@ module.exports = {
         database.query(`CREATE TABLE players (
             id int(11) not null unique auto_increment,
             title varchar(100) not null,
-            text longtext not null,
+            text mediumtext not null,
             author varchar(50) not null,
             category int(11) not null,
             date datetime not null,
@@ -81,7 +81,7 @@ module.exports = {
         database.query(`CREATE TABLE trophies (
             id int(11) not null unique auto_increment,
             title varchar(100) not null,
-            text longtext not null,
+            text mediumtext not null,
             author varchar(50) not null,
             category int(11) not null,
             date datetime not null,
@@ -104,7 +104,7 @@ module.exports = {
         database.query(`CREATE TABLE teams (
             id int(11) not null unique auto_increment,
             title varchar(100) not null,
-            text longtext not null,
+            text mediumtext not null,
             author varchar(50) not null,
             category int(11) not null,
             date datetime not null,

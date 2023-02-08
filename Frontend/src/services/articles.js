@@ -1,6 +1,6 @@
-export async function newArticle(formData) {
+export async function newArticle(category, formData) {
     try {
-        let query = await fetch("http://localhost:3000/article/create", {
+        let query = await fetch(`http://localhost:3000/article/${category}/create`, {
             method: "POST",
             headers: {
             },

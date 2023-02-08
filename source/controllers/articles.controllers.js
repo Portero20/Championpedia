@@ -1,10 +1,23 @@
 const database = require('../sql/dbConnection');
+const { validationResult } = require("express-validator")
 const moment = require("moment");
 const { resolve } = require("path")
 
 module.exports = {
     create: (req, res) => {
         try {
+            let validations = validationResult(req)
+            let { errors } = validations
+            let errorMsg = errors.map(err => Object({
+                param: err.param,
+                value: err.value,
+                msg: err.msg
+            }))
+
+            if (errors && errors.length > 0) {
+                return res.status(200).json(errorMsg)
+            }
+
             const now = moment().format("YYYY/MM/DD HH:mm:ss")
             let category;
 
