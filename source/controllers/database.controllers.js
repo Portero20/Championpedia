@@ -57,7 +57,7 @@ module.exports = {
             date datetime not null,
             views int(11) null,
             fullName varchar(100) not null,
-            nickName varchar(50) null,
+            nickName varchar(255) null,
             born date not null,
             death date null,
             height decimal(3, 2) not null,
@@ -114,7 +114,7 @@ module.exports = {
             president varchar(100) not null,
             stadium varchar(100) not null,
             coach varchar(100) not null,
-            nickName varchar(50) null,
+            nickName varchar(255) null,
             
             primary key (id),
             foreign key (category) references categories(id)
