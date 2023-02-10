@@ -134,19 +134,14 @@ const createPlayers = [
         let extensiones = [".svg", ".jpg", ".png", ".jpeg"]
         let extension = extname(imagen[0].filename)
         if (!extensiones.includes(extension)) {
-            unlinkSync(resolve(__dirname, "../../uploads/articles/" + imagen[0].filename))
             throw new Error("La extension debería ser '.svg', '.jpg', '.png', '.jpeg'")
         }
 
         if (imagen[0].size > 2097152) {
-            unlinkSync(resolve(__dirname, "../../uploads/articles/" + imagen[0].filename))
             throw new Error("La imagen supera el peso de 2MB");
         }
 
         if (req.files.length > 1) {
-            req.files.forEach(img => {
-                unlinkSync(resolve(__dirname, "../../uploads/articles/" + img.filename))
-            });
             throw new Error("No puedes subir más de una imagen");
         }
 
@@ -171,7 +166,7 @@ const createPlayers = [
     }),
     body("retire").optional({ checkFalsy: true }).notEmpty().withMessage("La fecha de debut no puede quedar vacía").isISO8601()
         .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
-        body("death").optional({ checkFalsy: true }).notEmpty().withMessage("La fecha de debut no puede quedar vacía").isISO8601()
+    body("death").optional({ checkFalsy: true }).notEmpty().withMessage("La fecha de debut no puede quedar vacía").isISO8601()
         .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
 ]
 

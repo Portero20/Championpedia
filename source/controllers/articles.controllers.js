@@ -15,11 +15,12 @@ module.exports = {
                 msg: err.msg
             }))
 
-            if (errors && errors.length > 0 && req.files[0]) {
-                unlinkSync(resolve(__dirname, "../../uploads/articles/" + req.files[0].filename))
-            }
-
             if (errors && errors.length > 0) {
+                if (req.files) {
+                    req.files.forEach(img => {
+                        unlinkSync(resolve(__dirname, "../../uploads/articles/" + img.filename))
+                    });
+                }
                 return res.status(200).json(errorMsg)
             }
 
@@ -207,7 +208,7 @@ module.exports = {
                                     image: image,
                                     tags: tags
                                 }
-                                
+
                                 return res.status(200).json(data);
                             }
                         })
