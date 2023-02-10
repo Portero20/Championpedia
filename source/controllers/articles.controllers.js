@@ -2,6 +2,7 @@ const database = require('../sql/dbConnection');
 const { validationResult } = require("express-validator")
 const moment = require("moment");
 const { resolve } = require("path")
+const { unlinkSync } = require("fs")
 
 module.exports = {
     create: (req, res) => {
@@ -13,6 +14,10 @@ module.exports = {
                 value: err.value,
                 msg: err.msg
             }))
+
+            if (errors && errors.length > 0 && req.files[0]) {
+                unlinkSync(resolve(__dirname, "../../uploads/articles/" + req.files[0].filename))
+            }
 
             if (errors && errors.length > 0) {
                 return res.status(200).json(errorMsg)

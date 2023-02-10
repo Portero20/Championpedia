@@ -4,7 +4,7 @@ const { unlinkSync } = require("fs")
 
 const createPlayers = [
     body("title").notEmpty().withMessage("El título no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El título debe contener un mínimo de dos caracteres").bail().isLength({ max: 100 }).withMessage("El título no debe superar los cien caracteres").bail(),
-    body("text").notEmpty().withMessage("Debes completar este campo").bail().isLength({ min: 100 }).withMessage("El texto ingresado es demasiado corto").bail().isLength({ max: 16700000 }).withMessage("El texto es demasiado largo").bail(),
+    body("text").notEmpty().withMessage("Debes completar este campo").bail().isLength({ min: 200 }).withMessage("El texto ingresado es demasiado corto").bail().isLength({ max: 16700000 }).withMessage("El texto es demasiado largo").bail(),
     body("author").notEmpty().withMessage("Tu nombre no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El nombre es demasiado corto").bail().isLength({ max: 50 }).withMessage("El nombre es demasiado largo").bail().custom(value => {
         let valor = value;
         let num = /\d/.test(valor);
@@ -25,7 +25,7 @@ const createPlayers = [
 
         return true
     }),
-    body("nickName").isLength({ min: 2 }).withMessage("El apodo debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El o los apodos no deben superar los cien caracteres").bail().custom(value => {
+    body("nickName").optional({ checkFalsy: true }).isLength({ min: 2 }).withMessage("El apodo debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El o los apodos no deben superar los cien caracteres").bail().custom(value => {
         apodos = value.split(",").map(a => {
             return a
         })
@@ -66,7 +66,16 @@ const createPlayers = [
 
         return true
     }),
-    body("nationality").notEmpty().withMessage("La nacionalidad no debe quedar vacía").bail().isLength({ min: 2 }).withMessage("La nacionalidad debe contener un mínimo de dos caracteres").bail().isLength({ max: 50 }).withMessage("La nacionalidad no debe superar los cincuenta caracteres").bail(),
+    body("nationality").notEmpty().withMessage("La nacionalidad no debe quedar vacía").bail().isLength({ min: 2 }).withMessage("La nacionalidad debe contener un mínimo de dos caracteres").bail().isLength({ max: 50 }).withMessage("La nacionalidad no debe superar los cincuenta caracteres").bail().custom(value => {
+        let valor = value;
+        let num = /\d/.test(valor);
+
+        if (num) {
+            throw new Error("No se permiten números")
+        }
+
+        return true
+    }),
     body("position").notEmpty().withMessage("La posicion no puede quedar vacia").bail().isLength({ min: 2 }).withMessage("La posición debe contener un mínimo de dos caracteres").bail().custom(value => {
         positions = value.split(",").map(p => {
             return p
@@ -159,7 +168,11 @@ const createPlayers = [
         })
 
         return true
-    })
+    }),
+    body("retire").optional({ checkFalsy: true }).notEmpty().withMessage("La fecha de debut no puede quedar vacía").isISO8601()
+        .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
+        body("death").optional({ checkFalsy: true }).notEmpty().withMessage("La fecha de debut no puede quedar vacía").isISO8601()
+        .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
 ]
 
 module.exports = createPlayers;
