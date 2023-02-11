@@ -1,5 +1,6 @@
 import '../Create-Article/_createArticle.scss';
 import '../../scss/base/_font.scss';
+import '../../scss/partials/_variables.scss';
 
 import { allCategories, newArticle } from '../../services/articles';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -26,7 +27,7 @@ const CreateArticle = ({placeholder}) => {
 
     readonly: false,
     height: 380,
-    placeholder: placeholder || 'Empieza a escribir...',
+    placeholder: placeholder || 'Escribe tu artículo...',
 
     "uploader": {
       "insertImageAsBase64URI": true
@@ -240,9 +241,6 @@ const CreateArticle = ({placeholder}) => {
             value={content}
             config={config}
             tabIndex={1} // tabIndex of textarea
-            onBlur={(newContent) => {
-              // setContent(newContent.target.innerHTML);
-            }}
             onChange={(newContent) => {
               setContent(newContent);
             }}

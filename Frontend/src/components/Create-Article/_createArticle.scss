@@ -1,3 +1,5 @@
+@use '../../scss/partials/variables' as *;
+
 /* estilos vista create artice */
 
 .AppContainer {
@@ -78,9 +80,10 @@
                     font-size: 1em;
                     font-weight: 500;
                     font-family: inherit;
-                    background-color: #646cff;
+                    background-color: $botonCancelar;
                     cursor: pointer;
                     transition: border-color 0.25s;
+                    color: white;
                 }
 
                 .agregarArticulo:hover {
@@ -95,6 +98,7 @@
                 .botonLink {
 
                     color: white;
+                    background-color: $botonAceptar;
 
                 }
 
