@@ -1,15 +1,17 @@
 import '../Create-Article/_createArticle.scss';
 import '../../scss/base/_font.scss';
-import { useRef, useState, useEffect } from 'react';
+
+import { allCategories, newArticle } from '../../services/articles';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
 import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
 import React from 'react'
 import Team from '../Teams/Team';
 import Trophies from '../Trophies/Trophies';
-import { newArticle, allCategories } from '../../services/articles';
 import { useNavigate } from "react-router-dom";
 
-const CreateArticle = () => {
+const CreateArticle = ({placeholder}) => {
   const navigate = useNavigate();
 
   const editor = useRef(null);
@@ -24,6 +26,7 @@ const CreateArticle = () => {
 
     readonly: false,
     height: 380,
+    placeholder: placeholder || 'Empieza a escribir...',
 
     "uploader": {
       "insertImageAsBase64URI": true
@@ -230,7 +233,23 @@ const CreateArticle = () => {
 
         <div className="joditEditor">
 
-          <JoditEditor ref={editor} value={content} onChange={newContent => setContent(newContent)} config={config} />
+        {useMemo(
+        () => (
+          <JoditEditor
+            ref={editor}
+            value={content}
+            config={config}
+            tabIndex={1} // tabIndex of textarea
+            onBlur={(newContent) => {
+              // setContent(newContent.target.innerHTML);
+            }}
+            onChange={(newContent) => {
+              setContent(newContent);
+            }}
+          />
+        ),
+        []
+      )}
 
         </div>
 
