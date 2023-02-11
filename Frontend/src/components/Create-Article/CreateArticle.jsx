@@ -39,7 +39,7 @@ const CreateArticle = ({placeholder}) => {
 
   //Condicional para categorias
 
-  let input = <h2>Elige una categoria</h2>
+  let input;
 
   if (selected == "futbolistas") {
 
