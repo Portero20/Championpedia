@@ -255,12 +255,6 @@ const CreateArticle = ({placeholder}) => {
 
           <div className="inputsEtiquetas">
 
-            <div className='tooltip-container'>
-
-              <i className="fa-solid fa-question questionIcon"></i>
-              <span className='tooltip'>No te olvides de poner comas y espacios.</span>
-
-            </div>
 
             <label className='agregarEtiqueta'>Agregar etiquetas</label>
             <input type="text" placeholder='Escribe las etiquetas...' className='inputComas' name='tags' id="tags" />
@@ -269,6 +263,13 @@ const CreateArticle = ({placeholder}) => {
 
           <div className="moverButtons">
 
+            <div className='tooltip-container'>
+
+              <i className="fa-solid fa-question questionIcon"></i>
+              <span className='tooltip'>No te olvides de poner comas y espacios.</span>
+
+            </div>
+
             <button type="submit" className='agregarArticulo botonLink'>Crear</button>
             <button className='agregarArticulo'>Cancelar</button>
 
@@ -276,9 +277,9 @@ const CreateArticle = ({placeholder}) => {
 
         </div>
 
-      </form>
+        </form>
 
-    </div>
+        </div>
 
   )
 }
