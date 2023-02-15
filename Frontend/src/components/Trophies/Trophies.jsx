@@ -6,7 +6,7 @@ import React from 'react'
 const Trophies = () => {
     return (
         <div>
-            <div>
+            <div className='containerCopas'>
                     <div className='flexTrophies'>
 
                         <label>Titulo:</label>

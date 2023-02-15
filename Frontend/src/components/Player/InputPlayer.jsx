@@ -5,7 +5,7 @@ import React from 'react'
 
 const InputPlayer = () => {
   return (
-    <div>
+    <div className='div-jugadores'>
 
         <div className='containerJugadores'>
 

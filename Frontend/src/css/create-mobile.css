@@ -1,0 +1,184 @@
+.formularioCategorias {
+    width: 100%;
+}
+
+.flexInputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.joditEditor {
+    width: 100%;
+    padding: .7rem;
+    margin: 2.5rem 0 1.5rem;
+}
+
+.moverInputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.inputsEtiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.agregarEtiqueta {
+    text-align: center;
+    margin-bottom: 1.2rem;
+    width: 100%;
+}
+
+.inputComas {
+    width: 80%;
+    height: 3rem;
+    padding: .5rem;
+}
+
+.containerCategoria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flexUbicar {
+    width: 100%;
+}
+
+.labelCategoria {
+    margin-bottom: .5rem;
+}
+
+.selectCat {
+    padding: .5rem;
+}
+
+.inputsCategorias {
+    padding: 1.2rem;
+}
+
+.tooltip-container {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.inputJugadores, .inputs__team, .inputsTrophies {
+    height: 2.2rem;
+    padding: .5rem;
+}
+
+@media screen and (min-width: 37.5em) {
+    .containerJugadores {
+        display: flex;
+        justify-content: center;
+        max-width: 35em;
+        width: 100%;
+    }
+
+    .containerCopas {
+        display: flex;
+        justify-content: center;
+        max-width: 35em;
+        width: 100%;
+    }
+
+    .containerEquipos {
+        display: flex;
+        justify-content: center;
+        max-width: 35em;
+        width: 100%;
+    }
+
+    .flexJugadores, .flexTeam, .flexTrophies {
+        width: 100%;
+    }
+
+    .inputsCategorias div{
+        display: flex;
+        justify-content: center;
+    }
+
+    .joditEditor {
+        display: flex;
+        justify-content: center;
+        width: 90%
+    }
+
+    .jodit-react-container {
+        width: 100%;
+    }
+
+    .formularioCategorias{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputComas {
+        max-width: 35em;
+    }
+}
+
+@media (min-width: 75em) {
+    .flexUbicar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputsCategorias {
+        width: 100%;
+    }
+
+    .div-jugadores {
+        width: 100%;
+    }
+
+    .labelCategoria {
+        margin: 0 0 0 1rem
+    }
+
+    .selectCat {
+        margin: 0 0 0 1rem;
+    }
+
+    .containerCategoria {
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 90%;
+        margin-bottom: 6rem;
+        max-width: 75em;
+    }
+
+    .joditEditor {
+        max-width: 75em;
+    }
+
+    .inputsEtiquetas {
+        flex-direction: row;
+        margin: 0;
+        justify-content: flex-start;
+    }
+
+    .agregarEtiqueta {
+        display: flex;
+        align-items: center;
+        width: auto;
+        margin: 0 1rem 0 0;
+    }
+
+    .moverInputs {
+        width: 89%;
+        max-width: 73.5em;
+        flex-direction: row;
+    }
+}

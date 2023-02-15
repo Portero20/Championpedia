@@ -1,6 +1,7 @@
 import '../Create-Article/_createArticle.scss';
 import '../../scss/base/_font.scss';
 import '../../scss/partials/_variables.scss';
+import '../../css/create-mobile.css'
 
 import { allCategories, newArticle } from '../../services/articles';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -26,7 +27,7 @@ const CreateArticle = ({placeholder}) => {
   const config = {
 
     readonly: false,
-    height: 380,
+    height: 600,
     placeholder: placeholder || 'Escribe tu artículo...',
 
     "uploader": {
@@ -258,17 +259,16 @@ const CreateArticle = ({placeholder}) => {
 
             <label className='agregarEtiqueta'>Agregar etiquetas</label>
             <input type="text" placeholder='Escribe las etiquetas...' className='inputComas' name='tags' id="tags" />
+            <div className='tooltip-container'>
+              <i className="fa-solid fa-question questionIcon"></i>
+
+              <span className='tooltip'>No te olvides de poner comas y espacios.</span>
+
+            </div>
 
           </div>
 
           <div className="moverButtons">
-
-            <div className='tooltip-container'>
-
-              <i className="fa-solid fa-question questionIcon"></i>
-              <span className='tooltip'>No te olvides de poner comas y espacios.</span>
-
-            </div>
 
             <button type="submit" className='agregarArticulo botonLink'>Crear</button>
             <button className='agregarArticulo'>Cancelar</button>
