@@ -136,7 +136,8 @@
     }
 
     .inputsCategorias {
-        width: 100%;
+        width: 89%;
+        max-width: 75em;
     }
 
     .div-jugadores {
@@ -180,5 +181,10 @@
         width: 89%;
         max-width: 73.5em;
         flex-direction: row;
+    }
+    
+    .inputsCategorias div{
+        display: flex;
+        justify-content: start;
     }
 }
