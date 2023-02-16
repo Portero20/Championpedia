@@ -2,6 +2,20 @@
     width: 100%;
 }
 
+.flexJugadores {
+    gap: 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.inputs-first, .inputs-second {
+    gap: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .flexInputs {
     width: 100%;
     display: flex;
@@ -80,6 +94,10 @@
 //Medias queries para create-article
 
 @media screen and (min-width: 37.5em) {
+
+    .div-jugadores {
+        width: 100%;
+    }
 
     .containerJugadores {
         display: flex;
@@ -196,10 +214,17 @@
         justify-content: start;
     }
 
-    .containerFooter{
-        .hijoEnlacess{
+    .containerFooter {
+        .hijoEnlacess {
             flex-direction: row;
         }
     }
-    
+
+    .flexJugadores {
+        flex-direction: row;
+    }
+
+    .containerJugadores {
+        max-width: none;
+    }
 }
