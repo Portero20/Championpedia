@@ -70,12 +70,17 @@
     margin-left: 1rem;
 }
 
-.inputJugadores, .inputs__team, .inputsTrophies {
+.inputJugadores,
+.inputs__team,
+.inputsTrophies {
     height: 2.2rem;
     padding: .5rem;
 }
 
+//Medias queries para create-article
+
 @media screen and (min-width: 37.5em) {
+
     .containerJugadores {
         display: flex;
         justify-content: center;
@@ -97,11 +102,13 @@
         width: 100%;
     }
 
-    .flexJugadores, .flexTeam, .flexTrophies {
+    .flexJugadores,
+    .flexTeam,
+    .flexTrophies {
         width: 100%;
     }
 
-    .inputsCategorias div{
+    .inputsCategorias div {
         display: flex;
         justify-content: center;
     }
@@ -116,7 +123,7 @@
         width: 100%;
     }
 
-    .formularioCategorias{
+    .formularioCategorias {
         display: flex;
         width: 100%;
         flex-direction: column;
@@ -126,6 +133,7 @@
     .inputComas {
         max-width: 35em;
     }
+
 }
 
 @media (min-width: 75em) {
@@ -182,9 +190,16 @@
         max-width: 73.5em;
         flex-direction: row;
     }
-    
-    .inputsCategorias div{
+
+    .inputsCategorias div {
         display: flex;
         justify-content: start;
     }
+
+    .containerFooter{
+        .hijoEnlacess{
+            flex-direction: row;
+        }
+    }
+    
 }

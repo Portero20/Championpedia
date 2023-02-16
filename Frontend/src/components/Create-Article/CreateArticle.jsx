@@ -1,7 +1,7 @@
 import '../Create-Article/_createArticle.scss';
 import '../../scss/base/_font.scss';
 import '../../scss/partials/_variables.scss';
-import '../../css/create-mobile.css'
+import '../../scss/barrel.scss';
 
 import { allCategories, newArticle } from '../../services/articles';
 import { useEffect, useMemo, useRef, useState } from 'react';

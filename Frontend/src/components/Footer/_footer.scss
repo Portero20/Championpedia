@@ -1,0 +1,60 @@
+.containerFooter{
+
+    min-height: 10vh;
+
+    .hijoFooter{
+
+        display: flex;
+        justify-content: center;
+
+        .logoFooter{
+            width: 10.5rem;
+            object-fit: scale-down;
+        }
+    }
+
+    .hijoEnlacess{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        gap: 1.5rem;
+        color: black;
+
+        .enlacesFooter{
+
+            color: black;
+
+        }
+
+    }
+
+    .hijoIconos{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+
+        .iconosFooter{
+
+            display: flex;
+            gap: 1rem;
+            font-size: 1.5rem;
+
+        }
+
+    }
+
+    .copyright{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+
+    }
+
+}
