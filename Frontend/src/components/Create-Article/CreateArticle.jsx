@@ -29,6 +29,7 @@ const CreateArticle = ({placeholder}) => {
     readonly: false,
     height: 600,
     placeholder: placeholder || 'Escribe tu artículo...',
+    toolbarSticky: false,
 
     "uploader": {
       "insertImageAsBase64URI": true
