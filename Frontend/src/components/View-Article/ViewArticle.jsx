@@ -2,7 +2,6 @@ import '../../scss/utilities/_utilities.scss';
 import { Link, useParams } from "react-router-dom";
 import { detail } from "../../services/articles"
 import { React, useState, useEffect } from 'react'
-import pele from '../../img/pele.jpg';
 
 const ViewArticle = () => {
   const { category, id } = useParams();
