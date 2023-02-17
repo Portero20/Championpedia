@@ -147,15 +147,15 @@ const ViewArticle = () => {
             {nickName}
             {born}
             {nationality}
-            {death}
             {height}
-            {team}
             {weight}
             {debut}
+            {team}
             {position}
             {numbers}
             {goals}
             {retire}
+            {death}
             {foundation}
             {president}
             {coach}
