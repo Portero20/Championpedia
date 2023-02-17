@@ -10,32 +10,32 @@ const Team = () => {
 
                 <div className='flexTeam'>
 
-                    <label>Titulo:</label>
-                    <input type="text" name="title" id="title" placeholder='Escribir...' className='inputs__team' />
+                    <label>Título:</label>
+                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputs__team' />
 
                     <label>Nombre completo:</label>
-                    <input type="text" name="fullName" id="fullName" placeholder='Escribir...' className='inputs__team' />
+                    <input type="text" name="fullName" id="fullName" placeholder='Nombre completo del equipo...' className='inputs__team' />
 
-                    <label>Apodos:</label>
-                    <input type="text" name="nickName" id="nickName" placeholder='Escribir...' className='inputs__team' />
+                    <label>Apodos: (Opcional)</label>
+                    <input type="text" name="nickName" id="nickName" placeholder='Apodo(s) del equipo...' className='inputs__team' />
 
                     <label>Fundación:</label>
-                    <input type="date" name="foundation" id="foundation" placeholder='Escribir...' className='inputs__team' />
+                    <input type="date" name="foundation" id="foundation" className='inputs__team' />
 
                     <label>Presidente:</label>
-                    <input type="text" name="president" id="president" placeholder='Escribir...' className='inputs__team' />
+                    <input type="text" name="president" id="president" placeholder='Nombre del presidente del equipo...' className='inputs__team' />
 
                     <label>Estadio:</label>
-                    <input type="text" name="stadium" id="stadium" placeholder='Escribir...' className='inputs__team' />
+                    <input type="text" name="stadium" id="stadium" placeholder='Nombre del estadio del equipo...' className='inputs__team' />
 
                     <label>Entrenador:</label>
-                    <input type="text" name="coach" id="coach" placeholder='Escribir...' className='inputs__team' />
+                    <input type="text" name="coach" id="coach" placeholder='Nombre del entrenador del equipo...' className='inputs__team' />
 
                     <label>Imagen:</label>
                     <input type="file" name='file' id="file" className='inputJugadores inputFile' />
 
                     <label>Autor:</label>
-                    <input type="text" name="author" id="author" placeholder='Escribir...' className='inputs__team' />
+                    <input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputs__team' />
 
                 </div>
 

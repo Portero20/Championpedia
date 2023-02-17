@@ -11,55 +11,55 @@ const InputPlayer = () => {
 
         <div className='flexJugadores'>
           <div className='inputs-first'>
-            <label>Titulo:</label>
-            <input type="text" name="title" id="title" placeholder='Escribir...' className='inputJugadores' />
+            <label>Título:</label>
+            <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputJugadores' />
 
             <label>Nombre completo:</label>
-            <input type="text" name="fullName" id="fullName" placeholder='Escribir...' className='inputJugadores' />
+            <input type="text" name="fullName" id="fullName" placeholder='Nombre completo del jugador...' className='inputJugadores' />
 
-            <label>Apodos:</label>
-            <input type="text" name="nickName" id="nickName" placeholder='Escribir...' className='inputJugadores' />
+            <label>Apodos: (Opcional)</label>
+            <input type="text" name="nickName" id="nickName" placeholder='Apodo(s) del jugador...' className='inputJugadores' />
 
             <label>Nacionalidad:</label>
-            <input type="text" name="nationality" id="nationality" placeholder='Escribir...' className='inputJugadores' />
+            <input type="text" name="nationality" id="nationality" placeholder='Nacionalidad(es) del jugador...' className='inputJugadores' />
 
             <label>Fecha de nacimiento:</label>
-            <input type="date" name="born" id="born" placeholder='Escribir...' className='inputJugadores' />
+            <input type="date" name="born" id="born" className='inputJugadores' />
 
-            <label>Fecha de fallecimiento:</label>
+            <label>Fecha de fallecimiento: (Opcional)</label>
             <input type="date" name="death" id="death" placeholder='Escribir...' className='inputJugadores' />
 
             <label>Equipo:</label>
-            <input type="text" name="team" id="team" placeholder='Escribir...' className='inputJugadores' />
+            <input type="text" name="team" id="team" placeholder='Equipo actual del jugador...' className='inputJugadores' />
 
             <label>Dorsales:</label>
-            <input type="text" name="numbers" id="numbers" placeholder='Escribir...' className='inputJugadores' />
+            <input type="text" name="numbers" id="numbers" placeholder='Dorsal(es) del jugador...' className='inputJugadores' />
           </div>
 
           <div className='inputs-second'>
             <label>Goles:</label>
-            <input type="number" name="goals" id="goals" placeholder='Escribir' className='inputJugadores' />
+            <input type="number" name="goals" id="goals" placeholder='Cantidad de goles del jugador...' className='inputJugadores' />
 
             <label>Altura:</label>
-            <input type="text" name="height" id="height" placeholder='Escribir' className='inputJugadores' />
+            <input type="text" name="height" id="height" placeholder='Altura del jugador...' className='inputJugadores' />
 
             <label>Peso</label>
-            <input type="text" name="weight" id="weight" placeholder='Escribir' className='inputJugadores' />
+            <input type="text" name="weight" id="weight" placeholder='Peso del jugador...' className='inputJugadores' />
 
-            <label>Posicion:</label>
-            <input type="text" name="position" id="position" placeholder='Escribir' className='inputJugadores' />
+            <label>Posición:</label>
+            <input type="text" name="position" id="position" placeholder='Posición(es) del jugador...' className='inputJugadores' />
 
             <label>Debut:</label>
-            <input type="date" name="debut" id="debut" placeholder='Escribir' className='inputJugadores' />
+            <input type="date" name="debut" id="debut" className='inputJugadores' />
 
-            <label>Retiro:</label>
-            <input type="date" name="retire" id="retire" placeholder='Escribir' className='inputJugadores' />
+            <label>Retiro: (Opcional)</label>
+            <input type="date" name="retire" id="retire" className='inputJugadores' />
 
             <label>Imagen:</label>
             <input type="file" name='file' id="file" className='inputJugadores inputFile' />
 
             <label>Autor:</label>
-            <input type="text" name="author" id="author" placeholder='Escribir' className='inputJugadores' />
+            <input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputJugadores' />
           </div>
 
         </div>

@@ -266,7 +266,7 @@ const CreateArticle = ({placeholder}) => {
             <div className='tooltip-container'>
               <i className="fa-solid fa-question questionIcon"></i>
 
-              <span className='tooltip'>No te olvides de poner comas y espacios.</span>
+              <span className='tooltip'>No te olvides de separar con comas y sin espacios.</span>
 
             </div>
 
