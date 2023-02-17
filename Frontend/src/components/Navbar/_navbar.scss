@@ -7,9 +7,26 @@
     cursor: pointer;
 }
 
-.logoChampionpedia{
+.containerLogo{
 
-    width: 10rem;
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+    color: 	#D4AF37;
+
+    .logoChampionpedia{
+
+        display: flex;
+        align-items: center;
+        width: 2.3rem;
+    
+    }
+
+    .textoLogo{
+
+        font-weight: 500;
+
+    }
 
 }
 
@@ -34,7 +51,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.733);
     visibility: hidden;
     opacity: 0;
     transition: 0.3s;
@@ -74,6 +91,7 @@ body.open .navbar-overlay {
     display: flex;
     gap: 8px;
     flex-direction: column;
+    background-color: #111;
     gap: 2rem;
     color: #ffff;
     visibility: hidden;

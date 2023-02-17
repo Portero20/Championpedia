@@ -1,15 +1,14 @@
 .containerFooter{
     background-color: #35363c;
     color: #ffffff;
-    min-height: 10vh;
-    padding-bottom: 3rem;
+    padding: 1.5rem;
 
     .hijoFooter{
         display: flex;
         justify-content: center;
+        margin-bottom: 1rem;
 
         .logoFooter{
-            width: 10.5rem;
             object-fit: scale-down;
         }
     }

@@ -30,12 +30,15 @@ const CreateArticle = ({placeholder}) => {
     height: 600,
     placeholder: placeholder || 'Escribe tu artículo...',
     toolbarSticky: false,
+    showPlaceholder: false,
 
     "uploader": {
       "insertImageAsBase64URI": true
     },
 
-    "disablePlugins": "video"
+    "disablePlugins": "video, about",
+
+
 
   }
 

@@ -1,10 +1,9 @@
 import '../Navbar/_navbar.scss';
 import '../../scss/barrel.scss';
 
-import {BiFootball} from 'react-icons/bi'
 import {HiOutlineMenuAlt3} from 'react-icons/hi'
 import React from 'react'
-import logoChampionpedia from '../../img/logo/logo-championpedia.png'
+import pelotaChampionpedia from '../../img/logo/1200px-Balón_Oro.svg.png';
 
 const Navbar = () => {
 
@@ -24,9 +23,14 @@ return (
         className="navbar-burger buttonEnlace"
         onClick={toggleMenuOpen}
       >
-        <HiOutlineMenuAlt3 style={{color: 'black'}}/>
+        <HiOutlineMenuAlt3 style={{color: 'white'}}/>
       </button>
-      <img src={logoChampionpedia} alt="" className="logoChampionpedia" />
+      
+      <div className='containerLogo'>
+        <img src={pelotaChampionpedia} alt="pelota de futbol" className="logoChampionpedia" />
+        <h4 className='textoLogo'>Championpedia</h4>
+      </div>
+
       <nav className="navbar-menu navbar-menuColor">
 
         <div className='containerSearch'>
