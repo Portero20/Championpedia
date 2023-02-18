@@ -31,7 +31,7 @@ const Trophies = () => {
                         <input type="text" name="subchampion" id="subchampion" placeholder='Nombre del último subcampeón...' className='inputsTrophies' />
 
                         <label>Imagen:</label>
-                        <input type="file" name='file' id="file" className='inputJugadores' />
+                        <input type="file" name='file' id="file" className='inputFile2' />
 
                         <label>Autor:</label>
                         <input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputsTrophies inputFile' />

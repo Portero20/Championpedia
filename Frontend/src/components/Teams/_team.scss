@@ -9,4 +9,21 @@
         border: 1px solid #a0a2a9;
         border-radius: .7rem;
     }
+
+    .inputFile3::-webkit-file-upload-button{
+                
+        background-color: #333333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 15px;
+        cursor: pointer;
+        font-size: 1rem;                
+        text-align: center;
+        transition: all .3s ease;
+        &:hover{
+            letter-spacing: .1rem;
+        }
+
+    }
 }

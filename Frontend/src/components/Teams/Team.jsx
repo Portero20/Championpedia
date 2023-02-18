@@ -32,7 +32,7 @@ const Team = () => {
                     <input type="text" name="coach" id="coach" placeholder='Nombre del entrenador del equipo...' className='inputs__team' />
 
                     <label>Imagen:</label>
-                    <input type="file" name='file' id="file" className='inputJugadores inputFile' />
+                    <input type="file" name='file' id="file" className='inputFile3' />
 
                     <label>Autor:</label>
                     <input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputs__team' />
