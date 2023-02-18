@@ -22,7 +22,7 @@ const ViewArticle = () => {
 
   let born;
   if (article.born) {
-    born = <p className='parrafoJugador'><span className='spanParrafo'>Nacimiento:</span> {article.born}</p>
+    born = <p className='parrafoJugador'><span className='spanParrafo'>Nacimiento:</span> {article.born.split("T")[0]}</p>
   }
 
   let nationality;
@@ -32,7 +32,7 @@ const ViewArticle = () => {
 
   let death;
   if (article.death && article.death != "0000-00-00") {
-    death = <p className='parrafoJugador'><span className='spanParrafo'>Fallecimiento:</span> {article.death}</p>
+    death = <p className='parrafoJugador'><span className='spanParrafo'>Fallecimiento:</span> {article.death.split("T")[0]}</p>
   }
 
   let height;
@@ -52,7 +52,7 @@ const ViewArticle = () => {
 
   let debut;
   if (article.debut) {
-    debut = <p className='parrafoJugador'><span className='spanParrafo'>Debut deportivo:</span> {article.debut}</p>
+    debut = <p className='parrafoJugador'><span className='spanParrafo'>Debut deportivo:</span> {article.debut.split("T")[0]}</p>
   }
 
   let position;
@@ -72,12 +72,12 @@ const ViewArticle = () => {
 
   let retire;
   if (article.retire && article.retire != "0000-00-00") {
-    retire = <p className='parrafoJugador'><span className='spanParrafo'>Retirada deportiva:</span> {article.retire}</p>
+    retire = <p className='parrafoJugador'><span className='spanParrafo'>Retirada deportiva:</span> {article.retire.split("T")[0]}</p>
   }
 
   let foundation;
   if (article.foundation) {
-    foundation = <p className='parrafoJugador'><span className='spanParrafo'>Fundación:</span> {article.foundation}</p>
+    foundation = <p className='parrafoJugador'><span className='spanParrafo'>Fundación:</span> {article.foundation.split("T")[0]}</p>
   }
 
   let president;
