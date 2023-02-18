@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { detail } from "../../services/articles"
 import { React, useState, useEffect } from 'react'
 import TextoHtml from '../TextoHtml';
+import '../../scss/base/medias-detail.css'
 
 const ViewArticle = () => {
   const { category, id } = useParams();
@@ -113,70 +114,66 @@ const ViewArticle = () => {
   if (article.subchampion) {
     subchampion = <p className='parrafoJugador'><span className='spanParrafo'>último subcampeón:</span> {article.subchampion}</p>
   }
-  
+
   return (
+    <div className='container-article-detail'> 
 
-    <div>
+      <div className='container-detail'>
 
-      <div className='containerView'>
+        <div className='containerView-estilo'>
 
-        <div className="descripcionView">
-
-          <div className='containerView-estilo'>
-
-            <h3 className='containerView-titulo'></h3>
-            <TextoHtml texto={article.text} />
-
-          </div>
-          <p className='parrafoView' id="resultado" ></p>
+          <h3 className='containerView-titulo'>{article.title}</h3>
 
         </div>
 
-        <div className='jugadorContainer'>
+        <div className='containerView'>
 
-          <div className='imagen__jugadorFlex'>
+          <div className="descripcionView">
 
-            <img src={urlImage} alt="" className='peleIMG' />
+            <p className='parrafoView' id="resultado" ><TextoHtml texto={article.text} /></p>
+
           </div>
 
-          <div className='datosPersonales'>
-            <h4>Datos personales</h4>
+          <div className='jugadorContainer'>
+
+            <div className='imagen__jugadorFlex'>
+
+              <img src={urlImage} alt="" className='img-detail' />
+            </div>
+
+            <div className='parrafosPersonales'>
+              <p className='parrafoJugador'><span className='spanParrafo'>Nombre completo:</span> {article.fullName}</p>
+              {nickName}
+              {born}
+              {nationality}
+              {height}
+              {weight}
+              {debut}
+              {team}
+              {position}
+              {numbers}
+              {goals}
+              {retire}
+              {death}
+              {foundation}
+              {president}
+              {coach}
+              {stadium}
+              {campus}
+              {organizer}
+              {champion}
+              {subchampion}
+            </div>
+
           </div>
 
-          <div className='parrafosPersonales'>
-            <p className='parrafoJugador'><span className='spanParrafo'>Nombre completo:</span> {article.fullName}</p>
-            {nickName}
-            {born}
-            {nationality}
-            {height}
-            {weight}
-            {debut}
-            {team}
-            {position}
-            {numbers}
-            {goals}
-            {retire}
-            {death}
-            {foundation}
-            {president}
-            {coach}
-            {stadium}
-            {campus}
-            {organizer}
-            {champion}
-            {subchampion}
-          </div>
 
         </div>
 
 
       </div>
 
-
     </div>
-
-
-
   )
 }
 

@@ -8,19 +8,19 @@
 %parrafoView {
 
     font-size: .8rem;
-    margin-right: 2rem;
+    /* margin-right: 2rem; */
     text-align: justify;
     line-height: 1rem;
     word-break: keep-all;
-    margin-left: 1rem;
+   /*  margin-left: 1rem; */
 
 }
 
 .containerView {
 
-    display: grid;
+   /*  display: grid;
     grid-template-columns: 70% auto;
-    grid-template-rows:  auto;
+    grid-template-rows:  auto; */
 
     &-titulo {
 
@@ -42,10 +42,10 @@
 
     .jugadorContainer {
 
-        margin-top: 2rem;
-        margin-right: 1rem;
+        /* margin-top: 2rem;
+        margin-right: 1rem; */
         background-color: grey;
-        max-width: 100vh;
+        /* max-width: 100vh; */
         
         .imagen__jugadorFlex{
 
@@ -56,14 +56,12 @@
         }
         
 
-        .peleIMG {
+        /* .peleIMG {
 
-            width: 16rem;
+            /* width: 16rem;
             margin-bottom: 2rem;
-            margin-top: 2rem;
+            margin-top: 2rem; */
 
-
-        }
 
         .datosPersonales{
     
@@ -79,7 +77,7 @@
 
             .parrafoJugador{
 
-                margin-left: .5rem;
+                /* margin-left: .5rem; */
 
             }
 
