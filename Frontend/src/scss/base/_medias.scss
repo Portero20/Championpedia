@@ -1,3 +1,21 @@
+.msg-error {
+    display: none;
+}
+
+.msg-error.invalid {
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
+.error-jodit{
+    margin-bottom: 2rem;
+}
+
+.error-tags {
+    margin-bottom: 2rem;
+}
+
 .formularioCategorias {
     width: 100%;
 }

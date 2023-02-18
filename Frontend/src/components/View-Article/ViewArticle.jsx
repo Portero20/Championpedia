@@ -2,11 +2,11 @@ import '../../scss/utilities/_utilities.scss';
 import { Link, useParams } from "react-router-dom";
 import { detail } from "../../services/articles"
 import { React, useState, useEffect } from 'react'
+import TextoHtml from '../TextoHtml';
 
 const ViewArticle = () => {
   const { category, id } = useParams();
   const [article, setarticle] = useState([])
-
 
   useEffect(() => {
     detail(category, id).then(setarticle)
@@ -83,7 +83,7 @@ const ViewArticle = () => {
   if (article.president) {
     president = <p className='parrafoJugador'><span className='spanParrafo'>Presidente:</span> {article.president}</p>
   }
-  
+
   let coach;
   if (article.coach) {
     coach = <p className='parrafoJugador'><span className='spanParrafo'>Entrenador:</span> {article.coach}</p>
@@ -113,7 +113,7 @@ const ViewArticle = () => {
   if (article.subchampion) {
     subchampion = <p className='parrafoJugador'><span className='spanParrafo'>último subcampeón:</span> {article.subchampion}</p>
   }
-
+  
   return (
 
     <div>
@@ -124,10 +124,11 @@ const ViewArticle = () => {
 
           <div className='containerView-estilo'>
 
-            <h3 className='containerView-titulo'>{article.title}</h3>
+            <h3 className='containerView-titulo'></h3>
+            <TextoHtml texto={article.text} />
 
           </div>
-          <p className='parrafoView'>{article.text}</p>
+          <p className='parrafoView' id="resultado" ></p>
 
         </div>
 
