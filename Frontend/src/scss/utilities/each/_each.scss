@@ -2,7 +2,7 @@
 
 $inputPlayers:(
 
-    border: 1px solid #a0a2a9,
+    border: 1px solid #A0A2A9,
     outline: none,
     border-radius: .7rem,
 
@@ -12,7 +12,6 @@ $inputPlayers:(
 
     border: map-get($inputPlayers, border);
     outline: map-get($inputPlayers, outline);
-    height: map-get($inputPlayers , height );
     border-radius: map-get($inputPlayers , border-radius );
     
 
@@ -26,7 +25,6 @@ $inputPlayers:(
 
         border: none;
         outline: none;
-        /* height: 30px; */
         border-radius: .4rem;
 
 

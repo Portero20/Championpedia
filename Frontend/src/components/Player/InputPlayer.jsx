@@ -56,7 +56,7 @@ const InputPlayer = () => {
             <input type="date" name="retire" id="retire" className='inputJugadores' />
 
             <label>Imagen:</label>
-            <input type="file" name='file' id="file" className='inputJugadores inputFile' />
+            <input type="file" name='file' id="file" className='inputFile' />
 
             <label>Autor:</label>
             <input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputJugadores' />
