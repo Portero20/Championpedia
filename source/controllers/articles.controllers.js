@@ -147,8 +147,6 @@ module.exports = {
         try {
             let category;
 
-            console.log(req.params.category);
-
             if (req.params.category.toLowerCase() == "futbolistas") {
                 category = "players"
             } else if (req.params.category.toLowerCase() == "equipos") {
@@ -223,5 +221,47 @@ module.exports = {
     images: (req, res) => {
         let imagenUrl = req.query.imagen
         res.sendFile(resolve(__dirname, "../../uploads/articles/" + imagenUrl))
+    },
+
+    edit: (req, res) => {
+        try {
+            const now = moment().format("YYYY/MM/DD HH:mm:ss")
+            let category;
+
+            if (req.body.category.toLowerCase() == "futbolistas") {
+                category = "players"
+            } else if (req.body.category.toLowerCase() == "equipos") {
+                category = "teams"
+            } else if (req.body.category.toLowerCase() == "copas") {
+                category = "trophies"
+            }
+
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+                console.log("Using Database");
+            })
+
+            let query;
+
+            if (category == "players") {
+                query = `UPDATE players SET title='${req.body.title}',text='${req.body.text}',fullName='${req.body.fullName}',nickName='${req.body.nickName}',born='${req.body.born}',death='${req.body.death}',height='${req.body.height}',weight='${req.body.weight}',nationality='${req.body.nationality}',position='${req.body.position}',team='${req.body.team}',numbers='${req.body.numbers}',goals='${req.body.goals}',debut='${req.body.debut}',retire='${req.body.retire}' WHERE id = ${req.body.id};`
+            } else if (category == "teams") {
+                query = `UPDATE teams SET title='${req.body.title}',text='${req.body.text}',fullName='${req.body.fullName}',foundation='${req.body.foundation}',president='${req.body.president}',stadium='${req.body.stadium}',coach='${req.body.coach}',nickName='${req.body.nickName}' WHERE id = ${req.body.id};`
+            } else if (category == "trophies") {
+                query = `UPDATE trophies SET title='${req.body.title}',text='${req.body.text}',fullName='${req.body.fullName}',campus='${req.body.campus}',foundation='${req.body.foundation}',organizer='${req.body.organizer}',champion='${req.body.champion}',subchampion='${req.body.subchampion}' WHERE id = ${req.body.id}`
+            }
+
+            database.query(query, (err, results, fields) => {
+                if (err) {
+                    return console.log(err);
+                } else {
+                    console.log(`${category} - ${req.body.id} edited successfully`);
+                }
+            })
+
+            return res.status(200).json("ok");
+        } catch (error) {
+            return res.status(500).json(error)
+        }
     }
 }
