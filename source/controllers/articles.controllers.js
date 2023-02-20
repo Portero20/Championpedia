@@ -259,6 +259,30 @@ module.exports = {
                 }
             })
 
+            let querySelectImg;
+
+            if (category == "players") {
+                querySelectImg = `SELECT image_id FROM imagesplayers WHERE player_id = ${req.body.id} `
+            } else if (category == "teams") {
+                querySelectImg = `SELECT image_id FROM imagesteams WHERE team_id = ${req.body.id}`
+            } else if (category == "trophies") {
+                querySelectImg = `SELECT image_id FROM imagestrophies WHERE thophy_id = ${req.body.id}`
+            }
+
+            database.query(querySelectImg, (error, results, fields) => {
+                let idImage;
+                if (error) {
+                    return console.log(error)
+                } else {
+                    idImage = results[0].image_id
+                }
+
+                database.query(`UPDATE images SET image='${req.files[0].filename}' WHERE id = ${idImage}`, (error, results, fields) => {
+                    
+                })
+            })
+
+
             return res.status(200).json("ok");
         } catch (error) {
             return res.status(500).json(error)
