@@ -278,7 +278,7 @@ module.exports = {
                 }
 
                 database.query(`UPDATE images SET image='${req.files[0].filename}' WHERE id = ${idImage}`, (error, results, fields) => {
-                    
+                    // falta terminar
                 })
             })
 
