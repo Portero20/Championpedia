@@ -43,11 +43,36 @@ module.exports = {
             let query;
 
             if (category == "players") {
-                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 1,'${now}','','${req.body.fullName}','${req.body.nickName}','${req.body.born}','${req.body.death}','${req.body.height}','${req.body.weight}','${req.body.nationality}','${req.body.position}','${req.body.team}','${req.body.numbers}','${req.body.goals}','${req.body.debut}','${req.body.retire}');`
+                let title = req.body.title.replace(/"/g, '\\"');
+                let text = req.body.text.replace(/"/g, '\\"');
+                let fullName = req.body.fullName.replace(/"/g, '\\"');
+                let nickName = req.body.nickname.replace(/"/g, '\\"');
+                let team = req.body.team.replace(/"/g, '\\"');
+                let author = req.body.author.replace(/"/g, '\\"');
+
+                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ('','${title}',"${text}",'${author}', 1,'${now}','','${fullName}','${nickName}','${req.body.born}','${req.body.death}','${req.body.height}','${req.body.weight}','${req.body.nationality}','${req.body.position}','${team}','${req.body.numbers}','${req.body.goals}','${req.body.debut}','${req.body.retire}');`
             } else if (category == "teams") {
-                query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 2,'${now}','','${req.body.fullName}','${req.body.foundation}','${req.body.president}','${req.body.stadium}','${req.body.coach}','${req.body.nickName}');`
+                let title = req.body.title.replace(/"/g, '\\"');
+                let text = req.body.text.replace(/"/g, '\\"');
+                let fullName = req.body.fullName.replace(/"/g, '\\"');
+                let nickName = req.body.nickname.replace(/"/g, '\\"');
+                let author = req.body.author.replace(/"/g, '\\"');
+                let president = req.body.president.replace(/"/g, '\\"');
+                let coach = req.body.coach.replace(/"/g, '\\"');
+                let stadium = req.body.stadium.replace(/"/g, '\\"');
+
+                query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES ('','${title}','${text}','${author}', 2,'${now}','','${fullName}','${req.body.foundation}','${president}','${stadium}','${coach}','${nickName}');`
             } else if (category == "trophies") {
-                query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 3,'${now}','','${req.body.fullName}','${req.body.campus}','${req.body.foundation}','${req.body.organizer}','${req.body.champion}','${req.body.subchampion}');`
+                let title = req.body.title.replace(/"/g, '\\"');
+                let text = req.body.text.replace(/"/g, '\\"');
+                let fullName = req.body.fullName.replace(/"/g, '\\"');
+                let champion = req.body.champion.replace(/"/g, '\\"');
+                let author = req.body.author.replace(/"/g, '\\"');
+                let subchampion = req.body.subchampion.replace(/"/g, '\\"');
+                let organizer = req.body.organizer.replace(/"/g, '\\"');
+                let campus = req.body.campus.replace(/"/g, '\\"');
+
+                query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES ('','${title}','${text}','${author}', 3,'${now}','','${fullName}','${campus}','${req.body.foundation}','${organizer}','${champion}','${subchampion}');`
             }
 
             database.query(query, (err, results, fields) => {
