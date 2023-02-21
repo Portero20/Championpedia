@@ -42,15 +42,6 @@ module.exports = {
 
             let query;
 
-            // // let title = req.body.title.replace(/"/g, '\\"');
-            // // let text = req.body.text.replace(/"/g, '\\"');
-            // // let fullName = req.body.fullName.replace(/"/g, '\\"');
-            // // let champion = req.body.champion.replace(/"/g, '\\"');
-            // // let author = req.body.author.replace(/"/g, '\\"');
-            // // let subchampion = req.body.subchampion.replace(/"/g, '\\"');
-            // // let organizer = req.body.organizer.replace(/"/g, '\\"');
-            // // let campus = req.body.campus.replace(/"/g, '\\"');
-
             if (category == "players") {
                 query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ('','${req.body.title}',"${req.body.text}",'${req.body.author}', 1,'${now}','','${req.body.fullName}','${req.body.nickName}','${req.body.born}','${req.body.death}','${req.body.height}','${req.body.weight}','${req.body.nationality}','${req.body.position}','${req.body.team}','${req.body.numbers}','${req.body.goals}','${req.body.debut}','${req.body.retire}');`
             } else if (category == "teams") {
@@ -307,9 +298,21 @@ module.exports = {
                     })
                 })
             }
-            return res.status(200).json("ok");
+            return res.status(200).json("Article updated successfully");
         } catch (error) {
             return res.status(500).json(error)
         }
     }
 }
+
+// A SOLUCIONAR:
+// Cuando no se ingresa nada en los campos opcionales en editar
+// A la hora de editar como de crear:
+// // let title = req.body.title.replace(/"/g, '\\"');
+// // let text = req.body.text.replace(/"/g, '\\"');
+// // let fullName = req.body.fullName.replace(/"/g, '\\"');
+// // let champion = req.body.champion.replace(/"/g, '\\"');
+// // let author = req.body.author.replace(/"/g, '\\"');
+// // let subchampion = req.body.subchampion.replace(/"/g, '\\"');
+// // let organizer = req.body.organizer.replace(/"/g, '\\"');
+// // let campus = req.body.campus.replace(/"/g, '\\"');
