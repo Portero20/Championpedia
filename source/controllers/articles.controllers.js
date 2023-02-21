@@ -43,13 +43,13 @@ module.exports = {
             let query;
 
             // // let title = req.body.title.replace(/"/g, '\\"');
-                // // let text = req.body.text.replace(/"/g, '\\"');
-                // // let fullName = req.body.fullName.replace(/"/g, '\\"');
-                // // let champion = req.body.champion.replace(/"/g, '\\"');
-                // // let author = req.body.author.replace(/"/g, '\\"');
-                // // let subchampion = req.body.subchampion.replace(/"/g, '\\"');
-                // // let organizer = req.body.organizer.replace(/"/g, '\\"');
-                // // let campus = req.body.campus.replace(/"/g, '\\"');
+            // // let text = req.body.text.replace(/"/g, '\\"');
+            // // let fullName = req.body.fullName.replace(/"/g, '\\"');
+            // // let champion = req.body.champion.replace(/"/g, '\\"');
+            // // let author = req.body.author.replace(/"/g, '\\"');
+            // // let subchampion = req.body.subchampion.replace(/"/g, '\\"');
+            // // let organizer = req.body.organizer.replace(/"/g, '\\"');
+            // // let campus = req.body.campus.replace(/"/g, '\\"');
 
             if (category == "players") {
                 query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ('','${req.body.title}',"${req.body.text}",'${req.body.author}', 1,'${now}','','${req.body.fullName}','${req.body.nickName}','${req.body.born}','${req.body.death}','${req.body.height}','${req.body.weight}','${req.body.nationality}','${req.body.position}','${req.body.team}','${req.body.numbers}','${req.body.goals}','${req.body.debut}','${req.body.retire}');`
@@ -268,30 +268,45 @@ module.exports = {
                 }
             })
 
-            let querySelectImg;
+            if (req.files && req.files.length > 0) {
 
-            if (category == "players") {
-                querySelectImg = `SELECT image_id FROM imagesplayers WHERE player_id = ${req.body.id} `
-            } else if (category == "teams") {
-                querySelectImg = `SELECT image_id FROM imagesteams WHERE team_id = ${req.body.id}`
-            } else if (category == "trophies") {
-                querySelectImg = `SELECT image_id FROM imagestrophies WHERE thophy_id = ${req.body.id}`
-            }
+                let querySelectImg;
 
-            database.query(querySelectImg, (error, results, fields) => {
-                let idImage;
-                if (error) {
-                    return console.log(error)
-                } else {
-                    idImage = results[0].image_id
+                if (category == "players") {
+                    querySelectImg = `SELECT image_id FROM imagesplayers WHERE player_id = ${req.body.id} `
+                } else if (category == "teams") {
+                    querySelectImg = `SELECT image_id FROM imagesteams WHERE team_id = ${req.body.id}`
+                } else if (category == "trophies") {
+                    querySelectImg = `SELECT image_id FROM imagestrophies WHERE thophy_id = ${req.body.id}`
                 }
 
-                database.query(`UPDATE images SET image='${req.files[0].filename}' WHERE id = ${idImage}`, (error, results, fields) => {
-                    // falta terminar
+                database.query(querySelectImg, (error, results, fields) => {
+                    let idImage;
+                    if (error) {
+                        return console.log(error)
+                    } else {
+                        idImage = results[0].image_id
+                    }
+
+                    database.query(`SELECT image FROM images WHERE id = ${idImage}`, (error, results, fields) => {
+                        let imgName;
+                        if (error) {
+                            return console.log(error)
+                        } else {
+                            imgName = results[0].image
+                        }
+
+                        database.query(`UPDATE images SET image='${req.files[0].filename}' WHERE id = ${idImage}`, (error, results, fields) => {
+                            if (error) {
+                                return console.log(error)
+                            } else {
+                                unlinkSync(resolve(__dirname, `../../uploads/articles/${imgName}`))
+                                return console.log("Image updated successfully")
+                            }
+                        })
+                    })
                 })
-            })
-
-
+            }
             return res.status(200).json("ok");
         } catch (error) {
             return res.status(500).json(error)
