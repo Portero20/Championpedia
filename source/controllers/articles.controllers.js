@@ -298,6 +298,64 @@ module.exports = {
                     })
                 })
             }
+
+            if (req.body.tags) { // ver luego como llega y modificar el if
+                let tags = req.body.tags.split(",").map(tag => {
+                    return tag
+                })
+
+                let query;
+
+                if (category == "players") {
+                    query = `SELECT tag_id FROM tagsplayers WHERE player_id = ${req.body.id}`
+                } else if (category == "teams") {
+                    query = `SELECT tag_id FROM tagsteams WHERE team_id = ${req.body.id}`
+                } else if (category == "trophies") {
+                    query = `SELECT tag_id FROM tagstrophies WHERE thophy_id = ${req.body.id}`
+                }
+
+                // capturo los id de los tags existentes del articulo en una array
+                database.query(query, (error, results, fields) => {
+                    let tagsIds;
+                    if (error) {
+                        return console.log(error)
+                    } else {
+                        tagsIds = results.map(tag => tag.tag_id);
+                    }
+
+                    // traigo los nombres del los tags existentes del articulo en una array
+                    database.query(`SELECT id, tag FROM tags WHERE 1`, (error, results, fields) => {
+                        let tagTags;
+                        let newTags = [];
+                        let tagsDelete = [];
+
+                        if (error) {
+                            return console.log(error)
+                        } else {
+                            tagTags = new Set(results.map(tag => { return { id: tag.id, tag: tag.tag } }))
+                        }
+                        console.log(tagTags)
+
+
+                        for (const tag of tags) { // tags que me llegan
+                            if (tagTags.has(tag)) { // tag que tengo en db
+                                // Si el tag ya existe, no hacemos nada
+                            } else {
+                                // Si el tag no existe, lo añadimos a la lista de nuevos tags
+                                newTags.push(tag);
+                            }
+                        }
+
+                        /* for (const tag of tagTags) {
+                            if (!tags.includes(tag)) {
+                                // Si el tag de la base de datos no está en los tags recibidos, lo añadimos a la lista de tags a borrar
+                                tagsDelete.push(tag);
+                            }
+                        } */
+                    })
+                })
+            }
+
             return res.status(200).json("Article updated successfully");
         } catch (error) {
             return res.status(500).json(error)
@@ -306,6 +364,7 @@ module.exports = {
 }
 
 // A SOLUCIONAR:
+// Borrar el espacio si queda en los los tags
 // Cuando no se ingresa nada en los campos opcionales en editar
 // A la hora de editar como de crear:
 // // let title = req.body.title.replace(/"/g, '\\"');
