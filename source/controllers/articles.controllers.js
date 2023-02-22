@@ -325,26 +325,26 @@ module.exports = {
 
                     // traigo los nombres del los tags existentes del articulo en una array
                     database.query(`SELECT id, tag FROM tags WHERE 1`, (error, results, fields) => {
-                        let tagTags;
+                        let tagTags = [];
                         let newTags = [];
                         let tagsDelete = [];
 
                         if (error) {
                             return console.log(error)
                         } else {
-                            tagTags = new Set(results.map(tag => { return { id: tag.id, tag: tag.tag } }))
+                            results.map(tag => tagTags.push({ id: tag.id, tag: tag.tag }))
                         }
-                        console.log(tagTags)
 
-
-                        for (const tag of tags) { // tags que me llegan
-                            if (tagTags.has(tag)) { // tag que tengo en db
+                        for (const tag of tags) {
+                            if (tagTags.some(t => t.tag === tag)) {
                                 // Si el tag ya existe, no hacemos nada
                             } else {
                                 // Si el tag no existe, lo añadimos a la lista de nuevos tags
                                 newTags.push(tag);
                             }
                         }
+
+                        
 
                         /* for (const tag of tagTags) {
                             if (!tags.includes(tag)) {
