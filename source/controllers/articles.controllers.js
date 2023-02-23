@@ -225,6 +225,23 @@ module.exports = {
 
     edit: (req, res) => {
         try {
+            let validations = validationResult(req)
+            let { errors } = validations
+            let errorMsg = errors.map(err => Object({
+                param: err.param,
+                value: err.value,
+                msg: err.msg
+            }))
+
+            if (errors && errors.length > 0) {
+                if (req.files) {
+                    req.files.forEach(img => {
+                        unlinkSync(resolve(__dirname, "../../uploads/articles/" + img.filename))
+                    });
+                }
+                return res.status(200).json(errorMsg)
+            }
+
             const now = moment().format("YYYY/MM/DD HH:mm:ss")
             let category;
 
@@ -300,6 +317,7 @@ module.exports = {
             }
 
             if (req.body.tags) { // ver luego como llega y modificar el if
+
                 let tags = req.body.tags.split(",").map(tag => {
                     return tag.replace(/\s+/g, "")
                 })
@@ -406,7 +424,6 @@ module.exports = {
 }
 
 // A SOLUCIONAR:
-// Cuando no se ingresa nada en los campos opcionales en editar
 // A la hora de editar como de crear:
 // // let title = req.body.title.replace(/"/g, '\\"');
 // // let text = req.body.text.replace(/"/g, '\\"');
