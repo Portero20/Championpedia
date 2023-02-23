@@ -313,8 +313,7 @@ module.exports = {
                 } else if (category == "trophies") {
                     query = `SELECT tag_id FROM tagstrophies WHERE thophy_id = ${req.body.id}`
                 }
-
-                // capturo los id de los tags existentes del articulo en una array
+                
                 database.query(query, (error, results, fields) => {
                     let tagdIdDB;
 
@@ -335,32 +334,66 @@ module.exports = {
                             rows = results
                         }
 
-                        // Obtener un arreglo con todos los tags existentes
                         const existingTags = rows.map(row => ({ id: row.id, tag: row.tag }));
-
-                        // Filtrar los tags que ya existen y los nuevos tags a insertar
                         const newTags = [];
                         const tagsToDelete = [];
 
                         for (const tag of tags) {
                             if (existingTags.some(t => t.tag === tag)) {
-                                // Si el tag ya existe, no hacemos nada
                             } else {
-                                // Si el tag no existe, lo añadimos a la lista de nuevos tags
                                 newTags.push(tag);
                             }
                         }
 
                         for (const row of rows) {
                             if (!tags.some(t => t === row.tag)) {
-                                // Si el tag de la base de datos no está en los tags recibidos, lo añadimos a la lista de tags a borrar
                                 tagsToDelete.push(row.id);
                             }
                         }
 
-                        console.log(newTags);
-                        console.log(tagsToDelete);
+                        if (newTags.length > 0) {
+                            const values = newTags.map(tag => `('${tag}')`);
+                            database.query(`INSERT INTO tags (tag) VALUES ${values}`, (error, results, fields) => {
+                                let tagsIdNews = [];
+                                if (error) {
+                                    return console.log(error)
+                                } else {
+                                    let tagIdFirst = results.insertId
+                                    let affectedRows = results.affectedRows
 
+                                    for (let index = tagIdFirst - 1; index < (tagIdFirst + affectedRows - 1); index++) {
+                                        tagsIdNews.push(index + 1)
+                                    }
+                                }
+
+                                let tagsValues = tagsIdNews.map(t => {
+                                    return `( ${req.body.id}, ${t})`
+                                })
+
+                                if (category == "players") {
+                                    database.query(`INSERT INTO tagsplayers (player_id, tag_id) VALUES ${tagsValues}`)
+                                } else if (category == "teams") {
+                                    database.query(`INSERT INTO tagsteams (team_id, tag_id) VALUES ${tagsValues}`)
+                                } else if (category == "trophies") {
+                                    database.query(`INSERT INTO tagstrophies (thophy_id, tag_id) VALUES ${tagsValues}`)
+                                }
+                            });
+
+                        }
+
+                        if (tagsToDelete.length > 0) {
+                            const placeholders = tagsToDelete.map(d => `${d}`);
+
+                            if (category == "players") {
+                                database.query(`DELETE FROM tagsplayers WHERE tag_id IN (${placeholders})`)
+                            } else if (category == "teams") {
+                                database.query(`DELETE FROM tagsplayers WHERE tag_id IN (${placeholders})`)
+                            } else if (category == "trophies") {
+                                database.query(`DELETE FROM tagsplayers WHERE tag_id IN (${placeholders})`)
+                            }
+
+                            database.query(`DELETE FROM tags WHERE id IN (${placeholders})`);
+                        }
                     })
                 })
             }
