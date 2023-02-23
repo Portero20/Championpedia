@@ -313,7 +313,7 @@ module.exports = {
                 } else if (category == "trophies") {
                     query = `SELECT tag_id FROM tagstrophies WHERE thophy_id = ${req.body.id}`
                 }
-                
+
                 database.query(query, (error, results, fields) => {
                     let tagdIdDB;
 
@@ -387,9 +387,9 @@ module.exports = {
                             if (category == "players") {
                                 database.query(`DELETE FROM tagsplayers WHERE tag_id IN (${placeholders})`)
                             } else if (category == "teams") {
-                                database.query(`DELETE FROM tagsplayers WHERE tag_id IN (${placeholders})`)
+                                database.query(`DELETE FROM tagsteams WHERE tag_id IN (${placeholders})`)
                             } else if (category == "trophies") {
-                                database.query(`DELETE FROM tagsplayers WHERE tag_id IN (${placeholders})`)
+                                database.query(`DELETE FROM tagstrophies WHERE tag_id IN (${placeholders})`)
                             }
 
                             database.query(`DELETE FROM tags WHERE id IN (${placeholders})`);
