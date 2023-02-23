@@ -316,27 +316,34 @@ module.exports = {
 
                 // capturo los id de los tags existentes del articulo en una array
                 database.query(query, (error, results, fields) => {
-                    let tagsIds;
+                    let tagdIdDB;
+
                     if (error) {
                         return console.log(error)
                     } else {
-                        tagsIds = results.map(tag => tag.tag_id);
+                        tagdIdDB = results.map(tag => tag.tag_id)
                     }
 
-                    // traigo los nombres del los tags existentes del articulo en una array
-                    database.query(`SELECT id, tag FROM tags WHERE 1`, (error, results, fields) => {
-                        let tagTags = [];
-                        let newTags = [];
-                        let tagsDelete = [];
+                    tagdIdDB.map(tagdId => { return `${tagdId}` })
+
+                    database.query(`SELECT id, tag FROM tags WHERE id IN (${tagdIdDB})`, (error, results, fields) => {
+                        let rows;
 
                         if (error) {
                             return console.log(error)
                         } else {
-                            results.map(tag => tagTags.push({ id: tag.id, tag: tag.tag }))
+                            rows = results
                         }
 
+                        // Obtener un arreglo con todos los tags existentes
+                        const existingTags = rows.map(row => ({ id: row.id, tag: row.tag }));
+
+                        // Filtrar los tags que ya existen y los nuevos tags a insertar
+                        const newTags = [];
+                        const tagsToDelete = [];
+
                         for (const tag of tags) {
-                            if (tagTags.some(t => t.tag === tag)) {
+                            if (existingTags.some(t => t.tag === tag)) {
                                 // Si el tag ya existe, no hacemos nada
                             } else {
                                 // Si el tag no existe, lo añadimos a la lista de nuevos tags
@@ -344,14 +351,16 @@ module.exports = {
                             }
                         }
 
-                        
-
-                        /* for (const tag of tagTags) {
-                            if (!tags.includes(tag)) {
+                        for (const row of rows) {
+                            if (!tags.some(t => t === row.tag)) {
                                 // Si el tag de la base de datos no está en los tags recibidos, lo añadimos a la lista de tags a borrar
-                                tagsDelete.push(tag);
+                                tagsToDelete.push(row.id);
                             }
-                        } */
+                        }
+
+                        console.log(newTags);
+                        console.log(tagsToDelete);
+
                     })
                 })
             }
