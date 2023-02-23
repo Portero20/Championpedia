@@ -61,7 +61,7 @@ module.exports = {
                 }
 
                 let tags = req.body.tags.split(",").map(tag => {
-                    return `('', "${tag}")`
+                    return `('', "${tag.replace(/\s+/g, "")}")`
                 })
 
                 database.query(`INSERT INTO tags VALUES ${tags}`, (err, results) => {
@@ -301,7 +301,7 @@ module.exports = {
 
             if (req.body.tags) { // ver luego como llega y modificar el if
                 let tags = req.body.tags.split(",").map(tag => {
-                    return tag
+                    return tag.replace(/\s+/g, "")
                 })
 
                 let query;
@@ -406,7 +406,6 @@ module.exports = {
 }
 
 // A SOLUCIONAR:
-// Borrar el espacio si queda en los los tags
 // Cuando no se ingresa nada en los campos opcionales en editar
 // A la hora de editar como de crear:
 // // let title = req.body.title.replace(/"/g, '\\"');
