@@ -48,11 +48,11 @@ const editTrophies = [
         return true
     }),
     body("image").custom((value, { req }) => {
-        if (!req.file) {
-            return true;
-        }
-        
         let imagen = req.files
+
+        if (!imagen || imagen.length == 0) {
+            return true
+        }
 
         let extensiones = [".svg", ".jpg", ".png", ".jpeg"]
         let extension = extname(imagen[0].filename)

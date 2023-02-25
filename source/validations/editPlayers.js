@@ -123,8 +123,12 @@ const editPlayers = [
     }),
     body("debut").notEmpty().withMessage("La fecha de debut no puede quedar vacía").isISO8601()
         .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
-    body("image").optional({ checkFalsy: true }).custom((value, { req }) => {
+    body("image").custom((value, { req }) => {
         let imagen = req.files
+
+        if (!imagen || imagen.length == 0) {
+            return true
+        }
 
         let extensiones = [".svg", ".jpg", ".png", ".jpeg"]
         let extension = extname(imagen[0].filename)

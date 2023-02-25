@@ -81,8 +81,12 @@ const editTeams = [
 
         return true
     }),
-    body("image").optional({ checkFalsy: true }).custom((value, { req }) => {
+    body("image").custom((value, { req }) => {
         let imagen = req.files
+
+        if (!imagen || imagen.length == 0) {
+            return true
+        }
 
         let extensiones = [".svg", ".jpg", ".png", ".jpeg"]
         let extension = extname(imagen[0].filename)
