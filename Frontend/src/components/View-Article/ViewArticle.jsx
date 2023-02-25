@@ -1,13 +1,22 @@
 import '../../scss/utilities/_utilities.scss';
-import { Link, useParams } from "react-router-dom";
-import { detail } from "../../services/articles"
-import { React, useState, useEffect } from 'react'
-import TextoHtml from '../TextoHtml';
 import '../../scss/base/medias-detail.css'
+
+import { Link, useParams } from "react-router-dom";
+import { React, useEffect, useState } from 'react'
+
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import TextoHtml from '../TextoHtml';
+import { detail } from "../../services/articles"
 
 const ViewArticle = () => {
   const { category, id } = useParams();
   const [article, setarticle] = useState([])
+
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     detail(category, id).then(setarticle)
@@ -116,33 +125,29 @@ const ViewArticle = () => {
   }
 
   return (
-    <div className='container-article-detail'> 
-
-      <div className='container-detail'>
-
-        <div className='containerView-estilo'>
-
-          <h3 className='containerView-titulo'>{article.title}</h3>
-
+    <div className="container-article-detail">
+      <div className="container-detail">
+        <div className="containerView-estilo">
+          <h3 className="containerView-titulo">{article.title}</h3>
         </div>
 
-        <div className='containerView'>
-
+        <div className="containerView">
           <div className="descripcionView">
-
-            <p className='parrafoView' id="resultado" ><TextoHtml texto={article.text} /></p>
-
+            <p className="parrafoView" id="resultado">
+              <TextoHtml texto={article.text} />
+            </p>
           </div>
 
-          <div className='jugadorContainer'>
-
-            <div className='imagen__jugadorFlex'>
-
-              <img src={urlImage} alt="" className='img-detail' />
+          <div className="jugadorContainer">
+            <div className="imagen__jugadorFlex">
+              <img src={urlImage} alt="" className="img-detail" />
             </div>
 
-            <div className='parrafosPersonales'>
-              <p className='parrafoJugador'><span className='spanParrafo'>Nombre completo:</span> {article.fullName}</p>
+            <div className="parrafosPersonales">
+              <p className="parrafoJugador">
+                <span className="spanParrafo">Nombre completo:</span>{" "}
+                {article.fullName}
+              </p>
               {nickName}
               {born}
               {nationality}
@@ -165,16 +170,31 @@ const ViewArticle = () => {
               {subchampion}
             </div>
 
+            <Button variant="dark" onClick={handleShow}>
+              Editar
+            </Button>
+
+            <Modal show={show} onHide={handleClose} size="lg">
+              <Modal.Header closeButton>
+                <Modal.Title>Editar Artículo</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Woohoo, you're reading this text in a modal!
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Cerrar
+                </Button>
+                <Button variant="dark" onClick={handleClose}>
+                  Guardar Cambios
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </div>
-
-
         </div>
-
-
       </div>
-
     </div>
-  )
+  );
 }
 
 export default ViewArticle
