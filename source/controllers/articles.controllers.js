@@ -269,13 +269,17 @@ module.exports = {
 
             let query;
 
+            let title = req.body.title.replace(/"/g, '\\"');
+            let text = req.body.text.replace(/"/g, '\\"');
+            let fullName = req.body.fullName.replace(/"/g, '\\"');
+            let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
+
             if (category == "players") {
-                let text = req.body.text.replace(/"/g, '\\"');
-                query = `UPDATE players SET title='${req.body.title}',text="${text}",fullName='${req.body.fullName}',nickName='${req.body.nickName}',born='${req.body.born}',death='${req.body.death}',height='${req.body.height}',weight='${req.body.weight}',nationality='${req.body.nationality}',position='${req.body.position}',team='${req.body.team}',numbers='${req.body.numbers}',goals='${req.body.goals}',debut='${req.body.debut}',retire='${req.body.retire}' WHERE id = ${req.body.id};`
+                query = `UPDATE players SET title="${title}",text="${text}",fullName="${fullName}",nickName="${nickName}",born="${req.body.born}",death="${req.body.death}",height="${req.body.height}",weight="${req.body.weight}",nationality="${req.body.nationality}",position="${req.body.position}",team="${req.body.team}",numbers="${req.body.numbers}",goals="${req.body.goals}",debut="${req.body.debut}",retire="${req.body.retire}" WHERE id = ${req.body.id};`
             } else if (category == "teams") {
-                query = `UPDATE teams SET title='${req.body.title}',text='${req.body.text}',fullName='${req.body.fullName}',foundation='${req.body.foundation}',president='${req.body.president}',stadium='${req.body.stadium}',coach='${req.body.coach}',nickName='${req.body.nickName}' WHERE id = ${req.body.id};`
+                query = `UPDATE teams SET title="${title}",text="${text}",fullName="${fullName}",foundation="${req.body.foundation}",president="${req.body.president}",stadium="${req.body.stadium}",coach="${req.body.coach}",nickName="${nickName}" WHERE id = ${req.body.id};`
             } else if (category == "trophies") {
-                query = `UPDATE trophies SET title='${req.body.title}',text='${req.body.text}',fullName='${req.body.fullName}',campus='${req.body.campus}',foundation='${req.body.foundation}',organizer='${req.body.organizer}',champion='${req.body.champion}',subchampion='${req.body.subchampion}' WHERE id = ${req.body.id}`
+                query = `UPDATE trophies SET title="${title}",text="${text}",fullName="${fullName}",campus="${req.body.campus}",foundation="${req.body.foundation}",organizer="${req.body.organizer}",champion="${req.body.champion}",subchampion="${req.body.subchampion}" WHERE id = ${req.body.id}`
             }
 
             database.query(query, (err, results, fields) => {
@@ -432,13 +436,3 @@ module.exports = {
         }
     }
 }
-
-// A la hora de editar como de crear:
-// // let title = req.body.title.replace(/"/g, '\\"');
-// // let text = req.body.text.replace(/"/g, '\\"');
-// // let fullName = req.body.fullName.replace(/"/g, '\\"');
-// // let champion = req.body.champion.replace(/"/g, '\\"');
-// // let author = req.body.author.replace(/"/g, '\\"');
-// // let subchampion = req.body.subchampion.replace(/"/g, '\\"');
-// // let organizer = req.body.organizer.replace(/"/g, '\\"');
-// // let campus = req.body.campus.replace(/"/g, '\\"');
