@@ -42,13 +42,21 @@ module.exports = {
 
             let query;
 
-            if (category == "players") {
-                let text = req.body.text.replace(/"/g, '\\"');
-                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ('','${req.body.title}',"${text}",'${req.body.author}', 1,'${now}','','${req.body.fullName}','${req.body.nickName}','${req.body.born}','${req.body.death}','${req.body.height}','${req.body.weight}','${req.body.nationality}','${req.body.position}','${req.body.team}','${req.body.numbers}','${req.body.goals}','${req.body.debut}','${req.body.retire}');`
+            let title = req.body.title.replace(/"/g, '\\"');
+            let text = req.body.text.replace(/"/g, '\\"');
+            let author = req.body.author.replace(/"/g, '\\"');
+            let fullName = req.body.fullName.replace(/"/g, '\\"');
+            let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
+
+            if (category == "players") { 
+                //nationality, position, team
+                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ("","${title}","${text}","${author}", 1,"${now}","","${fullName}","${nickName}","${req.body.born}","${req.body.death}","${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}","${req.body.retire}");`
             } else if (category == "teams") {
-                query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 2,'${now}','','${req.body.fullName}','${req.body.foundation}','${req.body.president}','${req.body.stadium}','${req.body.coach}','${req.body.nickName}');`
+                // president, stadium, coach
+                query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES ("","${title}","${text}","${author}", 2,"${now}","","${fullName}","${req.body.foundation}","${req.body.president}","${req.body.stadium}","${req.body.coach}","${nickName}");`
             } else if (category == "trophies") {
-                query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES ('','${req.body.title}','${req.body.text}','${req.body.author}', 3,'${now}','','${req.body.fullName}','${req.body.campus}','${req.body.foundation}','${req.body.organizer}','${req.body.champion}','${req.body.subchampion}');`
+                // campus, organizer, champion, subchampion
+                query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES ("","${title}","${text}","${author}", 3,"${now}","","${fullName}","${req.body.campus}","${req.body.foundation}","${req.body.organizer}","${req.body.champion}","${req.body.subchampion}");`
             }
 
             database.query(query, (err, results, fields) => {
@@ -262,7 +270,8 @@ module.exports = {
             let query;
 
             if (category == "players") {
-                query = `UPDATE players SET title='${req.body.title}',text='${req.body.text}',fullName='${req.body.fullName}',nickName='${req.body.nickName}',born='${req.body.born}',death='${req.body.death}',height='${req.body.height}',weight='${req.body.weight}',nationality='${req.body.nationality}',position='${req.body.position}',team='${req.body.team}',numbers='${req.body.numbers}',goals='${req.body.goals}',debut='${req.body.debut}',retire='${req.body.retire}' WHERE id = ${req.body.id};`
+                let text = req.body.text.replace(/"/g, '\\"');
+                query = `UPDATE players SET title='${req.body.title}',text="${text}",fullName='${req.body.fullName}',nickName='${req.body.nickName}',born='${req.body.born}',death='${req.body.death}',height='${req.body.height}',weight='${req.body.weight}',nationality='${req.body.nationality}',position='${req.body.position}',team='${req.body.team}',numbers='${req.body.numbers}',goals='${req.body.goals}',debut='${req.body.debut}',retire='${req.body.retire}' WHERE id = ${req.body.id};`
             } else if (category == "teams") {
                 query = `UPDATE teams SET title='${req.body.title}',text='${req.body.text}',fullName='${req.body.fullName}',foundation='${req.body.foundation}',president='${req.body.president}',stadium='${req.body.stadium}',coach='${req.body.coach}',nickName='${req.body.nickName}' WHERE id = ${req.body.id};`
             } else if (category == "trophies") {
@@ -424,7 +433,6 @@ module.exports = {
     }
 }
 
-// A SOLUCIONAR:
 // A la hora de editar como de crear:
 // // let title = req.body.title.replace(/"/g, '\\"');
 // // let text = req.body.text.replace(/"/g, '\\"');
