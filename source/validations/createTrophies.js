@@ -26,10 +26,42 @@ const createTrophies = [
     }),
     body("foundation").notEmpty().withMessage("La fecha de fundación no debe quedar vacía").bail().isISO8601()
         .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
-    body("campus").notEmpty().withMessage("La sede no deber quedar vacía").bail().isLength({ min: 2 }).withMessage("La sede debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("La sede no debe superar los cien caracteres").bail(),
-    body("organizer").notEmpty().withMessage("El organizador no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El organizador debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El organizador no debe superar los cien caracteres").bail(),
-    body("champion").notEmpty().withMessage("El campeón no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El campeón debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El campeón no debe superar los cien caracteres").bail(),
-    body("subchampion").notEmpty().withMessage("El subcampeón no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El subcampeón debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El subcampeón no debe superar los cien caracteres").bail(),
+    body("campus").notEmpty().withMessage("La sede no deber quedar vacía").bail().isLength({ min: 2 }).withMessage("La sede debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("La sede no debe superar los cien caracteres").bail().custom(value => {
+        for (let index = 0; index < value.length; index++) {
+            if (value[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
+        }
+
+        return true
+    }),
+    body("organizer").notEmpty().withMessage("El organizador no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El organizador debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El organizador no debe superar los cien caracteres").bail().custom(value => {
+        for (let index = 0; index < value.length; index++) {
+            if (value[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
+        }
+
+        return true
+    }),
+    body("champion").notEmpty().withMessage("El campeón no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El campeón debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El campeón no debe superar los cien caracteres").bail().custom(value => {
+        for (let index = 0; index < value.length; index++) {
+            if (value[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
+        }
+
+        return true
+    }),
+    body("subchampion").notEmpty().withMessage("El subcampeón no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El subcampeón debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El subcampeón no debe superar los cien caracteres").bail().custom(value => {
+        for (let index = 0; index < value.length; index++) {
+            if (value[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
+        }
+
+        return true
+    }),
     body("tags").notEmpty().withMessage("Los tags no deben quedar vacíos").bail().custom(value => {
         tags = value.split(",").map(tag => {
             return tag
