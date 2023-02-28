@@ -73,6 +73,12 @@ const createPlayers = [
             throw new Error("No se permiten números")
         }
 
+        for (let index = 0; index < valor.length; index++) {
+            if (valor[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
+        }
+
         return true
     }),
     body("position").notEmpty().withMessage("La posicion no puede quedar vacia").bail().isLength({ min: 2 }).withMessage("La posición debe contener un mínimo de dos caracteres").bail().custom(value => {
@@ -90,9 +96,25 @@ const createPlayers = [
             }
         })
 
+        positions.forEach(p => {
+            for (let index = 0; index < p.length; index++) {
+                if (p[index].indexOf('"') !== -1) {
+                    throw new Error("No se permiten comillas")
+                }
+            }
+        })
+
         return true
     }),
-    body("team").notEmpty().withMessage("El equipo no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El equipo debe contener un mínimo de dos caracteres").bail().isLength({ max: 100 }).withMessage("El equipo no debe suérar los cien caracteres").bail(),
+    body("team").notEmpty().withMessage("El equipo no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El equipo debe contener un mínimo de dos caracteres").bail().isLength({ max: 100 }).withMessage("El equipo no debe suérar los cien caracteres").bail().custom(value => {
+        for (let index = 0; index < value.length; index++) {
+            if (value[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
+        }
+
+        return true
+    }),
     body("numbers").notEmpty().withMessage("El número no debe quedar vacío").bail().custom(value => {
         numbers = value.split(",").map(n => {
             return n

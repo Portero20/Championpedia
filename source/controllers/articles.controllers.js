@@ -49,7 +49,6 @@ module.exports = {
             let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
 
             if (category == "players") { 
-                //nationality, position, team
                 query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ("","${title}","${text}","${author}", 1,"${now}","","${fullName}","${nickName}","${req.body.born}","${req.body.death}","${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}","${req.body.retire}");`
             } else if (category == "teams") {
                 // president, stadium, coach
