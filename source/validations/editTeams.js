@@ -34,15 +34,35 @@ const editTeams = [
             throw new Error("No se permiten números")
         }
 
+        for (let index = 0; index < valor.length; index++) {
+            if (valor[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
+        }
+
         return true
     }),
-    body("stadium").notEmpty().withMessage("El nombre del estadio no puede quedar vacío").bail().isLength({ min: 2 }).withMessage("El nombre debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El nombre no debe superar los cien caracteres").bail(),
+    body("stadium").notEmpty().withMessage("El nombre del estadio no puede quedar vacío").bail().isLength({ min: 2 }).withMessage("El nombre debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El nombre no debe superar los cien caracteres").bail().custom(value => {
+        for (let index = 0; index < value.length; index++) {
+            if (value[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
+        }
+
+        return true
+    }),
     body("coach").notEmpty().withMessage("El nombre no debe quedar vacío").bail().isLength({ min: 2 }).withMessage("El nombre debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El nombre no debe superar los cien caracteres").bail().custom(value => {
         let valor = value;
         let num = /\d/.test(valor);
 
         if (num) {
             throw new Error("No se permiten números")
+        }
+
+        for (let index = 0; index < valor.length; index++) {
+            if (valor[index].indexOf('"') !== -1) {
+                throw new Error("No se permiten comillas")
+            }
         }
 
         return true
