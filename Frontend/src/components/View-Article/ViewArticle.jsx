@@ -2,11 +2,15 @@ import '../../scss/utilities/_utilities.scss';
 import '../../scss/base/medias-detail.css'
 
 import { Link, useParams } from "react-router-dom";
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useMemo, useRef, useState } from 'react'
 
 import Button from 'react-bootstrap/Button';
+import InputPlayer from '../Player/InputPlayer';
+import JoditEditor from 'jodit-react';
 import Modal from 'react-bootstrap/Modal';
+import Team from '../Teams/Team';
 import TextoHtml from '../TextoHtml';
+import Trophies from '../Trophies/Trophies';
 import { detail } from "../../services/articles"
 
 const ViewArticle = () => {
@@ -17,10 +21,45 @@ const ViewArticle = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const editor = useRef(null);
+  const [content, setContent] = useState('');
 
   useEffect(() => {
     detail(category, id).then(setarticle)
   }, [id])
+
+  const config = {
+
+    readonly: false,
+    height: 600,
+    toolbarSticky: false,
+    showPlaceholder: false,
+
+    "uploader": {
+      "insertImageAsBase64URI": true
+    },
+
+    "disablePlugins": "video, about",
+
+
+
+  }
+
+  let input;
+
+  if (category == "futbolistas") {
+
+    input = <InputPlayer />
+
+  } else if (category == "copas") {
+
+    input = <Trophies />
+
+  } else if (category == "equipos") {
+
+    input = <Team />
+
+  }
 
   let urlImage = `http://localhost:3000/article/images?imagen=${article.image}`
 
@@ -171,7 +210,7 @@ const ViewArticle = () => {
             </div>
 
             <Button variant="dark" onClick={handleShow}>
-              Editar
+              Editar Artículo
             </Button>
 
             <Modal show={show} onHide={handleClose} size="lg">
@@ -179,7 +218,24 @@ const ViewArticle = () => {
                 <Modal.Title>Editar Artículo</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                Woohoo, you're reading this text in a modal!
+                {input}
+
+                <div className="joditEditor">
+                  {useMemo(
+                    () => (
+                      <JoditEditor
+                        ref={editor}
+                        value={content}
+                        config={config}
+                        tabIndex={1} // tabIndex of textarea
+                        onChange={(newContent) => {
+                          setContent(newContent);
+                        }}
+                      />
+                    ),
+                    []
+                  )}
+                </div>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
