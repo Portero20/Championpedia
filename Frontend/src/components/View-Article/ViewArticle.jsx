@@ -57,7 +57,7 @@ const ViewArticle = () => {
 
   } else if (category == "equipos") {
 
-    input = <Team />
+    input = <Team article={article}/>
 
   }
 

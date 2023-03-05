@@ -14,8 +14,7 @@ const Footer = () => {
         <div className='hijoFooter'>
 
         <div className='containerLogo'>
-            <img src={pelotaChampionpedia} alt="pelota de futbol" className="logoChampionpedia" />
-            <h4 className='textoLogo'>Championpedia</h4>
+            <h4 className='textoLogo'> <img src={pelotaChampionpedia} alt="pelota de futbol" className="logoChampionpedia" />Championpedia</h4>
         </div>
 
         </div>

@@ -3,7 +3,7 @@ import '../../scss/utilities/_utilities.scss';
 
 import React from 'react'
 
-const Team = () => {
+const Team = ({article}) => {
     return (
         <div>
             <div className='containerEquipos'>
@@ -11,7 +11,7 @@ const Team = () => {
                 <div className='flexTeam'>
 
                     <label>Título:</label>
-                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputs__team' />
+                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputs__team'/>
                     <p className="msg-error"></p>
 
                     <label>Nombre completo:</label>
