@@ -136,72 +136,42 @@ const CreateArticle = ({ placeholder }) => {
           error.classList.remove("invalid");
         });
 
+        const errorFields = {
+          title: 0,
+          fullName: 1,
+          nickName: 2,
+          nationality: 3,
+          born: 4,
+          death: 5,
+          team: 6,
+          numbers: 7,
+          goals: 8,
+          height: 9,
+          weight: 10,
+          position: 11,
+          debut: 12,
+          retire: 13,
+          image: 14,
+          author: 15,
+          text: 16,
+          tags: 17,
+        };
+        
         if (Array.isArray(result)) {
-          result.forEach(error => {
-            if (error.param === "title") {
-              msgErrors[0].innerText = error.msg
-              msgErrors[0].classList.add("invalid")
-            } else if (error.param === "fullName") {
-              msgErrors[1].innerText = error.msg
-              msgErrors[1].classList.add("invalid")
-            } else if (error.param === "nickName") {
-              msgErrors[2].innerText = error.msg
-              msgErrors[2].classList.add("invalid")
-            } else if (error.param === "nationality") {
-              msgErrors[3].innerText = error.msg
-              msgErrors[3].classList.add("invalid")
-            } else if (error.param === "born") {
-              msgErrors[4].innerText = error.msg
-              msgErrors[4].classList.add("invalid")
-            } else if (error.param === "death") {
-              msgErrors[5].innerText = error.msg
-              msgErrors[5].classList.add("invalid")
-            } else if (error.param === "team") {
-              msgErrors[6].innerText = error.msg
-              msgErrors[6].classList.add("invalid")
-            } else if (error.param === "numbers") {
-              msgErrors[7].innerText = error.msg
-              msgErrors[7].classList.add("invalid")
-            } else if (error.param === "goals") {
-              msgErrors[8].innerText = error.msg
-              msgErrors[8].classList.add("invalid")
-            } else if (error.param === "height") {
-              msgErrors[9].innerText = error.msg
-              msgErrors[9].classList.add("invalid")
-            } else if (error.param === "weight") {
-              msgErrors[10].innerText = error.msg
-              msgErrors[10].classList.add("invalid")
-            } else if (error.param === "position") {
-              msgErrors[11].innerText = error.msg
-              msgErrors[11].classList.add("invalid")
-            } else if (error.param === "debut") {
-              msgErrors[12].innerText = error.msg
-              msgErrors[12].classList.add("invalid")
-            } else if (error.param === "retire") {
-              msgErrors[13].innerText = error.msg
-              msgErrors[13].classList.add("invalid")
-            } else if (error.param === "image") {
-              msgErrors[14].innerText = error.msg
-              msgErrors[14].classList.add("invalid")
-            } else if (error.param === "author") {
-              msgErrors[15].innerText = error.msg
-              msgErrors[15].classList.add("invalid")
-            } else if (error.param === "text") {
-              msgErrors[16].innerText = error.msg
-              msgErrors[16].classList.add("invalid")
-            } else if (error.param === "tags") {
-              msgErrors[17].innerText = error.msg
-              msgErrors[17].classList.add("invalid")
+          result.forEach((error) => {
+            if (error.param in errorFields) {
+              const index = errorFields[error.param];
+              msgErrors[index].innerText = error.msg;
+              msgErrors[index].classList.add("invalid");
             }
-          })
+          });
         } else {
-          navigate(`/articulo/${selected}/${result}`)
+          navigate(`/articulo/${selected}/${result}`);
         }
+        
       } catch (error) {
         console.log(error)
       }
-
-
     }
     if (selected == "copas") {
 
@@ -242,45 +212,30 @@ const CreateArticle = ({ placeholder }) => {
           error.classList.remove("invalid");
         });
 
+        const errorMap = {
+          "title": 0,
+          "fullName": 1,
+          "campus": 2,
+          "foundation": 3,
+          "organizer": 4,
+          "champion": 5,
+          "subchampion": 6,
+          "image": 7,
+          "author": 8,
+          "text": 9,
+          "tags": 10
+        };
+        
         if (Array.isArray(result)) {
           result.forEach(error => {
-            if (error.param === "title") {
-              msgErrors[0].innerText = error.msg
-              msgErrors[0].classList.add("invalid")
-            } else if (error.param === "fullName") {
-              msgErrors[1].innerText = error.msg
-              msgErrors[1].classList.add("invalid")
-            } else if (error.param === "campus") {
-              msgErrors[2].innerText = error.msg
-              msgErrors[2].classList.add("invalid")
-            } else if (error.param === "foundation") {
-              msgErrors[3].innerText = error.msg
-              msgErrors[3].classList.add("invalid")
-            } else if (error.param === "organizer") {
-              msgErrors[4].innerText = error.msg
-              msgErrors[4].classList.add("invalid")
-            } else if (error.param === "champion") {
-              msgErrors[5].innerText = error.msg
-              msgErrors[5].classList.add("invalid")
-            } else if (error.param === "subchampion") {
-              msgErrors[6].innerText = error.msg
-              msgErrors[6].classList.add("invalid")
-            } else if (error.param === "image") {
-              msgErrors[7].innerText = error.msg
-              msgErrors[7].classList.add("invalid")
-            } else if (error.param === "author") {
-              msgErrors[8].innerText = error.msg
-              msgErrors[8].classList.add("invalid")
-            } else if (error.param === "text") {
-              msgErrors[9].innerText = error.msg
-              msgErrors[9].classList.add("invalid")
-            } else if (error.param === "tags") {
-              msgErrors[10].innerText = error.msg
-              msgErrors[10].classList.add("invalid")
+            const index = errorMap[error.param];
+            if (index !== undefined) {
+              msgErrors[index].innerText = error.msg;
+              msgErrors[index].classList.add("invalid");
             }
-          })
+          });
         } else {
-          navigate(`/articulo/${selected}/${result}`)
+          navigate(`/articulo/${selected}/${result}`);
         }
       } catch (error) {
         console.log(error)
@@ -325,41 +280,26 @@ const CreateArticle = ({ placeholder }) => {
           error.classList.remove("invalid");
         });
 
+        const paramIndex = {
+          title: 0,
+          fullName: 1,
+          nickName: 2,
+          foundation: 3,
+          president: 4,
+          stadium: 5,
+          coach: 6,
+          image: 7,
+          author: 8,
+          text: 9,
+          tags: 10
+        }
+        
         if (Array.isArray(result)) {
           result.forEach(error => {
-            if (error.param === "title") {
-              msgErrors[0].innerText = error.msg
-              msgErrors[0].classList.add("invalid")
-            } else if (error.param === "fullName") {
-              msgErrors[1].innerText = error.msg
-              msgErrors[1].classList.add("invalid")
-            } else if (error.param === "nickName") {
-              msgErrors[2].innerText = error.msg
-              msgErrors[2].classList.add("invalid")
-            } else if (error.param === "foundation") {
-              msgErrors[3].innerText = error.msg
-              msgErrors[3].classList.add("invalid")
-            } else if (error.param === "president") {
-              msgErrors[4].innerText = error.msg
-              msgErrors[4].classList.add("invalid")
-            } else if (error.param === "stadium") {
-              msgErrors[5].innerText = error.msg
-              msgErrors[5].classList.add("invalid")
-            } else if (error.param === "coach") {
-              msgErrors[6].innerText = error.msg
-              msgErrors[6].classList.add("invalid")
-            } else if (error.param === "image") {
-              msgErrors[7].innerText = error.msg
-              msgErrors[7].classList.add("invalid")
-            } else if (error.param === "author") {
-              msgErrors[8].innerText = error.msg
-              msgErrors[8].classList.add("invalid")
-            } else if (error.param === "text") {
-              msgErrors[9].innerText = error.msg
-              msgErrors[9].classList.add("invalid")
-            } else if (error.param === "tags") {
-              msgErrors[10].innerText = error.msg
-              msgErrors[10].classList.add("invalid")
+            const index = paramIndex[error.param]
+            if (index !== undefined) {
+              msgErrors[index].innerText = error.msg
+              msgErrors[index].classList.add("invalid")
             }
           })
         } else {
