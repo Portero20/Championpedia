@@ -49,11 +49,11 @@ const ViewArticle = () => {
 
   if (category == "futbolistas") {
 
-    input = <InputPlayer />
+    input = <InputPlayer article={article}/>
 
   } else if (category == "copas") {
 
-    input = <Trophies />
+    input = <Trophies article={article}/>
 
   } else if (category == "equipos") {
 

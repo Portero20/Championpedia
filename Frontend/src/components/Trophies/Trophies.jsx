@@ -3,7 +3,7 @@ import '../../scss/utilities/mixin/_mixin.scss'
 
 import React from 'react'
 
-const Trophies = () => {
+const Trophies = ({article}) => {
     return (
         <div>
             <div className='containerCopas'>

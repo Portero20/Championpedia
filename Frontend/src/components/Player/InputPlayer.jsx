@@ -3,7 +3,7 @@ import '../../scss/utilities/_utilities.scss';
 
 import React from 'react'
 
-const InputPlayer = () => {
+const InputPlayer = ({article}) => {
   return (
     <div className='div-jugadores'>
 
@@ -12,7 +12,7 @@ const InputPlayer = () => {
         <div className='flexJugadores'>
           <div className='inputs-first'>
             <label>Título:</label>
-            <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputJugadores' />
+            <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputJugadores'/>
             <p className="msg-error"></p>
 
             <label>Nombre completo:</label>
