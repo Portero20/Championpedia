@@ -132,24 +132,9 @@ const CreateArticle = ({ placeholder }) => {
 
         let result = await newArticle(selected, formData)
 
-        msgErrors[0].classList.remove("invalid")
-        msgErrors[1].classList.remove("invalid")
-        msgErrors[2].classList.remove("invalid")
-        msgErrors[3].classList.remove("invalid")
-        msgErrors[4].classList.remove("invalid")
-        msgErrors[5].classList.remove("invalid")
-        msgErrors[6].classList.remove("invalid")
-        msgErrors[7].classList.remove("invalid")
-        msgErrors[8].classList.remove("invalid")
-        msgErrors[9].classList.remove("invalid")
-        msgErrors[10].classList.remove("invalid")
-        msgErrors[11].classList.remove("invalid")
-        msgErrors[12].classList.remove("invalid")
-        msgErrors[13].classList.remove("invalid")
-        msgErrors[14].classList.remove("invalid")
-        msgErrors[15].classList.remove("invalid")
-        msgErrors[16].classList.remove("invalid")
-        msgErrors[17].classList.remove("invalid")
+        msgErrors.forEach((error) => {
+          error.classList.remove("invalid");
+        });
 
         if (Array.isArray(result)) {
           result.forEach(error => {
@@ -253,17 +238,9 @@ const CreateArticle = ({ placeholder }) => {
 
         let result = await newArticle(selected, formData)
 
-        msgErrors[0].classList.remove("invalid")
-        msgErrors[1].classList.remove("invalid")
-        msgErrors[2].classList.remove("invalid")
-        msgErrors[3].classList.remove("invalid")
-        msgErrors[4].classList.remove("invalid")
-        msgErrors[5].classList.remove("invalid")
-        msgErrors[6].classList.remove("invalid")
-        msgErrors[7].classList.remove("invalid")
-        msgErrors[8].classList.remove("invalid")
-        msgErrors[9].classList.remove("invalid")
-        msgErrors[10].classList.remove("invalid")
+        msgErrors.forEach((error) => {
+          error.classList.remove("invalid");
+        });
 
         if (Array.isArray(result)) {
           result.forEach(error => {
@@ -344,17 +321,9 @@ const CreateArticle = ({ placeholder }) => {
 
         let result = await newArticle(selected, formData)
 
-        msgErrors[0].classList.remove("invalid")
-        msgErrors[1].classList.remove("invalid")
-        msgErrors[2].classList.remove("invalid")
-        msgErrors[3].classList.remove("invalid")
-        msgErrors[4].classList.remove("invalid")
-        msgErrors[5].classList.remove("invalid")
-        msgErrors[6].classList.remove("invalid")
-        msgErrors[7].classList.remove("invalid")
-        msgErrors[8].classList.remove("invalid")
-        msgErrors[9].classList.remove("invalid")
-        msgErrors[10].classList.remove("invalid")
+        msgErrors.forEach((error) => {
+          error.classList.remove("invalid");
+        });
 
         if (Array.isArray(result)) {
           result.forEach(error => {
