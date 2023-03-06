@@ -48,15 +48,15 @@ const CreateArticle = ({ placeholder }) => {
 
   if (selected == "futbolistas") {
 
-    input = <InputPlayer />
+    input = <InputPlayer showValue={false} />
 
   } else if (selected == "copas") {
 
-    input = <Trophies />
+    input = <Trophies showValue={false} />
 
   } else if (selected == "equipos") {
 
-    input = <Team />
+    input = <Team showValue={false} />
 
   }
 

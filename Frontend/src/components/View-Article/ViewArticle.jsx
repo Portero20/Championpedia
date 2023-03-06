@@ -49,15 +49,15 @@ const ViewArticle = () => {
 
   if (category == "futbolistas") {
 
-    input = <InputPlayer article={article}/>
+    input = <InputPlayer showValue={true} article={article} />
 
   } else if (category == "copas") {
 
-    input = <Trophies article={article}/>
+    input = <Trophies showValue={true} article={article} />
 
   } else if (category == "equipos") {
 
-    input = <Team article={article}/>
+    input = <Team showValue={true} article={article} />
 
   }
 
@@ -225,7 +225,7 @@ const ViewArticle = () => {
                     () => (
                       <JoditEditor
                         ref={editor}
-                        value={content}
+                        value={article.text}
                         config={config}
                         tabIndex={1} // tabIndex of textarea
                         onChange={(newContent) => {
