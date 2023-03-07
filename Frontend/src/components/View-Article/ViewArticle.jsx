@@ -29,6 +29,10 @@ const ViewArticle = () => {
     detail(category, id).then(setarticle)
   }, [id])
 
+  const [articleJodit, setArticleJodit] = useState({
+    text: "Texto predeterminado"
+  });
+
   const config = {
 
     readonly: false,
@@ -42,17 +46,13 @@ const ViewArticle = () => {
 
     "disablePlugins": "video, about",
 
-
-
   }
 
-  const onHandlerArticle = (e) => {
-
-    setContent(e.target.value);
-
-    console.log(e.target.value)
-
-  }
+  useEffect(() => {
+    detail(category, id).then(article => {
+      setContent(article.text);
+    });
+  }, [category, id]);
 
   let input;
 
@@ -181,9 +181,9 @@ const ViewArticle = () => {
 
         <div className="containerView">
           <div className="descripcionView">
-            <p className="parrafoView" id="resultado">
+            <div className="parrafoView" id="resultado">
               <TextoHtml texto={article.text} />
-            </p>
+            </div>
           </div>
 
           <div className="jugadorContainer">
@@ -229,23 +229,26 @@ const ViewArticle = () => {
               <Modal.Body>
 
                 {input}
-                
+
                 <div className="joditEditor">
                   {useMemo(
                     () => (
                       <JoditEditor
                         ref={editor}
-                        defaultValue={article.text}
+                        value={article.text}
                         config={config}
                         tabIndex={1} // tabIndex of textarea
-                        onChange={() => onHandlerArticle}
+                        onChange={(newContent) => {
+                          const newArticle = { ...article, text: newContent };
+                          setArticleJodit(newArticle);
+                        }}
                       />
                     ),
-                    []
+                    [article.text]
                   )}
                 </div>
-                
-                  <Tags showValue={true} article={article}/>
+
+                <Tags showValue={true} article={article} />
 
               </Modal.Body>
               <Modal.Footer>
