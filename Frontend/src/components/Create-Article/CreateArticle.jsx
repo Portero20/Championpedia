@@ -1,4 +1,5 @@
 import '../Create-Article/_createArticle.scss';
+import '../Tags/_tags.scss';
 import '../../scss/base/_font.scss';
 import '../../scss/partials/_variables.scss';
 import '../../scss/barrel.scss';
@@ -9,6 +10,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
 import React from 'react'
+import Tags from '../Tags/Tags';
 import Team from '../Teams/Team';
 import Trophies from '../Trophies/Trophies';
 import { useNavigate } from "react-router-dom";
@@ -369,20 +371,7 @@ const CreateArticle = ({ placeholder }) => {
 
         <div className="moverInputs">
 
-          <div className="inputsEtiquetas">
-
-
-            <label className='agregarEtiqueta'>Agregar etiquetas</label>
-            <input type="text" placeholder='Escribe las etiquetas...' className='inputComas' name='tags' id="tags" />
-
-            <div className='tooltip-container'>
-              <i className="fa-solid fa-question questionIcon"></i>
-
-              <span className='tooltip'>No te olvides de separar con comas y sin espacios.</span>
-
-            </div>
-
-          </div>
+          <Tags />
 
           <div className="moverButtons">
 

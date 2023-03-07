@@ -112,7 +112,7 @@ body.open .navbar-menu {
     padding: 0 8px;
 }
 
-@media only screen and (min-width: 672px) {
+@media only screen and (min-width: 723px) {
     .navbar {
         justify-content: space-between;
         padding: 0 0 0 16px;
@@ -125,13 +125,13 @@ body.open .navbar-menu {
     }
 }
 
-@media only screen and (min-width: 672px) {
+@media only screen and (min-width: 723px) {
     .navbar-burger {
         display: none;
     }
 }
 
-@media only screen and (min-width: 672px) {
+@media only screen and (min-width: 743px) {
     .navbar-menu {
         position: static;
         translate: 0 0;

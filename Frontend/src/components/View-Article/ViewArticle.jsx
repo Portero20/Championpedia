@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
 import Modal from 'react-bootstrap/Modal';
+import Tags from '../Tags/Tags';
 import Team from '../Teams/Team';
 import TextoHtml from '../TextoHtml';
 import Trophies from '../Trophies/Trophies';
@@ -42,6 +43,14 @@ const ViewArticle = () => {
     "disablePlugins": "video, about",
 
 
+
+  }
+
+  const onHandlerArticle = (e) => {
+
+    setContent(e.target.value);
+
+    console.log(e.target.value)
 
   }
 
@@ -218,24 +227,26 @@ const ViewArticle = () => {
                 <Modal.Title>Editar Artículo</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                {input}
 
+                {input}
+                
                 <div className="joditEditor">
                   {useMemo(
                     () => (
                       <JoditEditor
                         ref={editor}
-                        value={article.text}
+                        defaultValue={article.text}
                         config={config}
                         tabIndex={1} // tabIndex of textarea
-                        onChange={(newContent) => {
-                          setContent(newContent);
-                        }}
+                        onChange={() => onHandlerArticle}
                       />
                     ),
                     []
                   )}
                 </div>
+                
+                  <Tags showValue={true} article={article}/>
+
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
