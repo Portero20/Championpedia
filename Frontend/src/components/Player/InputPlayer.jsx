@@ -9,8 +9,7 @@ const InputPlayer = ({ showValue, article }) => {
 
   if (showValue != true) {
 
-    InputAuthor = <div className='inputs-second'><label>Autor:</label><input type="text" name="author" id="author" placeholder='Nombre del autor de este 
-      artículo' className='inputJugadores' />
+    InputAuthor = <div className='inputs-second'><label>Autor:</label><input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputJugadores' />
       <p className="msg-error"></p></div>
   }
 

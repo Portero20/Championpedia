@@ -1,5 +1,6 @@
 import '../Trophies/_trophies.scss';
-import '../../scss/utilities/mixin/_mixin.scss'
+import '../../scss/utilities/mixin/_mixin.scss';
+import '../../scss/base/_medias.scss';
 
 import React from 'react'
 
@@ -8,8 +9,7 @@ const Trophies = ({ showValue, article }) => {
 
     if (showValue != true) {
 
-        InputAuthor = <div className='inputs-second'><label>Autor:</label><input type="text" name="author" id="author" placeholder='Nombre del autor de este 
-      artículo' className='inputsTrophies inputFile' />
+        InputAuthor = <div className='inputs-second'><label>Autor:</label><input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputsTrophies inputFile' />
             <p className="msg-error"></p></div>
     }
     return (

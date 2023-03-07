@@ -2,7 +2,6 @@
 
     .agregarEtiqueta {
         color: #151515
-            /*  margin-right: 1rem; */
 
     }
 
@@ -11,8 +10,6 @@
         border: 1px solid #a0a2a9;
         outline: none;
         border-radius: 1.1rem;
-        /* height: 49px;
-        width: 467px; */
 
         &::placeholder {
 
@@ -46,9 +43,9 @@
         opacity: 0;
         z-index: 99;
         color: #bbb;
-        width: 190px;
+        width: 228px;
         display: block;
-        font-size: 11px;
+        font-size: 15px;
         padding: 5px 10px;
         border-radius: 3px;
         text-align: center;
@@ -67,9 +64,9 @@
         -ms-transform: scale(0);
         transform: scale(0);
         position: absolute;
-        right: -90px;
+        right: -112px;
         bottom: 50px;
-        font-weight: 600;
+        font-weight: bolder;
     }
 
     .tooltip:before,

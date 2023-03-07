@@ -19,7 +19,7 @@ const Tags = ({showValue, article}) => {
         <i className="fa-solid fa-question questionIcon"></i>
 
         <span className="tooltip">
-          No te olvides de separar con comas y sin espacios.
+          No te olvides de separar con comas.
         </span>
       </div>
     </div>
