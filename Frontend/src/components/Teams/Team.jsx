@@ -19,31 +19,31 @@ const Team = ({ showValue, article }) => {
                 <div className='flexTeam'>
 
                     <label>Título:</label>
-                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputs__team' value={showValue ? article.title : null}/>
+                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputs__team' defaultValue={showValue ? article.title : null}/>
                     <p className="msg-error"></p>
 
                     <label>Nombre completo:</label>
-                    <input type="text" name="fullName" id="fullName" placeholder='Nombre completo del equipo...' className='inputs__team' value={showValue ? article.fullName : null}/>
+                    <input type="text" name="fullName" id="fullName" placeholder='Nombre completo del equipo...' className='inputs__team' defaultValue={showValue ? article.fullName : null}/>
                     <p className="msg-error"></p>
 
                     <label>Apodos: (Opcional)</label>
-                    <input type="text" name="nickName" id="nickName" placeholder='Apodo(s) del equipo...' className='inputs__team' value={showValue ? article.nickName : null}/>
+                    <input type="text" name="nickName" id="nickName" placeholder='Apodo(s) del equipo...' className='inputs__team' defaultValue={showValue ? article.nickName : null}/>
                     <p className="msg-error"></p>
 
                     <label>Fundación:</label>
-                    <input type="date" name="foundation" id="foundation" className='inputs__team' value={showValue ? article.foundation.split("T")[0] : null}/>
+                    <input type="date" name="foundation" id="foundation" className='inputs__team' defaultValue={showValue ? article.foundation.split("T")[0] : null}/>
                     <p className="msg-error"></p>
 
                     <label>Presidente:</label>
-                    <input type="text" name="president" id="president" placeholder='Nombre del presidente del equipo...' className='inputs__team' value={showValue ? article.president : null}/>
+                    <input type="text" name="president" id="president" placeholder='Nombre del presidente del equipo...' className='inputs__team' defaultValue={showValue ? article.president : null}/>
                     <p className="msg-error"></p>
 
                     <label>Estadio:</label>
-                    <input type="text" name="stadium" id="stadium" placeholder='Nombre del estadio del equipo...' className='inputs__team' value={showValue ? article.stadium : null}/>
+                    <input type="text" name="stadium" id="stadium" placeholder='Nombre del estadio del equipo...' className='inputs__team' defaultValue={showValue ? article.stadium : null}/>
                     <p className="msg-error"></p>
 
                     <label>Entrenador:</label>
-                    <input type="text" name="coach" id="coach" placeholder='Nombre del entrenador del equipo...' className='inputs__team' value={showValue ? article.coach : null}/>
+                    <input type="text" name="coach" id="coach" placeholder='Nombre del entrenador del equipo...' className='inputs__team' defaultValue={showValue ? article.coach : null}/>
                     <p className="msg-error"></p>
 
                     <label>Imagen:</label>

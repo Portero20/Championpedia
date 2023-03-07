@@ -18,31 +18,31 @@ const Trophies = ({ showValue, article }) => {
                 <div className='flexTrophies'>
 
                     <label>Titulo:</label>
-                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputsTrophies' value={showValue ? article.title : null}/>
+                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputsTrophies' defaultValue={showValue ? article.title : null}/>
                     <p className="msg-error"></p>
 
                     <label>Nombre completo:</label>
-                    <input type="text" name="fullName" id="fullName" placeholder='Nombre completo de la competición...' className='inputsTrophies' value={showValue ? article.fullName : null}/>
+                    <input type="text" name="fullName" id="fullName" placeholder='Nombre completo de la competición...' className='inputsTrophies' defaultValue={showValue ? article.fullName : null}/>
                     <p className="msg-error"></p>
 
                     <label>Sede:</label>
-                    <input type="text" name="campus" id="campus" placeholder='Nombre de la sede de la competición...' className='inputsTrophies' value={showValue ? article.campus : null}/>
+                    <input type="text" name="campus" id="campus" placeholder='Nombre de la sede de la competición...' className='inputsTrophies' defaultValue={showValue ? article.campus : null}/>
                     <p className="msg-error"></p>
 
                     <label>Fundación:</label>
-                    <input type="date" name="foundation" id="foundation" className='inputsTrophies' value={showValue ? article.foundation.split("T")[0] : null}/>
+                    <input type="date" name="foundation" id="foundation" className='inputsTrophies' defaultValue={showValue ? article.foundation.split("T")[0] : null}/>
                     <p className="msg-error"></p>
 
                     <label>Organizador:</label>
-                    <input type="text" name="organizer" id="organizer" placeholder='Nombre del organizador de la competición...' className='inputsTrophies' value={showValue ? article.organizer : null}/>
+                    <input type="text" name="organizer" id="organizer" placeholder='Nombre del organizador de la competición...' className='inputsTrophies' defaultValue={showValue ? article.organizer : null}/>
                     <p className="msg-error"></p>
 
                     <label>Campeón:</label>
-                    <input type="text" name="champion" id="champion" placeholder='Nombre del último campeón...' className='inputsTrophies' value={showValue ? article.champion : null}/>
+                    <input type="text" name="champion" id="champion" placeholder='Nombre del último campeón...' className='inputsTrophies' defaultValue={showValue ? article.champion : null}/>
                     <p className="msg-error"></p>
 
                     <label>Subcampeón:</label>
-                    <input type="text" name="subchampion" id="subchampion" placeholder='Nombre del último subcampeón...' className='inputsTrophies' value={showValue ? article.subchampion : null}/>
+                    <input type="text" name="subchampion" id="subchampion" placeholder='Nombre del último subcampeón...' className='inputsTrophies' defaultValue={showValue ? article.subchampion : null}/>
                     <p className="msg-error"></p>
 
                     <label>Imagen:</label>

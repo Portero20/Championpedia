@@ -12,7 +12,7 @@ const Tags = ({showValue, article}) => {
         className="inputComas"
         name="tags"
         id="tags"
-        value={showValue ? article.tags : null}
+        defaultValue={showValue ? article.tags : null}
       />
 
       <div className="tooltip-container">
