@@ -1,8 +1,9 @@
 import '../../scss/utilities/_utilities.scss';
 import '../../scss/base/medias-detail.css'
 
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { React, useEffect, useMemo, useRef, useState } from 'react'
+import { editArticle } from '../../services/articles';
 
 import Button from 'react-bootstrap/Button';
 import InputPlayer from '../Player/InputPlayer';
@@ -13,8 +14,10 @@ import Team from '../Teams/Team';
 import TextoHtml from '../TextoHtml';
 import Trophies from '../Trophies/Trophies';
 import { detail } from "../../services/articles"
+import { useNavigate } from "react-router-dom";
 
 const ViewArticle = () => {
+  const navigate = useNavigate();
   const { category, id } = useParams();
   const [article, setarticle] = useState([])
 
@@ -69,6 +72,104 @@ const ViewArticle = () => {
     input = <Team showValue={true} article={article} />
 
   }
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+
+    let categoryArticle = category
+    let idCategory = parseInt(id)
+
+    if (category == "futbolistas") {
+      try {
+        let file = document.getElementById("file");
+        let title = document.getElementById("title").value;
+        let text = content
+        let fullName = document.getElementById("fullName").value;
+        let nickName = document.getElementById("nickName").value;
+        let born = document.getElementById("born").value;
+        let death = document.getElementById("death").value;
+        let height = document.getElementById("height").value;
+        let weight = document.getElementById("weight").value;
+        let nationality = document.getElementById("nationality").value;
+        let position = document.getElementById("position").value;
+        let team = document.getElementById("team").value;
+        let numbers = document.getElementById("numbers").value;
+        let goals = document.getElementById("goals").value;
+        let debut = document.getElementById("debut").value;
+        let retire = document.getElementById("retire").value;
+        let tags = document.getElementById("tags").value;
+        let category = categoryArticle
+        let id = idCategory
+
+        let msgErrors = document.querySelectorAll(".msg-error");
+
+        let formData = new FormData();
+
+        formData.append("file", file.files[0]);
+        formData.append("title", title);
+        formData.append("text", text);
+        formData.append("fullName", fullName);
+        formData.append("nickName", nickName);
+        formData.append("category", category);
+        formData.append("born", born);
+        formData.append("death", death);
+        formData.append("height", height);
+        formData.append("weight", weight);
+        formData.append("nationality", nationality);
+        formData.append("position", position);
+        formData.append("team", team);
+        formData.append("numbers", numbers);
+        formData.append("goals", goals);
+        formData.append("debut", debut);
+        formData.append("retire", retire);
+        formData.append("tags", tags);
+        formData.append("id", id);
+
+        let result = await editArticle(categoryArticle, formData)
+        
+        console.log(result);
+        msgErrors.forEach((error) => {
+          error.classList.remove("invalid");
+        });
+
+        const errorFields = {
+          title: 0,
+          fullName: 1,
+          nickName: 2,
+          nationality: 3,
+          born: 4,
+          death: 5,
+          team: 6,
+          numbers: 7,
+          goals: 8,
+          height: 9,
+          weight: 10,
+          position: 11,
+          debut: 12,
+          retire: 13,
+          image: 14,
+          text: 15,
+          tags: 16,
+        };
+        
+        if (Array.isArray(result)) {
+          result.forEach((error) => {
+            if (error.param in errorFields) {
+              const index = errorFields[error.param];
+              msgErrors[index].innerText = error.msg;
+              msgErrors[index].classList.add("invalid");
+            }
+          });
+        } else {
+          navigate(`/articulo/${category}/${id}`);
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
 
   let urlImage = `http://localhost:3000/article/images?imagen=${article.image}`
 
@@ -227,39 +328,42 @@ const ViewArticle = () => {
                 <Modal.Title>Editar Artículo</Modal.Title>
               </Modal.Header>
               <Modal.Body>
+                <form method="post" encType='multipart/form-data' className='formularioCategorias' onSubmit={handleSubmit}>
+                  {input}
 
-                {input}
+                  <div className="joditEditor">
+                    {useMemo(
+                      () => (
+                        <JoditEditor
+                          ref={editor}
+                          value={article.text}
+                          config={config}
+                          tabIndex={1} // tabIndex of textarea
+                          onChange={(newContent) => {
+                            const newArticle = { ...article, text: newContent };
+                            setArticleJodit(newArticle);
+                          }}
+                        />
+                      ),
+                      [article.text]
+                    )}
+                  </div>
 
-                <div className="joditEditor">
-                  {useMemo(
-                    () => (
-                      <JoditEditor
-                        ref={editor}
-                        value={article.text}
-                        config={config}
-                        tabIndex={1} // tabIndex of textarea
-                        onChange={(newContent) => {
-                          const newArticle = { ...article, text: newContent };
-                          setArticleJodit(newArticle);
-                        }}
-                      />
-                    ),
-                    [article.text]
-                  )}
-                </div>
+                  <Tags showValue={true} article={article} />
 
-                <Tags showValue={true} article={article} />
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Cerrar
+                    </Button>
+                    <Button variant="dark" type="submit">
+                      Guardar Cambios
+                    </Button>
+                  </Modal.Footer>
 
+                </form>
               </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Cerrar
-                </Button>
-                <Button variant="dark" onClick={handleClose}>
-                  Guardar Cambios
-                </Button>
-              </Modal.Footer>
             </Modal>
+
           </div>
         </div>
       </div>
