@@ -1,9 +1,7 @@
 import '../../scss/utilities/_utilities.scss';
 import '../../scss/base/medias-detail.css'
 
-import { useParams } from "react-router-dom";
 import { React, useEffect, useMemo, useRef, useState } from 'react'
-import { editArticle } from '../../services/articles';
 
 import Button from 'react-bootstrap/Button';
 import InputPlayer from '../Player/InputPlayer';
@@ -14,10 +12,10 @@ import Team from '../Teams/Team';
 import TextoHtml from '../TextoHtml';
 import Trophies from '../Trophies/Trophies';
 import { detail } from "../../services/articles"
-import { useNavigate } from "react-router-dom";
+import { editArticle } from '../../services/articles';
+import { useParams } from "react-router-dom";
 
 const ViewArticle = () => {
-  const navigate = useNavigate();
   const { category, id } = useParams();
   const [article, setarticle] = useState([])
 
@@ -84,7 +82,7 @@ const ViewArticle = () => {
       try {
         let file = document.getElementById("file");
         let title = document.getElementById("title").value;
-        let text = content
+        let text = articleJodit.text;
         let fullName = document.getElementById("fullName").value;
         let nickName = document.getElementById("nickName").value;
         let born = document.getElementById("born").value;
@@ -162,11 +160,12 @@ const ViewArticle = () => {
             }
           });
         } else {
-          navigate(`/articulo/${category}/${id}`);
+          window.location.href = `/articulo/${categoryArticle}/${idCategory}`
         }
       } catch (error) {
         console.log(error)
       }
+
     }
   }
 
