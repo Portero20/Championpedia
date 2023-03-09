@@ -269,7 +269,7 @@ module.exports = {
             let title = req.body.title.replace(/"/g, '\\"');
             let text = req.body.text.replace(/"/g, '\\"');
             let fullName = req.body.fullName.replace(/"/g, '\\"');
-            let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
+            let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : "";
 
             if (category == "players") {
                 query = `UPDATE players SET title="${title}",text="${text}",fullName="${fullName}",nickName="${nickName}",born="${req.body.born}",death="${req.body.death}",height="${req.body.height}",weight="${req.body.weight}",nationality="${req.body.nationality}",position="${req.body.position}",team="${req.body.team}",numbers="${req.body.numbers}",goals="${req.body.goals}",debut="${req.body.debut}",retire="${req.body.retire}" WHERE id = ${req.body.id};`

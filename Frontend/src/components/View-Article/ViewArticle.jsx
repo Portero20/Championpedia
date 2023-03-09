@@ -319,7 +319,7 @@ const ViewArticle = () => {
   let urlImage = `http://localhost:3000/article/images?imagen=${article.image}`
 
   let nickName;
-  if (article.nickName && article.nickName != null) {
+  if (article.nickName && article.nickName != null && article.nickName != undefined && article.nickName != "") {
     nickName = <p className='parrafoJugador'><span className='spanParrafo'>Apodo(s):</span> {article.nickName}</p>
   }
 
