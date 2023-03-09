@@ -59,7 +59,7 @@ const ViewArticle = () => {
 
   if (category == "futbolistas") {
 
-    input = <InputPlayer showValue={true} article={article} />
+    input = <InputPlayer showValue={true} article={article}/>
 
   } else if (category == "copas") {
 
@@ -165,7 +165,7 @@ const ViewArticle = () => {
         console.log(error)
       }
 
-    }
+    } 
     if (category == "equipos") {
       try {
         let file = document.getElementById("file");

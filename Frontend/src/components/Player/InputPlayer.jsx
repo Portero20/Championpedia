@@ -1,9 +1,16 @@
 import '../Player/_player.scss';
 import '../../scss/utilities/_utilities.scss';
 
+import { AiOutlineReload } from 'react-icons/ai';
 import React from 'react'
 
 const InputPlayer = ({ showValue, article }) => {
+
+  function funClear(data) {
+
+    document.getElementById(data).value = "";
+    
+  }
 
   let InputAuthor;
 
@@ -41,11 +48,16 @@ const InputPlayer = ({ showValue, article }) => {
             <p className="msg-error"></p>
 
             <label>Fecha de fallecimiento: (Opcional)</label>
-            <input type="date" name="death" id="death" placeholder='Escribir...' className='inputJugadores' defaultValue={showValue ? article.death.split("T")[0] : null} />
-            <p className="msg-error"></p>
+            
+            <div className='containerDate'>
+              <input type="date" name="death" id="death" placeholder='Escribir...' className='inputJugadores inputFunction' defaultValue={showValue ? article.death.split("T")[0] : null}/>
+              <p className="msg-error"></p>
+              <AiOutlineReload onClick={() => funClear("death")} size='20' className='iconReload'/>
+            </div>
+            
 
             <label>Equipo:</label>
-            <input type="text" name="team" id="team" placeholder='Equipo actual del jugador...' className='inputJugadores' defaultValue={showValue ? article.team : null} />
+            <input type="text" name="team" id="team" placeholder='Equipo actual del jugador...' className='inputJugadores' defaultValue={showValue ? article.team : null}/>
             <p className="msg-error"></p>
 
             <label>Dorsales:</label>
@@ -76,8 +88,12 @@ const InputPlayer = ({ showValue, article }) => {
             <p className="msg-error"></p>
 
             <label>Retiro: (Opcional)</label>
-            <input type="date" name="retire" id="retire" className='inputJugadores' defaultValue={showValue ? article.retire.split("T")[0] : null} />
-            <p className="msg-error"></p>
+
+            <div className='containerDate'>
+              <input type="date" name="retire" id="retire" className='inputJugadores inputFunction' defaultValue={showValue ? article.retire.split("T")[0] : null} />
+              <p className="msg-error"></p>
+              <AiOutlineReload onClick={() => funClear("retire")} size='20' className='iconReload'/>
+            </div>
 
             <label>Imagen:</label>
             <input type="file" name='file' id="file" className='inputFile' />
