@@ -126,7 +126,6 @@ const ViewArticle = () => {
 
         let result = await editArticle(categoryArticle, formData)
         
-        console.log(result);
         msgErrors.forEach((error) => {
           error.classList.remove("invalid");
         });
@@ -166,6 +165,79 @@ const ViewArticle = () => {
         console.log(error)
       }
 
+    }
+    if (category == "equipos") {
+      try {
+        let file = document.getElementById("file");
+        let title = document.getElementById("title").value;
+        let text = articleJodit.text;
+        let fullName = document.getElementById("fullName").value;
+        let nickName = document.getElementById("nickName").value;
+        let foundation = document.getElementById("foundation").value;
+        let president = document.getElementById("president").value;
+        let stadium = document.getElementById("stadium").value;
+        let coach = document.getElementById("coach").value
+        let tags = document.getElementById("tags").value;
+        let category = categoryArticle
+        let id = idCategory
+
+        let msgErrors = document.querySelectorAll(".msg-error");
+
+        let formData = new FormData();
+
+        formData.append("title", title);
+        formData.append("text", text);
+        formData.append("fullName", fullName);
+        formData.append("nickName", nickName);
+        formData.append("category", category);
+        formData.append("file", file.files[0]);
+        formData.append("foundation", foundation);
+        formData.append("president", president);
+        formData.append("stadium", stadium);
+        formData.append("coach", coach);
+        formData.append("tags", tags);
+        formData.append("id", id);
+
+        let result = await editArticle(categoryArticle, formData)
+        
+        msgErrors.forEach((error) => {
+          error.classList.remove("invalid");
+        });
+
+        const errorFields = {
+          title: 0,
+          fullName: 1,
+          nickName: 2,
+          nationality: 3,
+          born: 4,
+          death: 5,
+          team: 6,
+          numbers: 7,
+          goals: 8,
+          height: 9,
+          weight: 10,
+          position: 11,
+          debut: 12,
+          retire: 13,
+          image: 14,
+          text: 15,
+          tags: 16,
+        };
+        
+        if (Array.isArray(result)) {
+          result.forEach((error) => {
+            if (error.param in errorFields) {
+              const index = errorFields[error.param];
+              msgErrors[index].innerText = error.msg;
+              msgErrors[index].classList.add("invalid");
+            }
+          });
+        } else {
+          window.location.href = `/articulo/${categoryArticle}/${idCategory}`
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 
