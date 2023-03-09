@@ -239,6 +239,80 @@ const ViewArticle = () => {
         console.log(error)
       }
     }
+    if (category == "copas") {
+
+      try {
+        let file = document.getElementById("file");
+        let title = document.getElementById("title").value;
+        let text = articleJodit.text;
+        let fullName = document.getElementById("fullName").value;
+        let campus = document.getElementById("campus").value;
+        let foundation = document.getElementById("foundation").value;
+        let organizer = document.getElementById("organizer").value;
+        let champion = document.getElementById("champion").value;
+        let subchampion = document.getElementById("subchampion").value
+        let tags = document.getElementById("tags").value;
+        let category = categoryArticle
+        let id = idCategory
+
+        let msgErrors = document.querySelectorAll(".msg-error");
+
+        let formData = new FormData();
+
+        formData.append("title", title);
+        formData.append("text", text);
+        formData.append("fullName", fullName);
+        formData.append("category", category);
+        formData.append("file", file.files[0]);
+        formData.append("campus", campus);
+        formData.append("foundation", foundation);
+        formData.append("organizer", organizer);
+        formData.append("champion", champion);
+        formData.append("subchampion", subchampion);
+        formData.append("tags", tags);
+        formData.append("id", id);
+
+        let result = await editArticle(categoryArticle, formData)
+        
+        msgErrors.forEach((error) => {
+          error.classList.remove("invalid");
+        });
+
+        const errorFields = {
+          title: 0,
+          fullName: 1,
+          nickName: 2,
+          nationality: 3,
+          born: 4,
+          death: 5,
+          team: 6,
+          numbers: 7,
+          goals: 8,
+          height: 9,
+          weight: 10,
+          position: 11,
+          debut: 12,
+          retire: 13,
+          image: 14,
+          text: 15,
+          tags: 16,
+        };
+        
+        if (Array.isArray(result)) {
+          result.forEach((error) => {
+            if (error.param in errorFields) {
+              const index = errorFields[error.param];
+              msgErrors[index].innerText = error.msg;
+              msgErrors[index].classList.add("invalid");
+            }
+          });
+        } else {
+          window.location.href = `/articulo/${categoryArticle}/${idCategory}`
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 
 

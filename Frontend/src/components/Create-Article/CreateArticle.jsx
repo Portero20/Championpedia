@@ -243,7 +243,6 @@ const CreateArticle = ({ placeholder }) => {
         console.log(error)
       }
     }
-
     if (selected == "equipos") {
       try {
         let file = document.getElementById("file");
