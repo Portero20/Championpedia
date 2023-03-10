@@ -39,7 +39,7 @@
 }
 
 .dataAuthor {
-    padding-left: 1rem;
+
     font-size: .8rem;
     color:#7e7e7e;
     order:2;
@@ -48,11 +48,19 @@
 }
 
 .dataAuthor p{
+
     margin: 0;
 }
 
 
 @media screen and (min-width: 20em) {
+
+    .parrafoView{
+
+        display: flex;
+        flex-direction: column;
+
+    }
 
     .jugadorContainer {
         margin-top: 2rem;
@@ -83,6 +91,8 @@
     }
 
     .parrafoView {
+        display: flex;
+        flex-wrap: wrap;
         padding: 0 1rem
     }
 
@@ -98,9 +108,14 @@
         width: 70%;
     }
     .dataAuthor {
-        width: 100%;
+        
+        display: flex;
+        align-items: flex-start;
         margin-top: 1rem;
-        padding: 0;
+        flex-direction: column;
+        flex-wrap: wrap;
+        
+        
     }
 }
 

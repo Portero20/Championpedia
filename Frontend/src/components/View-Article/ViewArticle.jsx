@@ -444,6 +444,10 @@ const ViewArticle = () => {
           <div className="descripcionView">
             <div className="parrafoView" id="resultado">
               <TextoHtml texto={article.text} />
+              <div className="dataAuthor">
+                <p>Fecha de creación: {fechaHoraFormateada}.</p>
+                <p>Autor: {article.author}.</p>
+              </div>
             </div>
           </div>
 
@@ -488,7 +492,12 @@ const ViewArticle = () => {
                 <Modal.Title>Editar Artículo</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <form method="post" encType='multipart/form-data' className='formularioCategorias' onSubmit={handleSubmit}>
+                <form
+                  method="post"
+                  encType="multipart/form-data"
+                  className="formularioCategorias"
+                  onSubmit={handleSubmit}
+                >
                   {input}
 
                   <div className="joditEditor">
@@ -519,16 +528,10 @@ const ViewArticle = () => {
                       Guardar Cambios
                     </Button>
                   </Modal.Footer>
-
                 </form>
               </Modal.Body>
             </Modal>
-
           </div>
-        <div className='dataAuthor'>
-          <p>Fecha de creación: {fechaHoraFormateada}.</p>
-          <p>Autor: {article.author}.</p>
-        </div>
         </div>
       </div>
     </div>
