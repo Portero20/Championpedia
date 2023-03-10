@@ -221,7 +221,7 @@ const ViewArticle = () => {
           text: 8,
           tags: 9
         }
-        
+
         if (Array.isArray(result)) {
           result.forEach(error => {
             const index = paramIndex[error.param]
@@ -288,7 +288,7 @@ const ViewArticle = () => {
           "text": 8,
           "tags": 9
         };
-        
+
         if (Array.isArray(result)) {
           result.forEach(error => {
             const index = errorMap[error.param];
@@ -309,6 +309,17 @@ const ViewArticle = () => {
 
   let urlImage = `http://localhost:3000/article/images?imagen=${article.image}`
 
+  function convertirFecha(fecha) {
+    // Separar los componentes de la fecha utilizando el método split
+    const [anio, mes, dia] = fecha.split("-");
+  
+    // Formatear la fecha en el formato deseado
+    const fechaFormateada = `${dia}-${mes}-${anio}`;
+  
+    // Devolver la fecha formateada
+    return fechaFormateada;
+  }
+
   let nickName;
   if (article.nickName && article.nickName != null && article.nickName != undefined && article.nickName != "") {
     nickName = <p className='parrafoJugador'><span className='spanParrafo'>Apodo(s):</span> {article.nickName}</p>
@@ -316,7 +327,7 @@ const ViewArticle = () => {
 
   let born;
   if (article.born) {
-    born = <p className='parrafoJugador'><span className='spanParrafo'>Nacimiento:</span> {article.born.split("T")[0]}</p>
+    born = <p className='parrafoJugador'><span className='spanParrafo'>Nacimiento:</span> {convertirFecha(article.born.split("T")[0])}</p>
   }
 
   let nationality;
@@ -326,7 +337,7 @@ const ViewArticle = () => {
 
   let death;
   if (article.death && article.death != "0000-00-00") {
-    death = <p className='parrafoJugador'><span className='spanParrafo'>Fallecimiento:</span> {article.death.split("T")[0]}</p>
+    death = <p className='parrafoJugador'><span className='spanParrafo'>Fallecimiento:</span> {convertirFecha(article.death.split("T")[0])}</p>
   }
 
   let height;
@@ -346,7 +357,7 @@ const ViewArticle = () => {
 
   let debut;
   if (article.debut) {
-    debut = <p className='parrafoJugador'><span className='spanParrafo'>Debut deportivo:</span> {article.debut.split("T")[0]}</p>
+    debut = <p className='parrafoJugador'><span className='spanParrafo'>Debut deportivo:</span> {convertirFecha(article.debut.split("T")[0])}</p>
   }
 
   let position;
@@ -366,12 +377,12 @@ const ViewArticle = () => {
 
   let retire;
   if (article.retire && article.retire != "0000-00-00") {
-    retire = <p className='parrafoJugador'><span className='spanParrafo'>Retirada deportiva:</span> {article.retire.split("T")[0]}</p>
+    retire = <p className='parrafoJugador'><span className='spanParrafo'>Retirada deportiva:</span> {convertirFecha(article.retire.split("T")[0])}</p>
   }
 
   let foundation;
   if (article.foundation) {
-    foundation = <p className='parrafoJugador'><span className='spanParrafo'>Fundación:</span> {article.foundation.split("T")[0]}</p>
+    foundation = <p className='parrafoJugador'><span className='spanParrafo'>Fundación:</span> {convertirFecha(article.foundation.split("T")[0])}</p>
   }
 
   let president;
@@ -508,8 +519,8 @@ const ViewArticle = () => {
 
                   <Tags showValue={true} article={article} />
 
-                  <p className="msg-error error-tags"></p>  
-                    
+                  <p className="msg-error error-tags"></p>
+
                   <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                       Cerrar
