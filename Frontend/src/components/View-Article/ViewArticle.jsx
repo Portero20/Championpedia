@@ -507,7 +507,9 @@ const ViewArticle = () => {
                   <p className="msg-error error-jodit"></p>
 
                   <Tags showValue={true} article={article} />
-                        
+
+                  <p className="msg-error error-tags"></p>  
+                    
                   <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                       Cerrar
