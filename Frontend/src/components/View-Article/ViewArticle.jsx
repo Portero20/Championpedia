@@ -40,6 +40,11 @@ const ViewArticle = () => {
     height: 600,
     toolbarSticky: false,
     showPlaceholder: false,
+    toolbarAdaptive: true,
+    addNewLineOnDBLClick: false,
+    enableDragAndDropFileToEditor: true,
+    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif','webp'],
+    activeButtonsInReadOnly: ['source', 'fullsize', 'print', 'about', 'dots'],
 
     "uploader": {
       "insertImageAsBase64URI": true

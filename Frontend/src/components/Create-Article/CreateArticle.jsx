@@ -33,6 +33,11 @@ const CreateArticle = ({ placeholder }) => {
     placeholder: placeholder || 'Escribe tu artículo...',
     toolbarSticky: false,
     showPlaceholder: false,
+    toolbarAdaptive: true,
+    addNewLineOnDBLClick: false,
+    enableDragAndDropFileToEditor: true,
+    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif','webp'],
+    activeButtonsInReadOnly: ['source', 'fullsize', 'print', 'about', 'dots'],
 
     "uploader": {
       "insertImageAsBase64URI": true
