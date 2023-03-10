@@ -209,34 +209,28 @@ const ViewArticle = () => {
           error.classList.remove("invalid");
         });
 
-        const errorFields = {
+        const paramIndex = {
           title: 0,
           fullName: 1,
           nickName: 2,
-          nationality: 3,
-          born: 4,
-          death: 5,
-          team: 6,
-          numbers: 7,
-          goals: 8,
-          height: 9,
-          weight: 10,
-          position: 11,
-          debut: 12,
-          retire: 13,
-          image: 14,
-          text: 15,
-          tags: 16,
-        };
-
+          foundation: 3,
+          president: 4,
+          stadium: 5,
+          coach: 6,
+          image: 7,
+          author: 8,
+          text: 9,
+          tags: 10
+        }
+        
         if (Array.isArray(result)) {
-          result.forEach((error) => {
-            if (error.param in errorFields) {
-              const index = errorFields[error.param];
-              msgErrors[index].innerText = error.msg;
-              msgErrors[index].classList.add("invalid");
+          result.forEach(error => {
+            const index = paramIndex[error.param]
+            if (index !== undefined) {
+              msgErrors[index].innerText = error.msg
+              msgErrors[index].classList.add("invalid")
             }
-          });
+          })
         } else {
           window.location.href = `/articulo/${categoryArticle}/${idCategory}`
         }
@@ -283,30 +277,24 @@ const ViewArticle = () => {
           error.classList.remove("invalid");
         });
 
-        const errorFields = {
-          title: 0,
-          fullName: 1,
-          nickName: 2,
-          nationality: 3,
-          born: 4,
-          death: 5,
-          team: 6,
-          numbers: 7,
-          goals: 8,
-          height: 9,
-          weight: 10,
-          position: 11,
-          debut: 12,
-          retire: 13,
-          image: 14,
-          text: 15,
-          tags: 16,
+        const errorMap = {
+          "title": 0,
+          "fullName": 1,
+          "campus": 2,
+          "foundation": 3,
+          "organizer": 4,
+          "champion": 5,
+          "subchampion": 6,
+          "image": 7,
+          "author": 8,
+          "text": 9,
+          "tags": 10
         };
-
+        
         if (Array.isArray(result)) {
-          result.forEach((error) => {
-            if (error.param in errorFields) {
-              const index = errorFields[error.param];
+          result.forEach(error => {
+            const index = errorMap[error.param];
+            if (index !== undefined) {
               msgErrors[index].innerText = error.msg;
               msgErrors[index].classList.add("invalid");
             }
@@ -519,7 +507,7 @@ const ViewArticle = () => {
                   </div>
 
                   <Tags showValue={true} article={article} />
-
+                        
                   <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                       Cerrar
