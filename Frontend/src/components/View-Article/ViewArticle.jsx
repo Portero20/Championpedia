@@ -43,7 +43,7 @@ const ViewArticle = () => {
     toolbarAdaptive: true,
     addNewLineOnDBLClick: false,
     enableDragAndDropFileToEditor: true,
-    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif','webp'],
+    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif', 'webp'],
     activeButtonsInReadOnly: ['source', 'fullsize', 'print', 'about', 'dots'],
 
     "uploader": {
@@ -64,7 +64,7 @@ const ViewArticle = () => {
 
   if (category == "futbolistas") {
 
-    input = <InputPlayer showValue={true} article={article}/>
+    input = <InputPlayer showValue={true} article={article} />
 
   } else if (category == "copas") {
 
@@ -130,7 +130,7 @@ const ViewArticle = () => {
         formData.append("id", id);
 
         let result = await editArticle(categoryArticle, formData)
-        
+
         msgErrors.forEach((error) => {
           error.classList.remove("invalid");
         });
@@ -154,7 +154,7 @@ const ViewArticle = () => {
           text: 15,
           tags: 16,
         };
-        
+
         if (Array.isArray(result)) {
           result.forEach((error) => {
             if (error.param in errorFields) {
@@ -170,7 +170,7 @@ const ViewArticle = () => {
         console.log(error)
       }
 
-    } 
+    }
     if (category == "equipos") {
       try {
         let file = document.getElementById("file");
@@ -204,7 +204,7 @@ const ViewArticle = () => {
         formData.append("id", id);
 
         let result = await editArticle(categoryArticle, formData)
-        
+
         msgErrors.forEach((error) => {
           error.classList.remove("invalid");
         });
@@ -228,7 +228,7 @@ const ViewArticle = () => {
           text: 15,
           tags: 16,
         };
-        
+
         if (Array.isArray(result)) {
           result.forEach((error) => {
             if (error.param in errorFields) {
@@ -278,7 +278,7 @@ const ViewArticle = () => {
         formData.append("id", id);
 
         let result = await editArticle(categoryArticle, formData)
-        
+
         msgErrors.forEach((error) => {
           error.classList.remove("invalid");
         });
@@ -302,7 +302,7 @@ const ViewArticle = () => {
           text: 15,
           tags: 16,
         };
-        
+
         if (Array.isArray(result)) {
           result.forEach((error) => {
             if (error.param in errorFields) {
@@ -423,6 +423,16 @@ const ViewArticle = () => {
     subchampion = <p className='parrafoJugador'><span className='spanParrafo'>último subcampeón:</span> {article.subchampion}</p>
   }
 
+  const fechaHoraString = article.date;
+  const fechaHora = new Date(fechaHoraString);
+
+  const dia = fechaHora.getDate().toString().padStart(2, '0');
+  const mes = (fechaHora.getMonth() + 1).toString().padStart(2, '0');
+  const anio = fechaHora.getFullYear();
+  const hora = fechaHora.getHours().toString().padStart(2, '0');
+  const minutos = fechaHora.getMinutes().toString().padStart(2, '0');
+
+  const fechaHoraFormateada = `${anio}/${mes}/${dia} ${hora}:${minutos}`;
   return (
     <div className="container-article-detail">
       <div className="container-detail">
@@ -515,6 +525,10 @@ const ViewArticle = () => {
             </Modal>
 
           </div>
+        <div className='dataAuthor'>
+          <p>Fecha de creación: {fechaHoraFormateada}.</p>
+          <p>Autor: {article.author}.</p>
+        </div>
         </div>
       </div>
     </div>

@@ -7,7 +7,6 @@
 
 .descripcionView {
     order: 1;
-    margin-bottom: 5rem;
 }
 
 .jugadorContainer {
@@ -39,6 +38,20 @@
     padding: 1rem;
 }
 
+.dataAuthor {
+    padding-left: 1rem;
+    font-size: .8rem;
+    color:#7e7e7e;
+    order:2;
+    margin-bottom: 5rem;
+    width: 100%;
+}
+
+.dataAuthor p{
+    margin: 0;
+}
+
+
 @media screen and (min-width: 20em) {
 
     .jugadorContainer {
@@ -47,7 +60,6 @@
     }
 
     .img-detail {
-
         height: auto;
         max-width: 100%;
         object-fit: contain;
@@ -76,6 +88,7 @@
 
     .containerView {
         display: flex;
+        flex-wrap: wrap;
         flex-direction: row;
         justify-content: center;
         align-items: flex-start;
@@ -83,6 +96,11 @@
 
     .descripcionView {
         width: 70%;
+    }
+    .dataAuthor {
+        width: 100%;
+        margin-top: 1rem;
+        padding: 0;
     }
 }
 
