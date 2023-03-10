@@ -218,9 +218,8 @@ const ViewArticle = () => {
           stadium: 5,
           coach: 6,
           image: 7,
-          author: 8,
-          text: 9,
-          tags: 10
+          text: 8,
+          tags: 9
         }
         
         if (Array.isArray(result)) {
@@ -286,9 +285,8 @@ const ViewArticle = () => {
           "champion": 5,
           "subchampion": 6,
           "image": 7,
-          "author": 8,
-          "text": 9,
-          "tags": 10
+          "text": 8,
+          "tags": 9
         };
         
         if (Array.isArray(result)) {
@@ -505,6 +503,8 @@ const ViewArticle = () => {
                       [article.text]
                     )}
                   </div>
+
+                  <p className="msg-error error-jodit"></p>
 
                   <Tags showValue={true} article={article} />
                         
