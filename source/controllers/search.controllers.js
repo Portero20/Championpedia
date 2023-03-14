@@ -22,5 +22,28 @@ module.exports = {
         } catch (error) {
             return res.status(500).json(error)
         }
+    },
+
+    searchArticle: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+                console.log("Using Database");
+            })
+
+            let userQuery = req.body.result
+
+            let query = `SELECT players.id, categories.category FROM players INNER JOIN categories ON players.category = categories.id WHERE players.fullName = '${userQuery}' UNION SELECT teams.id, categories.category FROM teams INNER JOIN categories ON teams.category = categories.id WHERE teams.fullName = '${userQuery}' UNION SELECT trophies.id, categories.category FROM trophies INNER JOIN categories ON trophies.category = categories.id WHERE trophies.fullName = '${userQuery}';`;
+
+            database.query(query, (err, results, fields) => {
+                if (err) {
+                    return console.log(err);
+                } else {
+                    return res.status(200).json(results);
+                }
+            })
+        } catch (error) {
+            return res.status(500).json(error)
+        }
     }
 }
