@@ -10,7 +10,7 @@ module.exports = {
 
             let userQuery = req.query.search
 
-            let query = `SELECT title FROM players WHERE title LIKE '%${userQuery}%' UNION SELECT title FROM teams WHERE title LIKE '%${userQuery}%' UNION SELECT title FROM trophies WHERE title LIKE '%${userQuery}%'`;
+            let query = `SELECT players.fullName FROM players INNER JOIN tagsplayers ON players.id = tagsplayers.player_id INNER JOIN tags ON tagsplayers.tag_id = tags.id WHERE players.fullName LIKE '%${userQuery}%' OR players.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%' UNION SELECT teams.fullName FROM teams INNER JOIN tagsteams ON teams.id = tagsteams.team_id INNER JOIN tags ON tagsteams.tag_id = tags.id WHERE teams.fullName LIKE '%${userQuery}%' OR teams.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%' UNION SELECT trophies.fullName FROM trophies INNER JOIN tagstrophies ON trophies.id = tagstrophies.thophy_id INNER JOIN tags ON tagstrophies.tag_id = tags.id WHERE trophies.fullName LIKE '%${userQuery}%' OR trophies.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%';`;
 
             database.query(query, (err, results, fields) => {
                 if (err) {
