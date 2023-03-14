@@ -19,3 +19,4 @@ app.use(cors());
 
 app.use("/database", require("./routes/database.routes"))
 app.use("/article", require("./routes/articles.routes"))
+app.use("/search", require("./routes/search.routes"))
