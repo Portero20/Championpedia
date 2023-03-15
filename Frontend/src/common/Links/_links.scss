@@ -1,0 +1,47 @@
+.flexLinks {
+
+    width: 100%;
+
+
+    .linkPadre {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .hijoLinks {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            gap: 1.2rem;
+
+            div>* {
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(38, 38, 38, 0.85);
+                color: white;
+                border-radius: 1rem;
+                padding: .4rem 1rem;
+                transition: color .3s ease, background-color .3s ease;
+                border: .1px solid grey;
+                cursor: pointer;
+
+                &:hover {
+
+                    color: black;
+                    background-color: white;
+
+                }
+
+            }
+
+
+        }
+
+    }
+
+}

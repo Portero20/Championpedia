@@ -321,7 +321,6 @@ const CreateArticle = ({ placeholder }) => {
 
     <div className="AppContainer">
 
-
       <form method="post" encType='multipart/form-data' className='formularioCategorias' onSubmit={handleSubmit}>
 
         <div className='flexInputs'>

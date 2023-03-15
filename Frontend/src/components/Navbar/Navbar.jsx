@@ -1,9 +1,11 @@
 import '../Navbar/_navbar.scss';
 import '../../scss/barrel.scss';
+import '../../common/Links/_links.scss'
 
+import Championpedia from '../../img/logo/Championpedia.png'
 import {HiOutlineMenuAlt3} from 'react-icons/hi'
-import React from 'react'
-import pelotaChampionpedia from '../../img/logo/1200px-Balón_Oro.svg.png';
+import Links from '../../common/Links/Links';
+import React from 'react';
 
 const Navbar = () => {
 
@@ -15,7 +17,7 @@ const toggleMenuOpen = () => {
 
 return (
   <>
-    <nav className="navbar">
+    <nav className="navbar navbar-container">
       <div className="navbar-overlay" onClick={toggleMenuOpen}></div>
 
       <button
@@ -23,30 +25,43 @@ return (
         className="navbar-burger buttonEnlace"
         onClick={toggleMenuOpen}
       >
-        <HiOutlineMenuAlt3 style={{color: 'white'}}/>
+        <HiOutlineMenuAlt3 style={{ color: "white" }} />
       </button>
-      
-      <div className='containerLogo'>
-        
-        <h4 className='textoLogo'><img src={pelotaChampionpedia} alt="pelota de futbol" className="logoChampionpedia" />Championpedia</h4>
+
+      <div className="containerLogo nav-left">
+          <img
+            src={Championpedia}
+            alt="pelota de futbol"
+            className="logoChampionpedia"
+          />
       </div>
 
-      <nav className="navbar-menu navbar-menuColor">
+      <div className="containerSearch nav-middle">
+        <div className="flexInput">
+          <input
+            type="search"
+            className="search__input"
+            placeholder="🔍︎ Buscar..."
+          />
+        </div>
+      </div>
 
-        <div className='containerSearch'>
-          <input type="search" className='search__input' placeholder='🔍︎ Buscar...'/>
+      <div className="navbar-menu navbar-menuColor nav-right">
+
+        <div>
+          <input type="text" className='inputBurger' placeholder="🔍︎ Buscar..."/>
         </div>
 
-        <button type="button" className="buttonEnlace">
-          Skills
-        </button>
-        <button type="button" className="buttonEnlace">
-          Awards
-        </button>
-        <button type="button" className="buttonEnlace">
-          Projects
-        </button>
-      </nav>
+        <div className="buttonFlex">
+          <button type="button" class="buttonCrear">
+            + Contribuir
+          </button>
+        </div>
+
+      </div>
+
+      <Links/>
+
     </nav>
   </>
 );

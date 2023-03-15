@@ -2,10 +2,10 @@ import './_footer.scss';
 import '../../scss/barrel.scss';
 
 import {AiFillTwitterCircle} from 'react-icons/ai'
+import Championpedia  from '../../img/logo/Championpedia.png';
 import React from 'react'
 import {RxInstagramLogo} from 'react-icons/rx'
 import {SiWhatsapp} from 'react-icons/si'
-import pelotaChampionpedia from '../../img/logo/1200px-Balón_Oro.svg.png';
 
 const Footer = () => {
   return (
@@ -14,7 +14,7 @@ const Footer = () => {
         <div className='hijoFooter'>
 
         <div className='containerLogo'>
-            <h4 className='textoLogo'> <img src={pelotaChampionpedia} alt="pelota de futbol" className="logoChampionpedia" />Championpedia</h4>
+            <img src={Championpedia} alt="pelota de futbol" className="logoChampionpedia" />
         </div>
 
         </div>

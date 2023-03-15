@@ -1,3 +1,19 @@
+.buttonFlex{
+
+    padding-right: 2rem;
+
+    .buttonCrear{
+
+        outline: none;
+        border: 0;
+        width: 8rem;
+        height: 2rem;
+        border-radius: 4rem;
+    
+    }
+
+}
+
 .buttonEnlace {
     border: 0;
     padding: 0;
@@ -11,23 +27,15 @@
 
     display: flex;
     align-items: center;
-    gap: .2rem;
+    padding-left: 1.5rem;
     color: 	#D4AF37;
 
     .logoChampionpedia{
 
         display: flex;
         align-items: center;
-        width: 2.3rem;
+        width: 14rem;
     
-    }
-
-    .textoLogo{
-
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-
     }
 
 }
@@ -89,12 +97,10 @@ body.open .navbar-overlay {
     translate: -100% 0;
     width: 270px;
     height: 100%;
-    padding: 20px;
     display: flex;
-    gap: 8px;
+    align-items: center;
     flex-direction: column;
     background-color: #111;
-    gap: 2rem;
     color: #ffff;
     visibility: hidden;
     transition: translate 0.3s;
@@ -112,42 +118,17 @@ body.open .navbar-menu {
     padding: 0 8px;
 }
 
-@media only screen and (min-width: 723px) {
-    .navbar {
-        justify-content: space-between;
-        padding: 0 0 0 16px;
-    }
-}
-
-@media only screen and (min-width: 672px) {
-    .navbar-overlay {
-        display: none;
-    }
-}
-
-@media only screen and (min-width: 723px) {
-    .navbar-burger {
-        display: none;
-    }
-}
-
-@media only screen and (min-width: 743px) {
-    .navbar-menu {
-        position: static;
-        translate: 0 0;
-        width: auto;
-        background: transparent;
-        flex-direction: row;
-        visibility: visible;
-    }
-
-}
-
 .containerSearch{
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
+
+    .flexInput{
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
 
     .search__input{
 
@@ -157,8 +138,101 @@ body.open .navbar-menu {
         border-width: 1.5px;
         height: 1.5rem;
         padding: 1rem;
-        border-radius: 1rem;
+        border-radius: .5rem;
         transition: .3s border-color;
+
+
+    }
+
+}
+
+.inputBurger{
+
+    outline: none;
+    border-color: rgb(192, 192, 192);
+    border-style: solid;
+    border-width: 1.5px;
+    height: 1.5rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    transition: .3s border-color;
+
+}
+
+
+//medias queries
+
+@media only screen and (min-width: 672px) {
+    .navbar-overlay {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 671px) {
+
+    .inputBurger{
+
+        display: none;
+
+    }
+
+    .navbar-menu {
+        position: static;
+        translate: 0 0;
+        width: auto;
+        background: transparent;
+        flex-direction: row;
+        visibility: visible;
+    }
+
+    .navbar {
+        justify-content: space-between;
+    }
+
+    .containerSearch{
+
+        display: flex;
+
+    }
+
+    .navbar-burger {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+
+    .search__input{
+
+        width: 20rem;
+
+    }
+    
+
+}
+
+@media only screen and (min-width: 1024px) {
+
+    .search__input{
+
+        width: 35rem;
+
+    }
+
+}
+
+@media only screen and (min-width: 1280px) {
+
+    .inputSearch{
+
+        display: none;
+
+    }
+
+    .search__input{
+
+        width: 40rem;
 
     }
 
