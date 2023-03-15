@@ -1,15 +1,22 @@
 import '../Navbar/_navbar.scss';
 import '../../scss/barrel.scss';
 import '../../common/Links/_links.scss'
-import { useState } from 'react';
+import '../../common/filter/_filter.scss'
+
+import { results, searchArticle } from '../../services/search'
+
 import Championpedia from '../../img/logo/Championpedia.png'
+import Filter from '../../common/filter/Filter';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 import Links from '../../common/Links/Links';
 import React from 'react';
-import { results, searchArticle } from '../../services/search'
+import { useState } from 'react';
 
 const Navbar = () => {
+
+  const [searchUser, setSearchUser] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [inputIsEmpty, setInputIsEmpty] = useState(false);
 
   const toggleMenuOpen = () => {
     document.body.classList.toggle('open');
@@ -17,9 +24,15 @@ const Navbar = () => {
 
   const handleInputChange = async (event) => {
     const query = event.target.value;
+    setSearchUser(query);
+
     const result = await results(query);
     setSearchResults(result);
+
+    setInputIsEmpty(query.trim() === '');
   }
+
+  console.log(searchResults);
 
   return (
     <>
@@ -50,13 +63,18 @@ const Navbar = () => {
               className="search__input"
               placeholder="🔍︎ Buscar..."
               onChange={handleInputChange}
+              value={searchUser}
             />
 
-            <datalist id="options">
-              {searchResults.map((option, i) => (
-                <option key={i} value={option.fullName} />
-              ))}
-            </datalist>
+            <div id="options" className="search-bar">
+              {searchResults.length > 0 && !inputIsEmpty && (
+                <ul className="search-results">
+                  {searchResults.map((option) => (
+                    <Filter key={option.id} option={option} />
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </div>
 
@@ -67,6 +85,7 @@ const Navbar = () => {
               className="inputBurger"
               placeholder="🔍︎ Buscar..."
               onChange={handleInputChange}
+              value={searchUser}
             />
           </div>
 
