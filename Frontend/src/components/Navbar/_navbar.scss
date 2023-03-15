@@ -1,6 +1,4 @@
-.buttonFlex{
-
-    padding-right: 2rem;
+.buttonFlexible{
 
     .buttonCrear{
 
@@ -11,6 +9,15 @@
         border-radius: 4rem;
     
     }
+
+}
+
+.flexWhite{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
 
 }
 
@@ -156,6 +163,59 @@ body.open .navbar-menu {
     padding: 1rem;
     border-radius: .5rem;
     transition: .3s border-color;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
+}
+
+.linksWhite {
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .padreWhite {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+
+        .linksHide {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 1rem;
+            gap: 1.2rem;
+
+            div>* {
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                color: black;
+                border-radius: 1rem;
+                padding: .4rem 1rem;
+                transition: color .3s ease, background-color .3s ease;
+                border: .1px solid grey;
+                cursor: pointer;
+
+                &:hover {
+
+                    color: black;
+                    background-color: white;
+
+                }
+
+            }
+
+
+        }
+
+    }
 
 }
 
@@ -163,12 +223,39 @@ body.open .navbar-menu {
 //medias queries
 
 @media only screen and (min-width: 672px) {
+
+    .buttonFlexible{
+
+        display: flex;
+        padding-right: 2rem;
+
+    }
+
+    .buttonFlexible{
+
+        display: flex;
+
+    }
+
+    .linksWhite{
+
+        display: none;
+
+    }
+    
     .navbar-overlay {
         display: none;
     }
 }
 
 @media only screen and (min-width: 671px) {
+
+    .buttonFlexible{
+
+        padding-right: 2rem;
+
+    }
+
 
     .inputBurger{
 
@@ -202,6 +289,12 @@ body.open .navbar-menu {
 
 @media only screen and (min-width: 768px) {
 
+    .buttonFlexible{
+
+        padding-right: 2rem;
+
+    }
+
 
     .search__input{
 
@@ -214,6 +307,12 @@ body.open .navbar-menu {
 
 @media only screen and (min-width: 1024px) {
 
+    .buttonFlexible{
+
+        padding-right: 2rem;
+
+    }
+
     .search__input{
 
         width: 35rem;
@@ -223,6 +322,12 @@ body.open .navbar-menu {
 }
 
 @media only screen and (min-width: 1280px) {
+
+    .buttonFlexible{
+
+        padding-right: 2rem;
+
+    }
 
     .inputSearch{
 

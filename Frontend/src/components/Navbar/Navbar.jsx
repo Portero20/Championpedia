@@ -29,11 +29,11 @@ return (
       </button>
 
       <div className="containerLogo nav-left">
-          <img
-            src={Championpedia}
-            alt="pelota de futbol"
-            className="logoChampionpedia"
-          />
+        <img
+          src={Championpedia}
+          alt="pelota de futbol"
+          className="logoChampionpedia"
+        />
       </div>
 
       <div className="containerSearch nav-middle">
@@ -44,24 +44,49 @@ return (
             placeholder="🔍︎ Buscar..."
           />
         </div>
+
+
       </div>
 
       <div className="navbar-menu navbar-menuColor nav-right">
-
         <div>
-          <input type="text" className='inputBurger' placeholder="🔍︎ Buscar..."/>
+          <input
+            type="text"
+            className="inputBurger"
+            placeholder="🔍︎ Buscar..."
+          />
         </div>
 
-        <div className="buttonFlex">
-          <button type="button" class="buttonCrear">
+        <div className="buttonFlexible">
+          <button type="button" className="buttonCrear">
             + Contribuir
           </button>
         </div>
 
+        <div className="linksWhite">
+          <div className="padreWhite">
+            <div className="linksHide">
+              <div className="homeFlex">
+                <h3>Home</h3>
+              </div>
+
+              <div className="copasFlex">
+                <h3>Copas</h3>
+              </div>
+
+              <div className="equiposFlex">
+                <h3>Equipos</h3>
+              </div>
+
+              <div className="jugadoresFlex">
+                <h3>Jugadores</h3>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <Links/>
-
+      <Links />
     </nav>
   </>
 );

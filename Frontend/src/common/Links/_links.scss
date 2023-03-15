@@ -1,5 +1,6 @@
 .flexLinks {
 
+    display: none;
     width: 100%;
 
 
@@ -41,6 +42,20 @@
 
 
         }
+
+    }
+
+}
+
+//medias queries
+
+@media screen and (min-width: 671px) {
+
+    .flexLinks {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
     }
 
