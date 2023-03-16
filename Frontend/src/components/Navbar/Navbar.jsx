@@ -13,40 +13,23 @@ import Links from '../../common/Links/Links';
 import { useState } from 'react';
 
 const Navbar = () => {
+  const [inputValue, setInputValue] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleInputChange = async (event) => {
+    const value = event.target.value;
+    setInputValue(value);
+
+    if (value.length >= 1) {
+      const result = await results(value);
+      setSearchResults(result);
+    } else {
+      setSearchResults([]);
+    }
+  }
 
   const toggleMenuOpen = () => {
     document.body.classList.toggle('open');
-  }
-
-  const [searchResults, setSearchResults] = useState([]);
-  const [searchError,setSearchError] = useState('');
-
-  const handleInputChange = async (event) => {
-
-    const searchTerm = event.target.value;
-
-    if(searchTerm === ''){
-
-      setSearchResults([]);
-      setSearchError('');
-      return;
-
-    }
-
-    try{
-
-      const result = await results(searchTerm);
-      setSearchResults (result);
-      setSearchError('');
-      
-    } catch (error){
-
-      setSearchResults([]);
-      setSearchError('Hubo un error al buscar los resultados');
-      
-
-    }
-
   }
 
   return (
@@ -73,24 +56,19 @@ const Navbar = () => {
         <div className="containerSearch nav-middle">
           <div className="flexInput">
             <input
-              list="options"
               type="search"
               name="options"
               className="search__input"
               placeholder="🔍︎ Buscar..."
+              value={inputValue}
               onChange={handleInputChange}
+              list="search-results"
             />
-
-            {searchResults.length > 0 && (
-              <datalist id="options">
-                {searchResults.map((result, index) => (
-                  <option key={index} value={result.fullName} />
-                ))}
-              </datalist>
-            )}
-            {searchResults.length === 0 && !searchError && (
-              <p>No hay resultados</p>
-            )}
+            <datalist id="search-results">
+              {searchResults.map((result, i) => (
+                <option key={i} value={result.fullName} />
+              ))}
+            </datalist>
           </div>
         </div>
 
