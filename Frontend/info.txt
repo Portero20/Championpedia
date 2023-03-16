@@ -1,3 +1,33 @@
+//Explicación del código del buscador 
+
+const noResults = searchResults.length === 0 && !inputIsEmpty; 
+
+creamos una variable llamada noResults que se establece en true, ponemos dos validaciones, si no hay resultados de busqueda (searchResults.length === 0), 
+y el campo de búsqueda está vacío (!inputIsEmpty es true).
+
+noResults es verdadero si el usuario ha ingresado texto en el campo de búsqueda perpo no hay resultados para esa 
+busqueda porque no hay coincidencias. 
+
+
+
+let filterItems = null; => creamos una variable que se establece en null porque no sabemos si va a tener un valor o no.
+
+if (searchResults.length > 0 && !inputIsEmpty) { => si hay resultados de busqueda y el campo de busqueda no está vacío, se ejecuta el código que está dentro de las llaves.
+
+filterItems = searchResults.map((option) => (
+    <Filter key={option.id} option={option} /> => se mostraran las coincidencias de busqueda
+));
+
+} else if (noResults) { => si no hay ningun resultado
+
+filterItems = <p>No hay resultados</p>; => me mostrara este mensaje 
+    
+}
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
 //Explicación de la funcion al hacer click fuera del buscador 
 
 

@@ -14,50 +14,40 @@ import { useState } from 'react';
 
 const Navbar = () => {
 
-  const [searchUser, setSearchUser] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [inputIsEmpty, setInputIsEmpty] = useState(false);
-
-  const searchRef = useRef(null)
-
   const toggleMenuOpen = () => {
     document.body.classList.toggle('open');
   }
 
-  useEffect(() => {
-
-
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-
-      document.removeEventListener("click", handleClickOutside);
-
-    }
-
-
-  }),[]
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchError,setSearchError] = useState('');
 
   const handleInputChange = async (event) => {
-    const query = event.target.value;
-    setSearchUser(query);
 
-    const result = await results(query);
-    setSearchResults(result);
+    const searchTerm = event.target.value;
 
-    setInputIsEmpty(query.trim() === '');
-  }
+    if(searchTerm === ''){
 
-  const handleClickOutside = (event) => {
-
-    if(searchRef.current && !searchRef.current.contains(event.target)){
       setSearchResults([]);
-      setInputIsEmpty(true);
+      setSearchError('');
+      return;
+
+    }
+
+    try{
+
+      const result = await results(searchTerm);
+      setSearchResults (result);
+      setSearchError('');
+      
+    } catch (error){
+
+      setSearchResults([]);
+      setSearchError('Hubo un error al buscar los resultados');
+      
+
     }
 
   }
-
-  console.log(searchResults);
 
   return (
     <>
@@ -85,23 +75,23 @@ const Navbar = () => {
             <input
               list="options"
               type="search"
+              name="options"
               className="search__input"
               placeholder="🔍︎ Buscar..."
               onChange={handleInputChange}
-              value={searchUser}
             />
 
-            
+            {searchResults.length > 0 && (
+              <datalist id="options">
+                {searchResults.map((result, index) => (
+                  <option key={index} value={result.fullName} />
+                ))}
+              </datalist>
+            )}
+            {searchResults.length === 0 && !searchError && (
+              <p>No hay resultados</p>
+            )}
           </div>
-          <div id="options" className="search-bar" ref={searchRef}>
-              {searchResults.length > 0 && !inputIsEmpty && (
-                <ul className="search-results">
-                  {searchResults.map((option) => (
-                    <Filter key={option.id} option={option} />
-                  ))}
-                </ul>
-              )}
-            </div>
         </div>
 
         <div className="navbar-menu navbar-menuColor nav-right">
@@ -110,8 +100,6 @@ const Navbar = () => {
               type="text"
               className="inputBurger"
               placeholder="🔍︎ Buscar..."
-              onChange={handleInputChange}
-              value={searchUser}
             />
           </div>
 
