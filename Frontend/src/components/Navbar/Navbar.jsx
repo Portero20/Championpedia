@@ -3,13 +3,13 @@ import '../../scss/barrel.scss';
 import '../../common/Links/_links.scss'
 import '../../common/filter/_filter.scss'
 
+import React, { useEffect, useRef } from 'react';
 import { results, searchArticle } from '../../services/search'
 
 import Championpedia from '../../img/logo/Championpedia.png'
 import Filter from '../../common/filter/Filter';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 import Links from '../../common/Links/Links';
-import React from 'react';
 import { useState } from 'react';
 
 const Navbar = () => {
@@ -18,9 +18,25 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [inputIsEmpty, setInputIsEmpty] = useState(false);
 
+  const searchRef = useRef(null)
+
   const toggleMenuOpen = () => {
     document.body.classList.toggle('open');
   }
+
+  useEffect(() => {
+
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+
+      document.removeEventListener("click", handleClickOutside);
+
+    }
+
+
+  }),[]
 
   const handleInputChange = async (event) => {
     const query = event.target.value;
@@ -30,6 +46,15 @@ const Navbar = () => {
     setSearchResults(result);
 
     setInputIsEmpty(query.trim() === '');
+  }
+
+  const handleClickOutside = (event) => {
+
+    if(searchRef.current && !searchRef.current.contains(event.target)){
+      setSearchResults([]);
+      setInputIsEmpty(true);
+    }
+
   }
 
   console.log(searchResults);
@@ -66,7 +91,9 @@ const Navbar = () => {
               value={searchUser}
             />
 
-            <div id="options" className="search-bar">
+            
+          </div>
+          <div id="options" className="search-bar" ref={searchRef}>
               {searchResults.length > 0 && !inputIsEmpty && (
                 <ul className="search-results">
                   {searchResults.map((option) => (
@@ -75,7 +102,6 @@ const Navbar = () => {
                 </ul>
               )}
             </div>
-          </div>
         </div>
 
         <div className="navbar-menu navbar-menuColor nav-right">

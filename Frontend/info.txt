@@ -1,0 +1,35 @@
+//Explicación de la funcion al hacer click fuera del buscador 
+
+
+useEffect(() => { => //se ejecuta cuando se renderiza el componente
+
+
+    document.addEventListener("click", handleClickOutside); => //se ejecuta cuando se hace click en cualquier parte de la pagina
+
+    return () => {
+
+      document.removeEventListener("click", handleClickOutside); => //se ejecuta cuando se desmonta el componente
+
+    }
+
+
+}),[] => //se ejecuta solo una vez 
+
+
+function handleClickOutside(event) { => 
+
+  if (searchRef.current && !searchRef.current.contains(event.target)) {
+
+    setSearchResults([]);
+    setInputIsEmpty(true);
+
+  }
+} 
+
+
+1) searchRef.current verifica que searchRef no null o undefined, current almacena el valor actual de la referencia a un 
+elemento HTML 
+
+2) !searchRef.current.contains(event.target) verifica que el elemento en el que se hizo click no sea el input de busqueda
+
+3) SearchResults y InputIsEmpty son estados que se usan para mostrar o no los resultados de la busqueda y para mostrar o no el
