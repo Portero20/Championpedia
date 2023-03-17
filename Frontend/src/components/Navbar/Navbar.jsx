@@ -11,11 +11,9 @@ import Filter from '../../common/filter/Filter';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import Links from '../../common/Links/Links';
-import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const inputRef = useRef(null);
 
   const [inputValue, setInputValue] = useState('');
@@ -46,12 +44,18 @@ const Navbar = () => {
     document.body.classList.toggle('open');
   }
 
+
   useEffect(() => {
     const handleKeyPress = async (event) => {
       if (event.key === 'Enter') {
-        let data = await searchArticle(inputValue);
-        console.log(data);
-        window.location.href = `/articulo/${data[0].category.toLowerCase()}/${data[0].id}`
+        if (/\(|\)/.test(inputValue)) {
+          let termino = inputValue.match(/\(([^)]+)\)/)[1];
+          let data = await searchArticle(termino);
+          window.location.href = `/articulo/${data[0].category.toLowerCase()}/${data[0].id}`
+        } else {
+          let data = await searchArticle(inputValue);
+          window.location.href = `/articulo/${data[0].category.toLowerCase()}/${data[0].id}`
+        }
       }
     }
 
@@ -60,7 +64,7 @@ const Navbar = () => {
     return () => {
       inputRef.current.removeEventListener('keypress', handleKeyPress);
     }
-  }, [inputValue, navigate]);
+  }, [inputValue]);
 
   return (
     <>
@@ -97,10 +101,7 @@ const Navbar = () => {
             />
             <datalist id="search-results">
               {searchResults.map((result, i) => (
-                <option key={i} value={getOptionValue(result, inputValue)} onSelect={async () => {
-                  await searchArticle(inputValue);
-                  navigate(`/articulo/futbolistas/1`);
-                }}/>
+                <option key={i} value={getOptionValue(result, inputValue)}/>
               ))}
             </datalist>
 
