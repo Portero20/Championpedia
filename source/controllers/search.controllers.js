@@ -10,7 +10,26 @@ module.exports = {
 
             let userQuery = req.query.search
 
-            let query = `SELECT fullName, players.id id FROM players INNER JOIN tagsplayers ON players.id = tagsplayers.player_id INNER JOIN tags ON tagsplayers.tag_id = tags.id WHERE players.fullName LIKE '%${userQuery}%' OR players.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%' UNION SELECT teams.fullName, teams.id FROM teams INNER JOIN tagsteams ON teams.id = tagsteams.team_id INNER JOIN tags ON tagsteams.tag_id = tags.id WHERE teams.fullName LIKE '%${userQuery}%' OR teams.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%' UNION SELECT trophies.fullName, trophies.id FROM trophies INNER JOIN tagstrophies ON trophies.id = tagstrophies.thophy_id INNER JOIN tags ON tagstrophies.tag_id = tags.id WHERE trophies.fullName LIKE '%${userQuery}%' OR trophies.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%';`;
+            let query = `SELECT players.fullName, GROUP_CONCAT(DISTINCT tags.tag SEPARATOR ', ') as tags
+            FROM players 
+            INNER JOIN tagsplayers ON players.id = tagsplayers.player_id 
+            INNER JOIN tags ON tagsplayers.tag_id = tags.id 
+            WHERE players.fullName LIKE '%${userQuery}%' OR players.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%'
+            GROUP BY players.fullName
+            UNION 
+            SELECT teams.fullName, GROUP_CONCAT(DISTINCT tags.tag SEPARATOR ', ') as tags 
+            FROM teams 
+            INNER JOIN tagsteams ON teams.id = tagsteams.team_id 
+            INNER JOIN tags ON tagsteams.tag_id = tags.id 
+            WHERE teams.fullName LIKE '%${userQuery}%' OR teams.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%'
+            GROUP BY teams.fullName
+            UNION 
+            SELECT trophies.fullName, GROUP_CONCAT(DISTINCT tags.tag SEPARATOR ', ') as tags 
+            FROM trophies 
+            INNER JOIN tagstrophies ON trophies.id = tagstrophies.thophy_id 
+            INNER JOIN tags ON tagstrophies.tag_id = tags.id 
+            WHERE trophies.fullName LIKE '%${userQuery}%' OR trophies.title LIKE '%${userQuery}%' OR tags.tag LIKE '%${userQuery}%'
+            GROUP BY trophies.fullName;`;
 
             database.query(query, (err, results, fields) => {
                 if (err) {

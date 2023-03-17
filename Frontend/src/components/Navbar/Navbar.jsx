@@ -2,10 +2,8 @@ import '../Navbar/_navbar.scss';
 import '../../scss/barrel.scss';
 import '../../common/Links/_links.scss'
 import '../../common/filter/_filter.scss'
-
 import React, { useEffect, useRef } from 'react';
 import { results, searchArticle } from '../../services/search'
-
 import Championpedia from '../../img/logo/Championpedia.png'
 import Filter from '../../common/filter/Filter';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
@@ -15,6 +13,7 @@ import { useState } from 'react';
 const Navbar = () => {
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
 
   const handleInputChange = async (event) => {
     const value = event.target.value;
@@ -28,9 +27,19 @@ const Navbar = () => {
     }
   }
 
+  // para mostrar de manera correcta en el datalist
+  function getOptionValue(result, searchTerm) {
+    if (result.fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
+      return result.fullName;
+    } else {
+      return `${result.tags} (${result.fullName})`;
+    }
+  }
+
   const toggleMenuOpen = () => {
     document.body.classList.toggle('open');
   }
+
 
   return (
     <>
@@ -64,11 +73,12 @@ const Navbar = () => {
               onChange={handleInputChange}
               list="search-results"
             />
-            <datalist id="search-results">
+            <datalist className="search-results">
               {searchResults.map((result, i) => (
-                <option key={i} value={result.fullName} />
+                <option key={i} value={getOptionValue(result, inputValue)} />
               ))}
             </datalist>
+
           </div>
         </div>
 
