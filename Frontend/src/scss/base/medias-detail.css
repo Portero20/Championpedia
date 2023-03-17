@@ -81,6 +81,12 @@
     }
 }
 
+@media (min-width: 672px) {
+    .container-detail {
+        padding-top: 50px;
+    }
+}
+
 @media (min-width: 64em) {
     .jugadorContainer {
         order: 2;
