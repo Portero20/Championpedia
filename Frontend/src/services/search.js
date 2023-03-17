@@ -13,8 +13,9 @@ export async function searchArticle(result) {
         let query = await fetch(`http://localhost:3000/search/article`, {
             method: "POST",
             headers: {
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(result)
+            body: JSON.stringify({ result: result })
         })
 
         let data = await query.json()

@@ -9,11 +9,14 @@ import Filter from '../../common/filter/Filter';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 import Links from '../../common/Links/Links';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const inputRef = useRef(null);
+
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
 
   const handleInputChange = async (event) => {
     const value = event.target.value;
@@ -40,6 +43,21 @@ const Navbar = () => {
     document.body.classList.toggle('open');
   }
 
+  useEffect(() => {
+    const handleKeyPress = async (event) => {
+      if (event.key === 'Enter') {
+        let data = await searchArticle(inputValue);
+        console.log(data);
+        window.location.href = `/articulo/${data[0].category.toLowerCase()}/${data[0].id}`
+      }
+    }
+
+    inputRef.current.addEventListener('keypress', handleKeyPress);
+
+    return () => {
+      inputRef.current.removeEventListener('keypress', handleKeyPress);
+    }
+  }, [inputValue, navigate]);
 
   return (
     <>
@@ -72,10 +90,14 @@ const Navbar = () => {
               value={inputValue}
               onChange={handleInputChange}
               list="search-results"
+              ref={inputRef}
             />
             <datalist id="search-results">
               {searchResults.map((result, i) => (
-                <option key={i} value={getOptionValue(result, inputValue)} />
+                <option key={i} value={getOptionValue(result, inputValue)} onSelect={async () => {
+                  await searchArticle(inputValue);
+                  navigate(`/articulo/futbolistas/1`);
+                }}/>
               ))}
             </datalist>
 
