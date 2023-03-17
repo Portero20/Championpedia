@@ -120,6 +120,11 @@ const Navbar = () => {
               type="text"
               className="inputBurger"
               placeholder="🔍︎ Buscar..."
+              onChange={handleInputChange}
+              list="search-results"
+              ref={inputRef}
+              spellcheck="false"
+              autoComplete="off"
             />
           </div>
 
