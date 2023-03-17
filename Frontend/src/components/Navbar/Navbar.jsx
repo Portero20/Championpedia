@@ -2,14 +2,17 @@ import '../Navbar/_navbar.scss';
 import '../../scss/barrel.scss';
 import '../../common/Links/_links.scss'
 import '../../common/filter/_filter.scss'
+
 import React, { useEffect, useRef } from 'react';
 import { results, searchArticle } from '../../services/search'
+
 import Championpedia from '../../img/logo/Championpedia.png'
 import Filter from '../../common/filter/Filter';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 import Links from '../../common/Links/Links';
-import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -114,9 +117,13 @@ const Navbar = () => {
           </div>
 
           <div className="buttonFlexible">
-            <button type="button" className="buttonCrear">
-              + Contribuir
-            </button>
+            <Link to='http://localhost:5173/articulo/create'>
+            
+              <button type="button" className="buttonCrear">
+                + Contribuir
+              </button>
+
+            </Link>
           </div>
 
           <div className="linksWhite">
