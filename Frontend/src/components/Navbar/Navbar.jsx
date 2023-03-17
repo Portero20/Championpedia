@@ -15,9 +15,12 @@ import { useState } from 'react';
 
 const Navbar = () => {
   const inputRef = useRef(null);
+  const inputRefNav = useRef(null);
 
   const [inputValue, setInputValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [inputNav, setInputNav] = useState('');
+  const [searchNav, setSearchNav] = useState([]);
 
   const handleInputChange = async (event) => {
     const value = event.target.value;
@@ -28,6 +31,18 @@ const Navbar = () => {
       setSearchResults(result);
     } else {
       setSearchResults([]);
+    }
+  }
+
+  const handleNavChange = async (event) => {
+    const value = event.target.value;
+    setInputNav(value);
+
+    if (value.length >= 1) {
+      const result = await results(value);
+      setSearchNav(result);
+    } else {
+      setSearchNav([]);
     }
   }
 
@@ -70,6 +85,35 @@ const Navbar = () => {
     }
   }, [inputValue]);
 
+
+
+
+  useEffect(() => {
+    const handKeyPress = async (event) => {
+      if (event.key === "Enter") {
+        if (/\(|\)/.test(inputNav)) {
+          let termino = inputNav.match(/\(([^)]+)\)/)[1];
+          let data = await searchArticle(termino);
+          window.location.href = `/articulo/${data[0].category.toLowerCase()}/${
+            data[0].id
+          }`;
+        } else {
+          let data = await searchArticle(inputNav);
+          window.location.href = `/articulo/${data[0].category.toLowerCase()}/${
+            data[0].id
+          }`;
+        }
+      }
+    };
+
+    inputRefNav.current.addEventListener("keypress", handKeyPress);
+
+    return () => {
+      inputRefNav.current.removeEventListener("keypress", handKeyPress);
+    };
+  }, [inputNav]);
+
+
   return (
     <>
       <nav className="navbar navbar-container">
@@ -105,12 +149,11 @@ const Navbar = () => {
               spellcheck="false"
               autoComplete="off"
             />
-            <datalist id="search-results" className='datalist'>
+            <datalist id="search-results" className="datalist">
               {searchResults.map((result, i) => (
-                <option key={i} value={getOptionValue(result, inputValue)}/>
+                <option key={i} value={getOptionValue(result, inputValue)} />
               ))}
             </datalist>
-
           </div>
         </div>
 
@@ -120,21 +163,25 @@ const Navbar = () => {
               type="text"
               className="inputBurger"
               placeholder="🔍︎ Buscar..."
-              onChange={handleInputChange}
-              list="search-results"
-              ref={inputRef}
+              onChange={handleNavChange}
+              list="search-res"
+              ref={inputRefNav}
               spellcheck="false"
               autoComplete="off"
             />
+
+            <datalist id="search-res" className="datalist">
+              {searchNav.map((result, i) => (
+                <option key={i} value={getOptionValue(result, inputNav)} />
+              ))}
+            </datalist>
           </div>
 
           <div className="buttonFlexible">
-            <Link to='http://localhost:5173/articulo/create'>
-
+            <Link to="http://localhost:5173/articulo/create">
               <button type="button" className="buttonCrear">
                 + Contribuir
               </button>
-
             </Link>
           </div>
 
