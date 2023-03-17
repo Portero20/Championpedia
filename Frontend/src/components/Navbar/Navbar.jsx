@@ -36,7 +36,12 @@ const Navbar = () => {
     if (result.fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
       return result.fullName;
     } else {
-      return `${result.tags} (${result.fullName})`;
+      const tags = result.tags.split(',');
+      if (tags.length > 1) {
+        return `${tags[0]} (${result.fullName})`;
+      } else {
+        return `${result.tags} (${result.fullName})`;
+      }
     }
   }
 
@@ -100,7 +105,7 @@ const Navbar = () => {
               spellcheck="false"
               autoComplete="off"
             />
-            <datalist id="search-results">
+            <datalist id="search-results" className='datalist'>
               {searchResults.map((result, i) => (
                 <option key={i} value={getOptionValue(result, inputValue)}/>
               ))}
