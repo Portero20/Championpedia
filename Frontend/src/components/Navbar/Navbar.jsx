@@ -44,7 +44,6 @@ const Navbar = () => {
     document.body.classList.toggle('open');
   }
 
-
   useEffect(() => {
     const handleKeyPress = async (event) => {
       if (event.key === 'Enter') {
@@ -90,7 +89,7 @@ const Navbar = () => {
         <div className="containerSearch nav-middle">
           <div className="flexInput">
             <input
-              type="search"
+              type="text"
               name="options"
               className="search__input"
               placeholder="🔍︎ Buscar..."
@@ -98,6 +97,8 @@ const Navbar = () => {
               onChange={handleInputChange}
               list="search-results"
               ref={inputRef}
+              spellcheck="false"
+              autoComplete="off"
             />
             <datalist id="search-results">
               {searchResults.map((result, i) => (
@@ -119,7 +120,7 @@ const Navbar = () => {
 
           <div className="buttonFlexible">
             <Link to='http://localhost:5173/articulo/create'>
-            
+
               <button type="button" className="buttonCrear">
                 + Contribuir
               </button>
