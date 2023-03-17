@@ -73,7 +73,7 @@ const Navbar = () => {
               onChange={handleInputChange}
               list="search-results"
             />
-            <datalist className="search-results">
+            <datalist id="search-results">
               {searchResults.map((result, i) => (
                 <option key={i} value={getOptionValue(result, inputValue)} />
               ))}
