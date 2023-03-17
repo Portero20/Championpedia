@@ -57,7 +57,7 @@ const InputPlayer = ({ showValue, article }) => {
             
 
             <label>Equipo:</label>
-            <input type="text" name="team" id="team" placeholder='Equipo actual del jugador...' className='inputJugadores' defaultValue={showValue ? article.team : null}/>
+            <input type="text" name="team" id="team" placeholder='Equipo en el que juega o en los que jugó...' className='inputJugadores' defaultValue={showValue ? article.team : null}/>
             <p className="msg-error"></p>
 
             <label>Dorsales:</label>

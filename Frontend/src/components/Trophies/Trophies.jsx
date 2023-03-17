@@ -9,7 +9,7 @@ const Trophies = ({ showValue, article }) => {
 
     if (showValue != true) {
 
-        InputAuthor = <div className='inputs-second'><label>Autor:</label><input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputsTrophies inputFile' />
+        InputAuthor = <div className='inputs-second'><label>Autor:</label><input type="text" name="author" id="author" placeholder='Nombre del autor de este artículo' className='inputsTrophies' />
             <p className="msg-error"></p></div>
     }
     return (
