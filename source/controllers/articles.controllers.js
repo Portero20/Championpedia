@@ -67,7 +67,7 @@ module.exports = {
                 }
 
                 let tags = req.body.tags.split(",").map(tag => {
-                    return `('', "${tag.replace(/\s+/g, "")}")`
+                    return `('', "${tag.trim()}")`
                 })
 
                 database.query(`INSERT INTO tags VALUES ${tags}`, (err, results) => {
@@ -330,7 +330,7 @@ module.exports = {
             if (req.body.tags) { // ver luego como llega y modificar el if
 
                 let tags = req.body.tags.split(",").map(tag => {
-                    return tag.replace(/\s+/g, "")
+                    return tag.trim()
                 })
 
                 let query;

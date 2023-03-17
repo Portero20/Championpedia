@@ -93,7 +93,7 @@ const Navbar = () => {
               name="options"
               className="search__input"
               placeholder="🔍︎ Buscar..."
-              value={inputValue}
+              // defaultValue={}
               onChange={handleInputChange}
               list="search-results"
               ref={inputRef}
