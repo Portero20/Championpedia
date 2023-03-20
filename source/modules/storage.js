@@ -1,7 +1,16 @@
-// Importar multer
-const multer = require('multer');
+const { diskStorage } = require("multer")
+const { extname } = require("path")
 
-// Configuración de multer
-const storage = multer.memoryStorage();
+let destination = folder => (req, file, cb) => cb(null, "./uploads/" + folder)
+
+let filename = (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix + extname(file.originalname))
+}
+
+const storage = folder => diskStorage({
+    destination: destination(folder),
+    filename: filename
+})
 
 module.exports = storage
