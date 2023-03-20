@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Portero20/Championpedia#readme",
   "dependencies": {
+    "blob-util": "^2.0.2",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
