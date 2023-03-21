@@ -146,7 +146,7 @@ const Navbar = () => {
               onChange={handleInputChange}
               list="search-results"
               ref={inputRef}
-              spellcheck="false"
+              spellCheck="false"
               autoComplete="off"
             />
             <datalist id="search-results" className="datalist">
@@ -166,7 +166,7 @@ const Navbar = () => {
               onChange={handleNavChange}
               list="search-res"
               ref={inputRefNav}
-              spellcheck="false"
+              spellCheck="false"
               autoComplete="off"
             />
 

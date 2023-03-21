@@ -52,12 +52,6 @@ p a {
     display: inline;
 }
 
-//quitamos los puntos de los li 
-
-li {
-    list-style: none;
-}
-
 //configuramos anclas suaves
 
 html {
@@ -84,9 +78,6 @@ b,
 u,
 em {
     font-size: inherit;
-    font-weight: inherit;
-    font-style: inherit;
-    text-decoration: none;
     color: inherit;
 }
 
