@@ -2,12 +2,9 @@ import '../Navbar/_navbar.scss';
 import '../../scss/barrel.scss';
 import '../../common/Links/_links.scss'
 import '../../common/filter/_filter.scss'
-
 import React, { useEffect, useRef } from 'react';
 import { results, searchArticle } from '../../services/search'
-
 import Championpedia from '../../img/logo/Championpedia.png'
-import Filter from '../../common/filter/Filter';
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
 import { Link } from 'react-router-dom'
 import Links from '../../common/Links/Links';
@@ -46,20 +43,6 @@ const Navbar = () => {
     }
   }
 
-  // para mostrar de manera correcta en el datalist
-  function getOptionValue(result, searchTerm) {
-    if (result.fullName.toLowerCase().includes(searchTerm.toLowerCase())) {
-      return result.fullName;
-    } else {
-      const tags = result.tags.split(',');
-      if (tags.length > 1) {
-        return `${tags[0]} (${result.fullName})`;
-      } else {
-        return `${result.tags} (${result.fullName})`;
-      }
-    }
-  }
-
   const toggleMenuOpen = () => {
     document.body.classList.toggle('open');
   }
@@ -85,27 +68,14 @@ const Navbar = () => {
     }
   }, [inputValue]);
 
-
-
-
   useEffect(() => {
     const handKeyPress = async (event) => {
       if (event.key === "Enter") {
-        if (/\(|\)/.test(inputNav)) {
-          let termino = inputNav.match(/\(([^)]+)\)/)[1];
-          let data = await searchArticle(termino);
-          window.location.href = `/articulo/${data[0].category.toLowerCase()}/${
-            data[0].id
-          }`;
-        } else {
-          let data = await searchArticle(inputNav);
-          window.location.href = `/articulo/${data[0].category.toLowerCase()}/${
-            data[0].id
-          }`;
-        }
+        let termino = inputNav
+        let data = await searchArticle(termino);
+        window.location.href = `/articulo/${data[0].category.toLowerCase()}/${data[0].id}`
       }
     };
-
     inputRefNav.current.addEventListener("keypress", handKeyPress);
 
     return () => {
@@ -142,7 +112,6 @@ const Navbar = () => {
               name="options"
               className="search__input"
               placeholder="🔍︎ Buscar..."
-              // defaultValue={}
               onChange={handleInputChange}
               list="search-results"
               ref={inputRef}
@@ -151,7 +120,7 @@ const Navbar = () => {
             />
             <datalist id="search-results" className="datalist">
               {searchResults.map((result, i) => (
-                <option key={i} value={getOptionValue(result, inputValue)} />
+                <option key={i} value={result.title} />
               ))}
             </datalist>
           </div>

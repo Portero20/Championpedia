@@ -41,8 +41,6 @@ const ViewArticle = () => {
     .catch((error) => console.error(error));
 }, []);
 
-  console.log(imageBase64)
-
   const [articleJodit, setArticleJodit] = useState({
     text: "Texto predeterminado"
   });
