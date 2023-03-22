@@ -1,6 +1,6 @@
 const multer = require("multer")
-const storage = require("../modules/storage")
-const upload = multer({ storage: storage("/articles") })
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 const validations = require("../validations/editThophies")
 
-module.exports = [upload.any(), validations]
+module.exports = [upload.single("file"), validations]

@@ -63,3 +63,36 @@ elemento HTML
 2) !searchRef.current.contains(event.target) verifica que el elemento en el que se hizo click no sea el input de busqueda
 
 3) SearchResults y InputIsEmpty son estados que se usan para mostrar o no los resultados de la busqueda y para mostrar o no el
+
+// --------------------------------------------------------------------------------------------
+
+useEffect(() => {
+  detail(category, id)
+    .then((response) => {
+      const buffer = response.image;
+      const base64 = Buffer.from(buffer).toString('base64');
+      const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+      setImageBase64(base64String);
+    })
+    .catch((error) => console.error(error));
+}, []);
+
+Este código es un efecto secundario que se ejecuta cuando se monta el componente en el DOM. Este efecto utiliza la función detail para obtener los detalles de un producto (identificado por la categoría y el id), y después convierte la imagen asociada en una cadena Base64 que puede ser utilizada para mostrar la imagen en la etiqueta img.
+
+Vamos a ver el código línea por línea:
+
+useEffect(() => {...}, []): El efecto secundario se ejecutará una vez, cuando el componente se monte en el DOM, debido a que el segundo argumento es un arreglo vacío []. Si el segundo argumento no estuviera presente o incluyera alguna variable, el efecto se ejecutaría cada vez que alguna de estas variables cambie.
+
+detail(category, id): Esta línea llama a la función detail con los argumentos category e id para obtener los detalles del producto correspondiente.
+
+.then((response) => {...}): Cuando la promesa se resuelve satisfactoriamente, el código dentro de este bloque se ejecutará. El objeto response es el resultado de la llamada a la función detail.
+
+const buffer = response.image;: La línea crea una variable buffer que almacena la propiedad image del objeto response. En este caso, se asume que response.image es un objeto Buffer.
+
+const base64 = Buffer.from(buffer).toString('base64');: La línea convierte el objeto Buffer en una cadena de caracteres utilizando el método toString() de la clase Buffer. Esta cadena de caracteres representa la codificación de bytes de la imagen, pero no es una cadena Base64 válida.
+
+const base64String = data:image/png;base64,${Buffer.from(base64, 'base64').toString()};: La línea convierte la cadena obtenida en el paso anterior en una cadena Base64 válida, y la concatena con el prefijo data:image/png;base64,. La variable base64String es la cadena Base64 válida que se utilizará para mostrar la imagen en la etiqueta img.
+
+setImageBase64(base64String);: La línea establece el estado imageBase64 con la cadena Base64 válida creada en el paso anterior.
+
+.catch((error) => console.error(error));: Si se produce un error durante la llamada a detail o la conversión de la imagen en una cadena Base64 válida, el código dentro de este bloque se ejecutará y mostrará el error en la consola.

@@ -5,7 +5,6 @@ module.exports = {
         try {
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-                console.log("Using Database");
             })
 
             let userQuery = req.query.search
@@ -53,7 +52,6 @@ module.exports = {
         try {
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-                console.log("Using Database");
             })
 
             let userQuery = req.body.result

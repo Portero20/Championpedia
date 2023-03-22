@@ -70,24 +70,20 @@ const editTrophies = [
         return true
     }),
     body("image").custom((value, { req }) => {
-        let imagen = req.files
+        let imagen = req.file
 
         if (!imagen || imagen.length == 0) {
             return true
         }
 
         let extensiones = [".svg", ".jpg", ".png", ".jpeg"]
-        let extension = extname(imagen[0].filename)
+        let extension = extname(imagen.originalname)
         if (!extensiones.includes(extension)) {
             throw new Error("La extension debería ser '.svg', '.jpg', '.png', '.jpeg'")
         }
 
-        if (imagen[0].size > 2097152) {
+        if (imagen.size > 2097152) {
             throw new Error("La imagen supera el peso de 2MB");
-        }
-
-        if (req.files.length > 1) {
-            throw new Error("No puedes subir más de una imagen");
         }
 
         return true

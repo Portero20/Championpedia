@@ -2,7 +2,7 @@ const database = require('../sql/dbConnection');
 const { validationResult } = require("express-validator")
 const moment = require("moment");
 const { resolve } = require("path")
-const { unlinkSync } = require("fs")
+const { unlinkSync, readFileSync } = require("fs")
 
 module.exports = {
     create: (req, res) => {
@@ -37,7 +37,6 @@ module.exports = {
 
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-                console.log("Using Database");
             })
 
             let query;
@@ -48,7 +47,7 @@ module.exports = {
             let fullName = req.body.fullName.replace(/"/g, '\\"');
             let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
 
-            if (category == "players") { 
+            if (category == "players") {
                 query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ("","${title}","${text}","${author}", 1,"${now}","","${fullName}","${nickName}","${req.body.born}","${req.body.death}","${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}","${req.body.retire}");`
             } else if (category == "teams") {
                 query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES ("","${title}","${text}","${author}", 2,"${now}","","${fullName}","${req.body.foundation}","${req.body.president}","${req.body.stadium}","${req.body.coach}","${nickName}");`
@@ -62,7 +61,6 @@ module.exports = {
                 if (err) {
                     return console.log(err);
                 } else {
-                    console.log(`${category} created successfully`);
                     id = results.insertId
                 }
 
@@ -76,8 +74,6 @@ module.exports = {
                     if (err) {
                         return console.log(err)
                     } else {
-                        console.log("Tags created successfully");
-
                         let tagIdFirst = results.insertId
                         let affectedRows = results.affectedRows
 
@@ -93,27 +89,23 @@ module.exports = {
                     database.query(`INSERT INTO tags${category} VALUES ${tagsValues}`, (error) => {
                         if (error) {
                             return console.log(error)
-                        } else {
-                            console.log(`Tags${category} created successfully`);
                         }
 
-                        database.query(`INSERT INTO images VALUES ('', '${req.files[0].filename}')`, (err, results) => {
+                        const imagenBuffer = req.file.buffer
+                        const base64Image = imagenBuffer.toString("base64");
+
+                        database.query(`INSERT INTO images VALUES ('', '${base64Image}')`, (err, results) => {
                             let imageId
 
                             if (err) {
                                 return console.log(error)
                             } else {
-                                console.log("Images created successfully");
-
                                 imageId = parseInt(results.insertId)
                             }
 
                             database.query(`INSERT INTO images${category} VALUES ('','${id}','${imageId}')`, (error) => {
                                 if (error) {
                                     return console.log(error)
-                                } else {
-                                    console.log(`images${category} created successfully`);
-
                                 }
 
                                 return res.status(200).json(id);
@@ -131,8 +123,6 @@ module.exports = {
         try {
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-
-                console.log("Using Database");
             })
 
             database.query(`SELECT category FROM categories`, function (err, result, filed) {
@@ -163,8 +153,6 @@ module.exports = {
 
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-
-                console.log("Using Database");
             })
 
             database.query(`SELECT * FROM ${category} WHERE id = ${req.params.id}`, function (err, result, filed) {
@@ -261,7 +249,6 @@ module.exports = {
 
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
-                console.log("Using Database");
             })
 
             let query;
@@ -282,13 +269,10 @@ module.exports = {
             database.query(query, (err, results, fields) => {
                 if (err) {
                     return console.log(err);
-                } else {
-                    console.log(`${category} - ${req.body.id} edited successfully`);
                 }
             })
 
-            if (req.files && req.files.length > 0) {
-
+            if (req.file) {
                 let querySelectImg;
 
                 if (category == "players") {
@@ -315,19 +299,19 @@ module.exports = {
                             imgName = results[0].image
                         }
 
-                        database.query(`UPDATE images SET image='${req.files[0].filename}' WHERE id = ${idImage}`, (error, results, fields) => {
+                        const imagenBuffer = req.file.buffer
+                        const base64Image = imagenBuffer.toString("base64");
+
+                        database.query(`UPDATE images SET image='${base64Image}' WHERE id = ${idImage}`, (error, results, fields) => {
                             if (error) {
                                 return console.log(error)
-                            } else {
-                                unlinkSync(resolve(__dirname, `../../uploads/articles/${imgName}`))
-                                return console.log("Image updated successfully")
                             }
                         })
                     })
                 })
             }
 
-            if (req.body.tags) { // ver luego como llega y modificar el if
+            if (req.body.tags) {
 
                 let tags = req.body.tags.split(",").map(tag => {
                     return tag.trim()

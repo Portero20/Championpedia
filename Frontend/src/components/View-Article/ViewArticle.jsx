@@ -2,7 +2,7 @@ import '../../scss/utilities/_utilities.scss';
 import '../../scss/base/medias-detail.css'
 
 import { React, useEffect, useMemo, useRef, useState } from 'react'
-
+import { Buffer } from 'buffer';
 import Button from 'react-bootstrap/Button';
 import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
@@ -18,17 +18,30 @@ import { useParams } from "react-router-dom";
 const ViewArticle = () => {
   const { category, id } = useParams();
   const [article, setarticle] = useState([])
-
   const [show, setShow] = useState(false);
+  const [content, setContent] = useState('');
+  const [imageBase64, setImageBase64] = useState('');
+  const editor = useRef(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const editor = useRef(null);
-  const [content, setContent] = useState('');
 
   useEffect(() => {
     detail(category, id).then(setarticle)
   }, [id])
+
+  useEffect(() => {
+    detail(category, id)
+    .then((response) => {
+      const buffer = response.image;
+      const base64 = Buffer.from(buffer).toString('base64');
+      const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+      setImageBase64(base64String);
+    })
+    .catch((error) => console.error(error));
+}, []);
+
+  console.log(imageBase64)
 
   const [articleJodit, setArticleJodit] = useState({
     text: "Texto predeterminado"
@@ -306,16 +319,13 @@ const ViewArticle = () => {
     }
   }
 
-
-  let urlImage = `http://localhost:3000/article/images?imagen=${article.image}`
-
   function convertirFecha(fecha) {
     // Separar los componentes de la fecha utilizando el método split
     const [anio, mes, dia] = fecha.split("-");
-  
+
     // Formatear la fecha en el formato deseado
     const fechaFormateada = `${dia}-${mes}-${anio}`;
-  
+
     // Devolver la fecha formateada
     return fechaFormateada;
   }
@@ -450,7 +460,7 @@ const ViewArticle = () => {
 
           <div className="jugadorContainer">
             <div className="imagen__jugadorFlex">
-              <img src={urlImage} alt="" className="img-detail" />
+              {imageBase64 && <img src={imageBase64} />}
             </div>
 
             <div className="parrafosPersonales">

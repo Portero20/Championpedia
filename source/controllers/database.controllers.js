@@ -39,7 +39,7 @@ module.exports = {
 
         database.query(`CREATE TABLE images (
             id int(11) not null unique auto_increment,
-            image text not null,
+            image MEDIUMBLOB not null,
 
             primary key (id)
         );`, (error) => {
