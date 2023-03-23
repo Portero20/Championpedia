@@ -2,7 +2,7 @@ const database = require('../sql/dbConnection');
 const { validationResult } = require("express-validator")
 const moment = require("moment");
 const { resolve } = require("path")
-const { unlinkSync, readFileSync } = require("fs")
+const { unlinkSync } = require("fs")
 
 module.exports = {
     create: (req, res) => {
@@ -16,11 +16,6 @@ module.exports = {
             }))
 
             if (errors && errors.length > 0) {
-                if (req.files) {
-                    req.files.forEach(img => {
-                        unlinkSync(resolve(__dirname, "../../uploads/articles/" + img.filename))
-                    });
-                }
                 return res.status(200).json(errorMsg)
             }
 
@@ -91,7 +86,7 @@ module.exports = {
                             return console.log(error)
                         }
 
-                        const imagenBuffer = req.file.buffer
+                        const imagenBuffer = req.files[0].buffer
                         const base64Image = imagenBuffer.toString("base64");
 
                         database.query(`INSERT INTO images VALUES ('', '${base64Image}')`, (err, results) => {
@@ -228,11 +223,6 @@ module.exports = {
             }))
 
             if (errors && errors.length > 0) {
-                if (req.files) {
-                    req.files.forEach(img => {
-                        unlinkSync(resolve(__dirname, "../../uploads/articles/" + img.filename))
-                    });
-                }
                 return res.status(200).json(errorMsg)
             }
 
@@ -272,7 +262,7 @@ module.exports = {
                 }
             })
 
-            if (req.file) {
+            if (req.files) {
                 let querySelectImg;
 
                 if (category == "players") {
@@ -299,7 +289,7 @@ module.exports = {
                             imgName = results[0].image
                         }
 
-                        const imagenBuffer = req.file.buffer
+                        const imagenBuffer = req.files[0].buffer
                         const base64Image = imagenBuffer.toString("base64");
 
                         database.query(`UPDATE images SET image='${base64Image}' WHERE id = ${idImage}`, (error, results, fields) => {

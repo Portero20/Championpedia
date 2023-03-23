@@ -15,7 +15,7 @@ const editTeams = [
         return true
     }),
     body("foundation").notEmpty().withMessage("La fecha de fundación no debe quedar vacía").bail().isISO8601()
-    .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
+        .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
     body("president").notEmpty().withMessage("El nombre del presidente no puede quedar vacío").bail().isLength({ min: 2 }).withMessage("El nombre debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El nombre no debe superar los cien caracteres").bail().custom(value => {
         let valor = value;
         let num = /\d/.test(valor);
@@ -92,22 +92,26 @@ const editTeams = [
         return true
     }),
     body("image").custom((value, { req }) => {
-        let imagen = req.file
+        let imagen = req.files
 
         if (!imagen || imagen.length == 0) {
-            return true
+            throw new Error("La imagen no puede quedar vacía")
         }
 
         let extensiones = [".svg", ".jpg", ".png", ".jpeg"]
-        let extension = extname(imagen.originalname)
+        let extension = extname(imagen[0].originalname)
         if (!extensiones.includes(extension)) {
             throw new Error("La extension debería ser '.svg', '.jpg', '.png', '.jpeg'")
         }
 
-        if (imagen.size > 2097152) {
+        if (imagen[0].size > 2097152) {
             throw new Error("La imagen supera el peso de 2MB");
         }
-        
+
+        if (req.files && req.files.length > 1) {
+            throw new Error("Solo puedes subir una imagen");
+        }
+
         return true
     })
 ]
