@@ -400,7 +400,7 @@ module.exports = {
             return res.status(500).json(error)
         }
     },
-    One: (req, res) => {
+    one: (req, res) => {
         try {
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;
@@ -440,7 +440,7 @@ module.exports = {
                                 const start = text.indexOf("data:image");
                                 const end = text.indexOf("\"", start);
                                 imageData = text.substring(start, end);
-                            } else if (text.indexOf("<img") != -1){
+                            } else if (text.indexOf("<img") != -1) {
                                 const start = text.indexOf("<img");
                                 const end = text.indexOf(">", start) + 1;
                                 imageData = text.substring(start, end);
@@ -459,6 +459,38 @@ module.exports = {
                     })
                 }
             });
+
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    },
+    last: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+            })
+
+            const query = `SELECT players.title, players.text, players.date, images.image From players
+            INNER JOIN imagesplayers ON players.id = imagesplayers.player_id
+            INNER JOIN images ON imagesplayers.image_id = images.id
+            UNION
+            SELECT teams.title, teams.text, teams.date, images.image FROM teams
+            INNER JOIN imagesteams ON teams.id = imagesteams.team_id
+            INNER JOIN images ON imagesteams.image_id = images.id
+            UNION
+            SELECT trophies.title, trophies.text, trophies.date, images.image FROM trophies 
+            INNER JOIN imagestrophies ON trophies.id = imagestrophies.thophy_id
+            INNER JOIN images ON imagestrophies.image_id = images.id
+            ORDER BY date DESC
+            LIMIT 1;`
+
+            database.query(query, function (err, results, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    return res.status(200).json(results[0])
+                }
+            })
 
         } catch (error) {
             return res.status(500).json(error)
