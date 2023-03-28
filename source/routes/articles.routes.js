@@ -16,9 +16,9 @@ router.post("/equipos/create", articleTeamsMiddlewares, articlesControllers.crea
 router.post("/copas/create", articleTrophiesMiddlewares, articlesControllers.create)
 router.get("/categories", articlesControllers.categories)
 router.get("/:category/:id", articlesControllers.detail)
-router.get("/images", articlesControllers.images)
 router.post("/edit/futbolistas", editPlayersMiddlewares, articlesControllers.edit)
 router.post("/edit/equipos", editTeamsMiddlewares, articlesControllers.edit)
 router.post("/edit/copas", editTrophiesMiddlewares, articlesControllers.edit)
+router.get("/one", articlesControllers.One)
 
 module.exports = router
