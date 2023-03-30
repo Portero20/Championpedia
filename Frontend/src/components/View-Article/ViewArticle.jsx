@@ -46,8 +46,8 @@ const ViewArticle = () => {
   useEffect(() => {
     const fetchData = async () => {
       const cookies = new Cookies();
-      if (!cookies.get("view", `article-${category}-${id}`)) {
-        cookies.set("view", `article-${category}-${id}`)
+      if (!cookies.get(`view-article-${category}-${id}`, `article-${category}-${id}`)) {
+        cookies.set(`view-article-${category}-${id}`, `article-${category}-${id}`)
         
         await view(category, id)
       }
