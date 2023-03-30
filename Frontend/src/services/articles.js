@@ -49,3 +49,20 @@ export async function editArticle(category, formData) {
         console.log(error)
     }
 }
+
+export async function view(category, id) {
+    try {
+        let query = await fetch(`http://localhost:3000/article/view`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ category: category, id: id })
+        })
+
+        let data = await query.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}

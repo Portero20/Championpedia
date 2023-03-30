@@ -3,6 +3,7 @@ import '../../scss/base/medias-detail.css'
 
 import { React, useEffect, useMemo, useRef, useState } from 'react'
 import { Buffer } from 'buffer';
+import Cookies from 'universal-cookie'
 import Button from 'react-bootstrap/Button';
 import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
@@ -12,6 +13,7 @@ import Team from '../Teams/Team';
 import TextoHtml from '../TextoHtml';
 import Trophies from '../Trophies/Trophies';
 import { detail } from "../../services/articles"
+import { view } from '../../services/articles';
 import { editArticle } from '../../services/articles';
 import { useParams } from "react-router-dom";
 
@@ -32,14 +34,27 @@ const ViewArticle = () => {
 
   useEffect(() => {
     detail(category, id)
-    .then((response) => {
-      const buffer = response.image;
-      const base64 = Buffer.from(buffer).toString('base64');
-      const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
-      setImageBase64(base64String);
-    })
-    .catch((error) => console.error(error));
-}, []);
+      .then((response) => {
+        const buffer = response.image;
+        const base64 = Buffer.from(buffer).toString('base64');
+        const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+        setImageBase64(base64String);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const cookies = new Cookies();
+      if (!cookies.get("view", `article-${category}-${id}`)) {
+        cookies.set("view", `article-${category}-${id}`)
+        
+        await view(category, id)
+      }
+    };
+  
+    fetchData();
+  }, [id]);
 
   const [articleJodit, setArticleJodit] = useState({
     text: "Texto predeterminado"
