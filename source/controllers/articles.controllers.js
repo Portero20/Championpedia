@@ -495,5 +495,72 @@ module.exports = {
         } catch (error) {
             return res.status(500).json(error)
         }
+    },
+    view: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+            })
+
+            let category;
+
+            if (req.body.category.toLowerCase() == "futbolistas") {
+                category = "players"
+            } else if (req.body.category.toLowerCase() == "equipos") {
+                category = "teams"
+            } else if (req.body.category.toLowerCase() == "copas") {
+                category = "trophies"
+            }
+
+            let query = `UPDATE ${category} SET views = views + 1 WHERE id = ${req.body.id};`
+
+            database.query(query, function (err, results, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    return res.status(200).json("Article updated")
+                }
+            })
+        } catch (error) {
+            return res.status(500).json(error)
+        }
+    },
+    moreViews: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+            })
+
+            let query = `SELECT title, text, image
+            FROM (
+              SELECT title, text, image, 'players' AS category, views
+              FROM players 
+              INNER JOIN imagesplayers ON imagesplayers.player_id = players.id
+              INNER JOIN images ON images.id = imagesplayers.image_id
+              UNION ALL
+              SELECT title, text, image, 'teams' AS category, views
+              FROM teams
+              INNER JOIN imagesteams ON imagesteams.team_id = teams.id
+              INNER JOIN images ON images.id = imagesteams.image_id
+              UNION ALL
+              SELECT title, text, image, 'trophies' AS category, views
+              FROM trophies 
+              INNER JOIN imagestrophies ON imagestrophies.thophy_id = trophies.id
+              INNER JOIN images ON images.id = imagestrophies.image_id
+            ) AS combined
+            ORDER BY views DESC
+            LIMIT 4;`
+
+            database.query(query, function (err, results, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    return res.status(200).json(results)
+                }
+            })
+
+        } catch (error) {
+            return res.status(500).json(error)
+        }
     }
 }
