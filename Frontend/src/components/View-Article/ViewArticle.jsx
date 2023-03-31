@@ -47,12 +47,15 @@ const ViewArticle = () => {
     const fetchData = async () => {
       const cookies = new Cookies();
       if (!cookies.get(`view-article-${category}-${id}`, `article-${category}-${id}`)) {
-        cookies.set(`view-article-${category}-${id}`, `article-${category}-${id}`)
-        
+        cookies.set(`view-article-${category}-${id}`, `article-${category}-${id}`, {
+          path: '/',
+          expires: new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000)
+        })
+
         await view(category, id)
       }
     };
-  
+
     fetchData();
   }, [id]);
 
