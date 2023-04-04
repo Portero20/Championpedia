@@ -4,7 +4,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import {A11y, Navigation, Scrollbar, Thumbs} from 'swiper';
+import {A11y, Autoplay, Navigation, Scrollbar, Thumbs} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import React from 'react'
@@ -20,14 +20,20 @@ const Home = () => {
             <div className="swiper-container">
               <Swiper
                 slidesPerView={1}
-                fadeEffect={{ crossFade: true }}
                 pagination={{ clickable: true }}
                 navigation={{
                   nextEl: ".swiper-button-next",
                   prevEl: ".swiper-button-prev",
                 }}
-                modules={[Navigation, Thumbs, Scrollbar, A11y]}
+                modules={[Navigation, Thumbs, Scrollbar, A11y,Autoplay]}
                 loop={true}
+                autoplay={{
+
+                  delay: 5000,
+                  disableOnInteraction: false,
+
+                }}
+                centeredSlides={true}
               >
                 <SwiperSlide className="containerImagen">
 
@@ -151,7 +157,9 @@ const Home = () => {
         </div>
 
         <div className="containerChampion">
+
           <div className="hijoChampion">
+
             <h1 className="hijoChampion__titulo">¿Qué es championpedia?</h1>
             <p className="hijoChampion__parrafo">
               Lörem ipsum mipös nungen eufiskade köjöra. Previs kasir. Spedinat
@@ -159,9 +167,13 @@ const Home = () => {
             </p>
 
             <div className="containerButton">
+
               <button className="containerButton__escribir">Escribir</button>
+
             </div>
+
           </div>
+          
         </div>
 
         <div className="containerArticulos">

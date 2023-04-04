@@ -49,7 +49,7 @@
                                 font-weight: bolder;
                                 padding: 0.5rem 2rem;
                                 border-radius: 3rem;
-                                
+
 
                             }
 
@@ -115,7 +115,7 @@
                                 font-weight: bolder;
                                 padding: 0.5rem 2rem;
                                 border-radius: 3rem;
-                                
+
 
                             }
 
@@ -181,7 +181,7 @@
                                 font-weight: bolder;
                                 padding: 0.5rem 2rem;
                                 border-radius: 3rem;
-                                
+
 
                             }
 
@@ -234,7 +234,7 @@
 
         .hijoChampion {
 
-            margin-top: 1rem;
+            margin-top: 3rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -245,6 +245,7 @@
 
                 font-weight: bolder;
                 font-size: 1.4rem;
+                margin-top: 1rem;
 
             }
 
@@ -299,12 +300,25 @@
 
             .hijoUltimo {
 
+                box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.25));
+                background-color: white;
+                border-radius: 14px;
+                padding: .6rem;
+                max-height: 100%;
+
                 .titular {
 
                     margin-top: .5rem;
                     font-size: 1.3rem;
                     font-weight: bolder;
                     text-decoration: underline;
+
+                }
+
+                .imagenUltimo {
+
+                    width: 100%;
+                    border-radius: 14px;
 
                 }
 
@@ -333,6 +347,8 @@
 
         .hijoProximo1 {
 
+            margin-bottom: 2rem;
+
             .titularProximo {
 
                 margin-top: .5rem;
@@ -348,6 +364,7 @@
         .hijoProximo2 {
 
             border-top: 1px solid black;
+            margin-bottom: 2rem;
 
             .titularProximo {
 
@@ -414,6 +431,7 @@
             .right-content {
 
                 width: calc(100% - 120px);
+                margin-top: 1rem;
 
                 .titularVisto {
 
@@ -471,5 +489,83 @@
         }
 
     }
+
+}
+
+@media (min-width: 48em) and (max-width: 65em) {
+
+    .container__articulo {
+
+        .containerImagen {
+
+            .contenedorImagenTexto {
+
+                .hijoText {
+
+                    .portadaContainer {
+
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        flex-direction: column;
+
+
+                    }
+
+
+                }
+
+            }
+
+        }
+
+        .containerImagen2 {
+
+            .contenedorImagenTexto2 {
+
+                .hijoText2 {
+
+                    .portadaContainer2 {
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+
+
+                    }
+
+
+                }
+
+            }
+
+        }
+
+        .containerImagen3 {
+
+            .contenedorImagenTexto3 {
+
+                .hijoText3 {
+
+                    .portadaContainer3 {
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+
+
+                    }
+
+
+                }
+
+            }
+
+        }
+
+    }
+
 
 }
