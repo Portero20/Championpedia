@@ -9,41 +9,85 @@ import {SiWhatsapp} from 'react-icons/si'
 
 const Footer = () => {
   return (
-    <div className='containerFooter'>
+    <div className="containerFooter">
 
-        <div className='hijoFooter'>
+        <div className="containerFooter__logo">
 
-        <div className='containerLogo'>
-            <img src={Championpedia} alt="pelota de futbol" className="logoChampionpedia" />
-        </div>
+            <div className='hijoLogo'>
 
-        </div>
 
-        <div className='hijoEnlacess'>
-            <a href="#" className='enlacesFooter'>Home</a>
-            <a href="#" className='enlacesFooter'>Agent</a>
-            <a href="#" className='enlacesFooter'>About</a>
-            <a href="#" className='enlacesFooter'>Listing</a>
-            <a href="#" className='enlacesFooter'>Blog</a>
-            <a href="#" className='enlacesFooter'>Contact</a>
-        </div>
+                <div className='containerEnlaces'>
 
-        <div className='hijoIconos'>
+                    <img src={Championpedia} alt="Championpedia" className='logoChampion' />
 
-            <div className='iconosFooter'>
-                <RxInstagramLogo/>
-                <AiFillTwitterCircle/>
-                <SiWhatsapp/>
+                    <div className='enlaceHijo'>
+
+                        <a href="#" className='enlace'>Inicio</a>
+
+                    </div>
+
+                    <div className='enlaceHijo'>
+
+                        <a href="#" className='enlace'>Nosotros</a>
+
+                    </div>
+
+                    <div className='enlaceHijo'>
+
+                        <a href="#" className='enlace'>Copas</a>
+
+                    </div>
+
+                    <div className='enlaceHijo'>
+
+                        <a href="#" className='enlace'>Equipos</a>
+
+                    </div>
+
+                    <div className='enlaceHijo'>
+
+                        <a href="#" className='enlace'>Jugadores</a>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div className="buscadorContainer">
+
+                <div className="hijoBuscador">
+
+                    <input
+                        type="text"
+                        className="inputBurgerr"
+                        placeholder="🔍︎ Buscar..."
+                        list="search-res"
+                        spellCheck="false"
+                        autoComplete="off"
+                    />
+
+                </div>
+
+                <div className="socialContainer">
+
+                <div className="hijoSocial">
+
+                    <a href="#" className='enlaceSocial'><AiFillTwitterCircle className='iconSocial' color='white'/></a>
+                    <a href="#" className='enlaceSocial'><RxInstagramLogo className='iconSocial' color='white'/></a>
+                    <a href="#" className='enlaceSocial'><SiWhatsapp className='iconSocial' color='white'/></a>
+
+
+                </div>
+
+            </div>
+
             </div>
 
         </div>
 
-        <div className="copyright">
-            <p>© 2021 Championpedia. All rights reserved.</p>
-        </div>
-
+      
     </div>
-  )
+  );
 }
 
 export default Footer

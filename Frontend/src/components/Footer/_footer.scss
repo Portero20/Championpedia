@@ -1,58 +1,149 @@
-.containerFooter{
+.containerFooter {
+
     background-color: #35363c;
-    color: #ffffff;
-    padding: 1.5rem;
+    padding: 1rem;
 
-    .hijoFooter{
+    .containerFooter__logo{
+
         display: flex;
-        justify-content: center;
-        margin-bottom: 1rem;
-
-        .logoFooter{
-            object-fit: scale-down;
-        }
-    }
-
-    .hijoEnlacess{
-        display: flex;
-        justify-content: center;
-        align-items: center;
         flex-direction: column;
-        width: 100%;
-        gap: 1.5rem;
-        color: #ffffff;
+        justify-content: center;
+        align-items: center;
 
-        .enlacesFooter{
+        .hijoLogo{
 
-            color: #ffffff;
+            flex-direction: column;
+
+            .logoChampion{
+
+                width: 100%;
+                object-fit: scale-down;
+
+            }
 
         }
 
-    }
+        .containerEnlaces{
 
-    .hijoIconos{
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1rem;
-
-        .iconosFooter{
             display: flex;
-            gap: 1rem;
-            font-size: 1.5rem;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            color: white;
+
+        }
+
+        .buscadorContainer{
+
+            .hijoBuscador{
+
+                display: flex;
+                justify-content: center;
+                margin-top: 1rem;
+
+                .inputBurgerr{
+
+                    width: 100%;
+                    border: none;
+                    border-radius: 1rem;
+                    padding: .5rem 1rem;
+                    outline: none;
+                    background-color: white;
+                    color: white;
+                    border: 1px solid white;
+
+
+                }
+
+            }
+
+        }
+
+        .socialContainer{
+
+            .hijoSocial{
+
+                margin-top: 1rem;
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+
+                .iconSocial{
+
+                    width: 1.5rem;
+                    height: 1.5rem;
+
+                }
+
+
+            }
 
         }
 
     }
 
-    .copyright{
+}
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 1rem;
+@media(min-width: 320px){
+
+    .logoChampion{
+
+        max-width: 320px;
 
     }
+
+    .inputBurgerr{
+
+        max-width: 480px;
+
+    }
+
+}
+
+@media(min-width: 1024px){
+
+
+    .containerFooter{
+
+        .containerFooter__logo{
+
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 3rem;
+
+            .containerEnlaces{
+
+                flex-direction: row;
+                padding: 1rem;
+
+            }
+
+            .buscadorContainer{
+
+                
+                flex-direction: column;
+    
+            }
+
+            .buscadorContainer{
+
+                .hijoBuscador{
+    
+                    .inputBurgerr{
+    
+                        width: 100%;
+                
+                    }
+    
+                }
+    
+            }
+
+        }
+
+
+    }
+    
 
 }
