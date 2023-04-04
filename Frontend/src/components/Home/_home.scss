@@ -1,0 +1,475 @@
+.container__articulo {
+
+    .containerImagen {
+
+        .contenedorImagenTexto {
+
+            .hijoText {
+
+                .portadaContainer {
+
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-direction: column;
+                    background-image: url('../../img/slider/messi-portada.webp');
+                    background-size: cover;
+                    height: 100vh;
+                    background-position: center;
+
+                    .containerContenido {
+
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+
+                        .textoImagen {
+
+                            font-size: 2rem;
+                            color: white;
+                            padding-left: 1rem;
+                            font-weight: bolder;
+
+                        }
+
+                        .parrafoContainer {
+
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+
+                        }
+
+                        .buttonContainer {
+
+                            padding-left: 1rem;
+                            margin-bottom: .5rem;
+
+                            .buttonJugadores {
+
+                                font-weight: bolder;
+                                padding: 0.5rem 2rem;
+                                border-radius: 3rem;
+                                
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+    }
+
+    .containerImagen2 {
+
+        .contenedorImagenTexto2 {
+
+            .hijoText2 {
+
+                .portadaContainer2 {
+
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-direction: column;
+                    background-image: url('../../img/slider/copa_del_mundo.webp');
+                    background-size: cover;
+                    height: 100vh;
+                    background-position: center;
+
+                    .containerContenido2 {
+
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+
+                        .textoImagen2 {
+
+                            font-size: 2rem;
+                            color: white;
+                            padding-left: 1rem;
+                            font-weight: bolder;
+
+                        }
+
+                        .parrafoContainer2 {
+
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+
+                        }
+
+                        .buttonContainer2 {
+
+                            padding-left: 1rem;
+                            margin-bottom: .5rem;
+
+                            .buttonCopas {
+
+                                font-weight: bolder;
+                                padding: 0.5rem 2rem;
+                                border-radius: 3rem;
+                                
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+    }
+
+    .containerImagen3 {
+
+        .contenedorImagenTexto3 {
+
+            .hijoText3 {
+
+                .portadaContainer3 {
+
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-direction: column;
+                    background-image: url('../../img/slider/formacion-argentina.jpg');
+                    background-size: cover;
+                    height: 100vh;
+                    background-position: center;
+
+                    .containerContenido3 {
+
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+
+                        .textoImagen3 {
+
+                            font-size: 2rem;
+                            color: white;
+                            padding-left: 1rem;
+                            font-weight: bolder;
+
+                        }
+
+                        .parrafoContainer3 {
+
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+
+                        }
+
+                        .buttonContainer3 {
+
+                            padding-left: 1rem;
+                            margin-bottom: .5rem;
+
+                            .buttonEquipos {
+
+                                font-weight: bolder;
+                                padding: 0.5rem 2rem;
+                                border-radius: 3rem;
+                                
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+    }
+
+    .imagenPortada {
+
+        height: 100vh;
+        width: 100vh;
+        object-fit: cover;
+
+    }
+
+    .swiper-button-next::after {
+        font-size: 10px;
+    }
+
+    .swiper-button-prev::after {
+        font-size: 10px;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+
+        width: 40px;
+        height: 40px;
+        background-color: #1c1c1cc5;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        transition: opacity 0.3s ease-in-out;
+
+
+    }
+
+    .containerChampion {
+
+        .hijoChampion {
+
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+
+            &__titulo {
+
+                font-weight: bolder;
+                font-size: 1.4rem;
+
+            }
+
+            &__parrafo {
+
+                text-align: center;
+                font-size: .9rem;
+
+            }
+
+            .containerButton {
+
+                &__escribir {
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #E17E7E;
+                    color: white;
+                    padding: 1rem;
+                    border-radius: 2rem;
+                    width: 7rem;
+                    height: 2.5rem;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .containerArticulos {
+
+        padding: 1rem;
+
+        .containerUltimo {
+
+            .tituloUltimo {
+
+                font-weight: bolder;
+                font-size: 1.3rem;
+                text-align: left;
+                background-image: linear-gradient(to right, #E17E7E 65%, transparent 50%);
+                background-position: bottom;
+                background-size: 100% 3px;
+                background-repeat: no-repeat;
+                display: inline-block;
+                padding-bottom: .3rem;
+            }
+
+
+            .hijoUltimo {
+
+                .titular {
+
+                    margin-top: .5rem;
+                    font-size: 1.3rem;
+                    font-weight: bolder;
+                    text-decoration: underline;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .containerProximo {
+
+        margin-top: 3rem;
+
+        .tituloProximo {
+
+            font-size: 1.3rem;
+            font-weight: bolder;
+            background-image: linear-gradient(to right, #E17E7E 55%, transparent 50%);
+            background-position: bottom;
+            background-size: 100% 3px;
+            background-repeat: no-repeat;
+            display: inline-block;
+            padding-bottom: .3rem;
+
+        }
+
+        .hijoProximo1 {
+
+            .titularProximo {
+
+                margin-top: .5rem;
+                font-size: 1.3rem;
+                font-weight: bolder;
+                text-decoration: underline;
+
+            }
+
+
+        }
+
+        .hijoProximo2 {
+
+            border-top: 1px solid black;
+
+            .titularProximo {
+
+                margin-top: .5rem;
+                font-size: 1.3rem;
+                font-weight: bolder;
+                text-decoration: underline;
+
+            }
+
+
+        }
+
+        .hijoProximo3 {
+
+            border-top: 1px solid black;
+
+            .titularProximo {
+
+                margin-top: .5rem;
+                font-size: 1.3rem;
+                font-weight: bolder;
+                text-decoration: underline;
+
+            }
+
+
+        }
+
+    }
+
+    .containerVisto {
+
+        margin-top: 3rem;
+
+        .tituloVisto {
+
+            font-size: 1.3rem;
+            font-weight: bolder;
+            background-image: linear-gradient(to right, #E17E7E 50%, transparent 50%);
+            background-position: bottom;
+            background-size: 100% 3px;
+            background-repeat: no-repeat;
+            display: inline-block;
+            padding-bottom: .3rem;
+
+        }
+
+        .hijoVisto {
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+
+            .imagenVisto {
+
+                width: 100px;
+                height: auto;
+                object-fit: scale-down;
+
+            }
+
+            .right-content {
+
+                width: calc(100% - 120px);
+
+                .titularVisto {
+
+                    font-weight: bold;
+                    text-decoration: underline;
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+
+//medias Home 
+
+@media (min-width: 30em) {
+
+    .hijoVisto {
+
+        gap: 3rem;
+
+    }
+
+}
+
+@media (min-width: 75em) {
+
+    .containerArticulos {
+
+        display: grid;
+        grid-template-columns: auto auto auto;
+        place-content: center;
+        align-self: stretch;
+        gap: 5rem;
+        margin-top: 3rem;
+
+    }
+
+    .container__articulo {
+
+        .containerProximo {
+
+            margin: 0;
+
+        }
+
+        .containerVisto {
+
+            margin: 0;
+
+        }
+
+    }
+
+}
