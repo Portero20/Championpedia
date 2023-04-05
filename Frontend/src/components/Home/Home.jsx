@@ -4,14 +4,55 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import {A11y, Autoplay, Navigation, Scrollbar, Thumbs} from 'swiper';
+import { A11y, Autoplay, Navigation, Scrollbar, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { lastProduct, moreViews } from '../../services/articles';
+import { React, useState, useEffect } from 'react';
+import TextoHtml from '../TextoHtml';
+import { Buffer } from 'buffer';
 
-import React from 'react'
-import campeones from '../../img/home/argentina-campeon.webp';
 import titularImagen from '../../img/home/titular-imagen.png'
 
 const Home = () => {
+  const [lastArticle, setLastArticle] = useState({});
+  const [articles, setArticles] = useState([]);
+
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await lastProduct();
+      const buffer = data.image;
+      const base64 = Buffer.from(buffer).toString('base64');
+      const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+      data.image = base64String
+      setLastArticle(data);
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchMore() {
+      let data = await moreViews();
+
+      data = data.map(article => {
+        const buffer = article.image;
+        const base64 = Buffer.from(buffer).toString('base64');
+        const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+
+        return {
+          title: article.title,
+          text: article.text,
+          image: base64String
+        }
+      })
+
+      setArticles(data);
+
+    }
+    fetchMore();
+  }, []);
+
+  console.log(articles);
   return (
     <>
       <div className="container__articulo">
@@ -25,7 +66,7 @@ const Home = () => {
                   nextEl: ".swiper-button-next",
                   prevEl: ".swiper-button-prev",
                 }}
-                modules={[Navigation, Thumbs, Scrollbar, A11y,Autoplay]}
+                modules={[Navigation, Thumbs, Scrollbar, A11y, Autoplay]}
                 loop={true}
                 autoplay={{
 
@@ -69,7 +110,7 @@ const Home = () => {
                       </div>
 
                     </div>
-                    
+
                   </div>
                 </SwiperSlide>
 
@@ -107,7 +148,7 @@ const Home = () => {
                       </div>
 
                     </div>
-                    
+
                   </div>
                 </SwiperSlide>
 
@@ -145,7 +186,7 @@ const Home = () => {
                       </div>
 
                     </div>
-                    
+
                   </div>
                 </SwiperSlide>
 
@@ -173,7 +214,7 @@ const Home = () => {
             </div>
 
           </div>
-          
+
         </div>
 
         <div className="containerArticulos">
@@ -182,16 +223,13 @@ const Home = () => {
 
             <div className="hijoUltimo">
               <img
-                src={campeones}
+                src={lastArticle.image}
                 alt="Argentina campeon del mundo"
                 className="imagenUltimo"
               />
-              <h2 className="titular">Argentina Campeones del mundo 2022</h2>
+              <h2 className="titular">{lastArticle.title}</h2>
               <p className="descripcion">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas asperiores assumenda eum blanditiis tempore. Quod aut
-                repellendus consectetur a cum, est dolores sequi commodi.
-                Corporis nihil reprehenderit numquam beatae est.
+                <TextoHtml texto={lastArticle.text} />
               </p>
             </div>
           </div>
@@ -239,53 +277,22 @@ const Home = () => {
           <div className="containerVisto">
             <h2 className="tituloVisto">LO MÁS VISTO</h2>
 
-            <div className="hijoVisto">
-              <img src={titularImagen} alt="" className="imagenVisto" />
 
-              <div className="right-content">
-                <h3 className="titularVisto">El mundial más tecnologico</h3>
-                <p>
-                  Lörem ipsum mipös nungen eufiskade köjöra. Previs kasir.
-                  Spedinat sung.{" "}
-                </p>
-              </div>
-            </div>
+            {articles && articles.length > 0 ? articles.map(article => {
+              return (
+                <div className="hijoVisto">
+                  <img src={article.image} alt="" className="imagenVisto" />
 
-            <div className="hijoVisto">
-              <img src={titularImagen} alt="" className="imagenVisto" />
+                  <div className="right-content">
+                    <h3 className="titularVisto">{article.title}</h3>
+                    <p>
+                      {article.text}
+                    </p>
+                  </div>
+                </div>
+              )
+            }) : null}
 
-              <div className="right-content">
-                <h3 className="titularVisto">El mundial más tecnologico</h3>
-                <p>
-                  Lörem ipsum mipös nungen eufiskade köjöra. Previs kasir.
-                  Spedinat sung.{" "}
-                </p>
-              </div>
-            </div>
-
-            <div className="hijoVisto">
-              <img src={titularImagen} alt="" className="imagenVisto" />
-
-              <div className="right-content">
-                <h3 className="titularVisto">El mundial más tecnologico</h3>
-                <p>
-                  Lörem ipsum mipös nungen eufiskade köjöra. Previs kasir.
-                  Spedinat sung.{" "}
-                </p>
-              </div>
-            </div>
-
-            <div className="hijoVisto">
-              <img src={titularImagen} alt="" className="imagenVisto" />
-
-              <div className="right-content">
-                <h3 className="titularVisto">El mundial más tecnologico</h3>
-                <p>
-                  Lörem ipsum mipös nungen eufiskade köjöra. Previs kasir.
-                  Spedinat sung.{" "}
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

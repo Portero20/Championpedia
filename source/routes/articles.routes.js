@@ -21,6 +21,6 @@ router.post("/edit/equipos", editTeamsMiddlewares, articlesControllers.edit)
 router.post("/edit/copas", editTrophiesMiddlewares, articlesControllers.edit)
 router.post("/view", articlesControllers.view)
 router.get("/last", articlesControllers.last)
-router.post("/moreViews", articlesControllers.moreViews)
+router.get("/moreViews", articlesControllers.moreViews)
 
 module.exports = router

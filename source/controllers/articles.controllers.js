@@ -1,8 +1,7 @@
 const database = require('../sql/dbConnection');
 const { validationResult } = require("express-validator")
 const moment = require("moment");
-const { resolve } = require("path")
-const { unlinkSync } = require("fs")
+const { JSDOM } = require('jsdom');
 
 module.exports = {
     create: (req, res) => {
@@ -424,7 +423,30 @@ module.exports = {
                 if (err) {
                     return console.log(err)
                 } else {
-                    return res.status(200).json(results[0])
+                    const dom = new JSDOM(results[0].text);
+                    const doc = dom.window.document;
+
+                    const firstPTagContent = doc.querySelector('p').textContent.trim();
+                    let secondPTagContent = '';
+
+                    if (firstPTagContent === '') {
+                        const secondPTag = doc.querySelector('p:nth-of-type(2)');
+                        if (secondPTag) {
+                            secondPTagContent = secondPTag.textContent.trim();
+                        }
+                    } else {
+                        secondPTagContent = firstPTagContent;
+                    }
+
+                    const data = {
+                        title: results[0].title,
+                        text: secondPTagContent.slice(0, 300) + "...",
+                        date: results[0].date,
+                        image: results[0].image
+                    };
+
+                    return res.status(200).json(data);
+
                 }
             })
 
@@ -491,7 +513,29 @@ module.exports = {
                 if (err) {
                     return console.log(err)
                 } else {
-                    return res.status(200).json(results)
+                    const data = [];
+
+                    for (let i = 0; i < results.length; i++) {
+                        const dom = new JSDOM(results[i].text);
+                        const doc = dom.window.document;
+
+                        let firstPTagContent = doc.querySelectorAll('p')[0].textContent.trim();
+                        if (firstPTagContent === '') {
+                            firstPTagContent = doc.querySelectorAll('p')[1].textContent.trim();
+                        }
+
+                        const obj = {
+                            title: results[i].title,
+                            text: firstPTagContent.slice(0, 100) + "...",
+                            date: results[i].date,
+                            image: results[i].image
+                        }
+
+                        data.push(obj);
+                    }
+
+                    return res.status(200).json(data);
+
                 }
             })
 

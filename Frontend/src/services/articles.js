@@ -66,3 +66,23 @@ export async function view(category, id) {
         console.log(error)
     }
 }
+
+export async function lastProduct() {
+    try {
+        let query = await fetch(`http://localhost:3000/article/last`)
+        let data = await query.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function moreViews() {
+    try {
+        let query = await fetch(`http://localhost:3000/article/moreViews`)
+        let data = await query.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
