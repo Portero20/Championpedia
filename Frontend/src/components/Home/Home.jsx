@@ -253,7 +253,6 @@ const Home = () => {
                     </h3>
                     <p className="descripcionProximo">
                       {news.description}
-                      {news.url}
                     </p>
                   </div>
                 </Link>
