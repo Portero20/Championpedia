@@ -6,16 +6,16 @@ import 'swiper/css/scrollbar';
 
 import { A11y, Autoplay, Navigation, Scrollbar, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { lastProduct, moreViews } from '../../services/articles';
+import { lastProduct, moreViews, news } from '../../services/articles';
 import { React, useState, useEffect } from 'react';
 import TextoHtml from '../TextoHtml';
 import { Buffer } from 'buffer';
-
-import titularImagen from '../../img/home/titular-imagen.png'
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [lastArticle, setLastArticle] = useState({});
   const [articles, setArticles] = useState([]);
+  const [newsArticle, setNews] = useState([]);
 
 
   useEffect(() => {
@@ -47,12 +47,19 @@ const Home = () => {
       })
 
       setArticles(data);
-
     }
     fetchMore();
   }, []);
 
-  console.log(articles);
+  useEffect(() => {
+    async function fetchNews() {
+      let data = await news();
+
+      setNews(data);
+    }
+    fetchNews();
+  }, []);
+
   return (
     <>
       <div className="container__articulo">
@@ -237,50 +244,30 @@ const Home = () => {
           <div className="containerProximo">
             <h2 className="tituloProximo">LO PRÓXIMO</h2>
 
-            <div className="hijoProximo1">
-              <h3 className="titularProximo">
-                Latino América Unida para el mundial 2023
-              </h3>
-              <p className="descripcionProximo">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Praesentium earum nisi ab excepturi ex tempora, cupiditate vero
-                saepe odit minus reiciendis sequi sit error. Non id tempore
-                suscipit molestias cupiditate.
-              </p>
-            </div>
+            {newsArticle && newsArticle.length > 0 ? newsArticle.map((news, i) => {
+              return (
+                <Link target="_blank" to={news.url}>
+                  <div key={i} className="hijoProximo1">
+                    <h3 className="titularProximo">
+                      {news.title}
+                    </h3>
+                    <p className="descripcionProximo">
+                      {news.description}
+                      {news.url}
+                    </p>
+                  </div>
+                </Link>
+              )
+            }) : null}
 
-            <div className="hijoProximo2">
-              <h3 className="titularProximo">
-                Latino América Unida para el mundial 2023
-              </h3>
-              <p className="descripcionProximo">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Praesentium earum nisi ab excepturi ex tempora, cupiditate vero
-                saepe odit minus reiciendis sequi sit error. Non id tempore
-                suscipit molestias cupiditate.
-              </p>
-            </div>
-
-            <div className="hijoProximo3">
-              <h3 className="titularProximo">
-                Latino América Unida para el mundial 2023
-              </h3>
-              <p className="descripcionProximo">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Praesentium earum nisi ab excepturi ex tempora, cupiditate vero
-                saepe odit minus reiciendis sequi sit error. Non id tempore
-                suscipit molestias cupiditate.
-              </p>
-            </div>
           </div>
-
           <div className="containerVisto">
             <h2 className="tituloVisto">LO MÁS VISTO</h2>
 
 
-            {articles && articles.length > 0 ? articles.map(article => {
+            {articles && articles.length > 0 ? articles.map((article, i) => {
               return (
-                <div className="hijoVisto">
+                <div key={i} className="hijoVisto">
                   <img src={article.image} alt="" className="imagenVisto" />
 
                   <div className="right-content">

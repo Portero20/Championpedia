@@ -86,3 +86,13 @@ export async function moreViews() {
         console.log(error)
     }
 }
+
+export async function news() {
+    try {
+        let query = await fetch(`http://localhost:3000/article/news`)
+        let data = await query.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
