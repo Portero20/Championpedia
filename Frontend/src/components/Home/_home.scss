@@ -49,7 +49,7 @@
                                 font-weight: bolder;
                                 padding: 0.5rem 2rem;
                                 border-radius: 3rem;
-
+                                margin-bottom: 1.5rem;
 
                             }
 
@@ -115,7 +115,7 @@
                                 font-weight: bolder;
                                 padding: 0.5rem 2rem;
                                 border-radius: 3rem;
-
+                                margin-bottom: 1.5rem;
 
                             }
 
@@ -181,6 +181,7 @@
                                 font-weight: bolder;
                                 padding: 0.5rem 2rem;
                                 border-radius: 3rem;
+                                margin-bottom: 1.5rem;
 
 
                             }
@@ -231,10 +232,13 @@
     }
 
     .containerChampion {
+        display: flex;
+        justify-content: center;
 
         .hijoChampion {
 
-            margin-top: 3rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -254,6 +258,10 @@
                 text-align: center;
                 font-size: .9rem;
 
+            }
+
+            .hijoChampion__parrafo {
+                padding: 0 1rem;
             }
 
             .containerButton {
@@ -279,8 +287,10 @@
     }
 
     .containerArticulos {
+        padding: 1.5rem;
+        display: grid;
+        justify-items: center;
 
-        padding: 1rem;
 
         .containerUltimo {
 
@@ -295,16 +305,25 @@
                 background-repeat: no-repeat;
                 display: inline-block;
                 padding-bottom: .3rem;
+                margin-bottom: 1rem;
             }
 
 
             .hijoUltimo {
-
+                width: 100%;
+                align-items: center;
                 box-shadow: (0px 4px 4px rgba(0, 0, 0, 0.25));
                 background-color: white;
                 border-radius: 14px;
                 padding: .6rem;
                 max-height: 100%;
+
+                .hijoUltimo-div-img {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    margin: 1.5rem 0;
+                }
 
                 .titular {
 
@@ -316,11 +335,10 @@
                 }
 
                 .imagenUltimo {
-
-                    height: 30rem;
+                    height: 20rem;
                     width: 100%;
                     border-radius: 14px;
-                    object-fit: cover
+                    object-fit: cover;
 
                 }
 
@@ -344,6 +362,7 @@
             background-repeat: no-repeat;
             display: inline-block;
             padding-bottom: .3rem;
+            margin-bottom: 1.5rem;
 
         }
 
@@ -354,6 +373,7 @@
             .titularProximo {
 
                 margin-top: .5rem;
+                margin-bottom: 1rem;
                 font-size: 1.3rem;
                 font-weight: bolder;
                 text-decoration: underline;
@@ -371,6 +391,7 @@
             .titularProximo {
 
                 margin-top: .5rem;
+                margin-bottom: 1rem;
                 font-size: 1.3rem;
                 font-weight: bolder;
                 text-decoration: underline;
@@ -387,6 +408,7 @@
             .titularProximo {
 
                 margin-top: .5rem;
+                margin-bottom: 1rem;
                 font-size: 1.3rem;
                 font-weight: bolder;
                 text-decoration: underline;
@@ -412,7 +434,7 @@
             background-repeat: no-repeat;
             display: inline-block;
             padding-bottom: .3rem;
-
+            margin-bottom: 1.5rem;
         }
 
         .hijoVisto {
@@ -447,7 +469,15 @@
         }
 
     }
+}
 
+@media (min-width: 32em) {
+
+    .containerUltimo,
+    .containerProximo,
+    .containerVisto {
+        max-width: 40em;
+    }
 }
 
 
@@ -463,16 +493,29 @@
 
 }
 
+@media (min-width: 48em) {
+
+    .hijoChampion {
+        max-width: 48em;
+    }
+
+}
+
 @media (min-width: 75em) {
+    .containerPadre {
+        display: flex;
+        justify-content: center;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
 
     .containerArticulos {
 
-        display: grid;
-        grid-template-columns: auto auto auto;
-        place-content: center;
-        align-self: stretch;
-        gap: 5rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4rem;
+        justify-content: center;
         margin-top: 3rem;
+        max-width: 90em;
 
     }
 
@@ -568,6 +611,16 @@
         }
 
     }
+}
 
+@media (min-width: 90em) {
+    .containerPadre {
+        display: flex;
+        justify-content: center;
+    }
 
+    .containerArticulos {
+        gap: 6rem;
+        max-width: 100em;
+    }
 }

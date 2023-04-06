@@ -17,7 +17,6 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
   const [newsArticle, setNews] = useState([]);
 
-
   useEffect(() => {
     async function fetchData() {
       const data = await lastProduct();
@@ -210,8 +209,7 @@ const Home = () => {
 
             <h1 className="hijoChampion__titulo">¿Qué es championpedia?</h1>
             <p className="hijoChampion__parrafo">
-              Lörem ipsum mipös nungen eufiskade köjöra. Previs kasir. Spedinat
-              sung. Dism autoning.
+              Championpedia es una wiki dedicada a los apasionados del fútbol que permite crear y compartir información actualizada sobre los equipos más populares, copas y campeones.
             </p>
 
             <div className="containerButton">
@@ -224,61 +222,67 @@ const Home = () => {
 
         </div>
 
-        <div className="containerArticulos">
-          <div className="containerUltimo">
-            <h2 className="tituloUltimo">LO ÚLTIMO</h2>
+        <div className='containerPadre'>
+          <div className="containerArticulos">
+            <div className="containerUltimo">
+              <h2 className="tituloUltimo">LO ÚLTIMO</h2>
 
-            <div className="hijoUltimo">
-              <img
-                src={lastArticle.image}
-                alt="Argentina campeon del mundo"
-                className="imagenUltimo"
-              />
-              <h2 className="titular">{lastArticle.title}</h2>
-              <p className="descripcion">
-                <TextoHtml texto={lastArticle.text} />
-              </p>
-            </div>
-          </div>
-
-          <div className="containerProximo">
-            <h2 className="tituloProximo">LO PRÓXIMO</h2>
-
-            {newsArticle && newsArticle.length > 0 ? newsArticle.map((news, i) => {
-              return (
-                <Link target="_blank" to={news.url}>
-                  <div key={i} className="hijoProximo1">
-                    <h3 className="titularProximo">
-                      {news.title}
-                    </h3>
-                    <p className="descripcionProximo">
-                      {news.description}
-                    </p>
+              <Link to={`/articulo/${lastArticle.category}/${lastArticle.id}`}>
+                <div className="hijoUltimo">
+                  <div className='hijoUltimo-div-img'>
+                    <img
+                      src={lastArticle.image}
+                      alt="Argentina campeon del mundo"
+                      className="imagenUltimo"
+                    />
                   </div>
-                </Link>
-              )
-            }) : null}
-
-          </div>
-          <div className="containerVisto">
-            <h2 className="tituloVisto">LO MÁS VISTO</h2>
-
-
-            {articles && articles.length > 0 ? articles.map((article, i) => {
-              return (
-                <div key={i} className="hijoVisto">
-                  <img src={article.image} alt="" className="imagenVisto" />
-
-                  <div className="right-content">
-                    <h3 className="titularVisto">{article.title}</h3>
-                    <p>
-                      {article.text}
-                    </p>
-                  </div>
+                  <h2 className="titular">{lastArticle.title}</h2>
+                  <p className="descripcion">
+                    <TextoHtml texto={lastArticle.text} />
+                  </p>
                 </div>
-              )
-            }) : null}
+              </Link>
+            </div>
 
+            <div className="containerProximo">
+              <h2 className="tituloProximo">LO PRÓXIMO</h2>
+
+              {newsArticle && newsArticle.length > 0 ? newsArticle.map((news, i) => {
+                return (
+                  <Link target="_blank" to={news.url}>
+                    <div key={i} className="hijoProximo1">
+                      <h3 className="titularProximo">
+                        {news.title}
+                      </h3>
+                      <p className="descripcionProximo">
+                        {news.description}
+                      </p>
+                    </div>
+                  </Link>
+                )
+              }) : null}
+
+            </div>
+            <div className="containerVisto">
+              <h2 className="tituloVisto">LO MÁS VISTO</h2>
+
+
+              {articles && articles.length > 0 ? articles.map((article, i) => {
+                return (
+                  <div key={i} className="hijoVisto">
+                    <img src={article.image} alt="" className="imagenVisto" />
+
+                    <div className="right-content">
+                      <h3 className="titularVisto">{article.title}</h3>
+                      <p>
+                        {article.text}
+                      </p>
+                    </div>
+                  </div>
+                )
+              }) : null}
+
+            </div>
           </div>
         </div>
       </div>

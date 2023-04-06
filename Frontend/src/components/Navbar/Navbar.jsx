@@ -6,7 +6,7 @@ import React, { useEffect, useRef } from 'react';
 import { results, searchArticle } from '../../services/search'
 import Championpedia from '../../img/logo/Championpedia.png'
 import { HiOutlineMenuAlt3 } from 'react-icons/hi'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Links from '../../common/Links/Links';
 import { useState } from 'react';
 
