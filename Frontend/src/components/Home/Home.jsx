@@ -39,6 +39,8 @@ const Home = () => {
         const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
 
         return {
+          id: article.id,
+          category: article.category,
           title: article.title,
           text: article.text,
           image: base64String
@@ -269,16 +271,18 @@ const Home = () => {
 
               {articles && articles.length > 0 ? articles.map((article, i) => {
                 return (
-                  <div key={i} className="hijoVisto">
-                    <img src={article.image} alt="" className="imagenVisto" />
+                  <Link to={`/articulo/${article.category}/${article.id}`}>
+                    <div key={i} className="hijoVisto">
+                      <img src={article.image} alt="" className="imagenVisto" />
 
-                    <div className="right-content">
-                      <h3 className="titularVisto">{article.title}</h3>
-                      <p>
-                        {article.text}
-                      </p>
+                      <div className="right-content">
+                        <h3 className="titularVisto">{article.title}</h3>
+                        <p>
+                          {article.text}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 )
               }) : null}
 
