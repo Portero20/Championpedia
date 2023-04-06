@@ -216,7 +216,9 @@ const Home = () => {
 
             <div className="containerButton">
 
-              <button className="containerButton__escribir">Escribir</button>
+              <Link to="/articulo/create">
+                <button className="containerButton__escribir">Escribir</button>
+              </Link>
 
             </div>
 
