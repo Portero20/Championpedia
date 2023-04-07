@@ -1,5 +1,5 @@
 import './_links.scss'
-
+import { Link } from 'react-router-dom';
 import React from 'react'
 
 const Links = () => {
@@ -10,9 +10,11 @@ const Links = () => {
 
         <div className="hijoLinks">
 
-          <div className="homeFlex">
-            <h3>Home</h3>
-          </div>
+          <Link to="/">
+            <div className="homeFlex">
+              <h3>Home</h3>
+            </div>
+          </Link>
 
           <div className="copasFlex">
             <h3>Copas</h3>
@@ -25,11 +27,11 @@ const Links = () => {
           <div className="jugadoresFlex">
             <h3>Jugadores</h3>
           </div>
-          
+
         </div>
 
       </div>
-      
+
     </div>
   );
 }

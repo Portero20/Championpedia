@@ -1,6 +1,7 @@
 import './_footer.scss';
 import '../../scss/barrel.scss';
 
+import { Link } from 'react-router-dom';
 import { AiFillTwitterCircle } from 'react-icons/ai'
 import Championpedia from '../../img/logo/Championpedia.png';
 import React, { useEffect, useRef } from 'react';
@@ -62,31 +63,31 @@ const Footer = () => {
 
                         <div className='enlaceHijo'>
 
-                            <a href="#" className='enlace'>Inicio</a>
+                            <Link to="/" className='enlace'>Inicio</Link>
 
                         </div>
 
                         <div className='enlaceHijo'>
 
-                            <a href="#" className='enlace'>Nosotros</a>
+                            <Link to="#" className='enlace'>Nosotros</Link>
 
                         </div>
 
                         <div className='enlaceHijo'>
 
-                            <a href="#" className='enlace'>Copas</a>
+                            <Link to="#" className='enlace'>Copas</Link>
 
                         </div>
 
                         <div className='enlaceHijo'>
 
-                            <a href="#" className='enlace'>Equipos</a>
+                            <Link to="#" className='enlace'>Equipos</Link>
 
                         </div>
 
                         <div className='enlaceHijo'>
 
-                            <a href="#" className='enlace'>Jugadores</a>
+                            <Link to="#" className='enlace'>Jugadores</Link>
 
                         </div>
 
@@ -121,9 +122,9 @@ const Footer = () => {
 
                         <div className="hijoSocial">
 
-                            <a href="#" className='enlaceSocial'><AiFillTwitterCircle className='iconSocial' color='white' /></a>
-                            <a href="#" className='enlaceSocial'><RxInstagramLogo className='iconSocial' color='white' /></a>
-                            <a href="#" className='enlaceSocial'><SiWhatsapp className='iconSocial' color='white' /></a>
+                            <Link to="#" className='enlaceSocial'><AiFillTwitterCircle className='iconSocial' color='white' /></Link>
+                            <Link to="#" className='enlaceSocial'><RxInstagramLogo className='iconSocial' color='white' /></Link>
+                            <Link to="#" className='enlaceSocial'><SiWhatsapp className='iconSocial' color='white' /></Link>
 
 
                         </div>
