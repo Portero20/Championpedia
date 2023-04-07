@@ -157,11 +157,9 @@ const Navbar = () => {
           <div className="linksWhite">
             <div className="padreWhite">
               <div className="linksHide">
-                <Link to="/">
-                  <div className="homeFlex">
-                    <h3>Home</h3>
-                  </div>
-                </Link>
+                <div className="homeFlex">
+                  <h3>Home</h3>
+                </div>
 
                 <div className="copasFlex">
                   <h3>Copas</h3>

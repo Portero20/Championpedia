@@ -149,7 +149,7 @@
                     background-position: center;
 
                     .containerContenido3 {
-
+                        width: 100%;
                         display: flex;
                         flex-direction: column;
                         align-items: flex-start;
@@ -573,7 +573,7 @@
                     .portadaContainer2 {
 
                         display: flex;
-                        justify-content: center;
+                        justify-content: flex-end;
                         align-items: center;
                         flex-direction: column;
 
@@ -596,7 +596,7 @@
                     .portadaContainer3 {
 
                         display: flex;
-                        justify-content: center;
+                        justify-content: flex-end;
                         align-items: center;
                         flex-direction: column;
 
