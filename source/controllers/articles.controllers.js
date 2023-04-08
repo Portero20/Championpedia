@@ -114,6 +114,7 @@ module.exports = {
     },
 
     categories: (req, res) => {
+        console.log('entra aca')
         try {
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;

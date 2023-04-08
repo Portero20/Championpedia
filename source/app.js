@@ -3,12 +3,16 @@ const app = express()
 const { port, start } = require("./modules/port")
 const bodyParser = require('body-parser');
 const cors = require("cors")
+const connection = require("./sql/dbConnection")
+
 
 app.get('/', (req, res) => {
     res.send("Hello World!")
 })
 // iniciando el servidor
-app.listen(port, start)
+app.listen(port, start).close(
+    connection.end()
+)
 
 // req.body
 app.use(bodyParser.urlencoded({ extended: true })); // para analizar la aplicación/x-www-form-urlencoded
