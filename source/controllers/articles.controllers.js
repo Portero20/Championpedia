@@ -687,7 +687,7 @@ module.exports = {
                 if (err) {
                     return console.log(err)
                 } else {
-                    return res.status(200).json(results.length);
+                    return res.status(200).json(results);
                 }
             })
         } catch (error) {
