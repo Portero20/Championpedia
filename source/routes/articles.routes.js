@@ -15,6 +15,7 @@ router.post("/futbolistas/create", articlePlayersMiddlewares, articlesController
 router.post("/equipos/create", articleTeamsMiddlewares, articlesControllers.create)
 router.post("/copas/create", articleTrophiesMiddlewares, articlesControllers.create)
 router.get("/categories", articlesControllers.categories)
+router.get("/last/:category", articlesControllers.lastArticles)
 router.get("/:category/:id", articlesControllers.detail)
 router.post("/edit/futbolistas", editPlayersMiddlewares, articlesControllers.edit)
 router.post("/edit/equipos", editTeamsMiddlewares, articlesControllers.edit)
