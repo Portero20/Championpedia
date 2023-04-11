@@ -592,21 +592,21 @@ module.exports = {
                 INNER JOIN images ON imagesplayers.image_id = images.id
                 INNER JOIN categories ON players.category = categories.id
                 ORDER BY date DESC
-                LIMIT 10;`
+                LIMIT 6;`
             } else if (category === "teams") {
                 query = `SELECT teams.id, teams.title, teams.text, teams.date, images.image, categories.category FROM teams
                 INNER JOIN imagesteams ON teams.id = imagesteams.team_id
                 INNER JOIN images ON imagesteams.image_id = images.id
                 INNER JOIN categories ON teams.category = categories.id
                 ORDER BY date DESC
-                LIMIT 10;`
+                LIMIT 6;`
             } else if (category === "trophies") {
                 query = `SELECT trophies.id, trophies.title, trophies.text, trophies.date, images.image, categories.category FROM trophies 
                 INNER JOIN imagestrophies ON trophies.id = imagestrophies.thophy_id
                 INNER JOIN images ON imagestrophies.image_id = images.id
                 INNER JOIN categories ON trophies.category = categories.id
                 ORDER BY date DESC
-                LIMIT 10;`
+                LIMIT 6;`
             }
 
             database.query(query, function (err, results, filed) {
@@ -629,7 +629,6 @@ module.exports = {
                             category: results[i].category,
                             title: results[i].title,
                             text: firstPTagContent.slice(0, 100) + "...",
-                            date: results[i].date,
                             image: results[i].image
                         }
 
@@ -642,6 +641,57 @@ module.exports = {
             })
         } catch (error) {
             return res.status(500).json(error);
+        }
+    },
+    viewsCategory: (req, res) => {
+        try {
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+            })
+            const { page, size } = req.query;
+
+            const limit = parseInt(size);
+            const offset = (page - 1) * size;
+
+            const category = req.params.category
+
+            let query;
+
+            if (category === "players") {
+                query = `SELECT players.id, players.title, images.image, categories.category from players
+                INNER JOIN imagesplayers ON imagesplayers.player_id = players.id
+                INNER JOIN images ON images.id = imagesplayers.image_id
+                INNER JOIN categories ON players.category = categories.id
+                ORDER BY views DESC
+                LIMIT ${limit}
+                OFFSET ${offset};`
+            } else if (category === "teams") {
+                query = `SELECT teams.id, teams.title, images.image, categories.category FROM teams
+                INNER JOIN imagesteams ON teams.id = imagesteams.team_id
+                INNER JOIN images ON imagesteams.image_id = images.id
+                INNER JOIN categories ON teams.category = categories.id
+                ORDER BY views DESC
+                LIMIT ${limit}
+                OFFSET ${offset};`
+            } else if (category === "trophies") {
+                query = `SELECT trophies.id, trophies.title, images.image, categories.category FROM trophies 
+                INNER JOIN imagestrophies ON trophies.id = imagestrophies.thophy_id
+                INNER JOIN images ON imagestrophies.image_id = images.id
+                INNER JOIN categories ON trophies.category = categories.id
+                ORDER BY views DESC
+                LIMIT ${limit}
+                OFFSET ${offset};`
+            }
+
+            database.query(query, function (err, results, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    return res.status(200).json(results.length);
+                }
+            })
+        } catch (error) {
+            return res.status(500).json(error)
         }
     }
 }
