@@ -98,11 +98,17 @@ const Navbar = () => {
         </button>
 
         <div className="containerLogo nav-left">
-          <img
-            src={Championpedia}
-            alt="pelota de futbol"
-            className="logoChampionpedia"
-          />
+          
+          <Link to='/'>
+
+            <img
+              src={Championpedia}
+              alt="pelota de futbol"
+              className="logoChampionpedia"
+            />
+
+          </Link>
+
         </div>
 
         <div className="containerSearch nav-middle">
@@ -163,17 +169,31 @@ const Navbar = () => {
                   </div>
                 </Link>
 
-                <div className="copasFlex">
-                  <h3>Copas</h3>
-                </div>
+                <Link to="/category/copas">
 
-                <div className="equiposFlex">
-                  <h3>Equipos</h3>
-                </div>
+                  <div className="copasFlex">
+                    <h3>Copas</h3>
+                  </div>
 
-                <div className="jugadoresFlex">
-                  <h3>Jugadores</h3>
-                </div>
+                </Link>
+
+                <Link to='/category/equipos'>
+
+                  <div className="equiposFlex">
+                    <h3>Equipos</h3>
+                  </div>
+
+                </Link>
+
+
+                <Link to='/category/jugadores'>
+
+                  <div className="jugadoresFlex">
+                    <h3>Jugadores</h3>
+                  </div>
+
+               </Link>
+
               </div>
             </div>
           </div>

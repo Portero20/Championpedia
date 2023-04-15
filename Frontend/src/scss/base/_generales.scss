@@ -52,6 +52,14 @@ p a {
     display: inline;
 }
 
+//Quitamos los puntos de los <li>
+
+li {
+
+    list-style-type: none;
+    
+}
+
 //configuramos anclas suaves
 
 html {

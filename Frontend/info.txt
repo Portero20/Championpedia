@@ -96,3 +96,27 @@ const base64String = data:image/png;base64,${Buffer.from(base64, 'base64').toStr
 setImageBase64(base64String);: La línea establece el estado imageBase64 con la cadena Base64 válida creada en el paso anterior.
 
 .catch((error) => console.error(error));: Si se produce un error durante la llamada a detail o la conversión de la imagen en una cadena Base64 válida, el código dentro de este bloque se ejecutará y mostrará el error en la consola.
+
+
+//CategoryView
+
+
+{slider.map((slider, i) => (
+
+    <SwiperSlide className="containerCard__slider" key={i}>
+
+        <div className='hijoCards'>
+
+
+            <Slider slider={slider} />
+
+
+        </div>
+
+    </SwiperSlide>
+))}
+
+
+solo agregamos la key al componente SwiperSlide ya que estamos haciendo un mapeo de un array para crear 
+multiples SwiperSlide y React requiere que cada una tenga una prop key unica para indetificarla en caso 
+de que se modifique o se deba actualizar.
