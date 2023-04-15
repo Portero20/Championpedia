@@ -147,7 +147,7 @@ const Navbar = () => {
           </div>
 
           <div className="buttonFlexible">
-            <Link to="http://localhost:5173/articulo/create">
+            <Link to="/articulo/create">
               <button type="button" className="buttonCrear">
                 + Contribuir
               </button>
