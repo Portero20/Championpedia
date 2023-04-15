@@ -230,7 +230,7 @@ module.exports = {
                 category = "trophies"
             }
 
-            database.query(`USE championpedia`, (error) => {
+            database.query(`USE championpedia;`, (error) => {
                 if (error) throw error;
             })
 
@@ -255,7 +255,7 @@ module.exports = {
                 }
             })
 
-            if (req.files) {
+            if (req.files && req.files.length > 0) {
                 let querySelectImg;
 
                 if (category == "players") {
@@ -263,7 +263,7 @@ module.exports = {
                 } else if (category == "teams") {
                     querySelectImg = `SELECT image_id FROM imagesteams WHERE team_id = ${req.body.id}`
                 } else if (category == "trophies") {
-                    querySelectImg = `SELECT image_id FROM imagestrophies WHERE thophy_id = ${req.body.id}`
+                    querySelectImg = `SELECT image_id FROM imagestrophies WHERE thophy_id = ${req.body.id};`
                 }
 
                 database.query(querySelectImg, (error, results, fields) => {
@@ -583,6 +583,7 @@ module.exports = {
             })
 
             const category = req.params.category
+            const size = req.params.size
 
             let query;
 
@@ -592,21 +593,21 @@ module.exports = {
                 INNER JOIN images ON imagesplayers.image_id = images.id
                 INNER JOIN categories ON players.category = categories.id
                 ORDER BY date DESC
-                LIMIT 6;`
+                LIMIT ${size};`
             } else if (category === "teams") {
                 query = `SELECT teams.id, teams.title, teams.text, teams.date, images.image, categories.category FROM teams
                 INNER JOIN imagesteams ON teams.id = imagesteams.team_id
                 INNER JOIN images ON imagesteams.image_id = images.id
                 INNER JOIN categories ON teams.category = categories.id
                 ORDER BY date DESC
-                LIMIT 6;`
+                LIMIT ${size};`
             } else if (category === "trophies") {
                 query = `SELECT trophies.id, trophies.title, trophies.text, trophies.date, images.image, categories.category FROM trophies 
                 INNER JOIN imagestrophies ON trophies.id = imagestrophies.thophy_id
                 INNER JOIN images ON imagestrophies.image_id = images.id
                 INNER JOIN categories ON trophies.category = categories.id
                 ORDER BY date DESC
-                LIMIT 6;`
+                LIMIT ${size};`
             }
 
             database.query(query, function (err, results, filed) {

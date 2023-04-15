@@ -136,24 +136,20 @@ const editPlayers = [
     body("debut").notEmpty().withMessage("La fecha de debut no puede quedar vacía").isISO8601()
         .withMessage('Fecha debe tener un formato válido ISO 8601. (Año-mes-dia)').bail(),
     body("image").custom((value, { req }) => {
-        let imagen = req.files
+        let imagen = req.files[0]
 
         if (!imagen || imagen.length == 0) {
-            throw new Error("La imagen no puede quedar vacía")
+            return true
         }
 
         let extensiones = [".svg", ".jpg", ".png", ".jpeg"]
-        let extension = extname(imagen[0].originalname)
+        let extension = extname(imagen.originalname)
         if (!extensiones.includes(extension)) {
             throw new Error("La extension debería ser '.svg', '.jpg', '.png', '.jpeg'")
         }
 
-        if (imagen[0].size > 2097152) {
+        if (imagen.size > 2097152) {
             throw new Error("La imagen supera el peso de 2MB");
-        }
-
-        if (req.files && req.files.length > 1) {
-            throw new Error("Solo puedes subir una imagen");
         }
 
         return true

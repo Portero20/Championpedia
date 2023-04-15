@@ -14,6 +14,14 @@ conexion.connect(function (err) {
         return;
     }
     console.log('Conectado con el identificador ' + conexion.threadId)
+    
+    // Establecer el valor máximo de paquete permitido
+    conexion.query('SET GLOBAL max_allowed_packet=20971520', (error, results) => {
+        if (error) {
+            console.error('Error al establecer max_allowed_packet: ', error);
+            return;
+        }
+    });
 })
 
 module.exports = conexion
