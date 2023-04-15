@@ -1,0 +1,264 @@
+.containerCategories {
+
+    padding: 1rem;
+
+    .hijoCategories {
+
+        .containerTitle {
+
+            .titleCategories {
+
+                font-weight: bolder;
+                font-size: 1.3rem;
+                text-align: left;
+                background-image: linear-gradient(to right, #E17E7E 65%, transparent 50%);
+                background-position: bottom;
+                background-size: 100% 3px;
+                background-repeat: no-repeat;
+                display: inline-block;
+                padding-bottom: .3rem;
+                margin-bottom: 1rem;
+
+            }
+
+        }
+
+        .containerSlider {
+
+            .containerCard__slider {
+
+                .hijoCards {
+
+                    border: 1px solid #9b9b9b;
+                    border-radius: 0.75rem;
+
+                    .containerImage {
+
+                        .imageCard {
+
+                            width: 100%;
+                            height: auto;
+                            border-top-left-radius: 0.75rem;
+                            border-top-right-radius: 0.75rem;
+                            object-fit: cover;
+
+                        }
+
+                    }
+
+                    .contentCard {
+
+                        padding: 1rem;
+
+                        .titleCard {
+
+                            font-size: 1.5rem;
+                            font-weight: bolder;
+
+                        }
+                        
+                        .descriptionCard {
+                            
+                            margin-top: 1.6rem;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .hijoLeido {
+
+        .tituloLeido {
+
+            margin-top: 1rem;
+            font-weight: bolder;
+            font-size: 1.3rem;
+            text-align: left;
+            background-image: linear-gradient(to right, #E17E7E 100%, transparent 50%);
+            background-position: bottom;
+            background-size: 100% 3px;
+            background-repeat: no-repeat;
+            display: inline-block;
+            padding-bottom: .3rem;
+            margin-bottom: 1rem;
+
+        }
+
+    }
+
+    .containerLeido {
+
+        display: grid;
+        place-items: center;
+
+        .containerCard__leido {
+
+            display: grid;
+            place-content: center;
+            grid-template-columns: auto auto;
+            
+            gap: 1.5rem;
+
+            .card__leido {
+
+                border: 1px solid #CAC4D0;
+                width: 100%;
+                border-radius: 0.75rem;
+                padding: 1rem;
+
+                &:nth-child(n+7) {
+
+                    display: none;
+
+                }
+
+
+                .imagenLeido {
+
+                    .cardImage-leido {
+
+                        object-fit: cover;
+
+                    }
+
+                }
+
+                .containerTitle {
+
+                    display: flex;
+                    justify-content: flex-start;
+                    
+                    .tituloLeido {
+
+                        text-decoration: underline;
+                        font-weight: bolder;
+
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .containerPaginacion {
+
+        .hijoPaginacion {
+
+            .ulPaginacion {
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+                padding-left: 0;
+                margin-top: 1rem;
+    
+            }
+
+        }
+
+    }
+
+}
+
+.swiper-pagination-bullet {
+
+    background-color: #787878;
+
+}
+
+
+@media screen and (min-width: 26.5em) {
+
+    .containerCategories {
+
+        .hijoCategories {
+
+            .containerCard__slider {
+
+                display: flex;
+                justify-content: center;
+
+                .hijoCards {
+
+                    max-width: 26.5em;
+
+                }
+
+            }
+
+        }
+
+        .containerLeido {
+
+            .containerCard__leido {
+
+                max-width: 22.5em;
+
+            }
+
+        }
+
+    }
+
+}
+
+
+@media screen and (min-width: 48em) {
+
+    .containerCategories {
+
+        .containerLeido {
+
+            .containerCard__leido {
+    
+                grid-template-columns: auto auto auto;
+                padding-left: 0;
+                
+            }
+    
+        }
+
+    }
+    
+}
+
+
+@media screen and (min-width: 64em) {
+
+    .containerCategories {
+
+        .containerLeido {
+
+            .containerCard__leido {
+
+                grid-template-columns: auto auto auto auto auto auto;
+    
+                .card__leido {
+
+                    &:nth-child(n+7) {
+
+                        display: block;
+
+                    }
+
+                }
+                
+            }
+    
+        }
+
+    }
+
+}
