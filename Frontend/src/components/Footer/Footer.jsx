@@ -75,19 +75,19 @@ const Footer = () => {
 
                         <div className='enlaceHijo'>
 
-                            <Link to="#" className='enlace'>Copas</Link>
+                            <Link to="/category/copas" className='enlace'>Copas</Link>
 
                         </div>
 
                         <div className='enlaceHijo'>
 
-                            <Link to="#" className='enlace'>Equipos</Link>
+                            <Link to="/category/equipos" className='enlace'>Equipos</Link>
 
                         </div>
 
                         <div className='enlaceHijo'>
 
-                            <Link to="#" className='enlace'>Jugadores</Link>
+                            <Link to="/category/jugadores" className='enlace'>Jugadores</Link>
 
                         </div>
 
