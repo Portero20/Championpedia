@@ -105,11 +105,15 @@ const Home = () => {
 
                           <div className="buttonContainer">
 
-                            <button className="buttonJugadores">
+                            <Link to='/category/jugadores'>
 
-                              Jugadores
+                              <button className="buttonJugadores">
 
-                            </button>
+                                Jugadores
+
+                              </button>
+
+                            </Link>
 
                           </div>
 
@@ -143,11 +147,16 @@ const Home = () => {
 
                           <div className="buttonContainer2">
 
-                            <button className="buttonCopas">
+                            <Link to='/category/copas'>
 
-                              Copas
+                              <button className="buttonCopas">
 
-                            </button>
+                                Copas
+
+                              </button>
+
+
+                            </Link>
 
                           </div>
 
@@ -181,11 +190,15 @@ const Home = () => {
 
                           <div className="buttonContainer3">
 
-                            <button className="buttonEquipos">
+                            <Link to='/category/equipos'>
 
-                              Equipos
+                              <button className="buttonEquipos">
 
-                            </button>
+                                Equipos
+
+                              </button>
+
+                            </Link>
 
                           </div>
 
