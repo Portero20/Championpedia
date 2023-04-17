@@ -625,12 +625,16 @@ module.exports = {
                             firstPTagContent = doc.querySelectorAll('p')[1].textContent.trim();
                         }
 
+                        const buffer = results[i].image;
+                        const base64 = Buffer.from(buffer).toString('base64');
+                        const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+
                         const obj = {
                             id: results[i].id,
                             category: results[i].category,
                             title: results[i].title,
                             text: firstPTagContent.slice(0, 100) + "...",
-                            image: results[i].image
+                            image: base64String
                         }
 
                         data.push(obj);
@@ -688,7 +692,23 @@ module.exports = {
                 if (err) {
                     return console.log(err)
                 } else {
-                    return res.status(200).json(results);
+                    let data = [];
+                    
+                    results.forEach(res => {
+                        const buffer = res.image;
+                        const base64 = Buffer.from(buffer).toString('base64');
+                        const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+                        
+                        data.push({
+                            id: res.id,
+                            title: res.title,
+                            image: base64String,
+                            category: res.category
+                        })
+                    });
+
+                    return res.status(200).json(data);
+
                 }
             })
         } catch (error) {
