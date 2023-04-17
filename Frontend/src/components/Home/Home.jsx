@@ -9,7 +9,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { lastProduct, moreViews, news } from '../../services/articles';
 import { React, useState, useEffect } from 'react';
 import TextoHtml from '../TextoHtml';
-import { Buffer } from 'buffer';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -20,10 +19,6 @@ const Home = () => {
   useEffect(() => {
     async function fetchData() {
       const data = await lastProduct();
-      const buffer = data.image;
-      const base64 = Buffer.from(buffer).toString('base64');
-      const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
-      data.image = base64String
       setLastArticle(data);
     }
     fetchData();
@@ -32,21 +27,6 @@ const Home = () => {
   useEffect(() => {
     async function fetchMore() {
       let data = await moreViews();
-
-      data = data.map(article => {
-        const buffer = article.image;
-        const base64 = Buffer.from(buffer).toString('base64');
-        const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
-
-        return {
-          id: article.id,
-          category: article.category,
-          title: article.title,
-          text: article.text,
-          image: base64String
-        }
-      })
-
       setArticles(data);
     }
     fetchMore();
@@ -55,7 +35,6 @@ const Home = () => {
   useEffect(() => {
     async function fetchNews() {
       let data = await news();
-
       setNews(data);
     }
     fetchNews();

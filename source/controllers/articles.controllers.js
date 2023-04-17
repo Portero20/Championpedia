@@ -441,12 +441,16 @@ module.exports = {
                         secondPTagContent = firstPTagContent;
                     }
 
+                    const buffer = results[0].image
+                    const base64 = Buffer.from(buffer).toString('base64');
+                    const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+
                     const data = {
                         id: results[0].id,
                         title: results[0].title,
                         text: secondPTagContent.slice(0, 300) + "...",
                         date: results[0].date,
-                        image: results[0].image,
+                        image: base64String,
                         category: results[0].category
                     };
 
@@ -532,13 +536,17 @@ module.exports = {
                             firstPTagContent = doc.querySelectorAll('p')[1].textContent.trim();
                         }
 
+                        const buffer = results[i].image
+                        const base64 = Buffer.from(buffer).toString('base64');
+                        const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
+
                         const obj = {
                             id: results[i].id,
                             category: results[i].category,
                             title: results[i].title,
                             text: firstPTagContent.slice(0, 100) + "...",
                             date: results[i].date,
-                            image: results[i].image
+                            image: base64String
                         }
 
                         data.push(obj);
