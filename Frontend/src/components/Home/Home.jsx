@@ -241,7 +241,7 @@ const Home = () => {
             </div>
 
             <div className="containerProximo">
-              <h2 className="tituloProximo">LO PRÓXIMO</h2>
+              <h2 className="tituloProximo">Noticias</h2>
 
               {newsArticle && newsArticle.length > 0 ? newsArticle.map((news, i) => {
                 return (

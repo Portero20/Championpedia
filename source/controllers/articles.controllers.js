@@ -187,11 +187,13 @@ module.exports = {
                             if (err) {
                                 return console.log(err)
                             } else {
-                                let image = result[0].image
+                                const buffer = result[0].image
+                                const base64 = Buffer.from(buffer).toString('base64');
+                                const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
 
                                 let data = {
                                     ...article,
-                                    image: image,
+                                    image: base64String,
                                     tags: tags
                                 }
 
@@ -455,7 +457,6 @@ module.exports = {
                     };
 
                     return res.status(200).json(data);
-
                 }
             })
 
@@ -701,12 +702,12 @@ module.exports = {
                     return console.log(err)
                 } else {
                     let data = [];
-                    
+
                     results.forEach(res => {
                         const buffer = res.image;
                         const base64 = Buffer.from(buffer).toString('base64');
                         const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
-                        
+
                         data.push({
                             id: res.id,
                             title: res.title,

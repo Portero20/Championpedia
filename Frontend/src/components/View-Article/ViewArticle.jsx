@@ -2,7 +2,6 @@ import '../../scss/utilities/_utilities.scss';
 import '../../scss/base/medias-detail.css'
 
 import { React, useEffect, useMemo, useRef, useState } from 'react'
-import { Buffer } from 'buffer';
 import Cookies from 'universal-cookie'
 import Button from 'react-bootstrap/Button';
 import InputPlayer from '../Player/InputPlayer';
@@ -22,7 +21,6 @@ const ViewArticle = () => {
   const [article, setarticle] = useState([])
   const [show, setShow] = useState(false);
   const [content, setContent] = useState('');
-  const [imageBase64, setImageBase64] = useState('');
   const editor = useRef(null);
 
   const handleClose = () => setShow(false);
@@ -31,17 +29,6 @@ const ViewArticle = () => {
   useEffect(() => {
     detail(category, id).then(setarticle)
   }, [id])
-
-  useEffect(() => {
-    detail(category, id)
-      .then((response) => {
-        const buffer = response.image;
-        const base64 = Buffer.from(buffer).toString('base64');
-        const base64String = `data:image/png;base64,${Buffer.from(base64, 'base64').toString()}`;
-        setImageBase64(base64String);
-      })
-      .catch((error) => console.error(error));
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -476,7 +463,7 @@ const ViewArticle = () => {
 
           <div className="jugadorContainer">
             <div className="imagen__jugadorFlex">
-              {imageBase64 && <img src={imageBase64} />}
+              {article && <img src={article.image} />}
             </div>
 
             <div className="parrafosPersonales">
