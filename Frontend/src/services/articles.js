@@ -96,3 +96,23 @@ export async function news() {
         console.log(error)
     }
 }
+
+export async function lastCategories(category, size) {
+    try {
+        let query = await fetch(`http://localhost:3000/article/last/${category}/${size}`)
+        let data = await query.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function moreViewsCategory(category, page, size) {
+    try {
+        let query = await fetch(`http://localhost:3000/article/more/${category}/views?page=${page}&size=${size}`)
+        let data = await query.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
