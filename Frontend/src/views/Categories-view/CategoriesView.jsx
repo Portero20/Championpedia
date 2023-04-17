@@ -10,33 +10,53 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import CardsCategory from '../../components/Cards/CardsCategory';
 import Slider from '../../components/Slider/Slider';
+import { useState, useEffect } from 'react';
+import { lastCategories,  moreViewsCategory} from '../../services/articles';
 
 const CategoriesView = () => {
-
+    const [sliderArticles, setSlider] = useState([]);
+    const [moreViews, setMoreViews] = useState([]);
     const { id } = useParams();
-
+    
     let category;
+    let categorySelected;
 
     if (id === 'copas') {
-
         category = 'Copas';
+        categorySelected = "trophies"
 
     } else if (id === 'equipos') {
-
         category = 'Equipos';
+        categorySelected = "teams"
 
     } else if (id === 'jugadores') {
-
         category = 'Jugadores';
+        categorySelected = "players"
 
     } else {
 
         return <h1>Categoría inválida</h1>;
     }
 
-    const tarjetas = Array(12).fill({imagen: futbol, titulo: 'El mundial más tecnológico'});
+    useEffect(() => {
+        async function fetchData() {
+            const data = await lastCategories(categorySelected, 6);
+            setSlider(data);
+        }
+        fetchData();
+    }, [])
 
-    const slider = Array(6).fill({image: uefaTrophy, title: 'Zinedide Zidane',  category: 'Jugadores', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, harum animi quae illo dolorem quo sint, explicabo assumenda expedita nihil reiciendis itaque distinctio praesentium'});
+    useEffect(() => {
+        async function fetchData() {
+            const data = await moreViewsCategory(categorySelected, 1, 2);
+            setMoreViews(data);
+        }
+        fetchData();
+    }, [])
+
+    const tarjetas = Array(12).fill({ imagen: futbol, titulo: 'El mundial más tecnológico' });
+
+    const slider = Array(6).fill({ image: uefaTrophy, title: 'Zinedide Zidane', category: 'Jugadores', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, harum animi quae illo dolorem quo sint, explicabo assumenda expedita nihil reiciendis itaque distinctio praesentium' });
 
     return (
 
@@ -58,13 +78,13 @@ const CategoriesView = () => {
                         <Swiper
                             spaceBetween={50}
                             slidesPerView={1}
-                            pagination= {{
+                            pagination={{
 
                                 el: '.swiper-pagination',
                                 clickable: true,
 
                             }}
-                            modules={[Thumbs, Scrollbar, A11y, Autoplay,Pagination]}
+                            modules={[Thumbs, Scrollbar, A11y, Autoplay, Pagination]}
                             loop={true}
                             autoplay={{
 
@@ -110,13 +130,13 @@ const CategoriesView = () => {
 
                     </div>
 
-                    <div className='containerLeido'>    
+                    <div className='containerLeido'>
 
                         <div className='containerCard__leido'>
 
                             {tarjetas.map((tarjeta, index) => (
-                                
-                                <CardsCategory key={index} tarjeta={tarjeta}/>
+
+                                <CardsCategory key={index} tarjeta={tarjeta} />
 
                             ))}
 

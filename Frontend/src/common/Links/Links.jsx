@@ -16,17 +16,23 @@ const Links = () => {
             </div>
           </Link>
 
-          <div className="copasFlex">
-            <h3>Copas</h3>
-          </div>
+          <Link to="/category/copas">
+            <div className="copasFlex">
+              <h3>Copas</h3>
+            </div>
+          </Link>
 
-          <div className="equiposFlex">
-            <h3>Equipos</h3>
-          </div>
+          <Link to='/category/equipos'>
+            <div className="equiposFlex">
+              <h3>Equipos</h3>
+            </div>
+          </Link>
 
-          <div className="jugadoresFlex">
-            <h3>Jugadores</h3>
-          </div>
+          <Link to='/category/jugadores'>
+            <div className="jugadoresFlex">
+              <h3>Jugadores</h3>
+            </div>
+          </Link>
 
         </div>
 
