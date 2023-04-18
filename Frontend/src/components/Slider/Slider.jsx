@@ -14,8 +14,7 @@ const Slider = ({slider}) => {
 
                 <h1 className='titleCard'>{slider.title}</h1>
                 <h3 className='categoryCard'>{slider.category}</h3>
-
-                <p className='descriptionCard'>{slider.description}</p>
+                <p className='descriptionCard'>{slider.text}</p>
 
             </div>
 

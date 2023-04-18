@@ -4,18 +4,20 @@ import './_categoriesView.scss';
 import { A11y, Autoplay, Scrollbar, Thumbs, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import futbol from '../../img/category/futbol.png'
-import uefaTrophy from '../../img/category/uefa-trophy.webp'
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import CardsCategory from '../../components/Cards/CardsCategory';
 import Slider from '../../components/Slider/Slider';
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { lastCategories,  moreViewsCategory} from '../../services/articles';
+import ClipLoader from "react-spinners/ClipLoader";
+import { HiOutlineTrendingUp } from 'react-icons/hi';
 
 const CategoriesView = () => {
     const [sliderArticles, setSlider] = useState([]);
     const [moreViews, setMoreViews] = useState([]);
+    const [loading,setLoading] = useState(true);
     const { id } = useParams();
     
     let category;
@@ -42,9 +44,10 @@ const CategoriesView = () => {
         async function fetchData() {
             const data = await lastCategories(categorySelected, 6);
             setSlider(data);
+            setLoading(false);
         }
         fetchData();
-    }, [])
+    }, [categorySelected])
 
     useEffect(() => {
         async function fetchData() {
@@ -56,7 +59,6 @@ const CategoriesView = () => {
 
     const tarjetas = Array(12).fill({ imagen: futbol, titulo: 'El mundial más tecnológico' });
 
-    const slider = Array(6).fill({ image: uefaTrophy, title: 'Zinedide Zidane', category: 'Jugadores', description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, harum animi quae illo dolorem quo sint, explicabo assumenda expedita nihil reiciendis itaque distinctio praesentium' });
 
     return (
 
@@ -103,19 +105,30 @@ const CategoriesView = () => {
                             }}
                             centeredSlides={true}
                         >
-                            {slider.map((slider, i) => (
-                                <SwiperSlide className="containerCard__slider" key={i}>
+                            {loading ? (
 
-                                    <div className='hijoCards'>
+                               <div className='spinnerContainer'>
+                                    <ClipLoader size={40} loading={loading} className='spinner'/>
+                               </div>
+
+                            ) : (
+
+                                sliderArticles.map((slider, i) => (
+                                    <SwiperSlide className="containerCard__slider" key={i}>
+
+                                        <div className='hijoCards'>
 
 
-                                        <Slider slider={slider} />
+                                            <Slider slider={slider} />
 
 
-                                    </div>
+                                        </div>
 
-                                </SwiperSlide>
-                            ))}
+                                    </SwiperSlide>
+                                ))
+
+                            )}
+
 
                             <div className="swiper-pagination"></div>
 
