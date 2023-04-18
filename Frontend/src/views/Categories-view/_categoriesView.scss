@@ -33,9 +33,10 @@
             }
 
             .swiper-slide {
+                
                 display: flex;
                 justify-content: center;
-                align-items: center;
+
             }
 
             .containerCard__slider {
@@ -185,15 +186,16 @@
 
         .hijoCategories {
 
-            .containerCard__slider {
+            .containerSlider {
 
-                display: flex;
-                justify-content: center;
+                .containerCard__slider {
 
-                .hijoCards {
-
-                    max-width: 26.5em;
-
+                    .hijoCards {
+    
+                        max-width: 26.5em;
+    
+                    }
+    
                 }
 
             }
@@ -204,7 +206,7 @@
 
             .containerCard__leido {
 
-                max-width: 22.5em;
+                width: 22.5em;
 
             }
 
@@ -214,27 +216,45 @@
 
 }
 
-
 @media screen and (min-width: 48em) {
 
     .containerCategories {
 
+        .hijoCategories {
+
+            .containerSlider {
+
+                .contenedorSwiper {
+
+                    .containerCard__slider {
+
+                        .hijoCards {
+
+                            
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
         .containerLeido {
 
             .containerCard__leido {
-    
+
                 grid-template-columns: auto auto auto;
                 padding-left: 0;
 
-                .hijoCards {
-                    width: 2rem;
-                }
             }
-    
+
         }
 
     }
-    
+
 }
 
 
@@ -242,14 +262,37 @@
 
     .containerCategories {
 
+        .hijoCategories {
+
+            .containerSlider {
+
+                .contenedorSwiper {
+
+                    .containerCard__slider {
+
+                        .hijoCards {
+
+                            max-width: none;
+                            width: 20rem;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
         .containerLeido {
 
             .containerCard__leido {
 
                 grid-template-columns: auto auto auto auto auto auto;
-    
-                .card__leido {
 
+                .card__leido {
+    
                     &:nth-child(n+7) {
 
                         display: block;
@@ -257,9 +300,9 @@
                     }
 
                 }
-                
+
             }
-    
+
         }
 
     }
