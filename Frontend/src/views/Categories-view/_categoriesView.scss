@@ -308,3 +308,17 @@
     }
 
 }
+
+@media screen and (min-width: 80em) {
+
+    .containerSlider {
+        max-width: 80em;
+        margin: auto;
+    }
+
+    .hijoLeido, .containerTitle {
+        margin: auto;
+        max-width: 80em;
+    }
+
+}
