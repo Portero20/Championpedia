@@ -78,7 +78,7 @@ const CategoriesView = () => {
 
 
                         <Swiper
-                            spaceBetween={50}
+                            spaceBetween={10}
                             slidesPerView={1}
                             pagination={{
 

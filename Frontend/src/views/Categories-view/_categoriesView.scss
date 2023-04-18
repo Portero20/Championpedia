@@ -32,10 +32,17 @@
 
             }
 
+            .swiper-slide {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
             .containerCard__slider {
 
                 .hijoCards {
 
+                    width: 100%;
                     border: 1px solid #9b9b9b;
                     border-radius: 0.75rem;
 
@@ -218,7 +225,10 @@
     
                 grid-template-columns: auto auto auto;
                 padding-left: 0;
-                
+
+                .hijoCards {
+                    width: 2rem;
+                }
             }
     
         }
