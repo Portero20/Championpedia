@@ -18,8 +18,33 @@ const CategoriesView = () => {
     const [sliderArticles, setSlider] = useState([]);
     const [moreViews, setMoreViews] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [page, setPage] = useState(1);
+    const [size, setSize] = useState(6);
     const { id } = useParams();
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (windowWidth >= 1240) {
+            setSize(12);
+        } else if (windowWidth > 1023 && windowWidth < 1239) {
+            setSize(10);
+        } else {
+            setSize(6);
+        }
+    }, [windowWidth]);
+
+    console.log(windowWidth)
+    console.log(size)
 
     let category;
     let categorySelected;
@@ -52,11 +77,11 @@ const CategoriesView = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const data = await moreViewsCategory(categorySelected, page, 6);
+            const data = await moreViewsCategory(categorySelected, page, size);
             setMoreViews(data);
         }
         fetchData();
-    }, [categorySelected, page])
+    }, [categorySelected, page, windowWidth])
 
     const handleClick = (event) => {
         const number = parseInt(event.target.innerHTML);
