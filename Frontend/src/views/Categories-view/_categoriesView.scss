@@ -103,7 +103,10 @@
 
             display: grid;
             place-content: center;
-            grid-template-columns: auto auto;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+
+            width: 100%;
             
             gap: 1.5rem;
 
@@ -124,7 +127,7 @@
                 .imagenLeido {
 
                     .cardImage-leido {
-
+                        height: 8rem;
                         object-fit: cover;
 
                     }
@@ -137,10 +140,11 @@
                     justify-content: flex-start;
                     
                     .tituloLeido {
-
+                        text-align: start;
+                        margin: .5rem 0 0;
                         text-decoration: underline;
                         font-weight: bolder;
-
+                        width: 100%;
 
                     }
 
@@ -206,7 +210,7 @@
 
             .containerCard__leido {
 
-                width: 22.5em;
+                width: 24rem;
 
             }
 
@@ -230,8 +234,6 @@
 
                         .hijoCards {
 
-                            
-
                         }
 
                     }
@@ -246,9 +248,14 @@
 
             .containerCard__leido {
 
-                grid-template-columns: auto auto auto;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
                 padding-left: 0;
 
+                .card__leido {
+                    width: 11.25rem;
+                }
+            
             }
 
         }
@@ -289,7 +296,7 @@
 
             .containerCard__leido {
 
-                grid-template-columns: auto auto auto auto auto auto;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
                 .card__leido {
     

@@ -51,14 +51,11 @@ const CategoriesView = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const data = await moreViewsCategory(categorySelected, 1, 2);
+            const data = await moreViewsCategory(categorySelected, 1, 20);
             setMoreViews(data);
         }
         fetchData();
-    }, [])
-
-    const tarjetas = Array(12).fill({ imagen: futbol, titulo: 'El mundial más tecnológico' });
-
+    }, [categorySelected])
 
     return (
 
@@ -147,7 +144,7 @@ const CategoriesView = () => {
 
                         <div className='containerCard__leido'>
 
-                            {tarjetas.map((tarjeta, index) => (
+                            {moreViews.map((tarjeta, index) => (
 
                                 <CardsCategory key={index} tarjeta={tarjeta} />
 
