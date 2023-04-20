@@ -33,7 +33,7 @@
             }
 
             .swiper-slide {
-                
+
                 display: flex;
                 justify-content: center;
 
@@ -57,9 +57,9 @@
                             font-weight: bolder;
 
                         }
-                        
+
                         .descriptionCard {
-                            
+
                             margin-top: 1.6rem;
 
                         }
@@ -107,7 +107,7 @@
             grid-template-rows: 1fr 1fr 1fr;
 
             width: 100%;
-            
+
             gap: 1.5rem;
 
             .card__leido {
@@ -138,7 +138,7 @@
 
                     display: flex;
                     justify-content: flex-start;
-                    
+
                     .tituloLeido {
                         text-align: start;
                         margin: .5rem 0 0;
@@ -168,7 +168,7 @@
                 gap: 1rem;
                 padding-left: 0;
                 margin-top: 1rem;
-    
+
             }
 
         }
@@ -195,11 +195,11 @@
                 .containerCard__slider {
 
                     .hijoCards {
-    
+
                         max-width: 26.5em;
-    
+
                     }
-    
+
                 }
 
             }
@@ -235,7 +235,7 @@
                 .card__leido {
                     width: 11.25rem;
                 }
-            
+
             }
 
         }
@@ -276,10 +276,10 @@
 
             .containerCard__leido {
 
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 
                 .card__leido {
-    
+
                     &:nth-child(n+7) {
 
                         display: block;
@@ -296,6 +296,24 @@
 
 }
 
+@media screen and (min-width: 78em) {
+
+    .containerCategories {
+
+        .containerLeido {
+
+            .containerCard__leido {
+
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+            }
+
+        }
+
+    }
+
+}
+
 @media screen and (min-width: 80em) {
 
     .containerSlider {
@@ -303,7 +321,8 @@
         margin: auto;
     }
 
-    .hijoLeido, .containerTitle {
+    .hijoLeido,
+    .containerTitle {
         margin: auto;
         max-width: 80em;
     }

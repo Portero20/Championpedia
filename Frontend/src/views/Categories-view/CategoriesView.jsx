@@ -18,21 +18,22 @@ const CategoriesView = () => {
     const [sliderArticles, setSlider] = useState([]);
     const [moreViews, setMoreViews] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
     const { id } = useParams();
 
     let category;
     let categorySelected;
 
     if (id === 'copas') {
-        category = 'Copas';
+        category = 'copas';
         categorySelected = "trophies"
 
     } else if (id === 'equipos') {
-        category = 'Equipos';
+        category = 'equipos';
         categorySelected = "teams"
 
     } else if (id === 'jugadores') {
-        category = 'Jugadores';
+        category = 'jugadores';
         categorySelected = "players"
 
     } else {
@@ -51,11 +52,16 @@ const CategoriesView = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const data = await moreViewsCategory(categorySelected, 1, 20);
+            const data = await moreViewsCategory(categorySelected, page, 6);
             setMoreViews(data);
         }
         fetchData();
-    }, [categorySelected])
+    }, [categorySelected, page])
+
+    const handleClick = (event) => {
+        const number = parseInt(event.target.innerHTML);
+        setPage(number);
+    };
 
     return (
 
@@ -162,11 +168,11 @@ const CategoriesView = () => {
                             <ul className='ulPaginacion'>
 
 
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
+                                <li onClick={handleClick}>1</li>
+                                <li onClick={handleClick}>2</li>
+                                <li onClick={handleClick}>3</li>
+                                <li onClick={handleClick}>4</li>
+                                <li onClick={handleClick}>5</li>
 
                             </ul>
 

@@ -666,7 +666,7 @@ module.exports = {
             const { page, size } = req.query;
 
             const limit = parseInt(size);
-            const offset = (page - 1) * size;
+            const offset = (parseInt(page) - 1) * size;
 
             const category = req.params.category
 

@@ -78,15 +78,15 @@ const ViewArticle = () => {
 
   let input;
 
-  if (category == "futbolistas") {
+  if (category == "Futbolistas") {
 
     input = <InputPlayer showValue={true} article={article} />
 
-  } else if (category == "copas") {
+  } else if (category == "Copas") {
 
     input = <Trophies showValue={true} article={article} />
 
-  } else if (category == "equipos") {
+  } else if (category == "Equipos") {
 
     input = <Team showValue={true} article={article} />
 
@@ -99,7 +99,7 @@ const ViewArticle = () => {
     let categoryArticle = category
     let idCategory = parseInt(id)
 
-    if (category == "futbolistas") {
+    if (category == "Futbolistas") {
       try {
         let file = document.getElementById("file");
         let title = document.getElementById("title").value;
@@ -187,7 +187,7 @@ const ViewArticle = () => {
       }
 
     }
-    if (category == "equipos") {
+    if (category == "Equipos") {
       try {
         let file = document.getElementById("file");
         let title = document.getElementById("title").value;
@@ -253,7 +253,7 @@ const ViewArticle = () => {
         console.log(error)
       }
     }
-    if (category == "copas") {
+    if (category == "Copas") {
 
       try {
         let file = document.getElementById("file");
