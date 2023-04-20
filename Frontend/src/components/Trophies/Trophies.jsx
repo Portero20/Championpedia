@@ -29,7 +29,7 @@ const Trophies = ({ showValue, article }) => {
                     <input type="text" name="campus" id="campus" placeholder='Nombre de la sede de la competición...' className='inputsTrophies' defaultValue={showValue ? article.campus : null}/>
                     <p className="msg-error"></p>
 
-                    <label>Fundación:</label>
+                    <label>Fecha que se celebró por primera vez:</label>
                     <input type="date" name="foundation" id="foundation" className='inputsTrophies' defaultValue={showValue ? article.foundation.split("T")[0] : null}/>
                     <p className="msg-error"></p>
 

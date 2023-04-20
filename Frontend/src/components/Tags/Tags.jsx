@@ -2,7 +2,7 @@ import "../Create-Article/_createArticle.scss";
 
 import React from "react";
 
-const Tags = ({showValue, article}) => {
+const Tags = ({ showValue, article }) => {
   return (
     <div className="inputsEtiquetas">
       <label className="agregarEtiqueta">Agregar etiquetas</label>
@@ -16,7 +16,7 @@ const Tags = ({showValue, article}) => {
       />
 
       <div className="tooltip-container">
-        <i className="fa-solid fa-question questionIcon"></i>
+        <i class="fa-solid fa-circle-info questionIcon"></i>
 
         <span className="tooltip">
           No te olvides de separar con comas.

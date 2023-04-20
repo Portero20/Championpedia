@@ -43,9 +43,6 @@ const CategoriesView = () => {
         }
     }, [windowWidth]);
 
-    console.log(windowWidth)
-    console.log(size)
-
     let category;
     let categorySelected;
 

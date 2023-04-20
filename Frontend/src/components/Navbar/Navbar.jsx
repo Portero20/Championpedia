@@ -189,7 +189,7 @@ const Navbar = () => {
                 <Link to='/category/jugadores'>
 
                   <div className="jugadoresFlex">
-                    <h3>Jugadores</h3>
+                    <h3>Futbolistas</h3>
                   </div>
 
                </Link>

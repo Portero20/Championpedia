@@ -49,7 +49,7 @@ const Footer = () => {
 
                         <div className='enlaceHijo'>
 
-                            <Link to="/category/jugadores" className='enlace'>Jugadores</Link>
+                            <Link to="/category/jugadores" className='enlace'>Futbolistas</Link>
 
                         </div>
 
