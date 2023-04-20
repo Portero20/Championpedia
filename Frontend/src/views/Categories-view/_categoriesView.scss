@@ -224,26 +224,6 @@
 
     .containerCategories {
 
-        .hijoCategories {
-
-            .containerSlider {
-
-                .contenedorSwiper {
-
-                    .containerCard__slider {
-
-                        .hijoCards {
-
-                        }
-
-                    }
-
-                }
-
-            }
-
-        }
-
         .containerLeido {
 
             .containerCard__leido {
@@ -296,7 +276,7 @@
 
             .containerCard__leido {
 
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 
                 .card__leido {
     

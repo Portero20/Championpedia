@@ -628,10 +628,11 @@ module.exports = {
                     for (let i = 0; i < results.length; i++) {
                         const dom = new JSDOM(results[i].text);
                         const doc = dom.window.document;
+                        const pTag = doc.querySelector('p');
+                        let text = '';
 
-                        let firstPTagContent = doc.querySelectorAll('p')[0].textContent.trim();
-                        if (firstPTagContent === '') {
-                            firstPTagContent = doc.querySelectorAll('p')[1].textContent.trim();
+                        if (pTag !== null) {
+                            text = pTag.textContent;
                         }
 
                         const buffer = results[i].image;
@@ -642,7 +643,7 @@ module.exports = {
                             id: results[i].id,
                             category: results[i].category,
                             title: results[i].title,
-                            text: firstPTagContent.slice(0, 100) + "...",
+                            text: text.slice(0, 100) + "...",
                             image: base64String
                         }
 
@@ -650,9 +651,9 @@ module.exports = {
                     }
 
                     return res.status(200).json(data);
-
                 }
             })
+
         } catch (error) {
             return res.status(500).json(error);
         }

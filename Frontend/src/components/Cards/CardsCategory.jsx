@@ -1,18 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const CardsCategory = ({tarjeta}) => {
+const CardsCategory = ({ tarjeta }) => {
     return (
         <>
-
-            <div className='card__leido'>
-                <div className='imagenLeido'>
-                    <img src={tarjeta.image} className='cardImage-leido' />
+            <Link to={`/articulo/${tarjeta.category}/${tarjeta.id}`}>
+                <div className='card__leido'>
+                    <div className='imagenLeido'>
+                        <img src={tarjeta.image} className='cardImage-leido' />
+                    </div>
+                    <div className='containerTitle'>
+                        <h1 className='tituloLeido'>{tarjeta.title}</h1>
+                    </div>
                 </div>
-                <div className='containerTitle'>
-                    <h1 className='tituloLeido'>{tarjeta.title}</h1>
-                </div>
-            </div>
-
+            </Link>
         </>
     )
 }

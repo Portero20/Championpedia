@@ -9,17 +9,17 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import CardsCategory from '../../components/Cards/CardsCategory';
 import Slider from '../../components/Slider/Slider';
-import { useState, useEffect} from 'react';
-import { lastCategories,  moreViewsCategory} from '../../services/articles';
+import { useState, useEffect } from 'react';
+import { lastCategories, moreViewsCategory } from '../../services/articles';
 import ClipLoader from "react-spinners/ClipLoader";
 import { HiOutlineTrendingUp } from 'react-icons/hi';
 
 const CategoriesView = () => {
     const [sliderArticles, setSlider] = useState([]);
     const [moreViews, setMoreViews] = useState([]);
-    const [loading,setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
     const { id } = useParams();
-    
+
     let category;
     let categorySelected;
 
@@ -104,9 +104,9 @@ const CategoriesView = () => {
                         >
                             {loading ? (
 
-                               <div className='spinnerContainer'>
-                                    <ClipLoader size={40} loading={loading} className='spinner'/>
-                               </div>
+                                <div className='spinnerContainer'>
+                                    <ClipLoader size={40} loading={loading} className='spinner' />
+                                </div>
 
                             ) : (
 
