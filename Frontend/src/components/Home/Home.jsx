@@ -10,16 +10,20 @@ import { lastProduct, moreViews, news } from '../../services/articles';
 import { React, useState, useEffect } from 'react';
 import TextoHtml from '../TextoHtml';
 import { Link } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const Home = () => {
   const [lastArticle, setLastArticle] = useState({});
   const [articles, setArticles] = useState([]);
   const [newsArticle, setNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
 
   useEffect(() => {
     async function fetchData() {
       const data = await lastProduct();
       setLastArticle(data);
+      setIsLoading(false);
     }
     fetchData();
   }, []);
@@ -28,6 +32,7 @@ const Home = () => {
     async function fetchMore() {
       let data = await moreViews();
       setArticles(data);
+      setIsLoading(false);
     }
     fetchMore();
   }, []);
@@ -36,6 +41,7 @@ const Home = () => {
     async function fetchNews() {
       let data = await news();
       setNews(data);
+      setIsLoading(false);
     }
     fetchNews();
   }, []);
@@ -223,6 +229,7 @@ const Home = () => {
             <div className="containerUltimo">
               <h2 className="tituloUltimo">LO ÚLTIMO</h2>
 
+              
               <Link to={`/articulo/${lastArticle.category}/${lastArticle.id}`}>
                 <div className="hijoUltimo">
                   <div className='hijoUltimo-div-img'>
@@ -243,27 +250,26 @@ const Home = () => {
             <div className="containerProximo">
               <h2 className="tituloProximo">Noticias</h2>
 
-              {newsArticle && newsArticle.length > 0 ? newsArticle.map((news, i) => {
-                return (
-                  <Link target="_blank" to={news.url}>
-                    <div key={i} className="hijoProximo1">
-                      <h3 className="titularProximo">
-                        {news.title}
-                      </h3>
-                      <p className="descripcionProximo">
-                        {news.description}
-                      </p>
-                    </div>
-                  </Link>
-                )
-              }) : null}
+              {isLoading && <div className='loaderArticles'><ClipLoader /></div>}
+              {!isLoading && newsArticle.length > 0 ? newsArticle.map((news, i) => (
+                <Link target="_blank" to={news.url}>
+                  <div key={i} className="hijoProximo1">
+                    <h3 className="titularProximo">
+                      {news.title}
+                    </h3>
+                    <p className="descripcionProximo">
+                      {news.description}
+                    </p>
+                  </div>
+                </Link>
+              )) : null}
 
             </div>
             <div className="containerVisto">
               <h2 className="tituloVisto">LO MÁS VISTO</h2>
 
-
-              {articles && articles.length > 0 ? articles.map((article, i) => {
+              {isLoading && <div className='loaderArticles'><ClipLoader /></div>}
+              {!isLoading && articles && articles.length > 0 ? articles.map((article, i) => {
                 return (
                   <Link to={`/articulo/${article.category}/${article.id}`}>
                     <div key={i} className="hijoVisto">
