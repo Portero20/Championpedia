@@ -20,8 +20,10 @@ const CategoriesView = () => {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
+    const [totalPages, setTotalPages] = useState(1);
     const { id } = useParams();
+    const [prevDisabled, setPrevDisabled] = useState(true);
+    const [nextDisabled, setNextDisabled] = useState(false);
     const [size, setSize] = useState(() => {
         if (window.innerWidth >= 1240) {
             return 12;
@@ -31,6 +33,31 @@ const CategoriesView = () => {
             return 6;
         }
     });
+
+    const handlePrevClick = () => {
+
+        if(page > 1) {
+            
+            setPage(page - 1);
+
+        }
+
+    }
+
+    const handleNextClick = () => {
+
+        if(page < totalPages) {
+
+            setPage(page + 1)
+
+        }
+
+    }
+
+    useEffect(() => {
+        setPrevDisabled(page === 1);
+        setNextDisabled(page === totalPages);
+      }, [page, totalPages]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -205,8 +232,9 @@ const CategoriesView = () => {
 
                             <ul className='ulPaginacion'>
 
-
+                                <div onClick={handleNextClick} disabled={prevDisabled} className='prev' style={{display: page ? 'none' : 'block'}}>&lt;</div>
                                 {paginationNumbers}
+                                <div onClick={handlePrevClick} disabled={nextDisabled} className='next'>&gt;</div>
 
 
                             </ul>
