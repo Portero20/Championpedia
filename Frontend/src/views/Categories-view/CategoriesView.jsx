@@ -19,7 +19,7 @@ const CategoriesView = () => {
     const [moreViews, setMoreViews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState(2);
     const [totalPages, setTotalPages] = useState(0);
     const { id } = useParams();
     const [size, setSize] = useState(() => {
@@ -232,7 +232,7 @@ const CategoriesView = () => {
                             <ul className="ulPaginacion">
                                 {page !== 1 && (
                                     <li onClick={handlePrevClick}>
-                                        {'<'}
+                                        {'◀'}
                                     </li>
                                 )}
                                 {paginationNumbers.map((number) => (
@@ -246,7 +246,7 @@ const CategoriesView = () => {
                                 ))}
                                 {page !== totalPages && (
                                     <li onClick={handleNextClick}>
-                                        {'>'}
+                                        {'▶'}
                                     </li>
                                 )}
                             </ul>
