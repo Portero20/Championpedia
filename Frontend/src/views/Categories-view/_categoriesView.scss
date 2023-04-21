@@ -117,13 +117,6 @@
                 border-radius: 0.75rem;
                 padding: 1rem;
 
-                &:nth-child(n+7) {
-
-                    display: none;
-
-                }
-
-
                 .imagenLeido {
 
                     .cardImage-leido {
@@ -277,16 +270,6 @@
             .containerCard__leido {
 
                 grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-
-                .card__leido {
-
-                    &:nth-child(n+7) {
-
-                        display: block;
-
-                    }
-
-                }
 
             }
 

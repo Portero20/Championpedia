@@ -20,8 +20,16 @@ const CategoriesView = () => {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [page, setPage] = useState(1);
-    const [size, setSize] = useState(6);
     const { id } = useParams();
+    const [size, setSize] = useState(() => {
+        if (window.innerWidth >= 1240) {
+            return 12;
+        } else if (window.innerWidth > 1023 && window.innerWidth < 1239) {
+            return 10;
+        } else {
+            return 6;
+        }
+    });
 
     useEffect(() => {
         const handleResize = () => {
