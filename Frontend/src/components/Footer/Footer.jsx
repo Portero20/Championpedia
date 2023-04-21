@@ -21,7 +21,9 @@ const Footer = () => {
 
                     <div className='containerEnlaces'>
 
-                        <img src={Championpedia} alt="Championpedia" className='logoChampion' />
+                        <Link to="/">
+                            <img src={Championpedia} alt="Championpedia" className='logoChampion' />
+                        </Link>
 
                         <div className='enlaceHijo'>
 
@@ -65,7 +67,6 @@ const Footer = () => {
                             <Link to="#" className='enlaceSocial'><AiFillTwitterCircle className='iconSocial' color='white' /></Link>
                             <Link to="#" className='enlaceSocial'><RxInstagramLogo className='iconSocial' color='white' /></Link>
                             <Link to="#" className='enlaceSocial'><SiWhatsapp className='iconSocial' color='white' /></Link>
-
 
                         </div>
 
