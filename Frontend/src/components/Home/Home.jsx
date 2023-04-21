@@ -229,8 +229,10 @@ const Home = () => {
             <div className="containerUltimo">
               <h2 className="tituloUltimo">LO ÚLTIMO</h2>
 
-              
-              <Link to={`/articulo/${lastArticle.category}/${lastArticle.id}`}>
+              {isLoading && <div className='loaderArticles'><ClipLoader /></div>}
+              {!isLoading && (
+                
+                <Link to={`/articulo/${lastArticle.category}/${lastArticle.id}`}>
                 <div className="hijoUltimo">
                   <div className='hijoUltimo-div-img'>
                     <img
@@ -245,6 +247,8 @@ const Home = () => {
                   </p>
                 </div>
               </Link>
+
+              )}
             </div>
 
             <div className="containerProximo">
