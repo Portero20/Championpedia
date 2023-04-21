@@ -84,8 +84,8 @@ const CategoriesView = () => {
     useEffect(() => {
         async function fetchData() {
             const data = await moreViewsCategory(categorySelected, page, size);
-            setMoreViews(data);
-            setTotalPages(Math.ceil(data.total / size));
+            setMoreViews(data.data);
+            setTotalPages(Math.ceil(data.pagesTotal));
         }
         fetchData();
     }, [categorySelected, page, windowWidth,size])
