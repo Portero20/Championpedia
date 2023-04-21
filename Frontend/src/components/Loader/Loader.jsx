@@ -3,12 +3,17 @@ import './_loader.scss';
 import loader from '../../img/home/spinner.gif';
 
 const Loader = () => {
+
   return (
     <>
     
+      <div className="loaderContainer">
+
         <div className='loader'>
-            <img className='spinner' src={loader} alt="" />
+          <img className='spinner' src={loader} alt="" />
         </div>
+
+      </div>
 
     </>
   )
