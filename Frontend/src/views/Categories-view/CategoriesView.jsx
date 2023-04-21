@@ -73,7 +73,7 @@ const CategoriesView = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const data = await lastCategories(categorySelected, 6);
+            const data = await lastCategories(categorySelected, 12);
             setSlider(data);
             setLoading(false);
         }
