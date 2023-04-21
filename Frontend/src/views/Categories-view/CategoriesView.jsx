@@ -20,10 +20,8 @@ const CategoriesView = () => {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const { id } = useParams();
-    const [prevDisabled, setPrevDisabled] = useState(true);
-    const [nextDisabled, setNextDisabled] = useState(false);
     const [size, setSize] = useState(() => {
         if (window.innerWidth >= 1240) {
             return 12;
@@ -33,31 +31,6 @@ const CategoriesView = () => {
             return 6;
         }
     });
-
-    const handlePrevClick = () => {
-
-        if(page > 1) {
-            
-            setPage(page - 1);
-
-        }
-
-    }
-
-    const handleNextClick = () => {
-
-        if(page < totalPages) {
-
-            setPage(page + 1)
-
-        }
-
-    }
-
-    useEffect(() => {
-        setPrevDisabled(page === 1);
-        setNextDisabled(page === totalPages);
-      }, [page, totalPages]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -115,17 +88,43 @@ const CategoriesView = () => {
             setTotalPages(Math.ceil(data.pagesTotal));
         }
         fetchData();
-    }, [categorySelected, page, windowWidth,size])
+    }, [categorySelected, page, windowWidth, size])
 
     const handleClick = (event) => {
         const number = parseInt(event.target.innerHTML);
         setPage(number);
     };
 
-    const paginationNumbers = [];
+    const handlePrevClick = () => {
+        if (page > 1) {
+            setPage(page - 1);
+        }
+    };
 
-    for (let i = 1; i <= totalPages; i++) {
-        paginationNumbers.push(<li key={i} onClick={handleClick}>{i}</li>);
+    const handleNextClick = () => {
+        if (page < totalPages) {
+            setPage(page + 1);
+        }
+    };
+
+    const paginationNumbers = [];
+    let startPage = Math.max(page - 2, 1);
+    let endPage = Math.min(page + 1, totalPages);
+
+    if (startPage === 1) {
+        endPage = Math.min(startPage + 3, totalPages);
+    }
+
+    if (endPage === totalPages) {
+        startPage = Math.max(endPage - 3, 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        paginationNumbers.push(
+            <li key={i} className={i === page ? 'active' : ''} onClick={handleClick}>
+                {i}
+            </li>
+        );
     }
 
     return (
@@ -230,14 +229,28 @@ const CategoriesView = () => {
 
                         <div className='hijoPaginacion'>
 
-                            <ul className='ulPaginacion'>
-
-                                <div onClick={handleNextClick} disabled={prevDisabled} className='prev' style={{display: page ? 'none' : 'block'}}>&lt;</div>
-                                {paginationNumbers}
-                                <div onClick={handlePrevClick} disabled={nextDisabled} className='next'>&gt;</div>
-
-
+                            <ul className="ulPaginacion">
+                                {page !== 1 && (
+                                    <li onClick={handlePrevClick}>
+                                        {'<'}
+                                    </li>
+                                )}
+                                {paginationNumbers.map((number) => (
+                                    <li
+                                        key={number}
+                                        className={page === number ? 'active' : ''}
+                                        onClick={handleClick}
+                                    >
+                                        {number}
+                                    </li>
+                                ))}
+                                {page !== totalPages && (
+                                    <li onClick={handleNextClick}>
+                                        {'>'}
+                                    </li>
+                                )}
                             </ul>
+
 
                         </div>
 
