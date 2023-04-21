@@ -20,6 +20,7 @@ const CategoriesView = () => {
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
     const { id } = useParams();
     const [size, setSize] = useState(() => {
         if (window.innerWidth >= 1240) {
@@ -84,14 +85,21 @@ const CategoriesView = () => {
         async function fetchData() {
             const data = await moreViewsCategory(categorySelected, page, size);
             setMoreViews(data);
+            setTotalPages(Math.ceil(data.total / size));
         }
         fetchData();
-    }, [categorySelected, page, windowWidth])
+    }, [categorySelected, page, windowWidth,size])
 
     const handleClick = (event) => {
         const number = parseInt(event.target.innerHTML);
         setPage(number);
     };
+
+    const paginationNumbers = [];
+
+    for (let i = 1; i <= totalPages; i++) {
+        paginationNumbers.push(<li key={i} onClick={handleClick}>{i}</li>);
+    }
 
     return (
 
@@ -198,11 +206,8 @@ const CategoriesView = () => {
                             <ul className='ulPaginacion'>
 
 
-                                <li onClick={handleClick}>1</li>
-                                <li onClick={handleClick}>2</li>
-                                <li onClick={handleClick}>3</li>
-                                <li onClick={handleClick}>4</li>
-                                <li onClick={handleClick}>5</li>
+                                {paginationNumbers}
+
 
                             </ul>
 
