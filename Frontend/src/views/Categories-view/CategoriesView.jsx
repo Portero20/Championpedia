@@ -19,7 +19,7 @@ const CategoriesView = () => {
     const [moreViews, setMoreViews] = useState([]);
     const [loading, setLoading] = useState(true);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [page, setPage] = useState(2);
+    const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const { id } = useParams();
     const [size, setSize] = useState(() => {
