@@ -82,14 +82,22 @@ Abre el proyecto clonado en el Visual Studio Code y abre la terminal con CTRL + 
 
 Accede a la carpeta de 'frontend' e instala las dependencias utilizando npm
 
-```cd frontend```
-```npm i```
+```
+cd frontend
+```
+```
+npm i
+```
 
 
 Accede a la carpeta de raíz del proyecto (Championpedia) para instalar las dependencias del backend utilizando npm
 
-```cd ..```
-```npm i```
+```
+cd ..
+```
+```
+npm i
+```
 
 
 Una vez instalada las dependencias, debemos levantar el servidor de base de datos de XAMPP y asegurate de tener habilitadas las opciones de Apache y MySQL para su funcionamiento.
@@ -104,12 +112,16 @@ Una vez hecho esto, debemos ingresar a la carpeta raiz de nuestro proyecto para 
 
 Ya levantada la base de datos y creadas sus tablas, accedemos a la carpeta de frontend'
 
-```cd frontend```
+```
+cd frontend
+```
 
 
 Y levantamos nuestro servidor
 
-```npm run dev```
+```
+npm run dev
+```
 
 
 ## Equipo de desarrollo 👨‍🔧👩‍🔧
