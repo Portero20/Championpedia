@@ -110,7 +110,7 @@ Una vez hecho esto, debemos ingresar a la carpeta raiz de nuestro proyecto para 
 
 ![](./img/../Frontend/src/img/readme/npm-test.png)
 
-Ya levantada la base de datos y creadas sus tablas, accedemos a la carpeta de frontend'
+Ya levantada la base de datos y creadas sus tablas, accedemos a la carpeta de 'frontend'
 
 ```
 cd frontend
@@ -135,3 +135,13 @@ Este proyecto ha sido desarrollado por el siguiente equipo:
 - [Edgar Monagas](https://www.linkedin.com/in/edmonagas/) - UX/UI
 
 
+## Créditos
+
+Agradecemos a las siguientes fuentes de información que hemos utilizado en este proyecto:
+
+- [Wikipedia](https://es.wikipedia.org/wiki/Wikipedia:Portada)
+- [News API](https://newsapi.org/)
+- [Diario OLÉ](https://www.ole.com.ar/)
+  
+
+¡Gracias por utilizar Championpedia! ❤️
