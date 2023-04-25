@@ -71,7 +71,9 @@ Si aún no tienes instalado alguno de estos programas, descárgalos e instálalo
 
 Ingresa a tu terminal (cmd, git bash, etc.) y clona el repositorio del proyecto en tu máquina local utilizando el comando 'git clone':
 
-```git clone https://github.com/Portero20/Championpedia.git```
+```
+git clone https://github.com/Portero20/Championpedia.git
+```
 
 Abre el proyecto clonado en el Visual Studio Code y abre la terminal con CTRL + Ñ
 
