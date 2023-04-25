@@ -10,7 +10,7 @@ A continuación, se presente un pequeño recorrido por el sitio web:
 ![](./img/../Frontend/src/img/readme/recorrido-sitio%20(1).gif)
 
 
-## Características
+## Características 📋
 
 - Buscador avanzado: los usuarios pueden buscar artículos en las categorias de futbolistas, copas y equipos utilizando palabras claves.
   
@@ -28,7 +28,7 @@ A continuación, se presente un pequeño recorrido por el sitio web:
 
 Este proyecto se ha desarrollado utilizando las siguientes tecnologías:
 
-Front-End
+Front-End 🖥️
 
 - React
 - SCSS
@@ -41,7 +41,7 @@ Front-End
 - Universal Cookie
 - Vite js (herramienta de compilación)
 
-Backend
+Backend 🔙🔚
 
 - Node.js
 - Express.js
@@ -56,7 +56,7 @@ Backend
 - multer
 - MySQL
 
-## Pre-requisitos 📋
+## Pre-requisitos 🚀
 
 Antes de levantar el proyecto Championpedia, asegúrate de tener instalado lo siguiente en tu máquina:
 
@@ -75,12 +75,12 @@ Ingresa a tu terminal (cmd, git bash, etc.) y clona el repositorio del proyecto 
 git clone https://github.com/Portero20/Championpedia.git
 ```
 
-Abre el proyecto clonado en el Visual Studio Code y abre la terminal con CTRL + Ñ
+Abre el proyecto clonado en el Visual Studio Code y abre la terminal con CTRL + Ñ:
 
 ![](./img/../Frontend/src/img/readme/terminal-visual.png)
 
 
-Accede a la carpeta de 'frontend' e instala las dependencias utilizando npm
+Accede a la carpeta de 'frontend' e instala las dependencias utilizando npm:
 
 ```
 cd frontend
@@ -90,7 +90,7 @@ npm i
 ```
 
 
-Accede a la carpeta de raíz del proyecto (Championpedia) para instalar las dependencias del backend utilizando npm
+Accede a la carpeta de raíz del proyecto (Championpedia) para instalar las dependencias del backend utilizando npm:
 
 ```
 cd ..
@@ -100,7 +100,7 @@ npm i
 ```
 
 
-Una vez instalada las dependencias, debemos levantar el servidor de base de datos de XAMPP y asegurate de tener habilitadas las opciones de Apache y MySQL para su funcionamiento.
+Una vez instalada las dependencias, debemos levantar el servidor de base de datos de XAMPP y asegurate de tener habilitadas las opciones de Apache y MySQL para su funcionamiento:
 
 
 ![](./img/../Frontend/src/img/readme/xampp.png)
@@ -110,14 +110,14 @@ Una vez hecho esto, debemos ingresar a la carpeta raiz de nuestro proyecto para 
 
 ![](./img/../Frontend/src/img/readme/npm-test.png)
 
-Ya levantada la base de datos y creadas sus tablas, accedemos a la carpeta de 'frontend'
+Ya levantada la base de datos y creadas sus tablas, accedemos a la carpeta de 'frontend':
 
 ```
 cd frontend
 ```
 
 
-Y levantamos nuestro servidor
+Y levantamos nuestro servidor:
 
 ```
 npm run dev
@@ -135,7 +135,7 @@ Este proyecto ha sido desarrollado por el siguiente equipo:
 - [Edgar Monagas](https://www.linkedin.com/in/edmonagas/) - UX/UI
 
 
-## Créditos
+## Créditos 📖
 
 Agradecemos a las siguientes fuentes de información que hemos utilizado en este proyecto:
 
