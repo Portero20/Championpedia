@@ -69,18 +69,18 @@ Si aún no tienes instalado alguno de estos programas, descárgalos e instálalo
 
 ## Levantar el proyecto 🚀
 
-Ingresa a tu terminal (cmd, git bash, etc.) y clona el repositorio del proyecto en tu máquina local utilizando el comando 'git clone':
+1. Ingresa a tu terminal (cmd, git bash, etc.) y clona el repositorio del proyecto en tu máquina local utilizando el comando 'git clone':
 
 ```
 git clone https://github.com/Portero20/Championpedia.git
 ```
 
-Abre el proyecto clonado en el Visual Studio Code y abre la terminal con CTRL + Ñ:
+2. Abre el proyecto clonado en el Visual Studio Code y abre la terminal con CTRL + Ñ:
 
 ![](./img/../Frontend/src/img/readme/terminal-visual.png)
 
 
-Accede a la carpeta de 'frontend' e instala las dependencias utilizando npm:
+3. Accede a la carpeta de 'frontend' e instala las dependencias utilizando npm:
 
 ```
 cd frontend
@@ -90,7 +90,7 @@ npm i
 ```
 
 
-Accede a la carpeta de raíz del proyecto (Championpedia) para instalar las dependencias del backend utilizando npm:
+4. Accede a la carpeta de raíz del proyecto (Championpedia) para instalar las dependencias del backend utilizando npm:
 
 ```
 cd ..
@@ -100,24 +100,24 @@ npm i
 ```
 
 
-Una vez instalada las dependencias, debemos levantar el servidor de base de datos de XAMPP y asegurate de tener habilitadas las opciones de Apache y MySQL para su funcionamiento:
+5. Una vez instalada las dependencias, debemos levantar el servidor de base de datos de XAMPP y asegurate de tener habilitadas las opciones de Apache y MySQL para su funcionamiento:
 
 
 ![](./img/../Frontend/src/img/readme/xampp.png)
 
 
-Una vez hecho esto, debemos ingresar a la carpeta raiz de nuestro proyecto para crear la base de datos y las tablas necesarias, si todo sale bien aparecera el siguiente mensaje:
+6. Una vez hecho esto, debemos ingresar a la carpeta raiz de nuestro proyecto para crear la base de datos y las tablas necesarias, si todo sale bien aparecera el siguiente mensaje:
 
 ![](./img/../Frontend/src/img/readme/npm-test.png)
 
-Ya levantada la base de datos y creadas sus tablas, accedemos a la carpeta de 'frontend':
+7. Ya levantada la base de datos y creadas sus tablas, accedemos a la carpeta de 'frontend':
 
 ```
 cd frontend
 ```
 
 
-Y levantamos nuestro servidor:
+8. Y levantamos nuestro servidor:
 
 ```
 npm run dev
