@@ -113,9 +113,7 @@ npm i
 7. Ahora debemos ingresar al navegador y colocamos la siguiente URL:
 
 ```
-
 http://localhost:3000/database/create
-
 ```
 
 Nos aparecera el siguiente mensaje 'database created' y podremos ver en phpMyAdmin la base de datos creada correctamente
@@ -123,17 +121,13 @@ Nos aparecera el siguiente mensaje 'database created' y podremos ver en phpMyAdm
 8. Ya levantada la base de datos y creadas sus tablas, accedemos a la carpeta de 'frontend':
 
 ```
-
 cd frontend
-
 ```
 
 9. Y levantamos nuestro servidor para poder ver el proyecto:
 
 ```
-
 npm run dev
-
 ```
 
 ## Equipo de desarrollo 👨‍🔧👩‍🔧
