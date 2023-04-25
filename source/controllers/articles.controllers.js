@@ -739,5 +739,70 @@ module.exports = {
         } catch (error) {
             return res.status(500).json(error)
         }
+    },
+    delete: (req, res) => {
+        try {
+
+            const category = req.body.category;
+            const id = parseInt(req.body.id)
+
+            database.query(`USE championpedia`, (error) => {
+                if (error) throw error;
+            })
+
+            let query;
+
+
+            if (category.toLowerCase() === "futbolistas") {
+                query = `DELETE tagsplayers, tags
+                FROM tagsplayers
+                LEFT JOIN tags ON tags.id = tagsplayers.tag_id
+                WHERE tagsplayers.player_id = ${id};
+                
+                DELETE imagesplayers, images
+                FROM imagesplayers
+                LEFT JOIN images ON images.id = imagesplayers.image_id
+                WHERE imagesplayers.player_id = ${id};
+                
+                DELETE FROM players WHERE id = ${id};
+                `
+            } else if (category.toLowerCase() === "copas") {
+                query = `DELETE tagstrophies, tags
+                FROM tagstrophies
+                LEFT JOIN tags ON tags.id = tagstrophies.tag_id
+                WHERE tagstrophies.thophy_id = ${id};
+                
+                DELETE imagestrophies, images
+                FROM imagestrophies
+                LEFT JOIN images ON images.id = imagestrophies.image_id
+                WHERE imagestrophies.thophy_id = ${id};
+                
+                DELETE FROM trophies WHERE id = ${id};
+                `
+            } else if (category.toLowerCase() === "equipos") {
+                query = `DELETE tagsteams, tags
+                FROM tagsteams
+                LEFT JOIN tags ON tags.id = tagsteams.tag_id
+                WHERE tagsteams.team_id = ${id};
+                
+                DELETE imagesteams, images
+                FROM imagesteams
+                LEFT JOIN images ON images.id = imagesteams.image_id
+                WHERE imagesteams.team_id = ${id};
+                
+                DELETE FROM teams WHERE id = ${id};`
+            }
+
+            database.query(query, function (err, results, filed) {
+                if (err) {
+                    return console.log(err)
+                } else {
+                    return res.status(200).json("Article successfully deleted");
+                }
+            })
+
+        } catch (error) {
+            return res.status(500).json(error)
+        }
     }
 }
