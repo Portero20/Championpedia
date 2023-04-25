@@ -56,7 +56,7 @@ Backend 🔙🔚
 - multer
 - MySQL
 
-## Pre-requisitos 🚀
+## Pre-requisitos 🔧
 
 Antes de levantar el proyecto Championpedia, asegúrate de tener instalado lo siguiente en tu máquina:
 
@@ -67,7 +67,7 @@ Antes de levantar el proyecto Championpedia, asegúrate de tener instalado lo si
 Si aún no tienes instalado alguno de estos programas, descárgalos e instálalos siguiendo las instrucciones en sus sitios web oficiales.
 
 
-## Levantar el proyecto 🔧
+## Levantar el proyecto 🚀
 
 Ingresa a tu terminal (cmd, git bash, etc.) y clona el repositorio del proyecto en tu máquina local utilizando el comando 'git clone':
 
