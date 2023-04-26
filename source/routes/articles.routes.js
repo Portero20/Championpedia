@@ -16,6 +16,7 @@ router.post("/equipos/create", articleTeamsMiddlewares, articlesControllers.crea
 router.post("/copas/create", articleTrophiesMiddlewares, articlesControllers.create)
 router.get("/categories", articlesControllers.categories)
 router.get("/last/:category/:size", articlesControllers.lastArticles)
+router.post("/delete/:category/:id", articlesControllers.delete)
 router.get("/:category/:id", articlesControllers.detail)
 router.post("/edit/futbolistas", editPlayersMiddlewares, articlesControllers.edit)
 router.post("/edit/equipos", editTeamsMiddlewares, articlesControllers.edit)
@@ -25,6 +26,5 @@ router.get("/last", articlesControllers.last)
 router.get("/moreViews", articlesControllers.moreViews)
 router.get("/news", articlesControllers.news)
 router.get("/more/:category/views", articlesControllers.viewsCategory)
-router.delete("/delete", articlesControllers.delete)
 
 module.exports = router

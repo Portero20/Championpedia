@@ -116,3 +116,15 @@ export async function moreViewsCategory(category, page, size) {
         console.log(error)
     }
 }
+
+export async function deleteArticle(category, id) {
+    try {
+        await fetch(`http://localhost:3000/article/delete/${category}/${id}`, {
+            method: "POST",
+            headers: {
+            },
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}

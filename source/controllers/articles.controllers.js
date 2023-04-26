@@ -743,8 +743,8 @@ module.exports = {
     delete: (req, res) => {
         try {
 
-            const category = req.body.category;
-            const id = parseInt(req.body.id)
+            const category = req.params.category;
+            const id = parseInt(req.params.id)
 
             database.query(`USE championpedia`, (error) => {
                 if (error) throw error;

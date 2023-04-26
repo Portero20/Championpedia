@@ -14,10 +14,11 @@ import TextoHtml from '../TextoHtml';
 import Trophies from '../Trophies/Trophies';
 import { detail } from "../../services/articles"
 import { view } from '../../services/articles';
-import { editArticle } from '../../services/articles';
-import { useParams } from "react-router-dom";
+import { editArticle, deleteArticle } from '../../services/articles';
+import { useParams, useNavigate } from "react-router-dom";
 
 const ViewArticle = () => {
+  const navigate = useNavigate();
   const { category, id, password } = useParams();
   const [article, setarticle] = useState([])
   const [show, setShow] = useState(false);
@@ -32,12 +33,12 @@ const ViewArticle = () => {
     detail(category, id).then(setarticle)
   }, [id])
 
-  const handleDelete = () => {
 
-    console.log(`Articulo Eliminado ${id}`);
+  const handleDelete = async () => {
+    await deleteArticle(category, id);
+    navigate("/");
+  };
 
-  }
-  
   useEffect(() => {
 
     password === 'M!nFC8qL3x&4kPb$oZs@tIy6wUjGz+' ? setAdmin(true) : null;
