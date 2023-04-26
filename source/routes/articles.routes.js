@@ -25,5 +25,6 @@ router.get("/last", articlesControllers.last)
 router.get("/moreViews", articlesControllers.moreViews)
 router.get("/news", articlesControllers.news)
 router.get("/more/:category/views", articlesControllers.viewsCategory)
+router.delete("/delete", articlesControllers.delete)
 
 module.exports = router

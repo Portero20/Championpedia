@@ -18,7 +18,7 @@ A continuación, se presente un pequeño recorrido por el sitio web:
   
 - Edición de artículos: los usuarios también tienen la posibilidad de editar los artícuos existentes para corregir datos incorrectos.
 
-- Últimas noticias: la vista de home muestra las últimas noticias de fútbo, así como el último artículo creado y el artículo más visto.
+- Últimas noticias: la vista de home muestra las últimas noticias de fútbol, así como el último artículo creado y el artículo más visto.
 
 - Slider de categorías: en cada vista de categoría, los usuarios pueden ver un slider con los artículos relacionados con esta categoría y referencias a los artículos que los usuarios han buscado.
 
