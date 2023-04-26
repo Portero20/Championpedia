@@ -1,5 +1,6 @@
 import '../../scss/utilities/_utilities.scss';
 import '../../scss/base/medias-detail.css'
+import './_articleView.scss';
 
 import { React, useEffect, useMemo, useRef, useState } from 'react'
 import Cookies from 'universal-cookie'
@@ -17,11 +18,12 @@ import { editArticle } from '../../services/articles';
 import { useParams } from "react-router-dom";
 
 const ViewArticle = () => {
-  const { category, id } = useParams();
+  const { category, id, password } = useParams();
   const [article, setarticle] = useState([])
   const [show, setShow] = useState(false);
   const [content, setContent] = useState('');
   const editor = useRef(null);
+  const [isAdmin, setAdmin] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -29,6 +31,19 @@ const ViewArticle = () => {
   useEffect(() => {
     detail(category, id).then(setarticle)
   }, [id])
+
+  const handleDelete = () => {
+
+    console.log(`Articulo Eliminado ${id}`);
+
+  }
+  
+  useEffect(() => {
+
+    password === 'M!nFC8qL3x&4kPb$oZs@tIy6wUjGz+' ? setAdmin(true) : null;
+
+
+  }, [password])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -493,9 +508,20 @@ const ViewArticle = () => {
               {subchampion}
             </div>
 
-            <Button variant="dark" onClick={handleShow}>
-              Editar Artículo
-            </Button>
+            <div className='buttonsContainer'>
+
+              <Button variant="dark" onClick={handleShow} className='buttonReact'>
+                Editar Artículo
+              </Button>
+
+              {isAdmin && (
+
+                <Button onClick={handleDelete} variant='danger' className='buttonReact'>Eliminar Articulo</Button>
+
+
+              )}
+
+            </div>
 
             <Modal show={show} onHide={handleClose} size="lg">
               <Modal.Header closeButton>
