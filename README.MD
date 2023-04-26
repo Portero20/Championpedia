@@ -136,7 +136,7 @@ Este proyecto ha sido desarrollado por el siguiente equipo:
 
 - [Exequiel Portero](https://www.linkedin.com/in/exequiel-portero/) - Desarrollador Fullstack
 - [Julian Viera](https://www.linkedin.com/in/julian-viera/) - Desarrollador Fullstack
-- [Xochitl Farias](https://www.linkedin.com/in/xfarias-scrum-master/) - Scrum
+- [Xochitl Farias](https://www.linkedin.com/in/xfarias-scrum-master/) - Scrum Master
 - [Cesia Castilla](https://www.linkedin.com/in/cesia-castilla/) - QA Manual
 - [Edgar Monagas](https://www.linkedin.com/in/edmonagas/) - UX/UI
 
