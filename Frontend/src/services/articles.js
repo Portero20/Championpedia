@@ -1,6 +1,6 @@
 export async function newArticle(category, formData) {
     try {
-        let query = await fetch(`http://localhost:3000/article/${category}/create`, {
+        let query = await fetch(`${import.meta.env.VITE_API_NEWARTICLE}${category}/create`, {
             method: "POST",
             headers: {
             },
