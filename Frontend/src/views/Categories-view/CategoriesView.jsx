@@ -231,23 +231,23 @@ const CategoriesView = () => {
 
                             <ul className="ulPaginacion">
                                 {page !== 1 && (
-                                    <li onClick={handlePrevClick}>
+                                    <p onClick={handlePrevClick}>
                                         {'◀'}
-                                    </li>
+                                    </p>
                                 )}
-                                {paginationNumbers.map((number) => (
-                                    <li
-                                        key={number}
+                                {paginationNumbers.map((number, i) => (
+                                    <p
+                                        key={i}
                                         className={page === number ? 'active' : ''}
                                         onClick={handleClick}
                                     >
                                         {number}
-                                    </li>
+                                    </p>
                                 ))}
                                 {page !== totalPages && (
-                                    <li onClick={handleNextClick}>
+                                    <p onClick={handleNextClick}>
                                         {'▶'}
-                                    </li>
+                                    </p>
                                 )}
                             </ul>
 

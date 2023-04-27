@@ -16,7 +16,7 @@ const Tags = ({ showValue, article }) => {
       />
 
       <div className="tooltip-container">
-        <i class="fa-solid fa-circle-info questionIcon"></i>
+        <i className="fa-solid fa-circle-info questionIcon"></i>
 
         <span className="tooltip">
           No te olvides de separar con comas.
