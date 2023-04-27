@@ -2,10 +2,8 @@ const { Router } = require('express');
 const router = Router();
 
 const tokenControllers = require("../controllers/token.controllers")
-const { protegerRutaToken } = require("../middlewares/protectPathToken.middleware")
+const { verificarApiKey } = require("../middlewares/protectPathToken.middleware")
 
-// router.get("/", protegerRutaToken(), tokenControllers.token);
-router.get("/", tokenControllers.token);
-
+router.get("/", verificarApiKey, tokenControllers.token);
 
 module.exports = router

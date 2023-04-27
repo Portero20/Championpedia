@@ -1,5 +1,9 @@
 async function getToken() {
-    const response = await fetch("http://localhost:3000/token")
+    const response = await fetch("http://localhost:3000/token", {
+        headers: {
+            'X-API-Key': `${import.meta.env.VITE_API_KEY}`
+        }
+    })
     const data = await response.json();
     const token = data.token;
     return token
