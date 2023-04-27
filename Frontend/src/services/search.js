@@ -1,6 +1,6 @@
 export async function results(userQuery) {
     try {
-        let query = await fetch(`${import.meta.env.VITE_API_RESULTS}?search=${userQuery}`)
+        let query = await fetch(`http://localhost:3000/search/results/?search=${userQuery}`)
         let data = await query.json()
         return data
     } catch (error) {
@@ -10,7 +10,7 @@ export async function results(userQuery) {
 
 export async function searchArticle(result) {
     try {
-        let query = await fetch(`${import.meta.env.VITE_API_SEARCH}`, {
+        let query = await fetch(`http://localhost:3000/search/article`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
