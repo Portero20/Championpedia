@@ -1,6 +1,6 @@
 export async function newArticle(category, formData) {
     try {
-        let query = await fetch(`http://localhost:3000/article/${category}/create`, {
+        let query = await fetch(`${import.meta.env.VITE_API_NEWARTICLE}${category}/create`, {
             method: "POST",
             headers: {
             },
@@ -16,7 +16,7 @@ export async function newArticle(category, formData) {
 
 export async function allCategories() {
     try {
-        let query = await fetch(`http://localhost:3000/article/categories`)
+        let query = await fetch(`${import.meta.env.VITE_API_ALLCATEGORIES}`)
         let data = await query.json()
         return data
     } catch (error) {
@@ -26,7 +26,7 @@ export async function allCategories() {
 
 export async function detail(category, id) {
     try {
-        let query = await fetch(`http://localhost:3000/article/${category}/${id}`)
+        let query = await fetch(`${import.meta.env.VITE_API_DETAIL}${category}/${id}`)
         let data = await query.json()
         return data
     } catch (error) {
@@ -36,7 +36,7 @@ export async function detail(category, id) {
 
 export async function editArticle(category, formData) {
     try {
-        let query = await fetch(`http://localhost:3000/article/edit/${category}`, {
+        let query = await fetch(`${import.meta.env.VITE_API_EDITARTICLE}${category}`, {
             method: "POST",
             headers: {
             },
@@ -52,7 +52,7 @@ export async function editArticle(category, formData) {
 
 export async function view(category, id) {
     try {
-        let query = await fetch(`http://localhost:3000/article/view`, {
+        let query = await fetch(`${import.meta.env.VITE_API_VIEW}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -69,7 +69,7 @@ export async function view(category, id) {
 
 export async function lastProduct() {
     try {
-        let query = await fetch(`http://localhost:3000/article/last`)
+        let query = await fetch(`${import.meta.env.VITE_API_LASTPRODUCT}`)
         let data = await query.json()
         return data
     } catch (error) {
@@ -79,7 +79,7 @@ export async function lastProduct() {
 
 export async function moreViews() {
     try {
-        let query = await fetch(`http://localhost:3000/article/moreViews`)
+        let query = await fetch(`${import.meta.env.VITE_API_MOREVIEWS}`)
         let data = await query.json()
         return data
     } catch (error) {
@@ -89,7 +89,7 @@ export async function moreViews() {
 
 export async function news() {
     try {
-        let query = await fetch(`http://localhost:3000/article/news`)
+        let query = await fetch(`${import.meta.env.VITE_API_NEWS}`)
         let data = await query.json()
         return data
     } catch (error) {
@@ -99,7 +99,7 @@ export async function news() {
 
 export async function lastCategories(category, size) {
     try {
-        let query = await fetch(`http://localhost:3000/article/last/${category}/${size}`)
+        let query = await fetch(`${import.meta.env.VITE_API_LASTCATEGORIES}${category}/${size}`)
         let data = await query.json()
         return data
     } catch (error) {
@@ -109,7 +109,7 @@ export async function lastCategories(category, size) {
 
 export async function moreViewsCategory(category, page, size) {
     try {
-        let query = await fetch(`http://localhost:3000/article/more/${category}/views?page=${page}&size=${size}`)
+        let query = await fetch(`${import.meta.env.VITE_API_MOREVIEWCATEGORIE}${category}/views?page=${page}&size=${size}`)
         let data = await query.json()
         return data
     } catch (error) {
@@ -119,7 +119,7 @@ export async function moreViewsCategory(category, page, size) {
 
 export async function deleteArticle(category, id) {
     try {
-        await fetch(`http://localhost:3000/article/delete/${category}/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_DELETE}${category}/${id}`, {
             method: "POST",
             headers: {
             },
