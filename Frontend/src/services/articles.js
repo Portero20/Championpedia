@@ -1,8 +1,17 @@
+async function getToken() {
+    const response = await fetch("http://localhost:3000/token")
+    const data = await response.json();
+    const token = data.token;
+    return token
+}
+
 export async function newArticle(category, formData) {
     try {
+        const token = await getToken();
         let query = await fetch(`http://localhost:3000/article/${category}/create`, {
             method: "POST",
             headers: {
+                Authorization: `Bearer ${token}`
             },
             body: formData
         })
@@ -16,7 +25,12 @@ export async function newArticle(category, formData) {
 
 export async function allCategories() {
     try {
-        let query = await fetch(`http://localhost:3000/article/categories`)
+        const token = await getToken();
+        let query = await fetch(`http://localhost:3000/article/categories`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         let data = await query.json()
         return data
     } catch (error) {
@@ -26,7 +40,12 @@ export async function allCategories() {
 
 export async function detail(category, id) {
     try {
-        let query = await fetch(`http://localhost:3000/article/${category}/${id}`)
+        const token = await getToken();
+        let query = await fetch(`http://localhost:3000/article/${category}/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         let data = await query.json()
         return data
     } catch (error) {
@@ -36,9 +55,11 @@ export async function detail(category, id) {
 
 export async function editArticle(category, formData) {
     try {
+        const token = await getToken();
         let query = await fetch(`http://localhost:3000/article/edit/${category}`, {
             method: "POST",
             headers: {
+                Authorization: `Bearer ${token}`
             },
             body: formData
         })
@@ -52,10 +73,12 @@ export async function editArticle(category, formData) {
 
 export async function view(category, id) {
     try {
+        const token = await getToken();
         let query = await fetch(`http://localhost:3000/article/view`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({ category: category, id: id })
         })
@@ -69,7 +92,12 @@ export async function view(category, id) {
 
 export async function lastProduct() {
     try {
-        let query = await fetch(`http://localhost:3000/article/last`)
+        const token = await getToken();
+        let query = await fetch(`http://localhost:3000/article/last`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         let data = await query.json()
         return data
     } catch (error) {
@@ -79,7 +107,12 @@ export async function lastProduct() {
 
 export async function moreViews() {
     try {
-        let query = await fetch(`http://localhost:3000/article/moreViews`)
+        const token = await getToken();
+        let query = await fetch(`http://localhost:3000/article/moreViews`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         let data = await query.json()
         return data
     } catch (error) {
@@ -89,7 +122,12 @@ export async function moreViews() {
 
 export async function news() {
     try {
-        let query = await fetch(`http://localhost:3000/article/news`)
+        const token = await getToken();
+        let query = await fetch(`http://localhost:3000/article/news`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         let data = await query.json()
         return data
     } catch (error) {
@@ -99,7 +137,12 @@ export async function news() {
 
 export async function lastCategories(category, size) {
     try {
-        let query = await fetch(`http://localhost:3000/article/last/${category}/${size}`)
+        const token = await getToken();
+        let query = await fetch(`http://localhost:3000/article/last/${category}/${size}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         let data = await query.json()
         return data
     } catch (error) {
@@ -109,7 +152,12 @@ export async function lastCategories(category, size) {
 
 export async function moreViewsCategory(category, page, size) {
     try {
-        let query = await fetch(`http://localhost:3000/article/more/${category}/views?page=${page}&size=${size}`)
+        const token = await getToken();
+        let query = await fetch(`http://localhost:3000/article/more/${category}/views?page=${page}&size=${size}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         let data = await query.json()
         return data
     } catch (error) {
@@ -119,9 +167,11 @@ export async function moreViewsCategory(category, page, size) {
 
 export async function deleteArticle(category, id) {
     try {
+        const token = await getToken();
         await fetch(`http://localhost:3000/article/delete/${category}/${id}`, {
             method: "POST",
             headers: {
+                Authorization: `Bearer ${token}`
             },
         })
     } catch (error) {

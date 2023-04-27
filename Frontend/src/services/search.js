@@ -1,6 +1,18 @@
+async function getToken() {
+    const response = await fetch("http://localhost:3000/token")
+    const data = await response.json();
+    const token = data.token;
+    return token
+}
+
 export async function results(userQuery) {
     try {
-        let query = await fetch(`http://localhost:3000/search/results/?search=${userQuery}`)
+        const token = await getToken();
+        let query = await fetch(`http://localhost:3000/search/results/?search=${userQuery}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         let data = await query.json()
         return data
     } catch (error) {
@@ -10,10 +22,12 @@ export async function results(userQuery) {
 
 export async function searchArticle(result) {
     try {
+        const token = await getToken();
         let query = await fetch(`http://localhost:3000/search/article`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({ result: result })
         })
