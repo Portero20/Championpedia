@@ -197,13 +197,12 @@ const Home = () => {
                 </SwiperSlide>
 
                 <div className="swiper-button-next"></div>
-                <div className="swiper-button-prev"></div>
+                <div className="swiper-button-prev" id='nosotros'></div>
               </Swiper>
             </div>
           </div>
         </div>
-
-        <div className="containerChampion">
+        <div className="containerChampion" >
 
           <div className="hijoChampion">
 

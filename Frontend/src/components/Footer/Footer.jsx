@@ -10,6 +10,14 @@ import { SiWhatsapp } from 'react-icons/si'
 
 const Footer = () => {
 
+    const handleClick = (e) => {
+
+        e.preventDefault()
+
+        window.location.href = '/#nosotros'
+
+    }
+
     return (
         <>
 
@@ -33,7 +41,7 @@ const Footer = () => {
 
                             <div className='enlaceHijo'>
 
-                                <Link to='/' className='enlace'>Nosotros</Link>
+                                <a href='#nosotros' className='enlace' onClick={handleClick}>Nosotros</a>
 
                             </div>
 
