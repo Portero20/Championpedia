@@ -17,13 +17,9 @@ import { useNavigate } from "react-router-dom";
 
 const CreateArticle = ({ placeholder }) => {
   const navigate = useNavigate();
-
   const editor = useRef(null);
-
   const [content, setContent] = useState('');
-
   const [selected, setSelected] = useState('');
-
   const [categories, setCategories] = useState('');
 
   const config = {
@@ -36,7 +32,7 @@ const CreateArticle = ({ placeholder }) => {
     toolbarAdaptive: true,
     addNewLineOnDBLClick: false,
     enableDragAndDropFileToEditor: true,
-    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif','webp'],
+    imagesExtensions: ['jpg', 'png', 'jpeg', 'gif', 'webp'],
     activeButtonsInReadOnly: ['source', 'fullsize', 'print', 'about', 'dots'],
 
     "uploader": {
@@ -45,13 +41,16 @@ const CreateArticle = ({ placeholder }) => {
 
     "disablePlugins": "video, about",
 
-
-
   }
 
   //Condicional para categorias
 
   let input;
+  let msgError = document.querySelectorAll(".msgErrorCategory")
+
+  msgError.forEach((error) => {
+    error.classList.remove("invalid");
+  });
 
   if (selected == "futbolistas") {
 
@@ -78,19 +77,21 @@ const CreateArticle = ({ placeholder }) => {
   }
 
   //función para cuando cambie el select
-
   function handlerChange(e) {
-
     setSelected((e.target.value.toLowerCase()));
 
   }
 
   //función para el formulario
-
   const handleSubmit = async (e) => {
 
     e.preventDefault();
 
+    if (selected == "" || selected == "categorias") {
+      msgError.forEach((error) => {
+        error.classList.add("invalid");
+      });
+    }
     if (selected == "futbolistas") {
       try {
         let file = document.getElementById("file");
@@ -163,7 +164,7 @@ const CreateArticle = ({ placeholder }) => {
           text: 16,
           tags: 17,
         };
-        
+
         if (Array.isArray(result)) {
           result.forEach((error) => {
             if (error.param in errorFields) {
@@ -175,7 +176,7 @@ const CreateArticle = ({ placeholder }) => {
         } else {
           navigate(`/articulo/${selected}/${result}`);
         }
-        
+
       } catch (error) {
         console.log(error)
       }
@@ -232,7 +233,7 @@ const CreateArticle = ({ placeholder }) => {
           "text": 9,
           "tags": 10
         };
-        
+
         if (Array.isArray(result)) {
           result.forEach(error => {
             const index = errorMap[error.param];
@@ -299,7 +300,7 @@ const CreateArticle = ({ placeholder }) => {
           text: 9,
           tags: 10
         }
-        
+
         if (Array.isArray(result)) {
           result.forEach(error => {
             const index = paramIndex[error.param]
@@ -339,6 +340,7 @@ const CreateArticle = ({ placeholder }) => {
 
 
               </select>
+              <p className='msgErrorCategory'>Debes seleccionar una categoría</p>
 
             </div>
 
