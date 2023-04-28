@@ -49,7 +49,7 @@ module.exports = {
                 query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES ("","${title}","${text}","${author}", 3,"${now}","","${fullName}","${req.body.campus}","${req.body.foundation}","${req.body.organizer}","${req.body.champion}","${req.body.subchampion}");`
             }
 
-            database.query(query, (err, results, fields) => {
+            database.query(query, (err, results) => {
                 let id;
 
                 if (err) {
@@ -119,7 +119,7 @@ module.exports = {
                 if (error) throw error;
             })
 
-            database.query(`SELECT category FROM categories`, function (err, result, filed) {
+            database.query(`SELECT category FROM categories`, function (err, result) {
                 if (err) {
                     return console.log(err)
                 } else {
@@ -149,7 +149,7 @@ module.exports = {
                 if (error) throw error;
             })
 
-            database.query(`SELECT * FROM ${category} WHERE id = ${req.params.id}`, function (err, result, filed) {
+            database.query(`SELECT * FROM ${category} WHERE id = ${req.params.id}`, function (err, result) {
                 if (err) {
                     return console.log(err)
                 } else {
@@ -164,7 +164,7 @@ module.exports = {
                         query = `select DISTINCT tags.tag from tags inner join tagstrophies on tags.id = tagstrophies.tag_id inner join trophies on tagstrophies.thophy_id = ${req.params.id};`
                     }
 
-                    database.query(query, function (err, result, filed) {
+                    database.query(query, function (err, result) {
                         let tags;
 
                         if (err) {
@@ -183,7 +183,7 @@ module.exports = {
                             queryImage = `SELECT DISTINCT images.image from images inner join imagestrophies on images.id = imagestrophies.image_id inner join trophies on imagestrophies.thophy_id = ${req.params.id};`
                         }
 
-                        database.query(queryImage, function (err, result, filed) {
+                        database.query(queryImage, function (err, result) {
                             if (err) {
                                 return console.log(err)
                             } else {
@@ -221,7 +221,6 @@ module.exports = {
                 return res.status(200).json(errorMsg)
             }
 
-            const now = moment().format("YYYY/MM/DD HH:mm:ss")
             let category;
 
             if (req.body.category.toLowerCase() == "futbolistas") {
@@ -251,7 +250,7 @@ module.exports = {
                 query = `UPDATE trophies SET title="${title}",text="${text}",fullName="${fullName}",campus="${req.body.campus}",foundation="${req.body.foundation}",organizer="${req.body.organizer}",champion="${req.body.champion}",subchampion="${req.body.subchampion}" WHERE id = ${req.body.id}`
             }
 
-            database.query(query, (err, results, fields) => {
+            database.query(query, (err, results) => {
                 if (err) {
                     return console.log(err);
                 }
@@ -268,7 +267,7 @@ module.exports = {
                     querySelectImg = `SELECT image_id FROM imagestrophies WHERE thophy_id = ${req.body.id};`
                 }
 
-                database.query(querySelectImg, (error, results, fields) => {
+                database.query(querySelectImg, (error, results) => {
                     let idImage;
                     if (error) {
                         return console.log(error)
@@ -276,7 +275,7 @@ module.exports = {
                         idImage = results[0].image_id
                     }
 
-                    database.query(`SELECT image FROM images WHERE id = ${idImage}`, (error, results, fields) => {
+                    database.query(`SELECT image FROM images WHERE id = ${idImage}`, (error, results) => {
                         let imgName;
                         if (error) {
                             return console.log(error)
@@ -287,7 +286,7 @@ module.exports = {
                         const imagenBuffer = req.files[0].buffer
                         const base64Image = imagenBuffer.toString("base64");
 
-                        database.query(`UPDATE images SET image='${base64Image}' WHERE id = ${idImage}`, (error, results, fields) => {
+                        database.query(`UPDATE images SET image='${base64Image}' WHERE id = ${idImage}`, (error, results) => {
                             if (error) {
                                 return console.log(error)
                             }
@@ -424,7 +423,7 @@ module.exports = {
             ORDER BY date DESC
             LIMIT 1;`
 
-            database.query(query, function (err, results, filed) {
+            database.query(query, function (err, results) {
                 if (err) {
                     return console.log(err)
                 } else {
@@ -482,7 +481,7 @@ module.exports = {
 
             let query = `UPDATE ${category} SET views = views + 1 WHERE id = ${req.body.id};`
 
-            database.query(query, function (err, results, filed) {
+            database.query(query, function (err, results) {
                 if (err) {
                     return console.log(err)
                 } else {
@@ -522,7 +521,7 @@ module.exports = {
             ORDER BY views DESC
             LIMIT 4;`
 
-            database.query(query, function (err, results, filed) {
+            database.query(query, function (err, results) {
                 if (err) {
                     return console.log(err)
                 } else {
@@ -619,7 +618,7 @@ module.exports = {
                 LIMIT ${size};`
             }
 
-            database.query(query, function (err, results, filed) {
+            database.query(query, function (err, results) {
                 if (err) {
                     return console.log(err)
                 } else {
@@ -702,7 +701,7 @@ module.exports = {
                 countQuery = `SELECT COUNT(*) AS count FROM trophies`;
             }
 
-            database.query(query, function (err, results, filed) {
+            database.query(query, function (err, results) {
                 if (err) {
                     return console.log(err)
                 } else {
@@ -792,15 +791,15 @@ module.exports = {
                 query3 = `DELETE FROM teams WHERE id = ${id};`
             }
 
-            database.query(query1, function (err, results, filed) {
+            database.query(query1, function (err, results) {
                 if (err) {
                     return console.log(err)
                 } else {
-                    database.query(query2, function (err, results, filed) {
+                    database.query(query2, function (err, results) {
                         if (err) {
                             return console.log(err)
                         } else {
-                            database.query(query3, function (err, results, filed) {
+                            database.query(query3, function (err, results) {
                                 if (err) {
                                     return console.log(err)
                                 } else {
