@@ -41,7 +41,7 @@ const Footer = () => {
 
                             <div className='enlaceHijo'>
 
-                                <a href='#nosotros' className='enlace' onClick={handleClick}>Nosotros</a>
+                                <Link to='#nosotros' className='enlace' onClick={handleClick}>Nosotros</Link>
 
                             </div>
 
