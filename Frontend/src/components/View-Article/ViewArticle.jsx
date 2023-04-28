@@ -53,9 +53,6 @@ const ViewArticle = () => {
 
     password === import.meta.env.VITE_APP_PASSWORD ? setAdmin(true) : setAdmin(false);
 
-    console.log('password' ,password);
-
-
   }, [password])
 
   useEffect(() => {

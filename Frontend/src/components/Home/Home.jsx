@@ -242,9 +242,9 @@ const Home = () => {
                     />
                   </div>
                   <h2 className="titular">{lastArticle.title}</h2>
-                  <p className="descripcion">
+                  <div className="descripcion">
                     <TextoHtml texto={lastArticle.text} />
-                  </p>
+                  </div>
                 </div>
               </Link>
 
@@ -256,7 +256,7 @@ const Home = () => {
 
               {isLoading && <div className='loaderArticles'><ClipLoader /></div>}
               {!isLoading && newsArticle.length > 0 ? newsArticle.map((news, i) => (
-                <Link target="_blank" to={news.url}>
+                <Link key={i} target="_blank" to={news.url}>
                   <div key={i} className="hijoProximo1">
                     <h3 className="titularProximo">
                       {news.title}
@@ -275,7 +275,7 @@ const Home = () => {
               {isLoading && <div className='loaderArticles'><ClipLoader /></div>}
               {!isLoading && articles && articles.length > 0 ? articles.map((article, i) => {
                 return (
-                  <Link to={`/articulo/${article.category}/${article.id}`}>
+                  <Link key={i} to={`/articulo/${article.category}/${article.id}`}>
                     <div key={i} className="hijoVisto">
                       <img src={article.image} alt="" className="imagenVisto" />
 
