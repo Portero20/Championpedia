@@ -16,6 +16,8 @@ import { detail } from "../../services/articles"
 import { view } from '../../services/articles';
 import { editArticle, deleteArticle } from '../../services/articles';
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ViewArticle = () => {
 
@@ -37,6 +39,7 @@ const ViewArticle = () => {
 
   const handleDelete = async () => {
     await deleteArticle(category, id);
+    toast.success('Artículo eliminado correctamente');
     navigate("/");
   };
 
