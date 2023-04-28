@@ -16,9 +16,19 @@ import { detail } from "../../services/articles"
 import { view } from '../../services/articles';
 import { editArticle, deleteArticle } from '../../services/articles';
 import { useParams, useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast';
 
 const ViewArticle = () => {
+
   const navigate = useNavigate();
+
+  const notify = () => {
+    toast.success('Artículo eliminado correctamente', {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 3000,
+    });
+  };
+
   const { category, id, password } = useParams();
   const [article, setarticle] = useState([])
   const [show, setShow] = useState(false);
@@ -33,9 +43,9 @@ const ViewArticle = () => {
     detail(category, id).then(setarticle)
   }, [id])
 
-
   const handleDelete = async () => {
     await deleteArticle(category, id);
+    notify();
     navigate("/");
   };
 
@@ -519,8 +529,9 @@ const ViewArticle = () => {
 
               {isAdmin && (
 
-                <Button onClick={handleDelete} variant='danger' className='buttonReact'>Eliminar Articulo</Button>
-
+                <div>
+                  <Button onClick={handleDelete} variant='danger' className='buttonReact'>Eliminar Articulo</Button>
+                </div>
 
               )}
 
