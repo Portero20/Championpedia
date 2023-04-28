@@ -16,18 +16,10 @@ import { detail } from "../../services/articles"
 import { view } from '../../services/articles';
 import { editArticle, deleteArticle } from '../../services/articles';
 import { useParams, useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
 
 const ViewArticle = () => {
 
   const navigate = useNavigate();
-
-  const notify = () => {
-    toast.success('Artículo eliminado correctamente', {
-      position: toast.POSITION.BOTTOM_RIGHT,
-      autoClose: 3000,
-    });
-  };
 
   const { category, id, password } = useParams();
   const [article, setarticle] = useState([])
@@ -45,7 +37,6 @@ const ViewArticle = () => {
 
   const handleDelete = async () => {
     await deleteArticle(category, id);
-    notify();
     navigate("/");
   };
 
