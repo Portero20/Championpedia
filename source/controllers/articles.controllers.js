@@ -3,19 +3,27 @@ const { validationResult } = require("express-validator")
 const moment = require("moment");
 const { JSDOM } = require('jsdom');
 
+const handleValidationErrors = (validations) => {
+    const errors = validations.array();
+    if (errors && errors.length > 0) {
+        const formattedErrors = errors.map((err) => ({
+            param: err.param,
+            value: err.value,
+            msg: err.msg,
+        }));
+        return formattedErrors;
+    }
+    return null;
+};
+
 module.exports = {
     create: (req, res) => {
         try {
-            let validations = validationResult(req)
-            let { errors } = validations
-            let errorMsg = errors.map(err => Object({
-                param: err.param,
-                value: err.value,
-                msg: err.msg
-            }))
+            const validations = validationResult(req);
+            const errors = handleValidationErrors(validations);
 
-            if (errors && errors.length > 0) {
-                return res.status(200).json(errorMsg)
+            if (errors) {
+                return res.status(200).json(errors);
             }
 
             const now = moment().format("YYYY/MM/DD HH:mm:ss")
@@ -209,16 +217,11 @@ module.exports = {
     },
     edit: (req, res) => {
         try {
-            let validations = validationResult(req)
-            let { errors } = validations
-            let errorMsg = errors.map(err => Object({
-                param: err.param,
-                value: err.value,
-                msg: err.msg
-            }))
+            const validations = validationResult(req);
+            const errors = handleValidationErrors(validations);
 
-            if (errors && errors.length > 0) {
-                return res.status(200).json(errorMsg)
+            if (errors) {
+                return res.status(200).json(errors);
             }
 
             let category;
