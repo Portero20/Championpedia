@@ -1,15 +1,28 @@
 import '../Player/_player.scss';
 import '../../scss/utilities/_utilities.scss';
+import { results } from '../../services/search'
 
 import { AiOutlineReload } from 'react-icons/ai';
-import React from 'react'
+import { React, useState } from 'react'
 
 const InputPlayer = ({ showValue, article }) => {
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleInputChange = async (event) => {
+    const value = event.target.value;
+
+    if (value.length >= 1) {
+      const result = await results(value);
+      setSearchResults(result);
+    } else {
+      setSearchResults([]);
+    }
+  }
 
   function funClear(data) {
 
     document.getElementById(data).value = "";
-    
+
   }
 
   let InputAuthor;
@@ -20,6 +33,8 @@ const InputPlayer = ({ showValue, article }) => {
       <p className="msg-error"></p></div>
   }
 
+  console.log(searchResults)
+
   return (
     <div className='div-jugadores'>
 
@@ -28,7 +43,7 @@ const InputPlayer = ({ showValue, article }) => {
         <div className='flexJugadores'>
           <div className='inputs-first'>
             <label>Título:</label>
-            <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputJugadores' defaultValue={showValue ? article.title : null} />
+            <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputJugadores' defaultValue={showValue ? article.title : null} onChange={handleInputChange} />
             <p className="msg-error"></p>
 
             <label>Nombre completo:</label>
@@ -48,16 +63,16 @@ const InputPlayer = ({ showValue, article }) => {
             <p className="msg-error"></p>
 
             <label>Fecha de fallecimiento: (Opcional)</label>
-            
+
             <div className='containerDate'>
-              <input type="date" name="death" id="death" placeholder='Escribir...' className='inputJugadores inputFunction' defaultValue={showValue ? article.death.split("T")[0] : null}/>
+              <input type="date" name="death" id="death" placeholder='Escribir...' className='inputJugadores inputFunction' defaultValue={showValue ? article.death.split("T")[0] : null} />
               <p className="msg-error"></p>
-              <AiOutlineReload onClick={() => funClear("death")} size='20' className='iconReload'/>
+              <AiOutlineReload onClick={() => funClear("death")} size='20' className='iconReload' />
             </div>
-            
+
 
             <label>Equipo:</label>
-            <input type="text" name="team" id="team" placeholder='Equipo en el que juega o en los que jugó...' className='inputJugadores' defaultValue={showValue ? article.team : null}/>
+            <input type="text" name="team" id="team" placeholder='Equipo en el que juega o en los que jugó...' className='inputJugadores' defaultValue={showValue ? article.team : null} />
             <p className="msg-error"></p>
 
             <label>Dorsales:</label>
@@ -92,7 +107,7 @@ const InputPlayer = ({ showValue, article }) => {
             <div className='containerDate'>
               <input type="date" name="retire" id="retire" className='inputJugadores inputFunction' defaultValue={showValue ? article.retire.split("T")[0] : null} />
               <p className="msg-error"></p>
-              <AiOutlineReload onClick={() => funClear("retire")} size='20' className='iconReload'/>
+              <AiOutlineReload onClick={() => funClear("retire")} size='20' className='iconReload' />
             </div>
 
             <label>Imagen:</label>
