@@ -125,7 +125,7 @@ const Navbar = () => {
               autoComplete="off"
             />
             <datalist id="search-results" className="datalist">
-              {searchResults.map((result, i) => (
+              {searchResults.slice(0, 10).map((result, i) => (
                 <option key={i} value={result.title} />
               ))}
             </datalist>

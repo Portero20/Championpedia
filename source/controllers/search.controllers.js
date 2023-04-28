@@ -9,11 +9,11 @@ module.exports = {
 
             let userQuery = req.query.search
 
-            let query = `SELECT players.title FROM players WHERE players.title LIKE '${userQuery}%'
+            let query = `SELECT players.title FROM players WHERE players.title LIKE '%${userQuery}%'
             UNION
-            SELECT teams.title FROM teams WHERE teams.title LIKE '${userQuery}%'
+            SELECT teams.title FROM teams WHERE teams.title LIKE '%${userQuery}%'
             UNION
-            SELECT trophies.title FROM trophies WHERE trophies.title LIKE '${userQuery}%'
+            SELECT trophies.title FROM trophies WHERE trophies.title LIKE '%${userQuery}%'
             ORDER BY title ASC;`;
 
             database.query(query, (err, results, fields) => {
