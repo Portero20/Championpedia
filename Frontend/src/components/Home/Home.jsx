@@ -209,7 +209,7 @@ const Home = () => {
 
             <h1 className="hijoChampion__titulo">¿Qué es championpedia?</h1>
             <p className="hijoChampion__parrafo">
-              Championpedia es una wiki dedicada a los apasionados del fútbol que permite crear y compartir información actualizada sobre los equipos más populares, copas y campeones.
+            Championpedia es una wiki diseñada especialmente para los apasionados del fútbol, que les brinda la oportunidad de crear y compartir información actualizada sobre los equipos más populares, los jugadores más destacados y los campeonatos más importantes. Championpedia es el lugar ideal para aquellos que desean expandir su conocimiento y profundizar en su pasión por este deporte.
             </p>
 
             <div className="containerButton">
