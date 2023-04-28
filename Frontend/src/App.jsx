@@ -6,6 +6,8 @@ import Main from "./components/Main/Main";
 import Navbar from "./components/Navbar/Navbar";
 import Loader from './components/Loader/Loader';
 import { useState } from 'react';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 
@@ -32,6 +34,7 @@ const App = () => {
 
           <Navbar />
           <Main />
+          <ToastContainer position='bottom-right' autoClose={3000} pauseOnHover={false}/>
           <Footer />
           
         </div>
