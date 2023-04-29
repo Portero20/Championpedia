@@ -231,7 +231,7 @@ const CategoriesView = () => {
 
                             <ul className="ulPaginacion">
                                 {page !== 1 && (
-                                    <p onClick={handlePrevClick}>
+                                    <p className="arrow" onClick={handlePrevClick}>
                                         {'◀'}
                                     </p>
                                 )}
@@ -245,7 +245,7 @@ const CategoriesView = () => {
                                     </p>
                                 ))}
                                 {page !== totalPages && (
-                                    <p onClick={handleNextClick}>
+                                    <p className="arrow" onClick={handleNextClick}>
                                         {'▶'}
                                     </p>
                                 )}
