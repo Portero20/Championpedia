@@ -1,11 +1,11 @@
 import '../Player/_player.scss';
 import '../../scss/utilities/_utilities.scss';
-import { results } from '../../services/search'
 
+import { results } from '../../services/search'
 import { AiOutlineReload } from 'react-icons/ai';
 import { React, useState } from 'react'
 
-const InputPlayer = ({ showValue, article }) => {
+const InputPlayer = ({ showValue, article, recibirValor }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleInputChange = async (event) => {
@@ -17,7 +17,11 @@ const InputPlayer = ({ showValue, article }) => {
     } else {
       setSearchResults([]);
     }
+
+    recibirValor(searchResults)
   }
+  
+
 
   function funClear(data) {
 

@@ -5,7 +5,6 @@ import '../../scss/partials/_variables.scss';
 import '../../scss/barrel.scss';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from "react-router-dom";
 
 import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
@@ -15,12 +14,19 @@ import Team from '../Teams/Team';
 import Trophies from '../Trophies/Trophies';
 import { allCategories } from '../../services/articles';
 import { handleSubmit } from "../../logic/validation"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CreateArticle = ({ placeholder }) => {
   const editor = useRef(null);
   const [content, setContent] = useState('');
   const [selected, setSelected] = useState('');
   const [categories, setCategories] = useState('');
+  const [valor, setValor] = useState("");
+
+  function recibirValor(valorHijo) {
+    setValor(valorHijo);
+  }
 
   const config = {
 
@@ -46,7 +52,7 @@ const CreateArticle = ({ placeholder }) => {
 
   if (selected == "futbolistas") {
 
-    input = <InputPlayer showValue={false} />
+    input = <InputPlayer showValue={false} recibirValor={recibirValor}/>
 
   } else if (selected == "copas") {
 
@@ -75,6 +81,10 @@ const CreateArticle = ({ placeholder }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     await handleSubmit(selected, content);
+
+    if (valor.length > 0) {
+      toast.warning('Título en uso por otro artículo');
+    }
   }
 
   return (

@@ -97,6 +97,14 @@ export const handleSubmit = async (selected, content) => {
                         msgErrors[index].classList.add("invalid");
                     }
                 });
+
+                msgErrors.forEach(error => {
+                    if (!error.classList.contains("invalid")) {
+                        error.classList.add("invalid")
+                        error.innerHTML = "Este campo puede quedar vacío"
+                        error.style.color = "green"
+                    }
+                })
             } else {
                 window.location.href = `/articulo/${selected}/${result}`
             }
@@ -231,6 +239,14 @@ export const handleSubmit = async (selected, content) => {
                     if (index !== undefined) {
                         msgErrors[index].innerText = error.msg
                         msgErrors[index].classList.add("invalid")
+                    }
+                })
+
+                msgErrors.forEach(error => {
+                    if (!error.classList.contains("invalid")) {
+                        error.classList.add("invalid")
+                        error.innerHTML = "Este campo puede quedar vacío"
+                        error.style.color = "green"
                     }
                 })
             } else {
