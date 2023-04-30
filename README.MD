@@ -7,7 +7,7 @@ Championpedia es una wiki dedicada al mundo del fútbol que ofrece a los usuario
 
 A continuación, se presente un pequeño recorrido por el sitio web:
 
-![](./img/../Frontend/src/img/readme/recorrido-sitio%20(1).gif)
+![](./img/../Frontend/src/img/readme/recorrido-sitio.gif)
 
 
 ## Características 📋
