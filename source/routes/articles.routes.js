@@ -18,7 +18,6 @@ const { verificarToken } = require("../middlewares/verifyToken.middleware")
 const articlePlayersMiddlewares = require("../middlewares/articlePlayers.middleware")
 const articleTeamsMiddlewares = require("../middlewares/articleTeams.middleware")
 const articleTrophiesMiddlewares = require("../middlewares/articleTrophies.middleware")
-
 const editPlayersMiddlewares = require("../middlewares/editPlayers.middleware"); 
 const editTeamsMiddlewares = require("../middlewares/editTeams.middleware"); 
 const editTrophiesMiddlewares = require("../middlewares/editTrophies.middleware"); 
