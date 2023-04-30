@@ -13,9 +13,14 @@ const editTrophiesMiddlewares = require("../middlewares/editTrophies.middleware"
 
 const { verificarToken } = require("../middlewares/verifyToken.middleware")
 
-router.post("/futbolistas/create", articlePlayersMiddlewares, articlesControllers.create)
-router.post("/equipos/create", articleTeamsMiddlewares, articlesControllers.create)
-router.post("/copas/create", articleTrophiesMiddlewares, articlesControllers.create)
+
+
+
+const createController = require("../controllers/articles/create")
+
+router.post("/futbolistas/create", articlePlayersMiddlewares, createController.create)
+router.post("/equipos/create", articleTeamsMiddlewares, createController.create)
+router.post("/copas/create", articleTrophiesMiddlewares, createController.create)
 router.get("/categories", verificarToken, articlesControllers.categories)
 router.get("/last/:category/:size", verificarToken, articlesControllers.lastArticles)
 router.post("/delete/:category/:id", verificarToken, articlesControllers.delete)
