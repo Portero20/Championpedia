@@ -33,8 +33,6 @@ const InputPlayer = ({ showValue, article }) => {
       <p className="msg-error"></p></div>
   }
 
-  console.log(searchResults)
-
   return (
     <div className='div-jugadores'>
 

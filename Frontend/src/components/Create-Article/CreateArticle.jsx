@@ -17,7 +17,6 @@ import { allCategories } from '../../services/articles';
 import { handleSubmit } from "../../logic/validation"
 
 const CreateArticle = ({ placeholder }) => {
-  const navigate = useNavigate();
   const editor = useRef(null);
   const [content, setContent] = useState('');
   const [selected, setSelected] = useState('');

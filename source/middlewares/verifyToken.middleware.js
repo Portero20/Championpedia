@@ -1,3 +1,4 @@
+const dotenv = require('dotenv').config();
 const jwt = require('jsonwebtoken');
 
 const SHARED_SECRET = process.env.SHARED_SECRET;

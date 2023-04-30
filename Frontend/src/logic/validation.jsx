@@ -6,15 +6,16 @@ export const handleSubmit = async (selected, content) => {
 
     let msgError = document.querySelectorAll(".msgErrorCategory")
 
-    msgError.forEach((error) => {
-        error.classList.remove("invalid");
-    });
-
     if (selected == "" || selected == "categorias") {
         msgError.forEach((error) => {
             toast.error('Debes seleccionar una categoría');
         });
     }
+
+    msgError.forEach((error) => {
+        error.classList.remove("invalid");
+    });
+
     if (selected == "futbolistas") {
         try {
             let file = document.getElementById("file");
@@ -96,16 +97,8 @@ export const handleSubmit = async (selected, content) => {
                         msgErrors[index].classList.add("invalid");
                     }
                 });
-
-                msgErrors.forEach(error => {
-                    if (!error.classList.contains("invalid")) {
-                        error.classList.add("invalid")
-                        error.innerHTML = "Este campo puede quedar vacío"
-                        error.style.color = "green"
-                    }
-                })
             } else {
-                navigate(`/articulo/${selected}/${result}`);
+                window.location.href = `/articulo/${selected}/${result}`
             }
 
         } catch (error) {
@@ -147,8 +140,6 @@ export const handleSubmit = async (selected, content) => {
 
             let result = await newArticle(selected, formData)
 
-            let errors;
-
             msgErrors.forEach((error) => {
                 error.classList.remove("invalid");
             });
@@ -176,9 +167,8 @@ export const handleSubmit = async (selected, content) => {
                     }
                 });
             } else {
-                navigate(`/articulo/${selected}/${result}`);
+                window.location.href = `/articulo/${selected}/${result}`
             }
-            return errors
         } catch (error) {
             console.log(error)
         }
@@ -243,16 +233,8 @@ export const handleSubmit = async (selected, content) => {
                         msgErrors[index].classList.add("invalid")
                     }
                 })
-
-                msgErrors.forEach(error => {
-                    if (!error.classList.contains("invalid")) {
-                        error.classList.add("invalid")
-                        error.innerHTML = "Este campo puede quedar vacío"
-                        error.style.color = "green"
-                    }
-                })
             } else {
-                navigate(`/articulo/${selected}/${result}`)
+                window.location.href = `/articulo/${selected}/${result}`
             }
         } catch (error) {
             console.log(error);
