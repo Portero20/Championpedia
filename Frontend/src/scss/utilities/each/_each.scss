@@ -9,7 +9,6 @@ $inputPlayers:(
 );
 
 .inputJugadores{
-
     border: map-get($inputPlayers, border);
     outline: map-get($inputPlayers, outline);
     border-radius: map-get($inputPlayers , border-radius );

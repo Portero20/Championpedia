@@ -6,6 +6,8 @@
     display: flex;
     justify-content: center;
     color: red;
+    width: 100%;
+    text-align: center;
 }
 
 .options {
@@ -36,6 +38,10 @@
     gap: 1.5rem;
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.inputs-first input {
     width: 100%;
 }
 

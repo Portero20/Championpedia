@@ -96,6 +96,14 @@ export const handleSubmit = async (selected, content) => {
                         msgErrors[index].classList.add("invalid");
                     }
                 });
+
+                msgErrors.forEach(error => {
+                    if (!error.classList.contains("invalid")) {
+                        error.classList.add("invalid")
+                        error.innerHTML = "Este campo puede quedar vacío"
+                        error.style.color = "green"
+                    }
+                })
             } else {
                 navigate(`/articulo/${selected}/${result}`);
             }
