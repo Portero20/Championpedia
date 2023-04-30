@@ -1,4 +1,6 @@
 import { newArticle } from '../services/articles';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const handleSubmit = async (selected, content) => {
 
@@ -10,7 +12,7 @@ export const handleSubmit = async (selected, content) => {
 
     if (selected == "" || selected == "categorias") {
         msgError.forEach((error) => {
-            error.classList.add("invalid");
+            toast.error('Debes seleccionar una categoría');
         });
     }
     if (selected == "futbolistas") {
