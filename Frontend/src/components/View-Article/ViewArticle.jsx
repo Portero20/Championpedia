@@ -19,6 +19,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { ViewDetail } from '../../logic/ViewDetail';
+
 const ViewArticle = () => {
 
   const navigate = useNavigate();
@@ -341,117 +343,6 @@ const ViewArticle = () => {
     }
   }
 
-  function convertirFecha(fecha) {
-    // Separar los componentes de la fecha utilizando el método split
-    const [anio, mes, dia] = fecha.split("-");
-
-    // Formatear la fecha en el formato deseado
-    const fechaFormateada = `${dia}-${mes}-${anio}`;
-
-    // Devolver la fecha formateada
-    return fechaFormateada;
-  }
-
-  let nickName;
-  if (article.nickName && article.nickName != null && article.nickName != undefined && article.nickName != "") {
-    nickName = <p className='parrafoJugador'><span className='spanParrafo'>Apodo(s):</span> {article.nickName}</p>
-  }
-
-  let born;
-  if (article.born) {
-    born = <p className='parrafoJugador'><span className='spanParrafo'>Nacimiento:</span> {convertirFecha(article.born.split("T")[0])}</p>
-  }
-
-  let nationality;
-  if (article.nationality) {
-    nationality = <p className='parrafoJugador'><span className='spanParrafo'>Nacionalidad(es):</span> {article.nationality}</p>
-  }
-
-  let death;
-  if (article.death && article.death != "0000-00-00") {
-    death = <p className='parrafoJugador'><span className='spanParrafo'>Fallecimiento:</span> {convertirFecha(article.death.split("T")[0])}</p>
-  }
-
-  let height;
-  if (article.height) {
-    height = <p className='parrafoJugador'><span className='spanParrafo'>Altura:</span> {article.height}</p>
-  }
-
-  let team;
-  if (article.team) {
-    team = <p className='parrafoJugador'><span className='spanParrafo'>Equipo actual:</span> {article.team}</p>
-  }
-
-  let weight;
-  if (article.weight) {
-    weight = <p className='parrafoJugador'><span className='spanParrafo'>Peso:</span> {article.weight} kg</p>
-  }
-
-  let debut;
-  if (article.debut) {
-    debut = <p className='parrafoJugador'><span className='spanParrafo'>Debut deportivo:</span> {convertirFecha(article.debut.split("T")[0])}</p>
-  }
-
-  let position;
-  if (article.position) {
-    position = <p className='parrafoJugador'><span className='spanParrafo'>Posición(es):</span> {article.position}</p>
-  }
-
-  let numbers;
-  if (article.numbers) {
-    numbers = <p className='parrafoJugador'><span className='spanParrafo'>Dorsal(es):</span> {article.numbers}</p>
-  }
-
-  let goals;
-  if (article.goals) {
-    goals = <p className='parrafoJugador'><span className='spanParrafo'>Goles en clubes:</span> {article.goals}</p>
-  }
-
-  let retire;
-  if (article.retire && article.retire != "0000-00-00") {
-    retire = <p className='parrafoJugador'><span className='spanParrafo'>Retirada deportiva:</span> {convertirFecha(article.retire.split("T")[0])}</p>
-  }
-
-  let foundation;
-  if (article.foundation) {
-    foundation = <p className='parrafoJugador'><span className='spanParrafo'>Fundación:</span> {convertirFecha(article.foundation.split("T")[0])}</p>
-  }
-
-  let president;
-  if (article.president) {
-    president = <p className='parrafoJugador'><span className='spanParrafo'>Presidente:</span> {article.president}</p>
-  }
-
-  let coach;
-  if (article.coach) {
-    coach = <p className='parrafoJugador'><span className='spanParrafo'>Entrenador:</span> {article.coach}</p>
-  }
-
-  let stadium;
-  if (article.stadium) {
-    stadium = <p className='parrafoJugador'><span className='spanParrafo'>Estadio:</span> {article.stadium}</p>
-  }
-
-  let campus;
-  if (article.campus) {
-    campus = <p className='parrafoJugador'><span className='spanParrafo'>Sede:</span> {article.campus}</p>
-  }
-
-  let organizer;
-  if (article.organizer) {
-    organizer = <p className='parrafoJugador'><span className='spanParrafo'>Organizador:</span> {article.organizer}</p>
-  }
-
-  let champion;
-  if (article.champion) {
-    champion = <p className='parrafoJugador'><span className='spanParrafo'>último campeón:</span> {article.champion}</p>
-  }
-
-  let subchampion;
-  if (article.subchampion) {
-    subchampion = <p className='parrafoJugador'><span className='spanParrafo'>último subcampeón:</span> {article.subchampion}</p>
-  }
-
   const fechaHoraString = article.date;
   const fechaHora = new Date(fechaHoraString);
 
@@ -481,36 +372,7 @@ const ViewArticle = () => {
           </div>
 
           <div className="jugadorContainer">
-            <div className="imagen__jugadorFlex">
-              {article && <img src={article.image} />}
-            </div>
-
-            <div className="parrafosPersonales">
-              <p className="parrafoJugador">
-                <span className="spanParrafo">Nombre completo:</span>{" "}
-                {article.fullName}
-              </p>
-              {nickName}
-              {born}
-              {nationality}
-              {height}
-              {weight}
-              {debut}
-              {team}
-              {position}
-              {numbers}
-              {goals}
-              {retire}
-              {death}
-              {foundation}
-              {president}
-              {coach}
-              {stadium}
-              {campus}
-              {organizer}
-              {champion}
-              {subchampion}
-            </div>
+            <ViewDetail article={article}/>
 
             <div className='buttonsContainer'>
 
@@ -548,7 +410,7 @@ const ViewArticle = () => {
                           ref={editor}
                           value={article.text}
                           config={config}
-                          tabIndex={1} // tabIndex of textarea
+                          tabIndex={1}
                           onChange={(newContent) => {
                             const newArticle = { ...article, text: newContent };
                             setArticleJodit(newArticle);
