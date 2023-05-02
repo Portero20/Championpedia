@@ -5,20 +5,17 @@ import './_articleView.scss';
 import { React, useEffect, useMemo, useRef, useState } from 'react'
 import Cookies from 'universal-cookie'
 import Button from 'react-bootstrap/Button';
-import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
 import Modal from 'react-bootstrap/Modal';
 import Tags from '../Tags/Tags';
-import Team from '../Teams/Team';
 import TextoHtml from '../TextoHtml';
-import Trophies from '../Trophies/Trophies';
 import { detail } from "../../services/articles"
 import { view } from '../../services/articles';
 import { editArticle, deleteArticle } from '../../services/articles';
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { SelectInput } from '../../logic/SelectInput';
 import { ViewDetail } from '../../logic/ViewDetail';
 
 const ViewArticle = () => {
@@ -96,22 +93,6 @@ const ViewArticle = () => {
       setContent(article.text);
     });
   }, [category, id]);
-
-  let input;
-
-  if (category == "Futbolistas") {
-
-    input = <InputPlayer showValue={true} article={article} />
-
-  } else if (category == "Copas") {
-
-    input = <Trophies showValue={true} article={article} />
-
-  } else if (category == "Equipos") {
-
-    input = <Team showValue={true} article={article} />
-
-  }
 
   const handleSubmit = async (e) => {
 
@@ -401,7 +382,7 @@ const ViewArticle = () => {
                   className="formularioCategorias"
                   onSubmit={handleSubmit}
                 >
-                  {input}
+                  <SelectInput showValue={true} article={article} category={category}/>
 
                   <div className="joditEditor">
                     {useMemo(
