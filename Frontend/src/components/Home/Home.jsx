@@ -251,7 +251,7 @@ const Home = () => {
             </div>
 
             <div className="containerProximo">
-              <h2 className="tituloProximo">Noticias</h2>
+              <h2 className="tituloProximo">NOTICIAS</h2>
 
               {isLoading && <div className='loaderArticles'><ClipLoader /></div>}
               {!isLoading && newsArticle.length > 0 ? newsArticle.map((news, i) => (

@@ -56,15 +56,15 @@ const CategoriesView = () => {
     let categorySelected;
 
     if (id === 'copas') {
-        category = 'copas';
+        category = 'Copas';
         categorySelected = "trophies"
 
     } else if (id === 'equipos') {
-        category = 'equipos';
+        category = 'Equipos';
         categorySelected = "teams"
 
     } else if (id === 'jugadores') {
-        category = 'jugadores';
+        category = 'Futbolistas';
         categorySelected = "players"
 
     } else {

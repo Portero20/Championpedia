@@ -2,9 +2,9 @@ import '../../scss/utilities/_utilities.scss';
 import '../../scss/base/medias-detail.css'
 import './_articleView.scss';
 
-import { React, useEffect, useMemo, useRef, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
-import { editArticle, detail, view } from '../../services/articles';
+import { detail, view } from '../../services/articles';
 import { useParams } from "react-router-dom";
 import { ContainerDetail } from '../ContainerDetail/ContainerDetail';
 

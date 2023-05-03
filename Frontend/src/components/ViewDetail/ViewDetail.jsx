@@ -1,4 +1,4 @@
-import getDate from "../../containers/getDate"
+import { getDate } from "../../containers/getDate"
 
 export function ViewDetail({ article }) {
     return (
