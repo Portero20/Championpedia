@@ -18,6 +18,11 @@ export function ContainerDetail({ article }) {
     const [isAdmin, setAdmin] = useState(false);
     const editor = useRef(null);
     const navigate = useNavigate();
+    const [valor, setValor] = useState("");
+
+    function recibirValor(valorHijo) {
+        setValor(valorHijo);
+    }
 
     const config = {
         readonly: false,
@@ -74,6 +79,10 @@ export function ContainerDetail({ article }) {
         const idCategory = parseInt(id)
         const view = "edit"
         await handleSubmit(selected, content, view, idCategory);
+
+        if (valor.length > 0) {
+            toast.warning('Título en uso por otro artículo');
+        }
     }
 
     return (
@@ -125,7 +134,7 @@ export function ContainerDetail({ article }) {
                                         className="formularioCategorias"
                                         onSubmit={handleFormSubmit}
                                     >
-                                        <SelectInput showValue={true} article={article} category={selected} />
+                                        <SelectInput showValue={true} article={article} category={selected} recibirValor={recibirValor} />
 
                                         <div className="joditEditor">
                                             {useMemo(
