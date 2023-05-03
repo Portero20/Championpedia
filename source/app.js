@@ -19,3 +19,5 @@ app.use("/database", require("./routes/database.routes"));
 app.use("/article", require("./routes/articles.routes"));
 app.use("/search", require("./routes/search.routes"));
 app.use("/token", require("./routes/token.routes"))
+
+module.exports = app;
