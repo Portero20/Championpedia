@@ -1,16 +1,17 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
+import { useParams, useNavigate } from "react-router-dom";
 import { ViewDetail } from '../viewDetail/ViewDetail';
+import { deleteArticle } from '../../services/articles';
+import { SelectInput } from '../SelectInput/SelectInput'
+import { handleSubmit } from '../Validation/Validation';
+import { toast } from 'react-toastify';
+import { getFullDate } from '../../containers/getDate'
 import TextoHtml from '../TextoHtml';
 import Button from 'react-bootstrap/Button';
-import { useParams, useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import JoditEditor from 'jodit-react';
 import Tags from '../Tags/Tags';
-import { deleteArticle } from '../../services/articles';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { SelectInput } from '../SelectInput/SelectInput'
-import { handleSubmit } from '../Validation/Validation';
 
 export function ContainerDetail({ article }) {
     const { password, category, id } = useParams();
@@ -56,17 +57,6 @@ export function ContainerDetail({ article }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const fechaHoraString = article.date;
-    const fechaHora = new Date(fechaHoraString);
-
-    const dia = fechaHora.getDate().toString().padStart(2, '0');
-    const mes = (fechaHora.getMonth() + 1).toString().padStart(2, '0');
-    const anio = fechaHora.getFullYear();
-    const hora = fechaHora.getHours().toString().padStart(2, '0');
-    const minutos = fechaHora.getMinutes().toString().padStart(2, '0');
-
-    const fechaHoraFormateada = `${anio}/${mes}/${dia} ${hora}:${minutos}`;
-
     const [articleJodit, setArticleJodit] = useState({
         text: "Texto predeterminado"
     });
@@ -98,7 +88,7 @@ export function ContainerDetail({ article }) {
                             <div className="parrafoView" id="resultado">
                                 <TextoHtml texto={article.text} />
                                 <div className="dataAuthor">
-                                    <p>Fecha de creación: {fechaHoraFormateada}.</p>
+                                    <p>Fecha de creación: {getFullDate(article.date)}.</p>
                                     <p>Autor: {article.author}.</p>
                                 </div>
                             </div>
