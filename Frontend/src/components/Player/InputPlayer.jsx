@@ -20,7 +20,6 @@ const InputPlayer = ({ showValue, article, recibirValor }) => {
 
     recibirValor(searchResults)
   }
-  
 
 
   function funClear(data) {

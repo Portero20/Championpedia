@@ -5,17 +5,14 @@ import '../../scss/partials/_variables.scss';
 import '../../scss/barrel.scss';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-
-import InputPlayer from '../Player/InputPlayer';
 import JoditEditor from 'jodit-react';
 import React from 'react'
 import Tags from '../Tags/Tags';
-import Team from '../Teams/Team';
-import Trophies from '../Trophies/Trophies';
 import { allCategories } from '../../services/articles';
-import { handleSubmit } from "../../logic/validation"
+import { handleSubmit } from "../Validation/Validation"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { SelectInput } from '../SelectInput/SelectInput';
 
 const CreateArticle = ({ placeholder }) => {
   const editor = useRef(null);
@@ -48,22 +45,6 @@ const CreateArticle = ({ placeholder }) => {
     "disablePlugins": "video, about",
   }
 
-  let input;
-
-  if (selected == "futbolistas") {
-
-    input = <InputPlayer showValue={false} recibirValor={recibirValor}/>
-
-  } else if (selected == "copas") {
-
-    input = <Trophies showValue={false} />
-
-  } else if (selected == "equipos") {
-
-    input = <Team showValue={false} />
-
-  }
-
   useEffect(() => {
     allCategories().then(setCategories)
   }, [])
@@ -80,7 +61,8 @@ const CreateArticle = ({ placeholder }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    await handleSubmit(selected, content);
+    const view = "create"
+    await handleSubmit(selected, content, view);
 
     if (valor.length > 0) {
       toast.warning('Título en uso por otro artículo');
@@ -114,7 +96,7 @@ const CreateArticle = ({ placeholder }) => {
             </div>
 
             <div className="inputsCategorias">
-              {input}
+            <SelectInput showValue={false} category={selected} recibirValor={recibirValor}/>
             </div>
 
 

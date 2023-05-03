@@ -1,9 +1,25 @@
 import '../Teams/_team.scss';
 import '../../scss/utilities/_utilities.scss';
+import { results } from '../../services/search'
 
-import React from 'react'
+import React, { useState } from 'react'
 
-const Team = ({ showValue, article }) => {
+const Team = ({ showValue, article, recibirValor }) => {
+    const [searchResults, setSearchResults] = useState([]);
+
+    const handleInputChange = async (event) => {
+        const value = event.target.value;
+
+        if (value.length >= 1) {
+            const result = await results(value);
+            setSearchResults(result);
+        } else {
+            setSearchResults([]);
+        }
+
+        recibirValor(searchResults)
+    }
+
     let InputAuthor;
 
     if (showValue != true) {
@@ -18,7 +34,7 @@ const Team = ({ showValue, article }) => {
                 <div className='flexTeam'>
 
                     <label>Título:</label>
-                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputs__team' defaultValue={showValue ? article.title : null}/>
+                    <input type="text" name="title" id="title" placeholder='Título del artículo...' className='inputs__team' defaultValue={showValue ? article.title : null} onChange={handleInputChange} />
                     <p className="msg-error"></p>
 
                     <label>Nombre completo:</label>
