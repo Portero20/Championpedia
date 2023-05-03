@@ -1,8 +1,8 @@
-import { newArticle } from '../services/articles';
+import { newArticle, editArticle } from '../../services/articles';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const handleSubmit = async (selected, content) => {
+export const handleSubmit = async (selected, content, view, idCategory) => {
 
     let msgError = document.querySelectorAll(".msgErrorCategory")
 
@@ -18,13 +18,11 @@ export const handleSubmit = async (selected, content) => {
 
     if (selected == "futbolistas") {
         try {
-            let file = document.getElementById("file");
             let title = document.getElementById("title").value;
+            let file = document.getElementById("file");
             let text = content
-            let author = document.getElementById("author").value;
             let fullName = document.getElementById("fullName").value;
             let nickName = document.getElementById("nickName").value;
-            let category = document.getElementById("category").value;
             let born = document.getElementById("born").value;
             let death = document.getElementById("death").value;
             let height = document.getElementById("height").value;
@@ -37,15 +35,20 @@ export const handleSubmit = async (selected, content) => {
             let debut = document.getElementById("debut").value;
             let retire = document.getElementById("retire").value;
             let tags = document.getElementById("tags").value;
+            let category;
+            let id;
+            let author;
+            view === "create" ? category = document.getElementById("category").value : category = selected
+            view === "edit" ? id = idCategory : null
+            view === "create" ? author = document.getElementById("author").value : null
 
             let msgErrors = document.querySelectorAll(".msg-error");
 
             let formData = new FormData();
 
-            formData.append("file", file.files[0]);
             formData.append("title", title);
+            formData.append("file", file.files[0]);
             formData.append("text", text);
-            formData.append("author", author);
             formData.append("fullName", fullName);
             formData.append("nickName", nickName);
             formData.append("category", category);
@@ -61,33 +64,59 @@ export const handleSubmit = async (selected, content) => {
             formData.append("debut", debut);
             formData.append("retire", retire);
             formData.append("tags", tags);
+            view === "edit" ? formData.append("id", id) : null
+            view === "create" ? formData.append("author", author) : null
 
-            let result = await newArticle(selected, formData)
+            let result;
+
+            view === "create" ? result = await newArticle(selected, formData) : result = await editArticle(selected, formData)
 
             msgErrors.forEach((error) => {
                 error.classList.remove("invalid");
             });
 
-            const errorFields = {
-                title: 0,
-                fullName: 1,
-                nickName: 2,
-                nationality: 3,
-                born: 4,
-                death: 5,
-                team: 6,
-                numbers: 7,
-                goals: 8,
-                height: 9,
-                weight: 10,
-                position: 11,
-                debut: 12,
-                retire: 13,
-                image: 14,
-                author: 15,
-                text: 16,
-                tags: 17,
-            };
+            let errorFields;
+
+            view === "create" ?
+                errorFields = {
+                    title: 0,
+                    fullName: 1,
+                    nickName: 2,
+                    nationality: 3,
+                    born: 4,
+                    death: 5,
+                    team: 6,
+                    numbers: 7,
+                    goals: 8,
+                    height: 9,
+                    weight: 10,
+                    position: 11,
+                    debut: 12,
+                    retire: 13,
+                    image: 14,
+                    author: 15,
+                    text: 16,
+                    tags: 17,
+                } :
+                errorFields = {
+                    title: 0,
+                    fullName: 1,
+                    nickName: 2,
+                    nationality: 3,
+                    born: 4,
+                    death: 5,
+                    team: 6,
+                    numbers: 7,
+                    goals: 8,
+                    height: 9,
+                    weight: 10,
+                    position: 11,
+                    debut: 12,
+                    retire: 13,
+                    image: 14,
+                    text: 15,
+                    tags: 16,
+                };
 
             if (Array.isArray(result)) {
                 result.forEach((error) => {
@@ -98,15 +127,15 @@ export const handleSubmit = async (selected, content) => {
                     }
                 });
 
-                msgErrors.forEach(error => {
-                    if (!error.classList.contains("invalid")) {
-                        error.classList.add("invalid")
-                        error.innerHTML = "Este campo puede quedar vacío"
-                        error.style.color = "green"
-                    }
-                })
+                // msgErrors.forEach(error => {
+                //     if (!error.classList.contains("invalid")) {
+                //         error.classList.add("invalid")
+                //         error.innerHTML = "Este campo puede quedar vacío"
+                //         error.style.color = "green"
+                //     }
+                // })
             } else {
-                window.location.href = `/articulo/${selected}/${result}`
+                view === "create" ? window.location.href = `/articulo/${selected}/${result}` : window.location.href = `/articulo/${selected}/${idCategory}`
             }
 
         } catch (error) {
@@ -116,18 +145,22 @@ export const handleSubmit = async (selected, content) => {
     if (selected == "copas") {
 
         try {
-            let file = document.getElementById("file");
             let title = document.getElementById("title").value;
+            let file = document.getElementById("file");
             let text = content
-            let author = document.getElementById("author").value;
             let fullName = document.getElementById("fullName").value;
-            let category = document.getElementById("category").value;
             let campus = document.getElementById("campus").value;
             let foundation = document.getElementById("foundation").value;
             let organizer = document.getElementById("organizer").value;
             let champion = document.getElementById("champion").value;
             let subchampion = document.getElementById("subchampion").value
             let tags = document.getElementById("tags").value;
+            let category
+            let author;
+            let id;
+            view === "create" ? category = document.getElementById("category").value : category = selected
+            view === "create" ? author = document.getElementById("author").value : null
+            view === "edit" ? id = idCategory : null
 
             let msgErrors = document.querySelectorAll(".msg-error");
 
@@ -135,7 +168,6 @@ export const handleSubmit = async (selected, content) => {
 
             formData.append("title", title);
             formData.append("text", text);
-            formData.append("author", author);
             formData.append("fullName", fullName);
             formData.append("category", category);
             formData.append("file", file.files[0]);
@@ -145,26 +177,46 @@ export const handleSubmit = async (selected, content) => {
             formData.append("champion", champion);
             formData.append("subchampion", subchampion);
             formData.append("tags", tags);
+            view === "edit" ? formData.append("id", id) : null
+            view === "create" ? formData.append("author", author) : null
 
-            let result = await newArticle(selected, formData)
+            let result;
+
+            view === "create" ? result = await newArticle(selected, formData) : result = await editArticle(selected, formData)
 
             msgErrors.forEach((error) => {
                 error.classList.remove("invalid");
             });
 
-            const errorMap = {
-                "title": 0,
-                "fullName": 1,
-                "campus": 2,
-                "foundation": 3,
-                "organizer": 4,
-                "champion": 5,
-                "subchampion": 6,
-                "image": 7,
-                "author": 8,
-                "text": 9,
-                "tags": 10
-            };
+            let errorMap;
+
+            view === "create" ?
+                errorMap = {
+                    "title": 0,
+                    "fullName": 1,
+                    "campus": 2,
+                    "foundation": 3,
+                    "organizer": 4,
+                    "champion": 5,
+                    "subchampion": 6,
+                    "image": 7,
+                    "author": 8,
+                    "text": 9,
+                    "tags": 10
+                } :
+                errorMap = {
+                    "title": 0,
+                    "fullName": 1,
+                    "campus": 2,
+                    "foundation": 3,
+                    "organizer": 4,
+                    "champion": 5,
+                    "subchampion": 6,
+                    "image": 7,
+                    "text": 8,
+                    "tags": 9
+                };
+
 
             if (Array.isArray(result)) {
                 result.forEach(error => {
@@ -175,7 +227,7 @@ export const handleSubmit = async (selected, content) => {
                     }
                 });
             } else {
-                window.location.href = `/articulo/${selected}/${result}`
+                view === "create" ? window.location.href = `/articulo/${selected}/${result}` : window.location.href = `/articulo/${selected}/${idCategory}`
             }
         } catch (error) {
             console.log(error)
@@ -183,18 +235,23 @@ export const handleSubmit = async (selected, content) => {
     }
     if (selected == "equipos") {
         try {
-            let file = document.getElementById("file");
             let title = document.getElementById("title").value;
+            let file = document.getElementById("file");
             let text = content
-            let author = document.getElementById("author").value;
             let fullName = document.getElementById("fullName").value;
             let nickName = document.getElementById("nickName").value;
-            let category = document.getElementById("category").value;
             let foundation = document.getElementById("foundation").value;
             let president = document.getElementById("president").value;
             let stadium = document.getElementById("stadium").value;
             let coach = document.getElementById("coach").value
             let tags = document.getElementById("tags").value;
+            let category;
+            let author;
+            let id;
+            view === "create" ? category = document.getElementById("category").value : category = selected
+            view === "create" ? author = document.getElementById("author").value : null
+            view === "edit" ? id = idCategory : null
+
 
             let msgErrors = document.querySelectorAll(".msg-error");
 
@@ -202,18 +259,21 @@ export const handleSubmit = async (selected, content) => {
 
             formData.append("title", title);
             formData.append("text", text);
-            formData.append("author", author);
+            formData.append("file", file.files[0]);
             formData.append("fullName", fullName);
             formData.append("nickName", nickName);
-            formData.append("category", category);
-            formData.append("file", file.files[0]);
             formData.append("foundation", foundation);
+            formData.append("category", category);
             formData.append("president", president);
             formData.append("stadium", stadium);
             formData.append("coach", coach);
             formData.append("tags", tags);
+            view === "edit" ? formData.append("id", id) : null
+            view === "create" ? formData.append("author", author) : null
 
-            let result = await newArticle(selected, formData)
+            let result;
+
+            view === "create" ? result = await newArticle(selected, formData) : result = await editArticle(selected, formData)
 
             msgErrors.forEach((error) => {
                 error.classList.remove("invalid");
@@ -242,15 +302,15 @@ export const handleSubmit = async (selected, content) => {
                     }
                 })
 
-                msgErrors.forEach(error => {
-                    if (!error.classList.contains("invalid")) {
-                        error.classList.add("invalid")
-                        error.innerHTML = "Este campo puede quedar vacío"
-                        error.style.color = "green"
-                    }
-                })
+                // msgErrors.forEach(error => {
+                //     if (!error.classList.contains("invalid")) {
+                //         error.classList.add("invalid")
+                //         error.innerHTML = "Este campo puede quedar vacío"
+                //         error.style.color = "green"
+                //     }
+                // })
             } else {
-                window.location.href = `/articulo/${selected}/${result}`
+                view === "create" ? window.location.href = `/articulo/${selected}/${result}` : window.location.href = `/articulo/${selected}/${idCategory}`
             }
         } catch (error) {
             console.log(error);
