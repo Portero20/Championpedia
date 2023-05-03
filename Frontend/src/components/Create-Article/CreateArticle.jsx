@@ -5,14 +5,14 @@ import '../../scss/partials/_variables.scss';
 import '../../scss/barrel.scss';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { allCategories } from '../../services/articles';
+import { SelectInput } from '../SelectInput/SelectInput';
+import { handleSubmit } from "../Validation/Validation"
+import { toast } from 'react-toastify';
 import JoditEditor from 'jodit-react';
 import React from 'react'
 import Tags from '../Tags/Tags';
-import { allCategories } from '../../services/articles';
-import { handleSubmit } from "../Validation/Validation"
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { SelectInput } from '../SelectInput/SelectInput';
 
 const CreateArticle = ({ placeholder }) => {
   const editor = useRef(null);

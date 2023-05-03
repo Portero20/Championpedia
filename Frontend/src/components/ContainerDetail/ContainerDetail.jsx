@@ -57,10 +57,6 @@ export function ContainerDetail({ article }) {
         <>
             <div className="container-article-detail">
                 <div className="container-detail">
-                    <div className="containerView-estilo">
-                        <h3 className="containerView-titulo">{article.title}</h3>
-                    </div>
-
                     <div className="containerView">
                         <div className="descripcionView">
                             <div className="parrafoView" id="resultado">
@@ -73,6 +69,9 @@ export function ContainerDetail({ article }) {
                         </div>
 
                         <div className="jugadorContainer">
+                            <div className="containerView-estilo">
+                                <h3 className="containerView-titulo">{article.title}</h3>
+                            </div>
                             <ViewDetail article={article} />
 
                             <div className='buttonsContainer'>
@@ -88,7 +87,7 @@ export function ContainerDetail({ article }) {
                                 )}
 
                             </div>
-                            <ModalEdit show={show} article={article} selected={selected} handleFormSubmit={handleFormSubmit} recibirValor={recibirValor} handleClose={handleClose} setArticleJodit={setArticleJodit}/>
+                            <ModalEdit show={show} article={article} selected={selected} handleFormSubmit={handleFormSubmit} recibirValor={recibirValor} handleClose={handleClose} setArticleJodit={setArticleJodit} />
                         </div>
                     </div>
                 </div>

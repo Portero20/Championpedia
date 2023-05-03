@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
 }
 
 .descripcionView {
@@ -11,14 +12,12 @@
 
 .jugadorContainer {
     background-color: #a0a2a9 ;
-    padding: 3rem 1rem 1rem;
+    padding: 1rem 1rem 1rem;
     margin-bottom: 3rem;
 }
 
 .containerView-estilo {
-    padding: 0 1rem;
     font-size: 2rem;
-    margin: 2rem 0;
 }
 
 .img-detail {
