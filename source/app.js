@@ -5,16 +5,10 @@ const bodyParser = require('body-parser');
 const cors = require("cors")
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-app.get('/', (req, res) => {
-    res.send("Hello World!")
-})
-
-app.listen(port, start)
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-app.use(cors());
 
 app.use("/database", require("./routes/database.routes"));
 app.use("/article", require("./routes/articles.routes"), createProxyMiddleware({
@@ -47,3 +41,16 @@ app.use("/token", require("./routes/token.routes"), createProxyMiddleware({
         proxyRes.headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept';
     }
 }))
+
+app.get('/', (req, res) => {
+    res.send("Hello World!")
+})
+
+app.listen(port, start)
+
+
+
+
+
+
+
