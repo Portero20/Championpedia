@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
-const { SHARED_SECRET } = require('../modules/config');
+
+const SHARED_SECRET = process.env.SHARED_SECRET;
 
 module.exports = {
     token: (req, res) => {

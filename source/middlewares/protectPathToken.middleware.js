@@ -1,5 +1,6 @@
 const dotenv = require('dotenv').config();
-const { API_KEY } = require('../modules/config')
+
+const API_KEY = process.env.API_KEY
 
 function verificarApiKey(req, res, next) {
     const apiKey = req.headers['x-api-key'];

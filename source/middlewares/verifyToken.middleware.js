@@ -1,6 +1,7 @@
 const dotenv = require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const { SHARED_SECRET } = require('../modules/config');
+
+const SHARED_SECRET = process.env.SHARED_SECRET;
 
 function verificarToken(req, res, next) {
     const token = req.headers.authorization.split(' ')[1];
