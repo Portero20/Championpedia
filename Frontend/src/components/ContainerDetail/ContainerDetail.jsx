@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { useParams, useNavigate } from "react-router-dom";
-import { ViewDetail } from '../viewDetail/ViewDetail';
+import { ViewDetail } from '../ViewDetail/ViewDetail';
 import { deleteArticle } from '../../services/articles';
 import { handleSubmit } from '../Validation/Validation';
 import { toast } from 'react-toastify';
