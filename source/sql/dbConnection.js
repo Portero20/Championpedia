@@ -1,11 +1,13 @@
 const mysql = require('mysql');
 const dotenv = require('dotenv').config();
+const { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER, DB_PORT } = require('../modules/config');
 
 let conexion = mysql.createConnection({
-    host: process.env.HOST,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    user: DB_USER,
+    password: DB_PASSWORD,
+    host: DB_HOST,
+    port: DB_PORT,
+    database: DB_NAME
 })
 
 conexion.connect(function (err) {
