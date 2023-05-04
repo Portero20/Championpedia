@@ -127,7 +127,7 @@ export async function moreViews() {
 export async function news() {
     try {
         const token = await getToken();
-        let query = await fetch(`https://championpedia-production.up.railway.app/article/news`, {
+        let query = await fetch(`http://localhost:3000/article/news`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -142,7 +142,7 @@ export async function news() {
 export async function lastCategories(category, size) {
     try {
         const token = await getToken();
-        let query = await fetch(`https://championpedia-production.up.railway.app/last/${category}/${size}`, {
+        let query = await fetch(`https://championpedia-production.up.railway.app/${category}/${size}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -157,7 +157,7 @@ export async function lastCategories(category, size) {
 export async function moreViewsCategory(category, page, size) {
     try {
         const token = await getToken();
-        let query = await fetch(`https://championpedia-production.up.railway.app/more/${category}/views?page=${page}&size=${size}`, {
+        let query = await fetch(`https://championpedia-production.up.railway.app/article/more/${category}/views?page=${page}&size=${size}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -172,7 +172,7 @@ export async function moreViewsCategory(category, page, size) {
 export async function deleteArticle(category, id) {
     try {
         const token = await getToken();
-        await fetch(`https://championpedia-production.up.railway.app/delete/${category}/${id}`, {
+        await fetch(`https://championpedia-production.up.railway.app/article/delete/${category}/${id}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
