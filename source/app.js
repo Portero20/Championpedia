@@ -4,8 +4,6 @@ const { port, start } = require("./modules/port")
 const bodyParser = require('body-parser');
 const cors = require("cors")
 
-app.use(cors());
-
 app.use(cors({
     origin: 'http://localhost:5173'
   }));
@@ -15,6 +13,7 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, start)
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
