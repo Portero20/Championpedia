@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router();
-const searchControllers = require("../controllers/search.controllers")
+const searchControllers = require("../logic/search.controllers")
 
 const { verificarToken } = require("../middlewares/verifyToken.middleware")
 
