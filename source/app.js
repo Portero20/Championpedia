@@ -18,7 +18,7 @@ app.use(cors());
 
 app.use("/database", require("./routes/database.routes"));
 app.use("/article", require("./routes/articles.routes"), createProxyMiddleware({
-    target: 'https://championpedia-production.up.railway.app',
+    target: 'https://championpedia-production.up.railway.app/',
     changeOrigin: true,
     secure: false,
     onProxyRes: function (proxyRes, req, res) {
@@ -28,7 +28,7 @@ app.use("/article", require("./routes/articles.routes"), createProxyMiddleware({
     }
 }));
 app.use("/search", require("./routes/search.routes"), createProxyMiddleware({
-    target: 'https://championpedia-production.up.railway.app',
+    target: 'https://championpedia-production.up.railway.app/',
     changeOrigin: true,
     secure: false,
     onProxyRes: function (proxyRes, req, res) {
@@ -38,7 +38,7 @@ app.use("/search", require("./routes/search.routes"), createProxyMiddleware({
     }
 }));
 app.use("/token", require("./routes/token.routes"), createProxyMiddleware({
-    target: 'https://championpedia-production.up.railway.app',
+    target: 'https://championpedia-production.up.railway.app/',
     changeOrigin: true,
     secure: false,
     onProxyRes: function (proxyRes, req, res) {
