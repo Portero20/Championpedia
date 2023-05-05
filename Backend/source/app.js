@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
     res.send("Hello World!")
 })
 
-app.listen(port, start)
+app.listen(3000, start)
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
