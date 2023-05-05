@@ -12,11 +12,7 @@ async function getToken() {
 export async function results(userQuery) {
     try {
         const token = await getToken();
-        let query = await fetch(`https://championpedia-production.up.railway.app/search/results/?search=${userQuery}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+        let query = await fetch(`https://championpedia-production.up.railway.app/search/results/?search=${userQuery}`)
         let data = await query.json()
         return data
     } catch (error) {
