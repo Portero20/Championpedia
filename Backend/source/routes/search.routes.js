@@ -4,7 +4,7 @@ const searchControllers = require("../controllers/search.controllers")
 
 const { verificarToken } = require("../middlewares/verifyToken.middleware")
 
-router.get("/results", verificarToken, searchControllers.results);
-router.post("/article", verificarToken, searchControllers.searchArticle)
+router.get("/results", searchControllers.results);
+router.post("/article", searchControllers.searchArticle)
 
 module.exports = router
