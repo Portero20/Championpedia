@@ -22,7 +22,6 @@ const editPlayersMiddlewares = require("../middlewares/editPlayers.middleware");
 const editTeamsMiddlewares = require("../middlewares/editTeams.middleware"); 
 const editTrophiesMiddlewares = require("../middlewares/editTrophies.middleware"); 
 
-router.get("/categoriesTest", categoryController.categories)
 router.post("/futbolistas/create", articlePlayersMiddlewares, createController.create)
 router.post("/equipos/create", articleTeamsMiddlewares, createController.create)
 router.post("/copas/create", articleTrophiesMiddlewares, createController.create)
