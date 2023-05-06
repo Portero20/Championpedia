@@ -1,5 +1,5 @@
 async function getToken() {
-    const response = await fetch('https://championpedia-production.up.railway.app/token', {
+    const response = await fetch('https://back-end.up.railway.app/token', {
         headers: {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
         },
