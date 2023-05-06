@@ -15,8 +15,8 @@ app.use(bodyParser.json());
 
 app.use(cors({
     origin: [
-        'http://localhost:5173/',
-        'https://championpedia.netlify.app/'
+        'http://localhost:5173',
+        'https://championpedia.netlify.app'
     ]
 }));
 
