@@ -1,0 +1,6 @@
+[[headers]]
+  for = "**"  # Establece esto según tus necesidades para permitir CORS en todas las rutas
+  [headers.values]
+    Access-Control-Allow-Origin = "*"  # Configura esto según tu dominio de origen
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"  # Configura los métodos HTTP permitidos
+    Access-Control-Allow-Headers = "Content-Type, Authorization"  # Configura los encabezados permitidos
