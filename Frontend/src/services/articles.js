@@ -1,7 +1,8 @@
 async function getToken() {
     const response = await fetch(`${import.meta.env.VITE_APP_URL}/token`, {
         headers: {
-            'X-API-Key': `${import.meta.env.VITE_API_KEY}`
+            'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
+            'Access-Control-Allow-Origin': '*'
         }
     })
     const data = await response.json();
@@ -15,7 +16,8 @@ export async function newArticle(category, formData) {
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/${category}/create`, {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             },
             body: formData
         })
@@ -32,7 +34,8 @@ export async function allCategories() {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/categories`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             }
         })
         let data = await query.json()
@@ -47,7 +50,8 @@ export async function detail(category, id) {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/${category}/${id}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             }
         })
         let data = await query.json()
@@ -63,7 +67,8 @@ export async function editArticle(category, formData) {
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/edit/${category}`, {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             },
             body: formData
         })
@@ -82,7 +87,8 @@ export async function view(category, id) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({ category: category, id: id })
         })
@@ -99,7 +105,8 @@ export async function lastProduct() {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/last`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             }
         })
         let data = await query.json()
@@ -114,7 +121,8 @@ export async function moreViews() {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/moreViews`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             }
         })
         let data = await query.json()
@@ -129,7 +137,8 @@ export async function news() {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/news`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             }
         })
         let data = await query.json()
@@ -144,7 +153,8 @@ export async function lastCategories(category, size) {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/last/${category}/${size}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             }
         })
         let data = await query.json()
@@ -159,7 +169,8 @@ export async function moreViewsCategory(category, page, size) {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/more/${category}/views?page=${page}&size=${size}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             }
         })
         let data = await query.json()
@@ -175,7 +186,8 @@ export async function deleteArticle(category, id) {
         await fetch(`${import.meta.env.VITE_APP_URL}/article/delete/${category}/${id}`, {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             },
         })
     } catch (error) {

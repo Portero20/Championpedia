@@ -1,7 +1,8 @@
 async function getToken() {
     const response = await fetch(`${import.meta.env.VITE_APP_URL}/token`, {
         headers: {
-            'X-API-Key': `${import.meta.env.VITE_API_KEY}`
+            'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
+            'Access-Control-Allow-Origin': '*'
         }
     })
     const data = await response.json();
@@ -14,7 +15,8 @@ export async function results(userQuery) {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/search/results/?search=${userQuery}`, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             }
         })
         let data = await query.json()
@@ -31,7 +33,8 @@ export async function searchArticle(result) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`,
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({ result: result })
         })
