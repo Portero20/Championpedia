@@ -2,7 +2,9 @@ async function getToken() {
     const response = await fetch('https://back-end.up.railway.app/token', {
         headers: {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+
         },
         mode: 'cors'
     })
@@ -19,7 +21,8 @@ export async function newArticle(category, formData) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             body: formData,
             mode: 'cors'
@@ -39,7 +42,8 @@ export async function allCategories() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             mode: 'cors'
         })
@@ -57,7 +61,8 @@ export async function detail(category, id) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             mode: 'cors'
         })
@@ -76,7 +81,8 @@ export async function editArticle(category, formData) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             body: formData,
             mode: 'cors'
@@ -97,7 +103,8 @@ export async function view(category, id) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             body: JSON.stringify({ category: category, id: id }),
             mode: 'cors'
@@ -117,7 +124,8 @@ export async function lastProduct() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             mode: 'cors'
         })
@@ -135,7 +143,8 @@ export async function moreViews() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             mode: 'cors'
         })
@@ -153,7 +162,8 @@ export async function news() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             mode: 'cors'
         })
@@ -171,7 +181,8 @@ export async function lastCategories(category, size) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             mode: 'cors'
         })

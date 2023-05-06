@@ -2,7 +2,8 @@ async function getToken() {
     const response = await fetch(`https://back-end.up.railway.app/token`, {
         headers: {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
         },
         mode: 'cors'
     })
@@ -18,7 +19,8 @@ export async function results(userQuery) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             mode: 'cors'
         })
@@ -37,7 +39,8 @@ export async function searchArticle(result) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             body: JSON.stringify({ result: result }),
             mode: 'cors'
