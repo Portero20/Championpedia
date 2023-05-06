@@ -13,7 +13,7 @@ async function getToken() {
 export async function newArticle(category, formData) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/${category}/create`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/${category}/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -33,7 +33,7 @@ export async function newArticle(category, formData) {
 export async function allCategories() {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/categories`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/categories`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export async function allCategories() {
 export async function detail(category, id) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/${category}/${id}`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/${category}/${id}`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -67,7 +67,7 @@ export async function detail(category, id) {
 export async function editArticle(category, formData) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/edit/${category}`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/edit/${category}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -87,7 +87,7 @@ export async function editArticle(category, formData) {
 export async function view(category, id) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/view`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/view`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export async function view(category, id) {
 export async function lastProduct() {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/last`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/last`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -124,7 +124,7 @@ export async function lastProduct() {
 export async function moreViews() {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/moreViews`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/moreViews`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -141,7 +141,7 @@ export async function moreViews() {
 export async function news() {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/news`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/news`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -158,7 +158,7 @@ export async function news() {
 export async function lastCategories(category, size) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/last/${category}/${size}`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/last/${category}/${size}`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -175,7 +175,7 @@ export async function lastCategories(category, size) {
 export async function moreViewsCategory(category, page, size) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/more/${category}/views?page=${page}&size=${size}`, {
+        let query = await fetch(`https://back-end.up.railway.app/article/more/${category}/views?page=${page}&size=${size}`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -192,7 +192,7 @@ export async function moreViewsCategory(category, page, size) {
 export async function deleteArticle(category, id) {
     try {
         const token = await getToken();
-        await fetch(`${import.meta.env.VITE_APP_URL}/article/delete/${category}/${id}`, {
+        await fetch(`https://back-end.up.railway.app/article/delete/${category}/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -1,5 +1,5 @@
 async function getToken() {
-    const response = await fetch(`${import.meta.env.VITE_APP_URL}/token`, {
+    const response = await fetch(`https://back-end.up.railway.app/token`, {
         headers: {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
         },
@@ -13,7 +13,7 @@ async function getToken() {
 export async function results(userQuery) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/search/results/?search=${userQuery}`, {
+        let query = await fetch(`https://back-end.up.railway.app/search/results/?search=${userQuery}`, {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ export async function results(userQuery) {
 export async function searchArticle(result) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_APP_URL}/search/article`, {
+        let query = await fetch(`https://back-end.up.railway.app/search/article`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
