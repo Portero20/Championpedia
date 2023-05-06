@@ -3,7 +3,8 @@ async function getToken() {
         headers: {
             "Content-Type": "application/json",
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
-        }
+        },
+        mode: 'cors'
     })
     const data = await response.json();
     const token = data.token;
