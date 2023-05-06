@@ -1,5 +1,5 @@
 async function getToken() {
-    const response = await fetch(`${import.meta.env.VITE_APP_URL}/token`, {
+    const response = await fetch('https://championpedia-production.up.railway.app/token', {
         headers: {
             "Content-Type": "application/json",
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
