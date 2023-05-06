@@ -113,7 +113,7 @@ npm i
 7. Ahora debemos ingresar al navegador y colocamos la siguiente URL:
 
 ```
-http://localhost:3000/database/create
+import.meta.env.VITE_APP_URL/database/create
 ```
 
 Nos aparecera el siguiente mensaje 'database created' y podremos ver en phpMyAdmin la base de datos creada correctamente
