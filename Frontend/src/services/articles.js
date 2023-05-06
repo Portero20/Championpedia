@@ -1,6 +1,7 @@
 async function getToken() {
     const response = await fetch(`${import.meta.env.VITE_APP_URL}/token`, {
         headers: {
+            "Content-Type": "application/json",
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
             'Access-Control-Allow-Origin': '*'
         }
@@ -16,6 +17,7 @@ export async function newArticle(category, formData) {
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/${category}/create`, {
             method: "POST",
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
@@ -34,6 +36,7 @@ export async function allCategories() {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/categories`, {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             }
@@ -50,6 +53,7 @@ export async function detail(category, id) {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/${category}/${id}`, {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             }
@@ -67,6 +71,7 @@ export async function editArticle(category, formData) {
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/edit/${category}`, {
             method: "POST",
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
@@ -105,6 +110,7 @@ export async function lastProduct() {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/last`, {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             }
@@ -121,6 +127,7 @@ export async function moreViews() {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/moreViews`, {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             }
@@ -137,6 +144,7 @@ export async function news() {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/news`, {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             }
@@ -153,6 +161,7 @@ export async function lastCategories(category, size) {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/last/${category}/${size}`, {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             }
@@ -169,6 +178,7 @@ export async function moreViewsCategory(category, page, size) {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/article/more/${category}/views?page=${page}&size=${size}`, {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             }
@@ -186,6 +196,7 @@ export async function deleteArticle(category, id) {
         await fetch(`${import.meta.env.VITE_APP_URL}/article/delete/${category}/${id}`, {
             method: "POST",
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },

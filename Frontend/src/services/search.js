@@ -1,6 +1,7 @@
 async function getToken() {
     const response = await fetch(`${import.meta.env.VITE_APP_URL}/token`, {
         headers: {
+            "Content-Type": "application/json",
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
             'Access-Control-Allow-Origin': '*'
         }
@@ -15,6 +16,7 @@ export async function results(userQuery) {
         const token = await getToken();
         let query = await fetch(`${import.meta.env.VITE_APP_URL}/search/results/?search=${userQuery}`, {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             }
