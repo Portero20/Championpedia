@@ -13,12 +13,7 @@ app.listen(port, start)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(cors({
-    origin: [
-        'http://localhost:5173',
-        'https://championpedia.netlify.app'
-    ]
-}));
+app.use(cors());
 
 app.use("/database", require("./routes/database.routes"));
 app.use("/article", require("./routes/articles.routes"));
