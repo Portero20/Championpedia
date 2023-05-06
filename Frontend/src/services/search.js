@@ -3,7 +3,6 @@ async function getToken() {
         headers: {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
         },
         mode: 'cors'
     })
@@ -20,7 +19,6 @@ export async function results(userQuery) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             mode: 'cors'
         })
@@ -40,7 +38,6 @@ export async function searchArticle(result) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
             },
             body: JSON.stringify({ result: result }),
             mode: 'cors'

@@ -21,8 +21,7 @@ export async function newArticle(category, formData) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             body: formData,
             mode: 'cors'
@@ -42,8 +41,7 @@ export async function allCategories() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             mode: 'cors'
         })
@@ -61,8 +59,7 @@ export async function detail(category, id) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             mode: 'cors'
         })
@@ -81,8 +78,7 @@ export async function editArticle(category, formData) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             body: formData,
             mode: 'cors'
@@ -103,8 +99,7 @@ export async function view(category, id) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({ category: category, id: id }),
             mode: 'cors'
@@ -124,8 +119,7 @@ export async function lastProduct() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             mode: 'cors'
         })
@@ -143,8 +137,7 @@ export async function moreViews() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             mode: 'cors'
         })
@@ -162,8 +155,7 @@ export async function news() {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             mode: 'cors'
         })
@@ -181,8 +173,7 @@ export async function lastCategories(category, size) {
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS'
+                'Access-Control-Allow-Origin': '*'
             },
             mode: 'cors'
         })
