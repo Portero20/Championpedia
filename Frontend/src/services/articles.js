@@ -3,7 +3,6 @@ async function getToken() {
         headers: {
             "Content-Type": "application/json",
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
-            'Access-Control-Allow-Origin': '*'
         }
     })
     const data = await response.json();
