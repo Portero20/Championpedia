@@ -4,7 +4,7 @@ async function getToken() {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
             'Access-Control-Allow-Origin': '*'
         },
-        mode: 'cors'
+        mode: 'no-cors'
     })
     const data = await response.json();
     const token = data.token;
@@ -20,7 +20,7 @@ export async function results(userQuery) {
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
-            mode: 'cors'
+            mode: 'no-cors'
         })
         let data = await query.json()
         return data
@@ -40,7 +40,7 @@ export async function searchArticle(result) {
                 'Access-Control-Allow-Origin': '*'
             },
             body: JSON.stringify({ result: result }),
-            mode: 'cors'
+            mode: 'no-cors'
         })
 
         let data = await query.json()
