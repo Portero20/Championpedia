@@ -8,7 +8,6 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-  "proxy":"https://championpedia-production.up.railway.app",
   "dependencies": {
     "bootstrap": "^5.2.3",
     "jodit-react": "^1.3.32",

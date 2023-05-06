@@ -1,10 +1,9 @@
 async function getToken() {
     const response = await fetch(`${import.meta.env.VITE_APP_URL}/token`, {
         headers: {
-            "Content-Type": "application/json",
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
-            'Access-Control-Allow-Origin': '*'
-        }
+        },
+        mode: 'cors'
     })
     const data = await response.json();
     const token = data.token;
