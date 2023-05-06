@@ -18,7 +18,8 @@ export async function results(userQuery) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
-            }
+            },
+            mode: 'cors'
         })
         let data = await query.json()
         return data
@@ -37,7 +38,8 @@ export async function searchArticle(result) {
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
-            body: JSON.stringify({ result: result })
+            body: JSON.stringify({ result: result }),
+            mode: 'cors'
         })
 
         let data = await query.json()

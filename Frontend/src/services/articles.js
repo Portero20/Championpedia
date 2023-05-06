@@ -20,7 +20,8 @@ export async function newArticle(category, formData) {
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
-            body: formData
+            body: formData,
+            mode: 'cors'
         })
 
         let data = await query.json()
@@ -38,7 +39,8 @@ export async function allCategories() {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
-            }
+            },
+            mode: 'cors'
         })
         let data = await query.json()
         return data
@@ -55,7 +57,8 @@ export async function detail(category, id) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
-            }
+            },
+            mode: 'cors'
         })
         let data = await query.json()
         return data
@@ -74,7 +77,8 @@ export async function editArticle(category, formData) {
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
-            body: formData
+            body: formData,
+            mode: 'cors'
         })
 
         let data = await query.json()
@@ -94,7 +98,8 @@ export async function view(category, id) {
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
-            body: JSON.stringify({ category: category, id: id })
+            body: JSON.stringify({ category: category, id: id }),
+            mode: 'cors'
         })
 
         let data = await query.json()
@@ -112,7 +117,8 @@ export async function lastProduct() {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
-            }
+            },
+            mode: 'cors'
         })
         let data = await query.json()
         return data
@@ -129,7 +135,8 @@ export async function moreViews() {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
-            }
+            },
+            mode: 'cors'
         })
         let data = await query.json()
         return data
@@ -146,7 +153,8 @@ export async function news() {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
-            }
+            },
+            mode: 'cors'
         })
         let data = await query.json()
         return data
@@ -163,7 +171,8 @@ export async function lastCategories(category, size) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
-            }
+            },
+            mode: 'cors'
         })
         let data = await query.json()
         return data
@@ -180,7 +189,8 @@ export async function moreViewsCategory(category, page, size) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
-            }
+            },
+            mode: 'cors'
         })
         let data = await query.json()
         return data
@@ -199,6 +209,7 @@ export async function deleteArticle(category, id) {
                 Authorization: `Bearer ${token}`,
                 'Access-Control-Allow-Origin': '*'
             },
+            mode: 'cors'
         })
     } catch (error) {
         console.log(error)
