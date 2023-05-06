@@ -2,6 +2,7 @@ async function getToken() {
     const response = await fetch('https://back-end.up.railway.app/token', {
         headers: {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`,
+            'Access-Control-Allow-Origin': '*'
         },
         mode: 'cors'
     })

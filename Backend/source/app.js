@@ -8,7 +8,10 @@ app.get('/', (req, res) => {
     res.send("Hello World!")
 })
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://front-end.up.railway.app'
+    
+}));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
