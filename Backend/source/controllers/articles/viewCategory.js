@@ -3,7 +3,7 @@ const database = require('../../sql/dbConnection');
 module.exports = {
     viewsCategory: (req, res) => {
         try {
-            database.query(`USE championpedia`, (error) => {
+            database.query(`USE ${process.env.MYSQLDATABASE}`, (error) => {
                 if (error) throw error;
             })
 
@@ -18,8 +18,8 @@ module.exports = {
 
             if (category === "players") {
                 query = `SELECT players.id, players.title, images.image, categories.category from players
-              INNER JOIN imagesplayers ON imagesplayers.player_id = players.id
-              INNER JOIN images ON images.id = imagesplayers.image_id
+              INNER JOIN imagesPlayers ON imagesPlayers.player_id = players.id
+              INNER JOIN images ON images.id = imagesPlayers.image_id
               INNER JOIN categories ON players.category = categories.id
               ORDER BY views DESC
               LIMIT ${limit}
@@ -27,8 +27,8 @@ module.exports = {
                 countQuery = `SELECT COUNT(*) AS count FROM players`;
             } else if (category === "teams") {
                 query = `SELECT teams.id, teams.title, images.image, categories.category FROM teams
-              INNER JOIN imagesteams ON teams.id = imagesteams.team_id
-              INNER JOIN images ON imagesteams.image_id = images.id
+              INNER JOIN imagesTeams ON teams.id = imagesTeams.team_id
+              INNER JOIN images ON imagesTeams.image_id = images.id
               INNER JOIN categories ON teams.category = categories.id
               ORDER BY views DESC
               LIMIT ${limit}
@@ -36,8 +36,8 @@ module.exports = {
                 countQuery = `SELECT COUNT(*) AS count FROM teams`;
             } else if (category === "trophies") {
                 query = `SELECT trophies.id, trophies.title, images.image, categories.category FROM trophies 
-              INNER JOIN imagestrophies ON trophies.id = imagestrophies.thophy_id
-              INNER JOIN images ON imagestrophies.image_id = images.id
+              INNER JOIN imagesTrophies ON trophies.id = imagesTrophies.thophy_id
+              INNER JOIN images ON imagesTrophies.image_id = images.id
               INNER JOIN categories ON trophies.category = categories.id
               ORDER BY views DESC
               LIMIT ${limit}

@@ -17,14 +17,14 @@ module.exports = {
             let category;
 
             if (req.body.category.toLowerCase() == "futbolistas") {
-                category = "players"
+                category = "Players"
             } else if (req.body.category.toLowerCase() == "equipos") {
-                category = "teams"
+                category = "Teams"
             } else if (req.body.category.toLowerCase() == "copas") {
-                category = "trophies"
+                category = "Trophies"
             }
 
-            database.query(`USE championpedia`, (error) => {
+            database.query(`USE ${process.env.MYSQLDATABASE}`, (error) => {
                 if (error) throw error;
             })
 
@@ -36,16 +36,22 @@ module.exports = {
             let fullName = req.body.fullName.replace(/"/g, '\\"');
             let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
 
-            if (category == "players") {
-                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES ("","${title}","${text}","${author}", 1,"${now}","","${fullName}","${nickName}","${req.body.born}","${req.body.death}","${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}","${req.body.retire}");`
-            } else if (category == "teams") {
-                query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES ("","${title}","${text}","${author}", 2,"${now}","","${fullName}","${req.body.foundation}","${req.body.president}","${req.body.stadium}","${req.body.coach}","${nickName}");`
-            } else if (category == "trophies") {
-                query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES ("","${title}","${text}","${author}", 3,"${now}","","${fullName}","${req.body.campus}","${req.body.foundation}","${req.body.organizer}","${req.body.champion}","${req.body.subchampion}");`
+            if (category == "Players") {
+                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES (${null},"${title}","${text}","${author}", 1,"${now}",${null},"${fullName}","${nickName}","${req.body.born}","${req.body.death}","${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}","${req.body.retire}");`
+            } else if (category == "Teams") {
+                query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES (${null},"${title}","${text}","${author}", 2,"${now}",${null},"${fullName}","${req.body.foundation}","${req.body.president}","${req.body.stadium}","${req.body.coach}","${nickName}");`
+            } else if (category == "Trophies") {
+                query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES (${null},"${title}","${text}","${author}", 3,"${now}",${null},"${fullName}","${req.body.campus}","${req.body.foundation}","${req.body.organizer}","${req.body.champion}","${req.body.subchampion}");`
+            } else {
+
+                throw new Error('Unknown') 
+
             }
 
             database.query(query, (err, results) => {
                 let id;
+
+                console.log(results);
 
                 if (err) {
                     return console.log(err);
@@ -54,7 +60,7 @@ module.exports = {
                 }
 
                 let tags = req.body.tags.split(",").map(tag => {
-                    return `('', "${tag.trim()}")`
+                    return `(${null}, "${tag.trim()}")`
                 })
 
                 database.query(`INSERT INTO tags VALUES ${tags}`, (err, results) => {
@@ -72,7 +78,7 @@ module.exports = {
                     }
 
                     let tagsValues = tagsIds.map(t => {
-                        return `('', ${id}, ${t})`
+                        return `(${null}, ${id}, ${t})`
                     })
 
                     database.query(`INSERT INTO tags${category} VALUES ${tagsValues}`, (error) => {
@@ -83,7 +89,7 @@ module.exports = {
                         const imagenBuffer = req.files[0].buffer
                         const base64Image = imagenBuffer.toString("base64");
 
-                        database.query(`INSERT INTO images VALUES ('', '${base64Image}')`, (err, results) => {
+                        database.query(`INSERT INTO images VALUES (${null}, '${base64Image}')`, (err, results) => {
                             let imageId
 
                             if (err) {
@@ -92,7 +98,7 @@ module.exports = {
                                 imageId = parseInt(results.insertId)
                             }
 
-                            database.query(`INSERT INTO images${category} VALUES ('','${id}','${imageId}')`, (error) => {
+                            database.query(`INSERT INTO images${category} VALUES (${null},'${id}','${imageId}')`, (error) => {
                                 if (error) {
                                     return console.log(error)
                                 }
@@ -104,6 +110,7 @@ module.exports = {
                 })
             })
         } catch (error) {
+            console.log(error);
             return res.status(500).json(error)
         }
     }

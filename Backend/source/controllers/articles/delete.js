@@ -7,7 +7,7 @@ module.exports = {
             const category = req.params.category;
             const id = parseInt(req.params.id)
 
-            database.query(`USE championpedia`, (error) => {
+            database.query(`USE ${process.env.MYSQLDATABASE}`, (error) => {
                 if (error) throw error;
             })
 
@@ -16,39 +16,39 @@ module.exports = {
             let query3;
 
             if (category.toLowerCase() === "futbolistas") {
-                query1 = `DELETE tagsplayers, tags
-                FROM tagsplayers
-                LEFT JOIN tags ON tags.id = tagsplayers.tag_id
-                WHERE tagsplayers.player_id = ${id};`
+                query1 = `DELETE tagsPlayers, tags
+                FROM tagsPlayers
+                LEFT JOIN tags ON tags.id = tagsPlayers.tag_id
+                WHERE tagsPlayers.player_id = ${id};`
 
-                query2 = `DELETE imagesplayers, images
-                FROM imagesplayers 
-                LEFT JOIN images ON images.id = imagesplayers.image_id
-                WHERE imagesplayers.player_id = ${id};`
+                query2 = `DELETE imagesPlayers, images
+                FROM imagesPlayers 
+                LEFT JOIN images ON images.id = imagesPlayers.image_id
+                WHERE imagesPlayers.player_id = ${id};`
 
                 query3 = `DELETE FROM players WHERE id = ${id};`
             } else if (category.toLowerCase() === "copas") {
-                query1 = `DELETE tagstrophies, tags
-                FROM tagstrophies
-                LEFT JOIN tags ON tags.id = tagstrophies.tag_id
-                WHERE tagstrophies.thophy_id = ${id};`
+                query1 = `DELETE tagsTrophies, tags
+                FROM tagsTrophies
+                LEFT JOIN tags ON tags.id = tagsTrophies.tag_id
+                WHERE tagsTrophies.thophy_id = ${id};`
 
-                query2 = `DELETE imagestrophies, images
-                FROM imagestrophies
-                LEFT JOIN images ON images.id = imagestrophies.image_id
-                WHERE imagestrophies.thophy_id = ${id};`
+                query2 = `DELETE imagesTrophies, images
+                FROM imagesTrophies
+                LEFT JOIN images ON images.id = imagesTrophies.image_id
+                WHERE imagesTrophies.thophy_id = ${id};`
 
                 query3 = `DELETE FROM trophies WHERE id = ${id};`
             } else if (category.toLowerCase() === "equipos") {
-                query1 = `DELETE tagsteams, tags
-                FROM tagsteams
-                LEFT JOIN tags ON tags.id = tagsteams.tag_id
-                WHERE tagsteams.team_id = ${id};`
+                query1 = `DELETE tagsTeams, tags
+                FROM tagsTeams
+                LEFT JOIN tags ON tags.id = tagsTeams.tag_id
+                WHERE tagsTeams.team_id = ${id};`
 
-                query2 = `DELETE imagesteams, images
-                FROM imagesteams
-                LEFT JOIN images ON images.id = imagesteams.image_id
-                WHERE imagesteams.team_id = ${id};`
+                query2 = `DELETE imagesTeams, images
+                FROM imagesTeams
+                LEFT JOIN images ON images.id = imagesTeams.image_id
+                WHERE imagesTeams.team_id = ${id};`
 
                 query3 = `DELETE FROM teams WHERE id = ${id};`
             }

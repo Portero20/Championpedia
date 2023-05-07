@@ -3,7 +3,7 @@ const database = require('../../sql/dbConnection');
 module.exports = {
     categories: (req, res) => {
         try {
-            database.query(`USE championpedia`, (error) => {
+            database.query(`USE ${process.env.MYSQLDATABASE}`, (error) => {
                 if (error) throw error;
             })
 

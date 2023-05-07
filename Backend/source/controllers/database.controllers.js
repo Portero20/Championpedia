@@ -3,13 +3,13 @@ const database = require('../sql/dbConnection');
 module.exports = {
     create: (req, res) => {
 
-        database.query(`CREATE DATABASE championpedia`, (err) => {
+        database.query(`CREATE DATABASE ${process.env.MYSQLDATABASE}`, (err) => {
             if (err) throw err;
 
             console.log("Database Created Successfully !");
         })
 
-        database.query(`USE championpedia`, (error) => {
+        database.query(`USE ${process.env.MYSQLDATABASE}`, (error) => {
             if (error) throw error;
 
             console.log("Using Database");
@@ -108,7 +108,7 @@ module.exports = {
             author varchar(100) not null,
             category int(11) not null,
             date datetime not null,
-            views int(11) not null,
+            views int(11) null,
             fullName varchar(100) not null,
             foundation date not null,
             president varchar(100) not null,

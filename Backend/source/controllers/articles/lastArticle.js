@@ -4,7 +4,7 @@ const { JSDOM } = require('jsdom');
 module.exports = {
     lastArticles: (req, res) => {
         try {
-            database.query(`USE championpedia`, (error) => {
+            database.query(`USE ${process.env.MYSQLDATABASE}`, (error) => {
                 if (error) throw error;
             })
 
@@ -15,22 +15,22 @@ module.exports = {
 
             if (category === "players") {
                 query = `SELECT players.id, players.title, players.text, players.date, images.image, categories.category From players
-                INNER JOIN imagesplayers ON players.id = imagesplayers.player_id
-                INNER JOIN images ON imagesplayers.image_id = images.id
+                INNER JOIN imagesPlayers ON players.id = imagesPlayers.player_id
+                INNER JOIN images ON imagesPlayers.image_id = images.id
                 INNER JOIN categories ON players.category = categories.id
                 ORDER BY date DESC
                 LIMIT ${size};`
             } else if (category === "teams") {
                 query = `SELECT teams.id, teams.title, teams.text, teams.date, images.image, categories.category FROM teams
-                INNER JOIN imagesteams ON teams.id = imagesteams.team_id
-                INNER JOIN images ON imagesteams.image_id = images.id
+                INNER JOIN imagesTeams ON teams.id = imagesTeams.team_id
+                INNER JOIN images ON imagesTeams.image_id = images.id
                 INNER JOIN categories ON teams.category = categories.id
                 ORDER BY date DESC
                 LIMIT ${size};`
             } else if (category === "trophies") {
                 query = `SELECT trophies.id, trophies.title, trophies.text, trophies.date, images.image, categories.category FROM trophies 
-                INNER JOIN imagestrophies ON trophies.id = imagestrophies.thophy_id
-                INNER JOIN images ON imagestrophies.image_id = images.id
+                INNER JOIN imagesTrophies ON trophies.id = imagesTrophies.thophy_id
+                INNER JOIN images ON imagesTrophies.image_id = images.id
                 INNER JOIN categories ON trophies.category = categories.id
                 ORDER BY date DESC
                 LIMIT ${size};`

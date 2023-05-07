@@ -22,7 +22,7 @@ module.exports = {
                 category = "trophies"
             }
 
-            database.query(`USE championpedia;`, (error) => {
+            database.query(`USE ${process.env.MYSQLDATABASE};`, (error) => {
                 if (error) throw error;
             })
 
@@ -51,11 +51,11 @@ module.exports = {
                 let querySelectImg;
 
                 if (category == "players") {
-                    querySelectImg = `SELECT image_id FROM imagesplayers WHERE player_id = ${req.body.id} `
+                    querySelectImg = `SELECT image_id FROM imagesPlayers WHERE player_id = ${req.body.id} `
                 } else if (category == "teams") {
-                    querySelectImg = `SELECT image_id FROM imagesteams WHERE team_id = ${req.body.id}`
+                    querySelectImg = `SELECT image_id FROM imagesTeams WHERE team_id = ${req.body.id}`
                 } else if (category == "trophies") {
-                    querySelectImg = `SELECT image_id FROM imagestrophies WHERE thophy_id = ${req.body.id};`
+                    querySelectImg = `SELECT image_id FROM imagesTrophies WHERE thophy_id = ${req.body.id};`
                 }
 
                 database.query(querySelectImg, (error, results) => {
@@ -95,11 +95,11 @@ module.exports = {
                 let query;
 
                 if (category == "players") {
-                    query = `SELECT tag_id FROM tagsplayers WHERE player_id = ${req.body.id}`
+                    query = `SELECT tag_id FROM tagsPlayers WHERE player_id = ${req.body.id}`
                 } else if (category == "teams") {
-                    query = `SELECT tag_id FROM tagsteams WHERE team_id = ${req.body.id}`
+                    query = `SELECT tag_id FROM tagsTeams WHERE team_id = ${req.body.id}`
                 } else if (category == "trophies") {
-                    query = `SELECT tag_id FROM tagstrophies WHERE thophy_id = ${req.body.id}`
+                    query = `SELECT tag_id FROM tagsTrophies WHERE thophy_id = ${req.body.id}`
                 }
 
                 database.query(query, (error, results, fields) => {
@@ -159,11 +159,11 @@ module.exports = {
                                 })
 
                                 if (category == "players") {
-                                    database.query(`INSERT INTO tagsplayers (player_id, tag_id) VALUES ${tagsValues}`)
+                                    database.query(`INSERT INTO tagsPlayers (player_id, tag_id) VALUES ${tagsValues}`)
                                 } else if (category == "teams") {
-                                    database.query(`INSERT INTO tagsteams (team_id, tag_id) VALUES ${tagsValues}`)
+                                    database.query(`INSERT INTO tagsTeams (team_id, tag_id) VALUES ${tagsValues}`)
                                 } else if (category == "trophies") {
-                                    database.query(`INSERT INTO tagstrophies (thophy_id, tag_id) VALUES ${tagsValues}`)
+                                    database.query(`INSERT INTO tagsTrophies (thophy_id, tag_id) VALUES ${tagsValues}`)
                                 }
                             });
 
@@ -173,11 +173,11 @@ module.exports = {
                             const placeholders = tagsToDelete.map(d => `${d}`);
 
                             if (category == "players") {
-                                database.query(`DELETE FROM tagsplayers WHERE tag_id IN (${placeholders})`)
+                                database.query(`DELETE FROM tagsPlayers WHERE tag_id IN (${placeholders})`)
                             } else if (category == "teams") {
-                                database.query(`DELETE FROM tagsteams WHERE tag_id IN (${placeholders})`)
+                                database.query(`DELETE FROM tagsTeams WHERE tag_id IN (${placeholders})`)
                             } else if (category == "trophies") {
-                                database.query(`DELETE FROM tagstrophies WHERE tag_id IN (${placeholders})`)
+                                database.query(`DELETE FROM tagsTrophies WHERE tag_id IN (${placeholders})`)
                             }
 
                             database.query(`DELETE FROM tags WHERE id IN (${placeholders})`);
