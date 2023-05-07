@@ -1,5 +1,5 @@
 async function getToken() {
-    const response = await fetch("http://localhost:3000/token", {
+    const response = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/token`, {
         headers: {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`
         }
@@ -12,7 +12,7 @@ async function getToken() {
 export async function newArticle(category, formData) {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/${category}/create`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/${category}/create`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -30,7 +30,7 @@ export async function newArticle(category, formData) {
 export async function allCategories() {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/categories`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/categories`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -45,7 +45,7 @@ export async function allCategories() {
 export async function detail(category, id) {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/${category}/${id}`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/${category}/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -60,7 +60,7 @@ export async function detail(category, id) {
 export async function editArticle(category, formData) {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/edit/${category}`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/edit/${category}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -78,7 +78,7 @@ export async function editArticle(category, formData) {
 export async function view(category, id) {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/view`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/view`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -97,7 +97,7 @@ export async function view(category, id) {
 export async function lastProduct() {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/last`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/last`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -112,7 +112,7 @@ export async function lastProduct() {
 export async function moreViews() {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/moreViews`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/moreViews`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -127,7 +127,7 @@ export async function moreViews() {
 export async function news() {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/news`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/news`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -142,7 +142,7 @@ export async function news() {
 export async function lastCategories(category, size) {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/last/${category}/${size}`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/last/${category}/${size}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -157,7 +157,7 @@ export async function lastCategories(category, size) {
 export async function moreViewsCategory(category, page, size) {
     try {
         const token = await getToken();
-        let query = await fetch(`http://localhost:3000/article/more/${category}/views?page=${page}&size=${size}`, {
+        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/more/${category}/views?page=${page}&size=${size}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -172,7 +172,7 @@ export async function moreViewsCategory(category, page, size) {
 export async function deleteArticle(category, id) {
     try {
         const token = await getToken();
-        await fetch(`http://localhost:3000/article/delete/${category}/${id}`, {
+        await fetch(`${import.meta.env.VITE_URL_FRONTEND}/article/delete/${category}/${id}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
