@@ -1,5 +1,5 @@
 async function getToken() {
-    const response = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/token`, {
+    const response = await fetch(`https://backend-championpedia.up.railway.app/token`, {
         headers: {
             'X-API-Key': `${import.meta.env.VITE_API_KEY}`
         }
@@ -12,7 +12,7 @@ async function getToken() {
 export async function results(userQuery) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/search/results/?search=${userQuery}`, {
+        let query = await fetch(`https://backend-championpedia.up.railway.app/search/results/?search=${userQuery}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -27,7 +27,7 @@ export async function results(userQuery) {
 export async function searchArticle(result) {
     try {
         const token = await getToken();
-        let query = await fetch(`${import.meta.env.VITE_URL_FRONTEND}/search/article`, {
+        let query = await fetch(`https://backend-championpedia.up.railway.app/search/article`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
