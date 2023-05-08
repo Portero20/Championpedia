@@ -43,15 +43,11 @@ module.exports = {
             } else if (category == "Trophies") {
                 query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES (${null},"${title}","${text}","${author}", 3,"${now}",${null},"${fullName}","${req.body.campus}","${req.body.foundation}","${req.body.organizer}","${req.body.champion}","${req.body.subchampion}");`
             } else {
-
-                throw new Error('Unknown') 
-
+                throw new Error('Unknown')
             }
 
             database.query(query, (err, results) => {
                 let id;
-
-                console.log(results);
 
                 if (err) {
                     return console.log(err);
