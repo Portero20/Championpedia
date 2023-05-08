@@ -37,18 +37,29 @@
     .jugadorContainer {
         
         .imagen__jugadorFlex{
-
             display: flex;
             justify-content: center;
             align-items: center;
-
+            border: 1px solid #bdbdbd;
+            padding: .5rem;
+            height: 21rem;
+            width: 100%;
         }
-
 
         .datosPersonales{
     
             text-align: center;
     
+        }
+
+        .dataOf {
+            width: 100%;
+            border: 1px solid #bdbdbd;
+            padding: .5rem .5rem .5rem 1rem;
+            margin: .5rem 0 0;
+            font-weight: 600;
+            font-size: 1.2rem;
+            text-align: center;
         }
 
         .parrafosPersonales{

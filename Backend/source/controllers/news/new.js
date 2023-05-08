@@ -17,11 +17,7 @@ module.exports = {
                     url: article.url,
                     published: article.publishedAt
                 }
-            })
-
-            if (news.length > 0) {
-                news.slice(0, 3);
-            }
+            }).slice(0, 3);
 
             return res.status(200).json(news);
         } catch (error) {
