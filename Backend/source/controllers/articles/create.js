@@ -35,8 +35,8 @@ module.exports = {
             let author = req.body.author.replace(/"/g, '\\"');
             let fullName = req.body.fullName.replace(/"/g, '\\"');
             let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
-            let death = req.body.death != "" ? req.body.death : null
-            let retire = req.body.retire != "" ? req.body.retire : null
+            let death = req.body.death != "" ? req.body.death : "0000-00-00"
+            let retire = req.body.retire != "" ? req.body.retire : "0000-00-00"
 
             if (category == "Players") {
                 query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES (${null},"${title}","${text}","${author}", 1,"${now}",${null},"${fullName}","${nickName}","${req.body.born}","${death}","${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}","${retire}");`
