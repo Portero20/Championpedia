@@ -35,7 +35,7 @@ module.exports = {
             let author = req.body.author.replace(/"/g, '\\"');
             let fullName = req.body.fullName.replace(/"/g, '\\"');
             let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
-            let death = req.body.death != "" ? req.body.death : "0000-00-00"
+            let death = req.body.death && req.body.death != "" && req.body.death != null && req.body.death != undefined ? req.body.death : null
             let retire = req.body.retire != "" ? req.body.retire : "0000-00-00"
 
             if (category == "Players") {
