@@ -135,7 +135,7 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
                 //     }
                 // })
             } else {
-                view === "create" ? window.location.href = `/articulo/${selected}/${result}` : window.location.href = `/articulo/${selected}/${idCategory}`
+                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${idCategory}`
             }
 
         } catch (error) {
@@ -227,7 +227,7 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
                     }
                 });
             } else {
-                view === "create" ? window.location.href = `/articulo/${selected}/${result}` : window.location.href = `/articulo/${selected}/${idCategory}`
+                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${idCategory}`
             }
         } catch (error) {
             console.log(error)
@@ -310,7 +310,7 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
                 //     }
                 // })
             } else {
-                view === "create" ? window.location.href = `/articulo/${selected}/${result}` : window.location.href = `/articulo/${selected}/${idCategory}`
+                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${idCategory}`
             }
         } catch (error) {
             console.log(error);
