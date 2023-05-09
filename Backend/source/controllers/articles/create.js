@@ -36,11 +36,11 @@ module.exports = {
             let fullName = req.body.fullName.replace(/"/g, '\\"');
             let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
 
-            if (category == "Players") {
+            if (category == "players") {
                 query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES (${null},"${title}","${text}","${author}", 1,"${now}",${null},"${fullName}","${nickName}","${req.body.born}","${req.body.death}","${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}","${req.body.retire}");`
-            } else if (category == "Teams") {
+            } else if (category == "teams") {
                 query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES (${null},"${title}","${text}","${author}", 2,"${now}",${null},"${fullName}","${req.body.foundation}","${req.body.president}","${req.body.stadium}","${req.body.coach}","${nickName}");`
-            } else if (category == "Trophies") {
+            } else if (category == "trophies") {
                 query = `INSERT INTO trophies(id, title, text, author, category, date, views, fullName, campus, foundation, organizer, champion, subchampion) VALUES (${null},"${title}","${text}","${author}", 3,"${now}",${null},"${fullName}","${req.body.campus}","${req.body.foundation}","${req.body.organizer}","${req.body.champion}","${req.body.subchampion}");`
             } else {
                 throw new Error('Unknown')
