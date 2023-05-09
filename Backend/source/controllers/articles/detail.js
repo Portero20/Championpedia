@@ -44,11 +44,11 @@ module.exports = {
                         let queryImage
 
                         if (category == "players") {
-                            queryImage = `SELECT DISTINCT images.image from images inner join imagesPlayers on images.id = imagesPlayers.image_id inner JOIN players on imagesPlayers.player_id = ${req.params.id};`
+                            queryImage = `SELECT DISTINCT images.image from images inner join imagesplayers on images.id = imagesplayers.image_id inner JOIN players on imagesplayers.player_id = ${req.params.id};`
                         } else if (category == "teams") {
-                            queryImage = `SELECT DISTINCT images.image from images inner join imagesTeams on images.id = imagesTeams.image_id inner join teams on imagesTeams.team_id = ${req.params.id};`
+                            queryImage = `SELECT DISTINCT images.image from images inner join imagesteams on images.id = imagesteams.image_id inner join teams on imagesteams.team_id = ${req.params.id};`
                         } else if (category == "trophies") {
-                            queryImage = `SELECT DISTINCT images.image from images inner join imagesTrophies on images.id = imagesTrophies.image_id inner join trophies on imagesTrophies.thophy_id = ${req.params.id};`
+                            queryImage = `SELECT DISTINCT images.image from images inner join imagestrophies on images.id = imagestrophies.image_id inner join trophies on imagestrophies.thophy_id = ${req.params.id};`
                         }
 
                         database.query(queryImage, function (err, result) {
