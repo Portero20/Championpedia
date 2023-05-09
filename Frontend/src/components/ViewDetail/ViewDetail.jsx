@@ -1,12 +1,14 @@
 import { getDate } from "../../containers/getDate"
 
-export function ViewDetail({ article }) {
+export function ViewDetail({ article, selected }) {
     return (
         <>
             <div className="imagen__jugadorFlex">
                 {article && <img src={article.image} />}
             </div>
-
+            {selected === "futbolistas" && <p className="dataOf">Datos del jugador:</p>}
+            {selected === "equipos" && <p className="dataOf">Datos del equipo:</p>}
+            {selected === "copas" && <p className="dataOf">Datos del torneo:</p>}
             <div className="parrafosPersonales">
                 <p className="parrafoJugador">
                     <span className="spanParrafo">Nombre completo:</span>{" "}

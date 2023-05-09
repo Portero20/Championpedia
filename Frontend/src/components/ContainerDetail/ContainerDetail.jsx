@@ -72,7 +72,7 @@ export function ContainerDetail({ article }) {
                             <div className="containerView-estilo">
                                 <h3 className="containerView-titulo">{article.title}</h3>
                             </div>
-                            <ViewDetail article={article} />
+                            <ViewDetail article={article} selected={selected} />
 
                             <div className='buttonsContainer'>
 
