@@ -66,7 +66,7 @@ const InputPlayer = ({ showValue, article, recibirValor }) => {
             <label>Fecha de fallecimiento: (Opcional)</label>
 
             <div className='containerDate'>
-              <input type="date" name="death" id="death" placeholder='Escribir...' className='inputJugadores inputFunction' defaultValue={showValue ? article.death.split("T")[0] : null} />
+              <input type="date" name="death" id="death" placeholder='Escribir...' className='inputJugadores inputFunction' defaultValue={showValue && article.death != null ? article.death.split("T")[0] : null} />
               <p className="msg-error"></p>
               <AiOutlineReload onClick={() => funClear("death")} size='20' className='iconReload' />
             </div>
@@ -106,7 +106,7 @@ const InputPlayer = ({ showValue, article, recibirValor }) => {
             <label>Retiro: (Opcional)</label>
 
             <div className='containerDate'>
-              <input type="date" name="retire" id="retire" className='inputJugadores inputFunction' defaultValue={showValue ? article.retire.split("T")[0] : null} />
+              <input type="date" name="retire" id="retire" className='inputJugadores inputFunction' defaultValue={showValue && article.death != null ? article.retire.split("T")[0] : null} />
               <p className="msg-error"></p>
               <AiOutlineReload onClick={() => funClear("retire")} size='20' className='iconReload' />
             </div>
