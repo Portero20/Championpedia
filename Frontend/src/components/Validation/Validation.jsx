@@ -135,7 +135,7 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
                 //     }
                 // })
             } else {
-                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${idCategory}`
+                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/Futbolistas/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/Futbolistas/${idCategory}`
             }
 
         } catch (error) {
@@ -227,7 +227,7 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
                     }
                 });
             } else {
-                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${idCategory}`
+                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/Copas/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/Copas/${idCategory}`
             }
         } catch (error) {
             console.log(error)
@@ -310,7 +310,7 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
                 //     }
                 // })
             } else {
-                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/${selected}/${idCategory}`
+                view === "create" ? window.location.href = `https://championpedia.netlify.app/articulo/Equipos/${result}` : window.location.href = `https://championpedia.netlify.app/articulo/Equipos/${idCategory}`
             }
         } catch (error) {
             console.log(error);
