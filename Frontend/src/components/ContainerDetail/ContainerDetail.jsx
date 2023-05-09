@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react'
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ViewDetail } from '../ViewDetail/ViewDetail';
-import { deleteArticle } from '../../services/articles';
-import { handleSubmit } from '../Validation/Validation';
-import { toast } from 'react-toastify';
-import { getFullDate } from '../../containers/getDate'
-import { ModalEdit } from '../Modal/ModalEdit'
-import TextoHtml from '../TextoHtml';
-import Button from 'react-bootstrap/Button';
-import 'react-toastify/dist/ReactToastify.css';
+import { ViewDetail } from "../ViewDetail/ViewDetail";
+import { deleteArticle } from "../../services/articles";
+import { handleSubmit } from "../Validation/Validation";
+import { toast } from "react-toastify";
+import { getFullDate } from "../../containers/getDate";
+import { ModalEdit } from "../Modal/ModalEdit";
+import TextoHtml from "../TextoHtml";
+import Button from "react-bootstrap/Button";
+import "react-toastify/dist/ReactToastify.css";
 
 export function ContainerDetail({ article }) {
     const { password, category, id } = useParams();
@@ -22,13 +22,14 @@ export function ContainerDetail({ article }) {
     }
 
     useEffect(() => {
-        password === import.meta.env.VITE_APP_PASSWORD ? setAdmin(true) : setAdmin(false);
-
-    }, [password])
+        password === import.meta.env.VITE_APP_PASSWORD
+            ? setAdmin(true)
+            : setAdmin(false);
+    }, [password]);
 
     const handleDelete = async () => {
         await deleteArticle(category, id);
-        toast.success('Artículo eliminado correctamente');
+        toast.success("Artículo eliminado correctamente");
         navigate("/");
     };
 
@@ -36,22 +37,22 @@ export function ContainerDetail({ article }) {
     const handleShow = () => setShow(true);
 
     const [articleJodit, setArticleJodit] = useState({
-        text: "Texto predeterminado"
+        text: "Texto predeterminado",
     });
 
     const content = articleJodit.text;
-    const selected = category.toLowerCase()
+    const selected = category.toLowerCase();
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        const idCategory = parseInt(id)
-        const view = "edit"
+        const idCategory = parseInt(id);
+        const view = "edit";
         await handleSubmit(selected, content, view, idCategory);
 
         if (valor.length > 0) {
-            toast.warning('Título en uso por otro artículo');
+            toast.warning("Título en uso por otro artículo");
         }
-    }
+    };
 
     return (
         <>
@@ -74,24 +75,40 @@ export function ContainerDetail({ article }) {
                             </div>
                             <ViewDetail article={article} selected={selected} />
 
-                            <div className='buttonsContainer'>
-
-                                <Button variant="dark" onClick={handleShow} className='buttonReact'>
+                            <div className="buttonsContainer">
+                                <Button
+                                    variant="dark"
+                                    onClick={handleShow}
+                                    className="buttonReact"
+                                >
                                     Editar Artículo
                                 </Button>
 
                                 {isAdmin && (
                                     <div>
-                                        <Button onClick={handleDelete} variant='danger' className='buttonReact'>Eliminar Articulo</Button>
+                                        <Button
+                                            onClick={handleDelete}
+                                            variant="danger"
+                                            className="buttonReact"
+                                        >
+                                            Eliminar Articulo
+                                        </Button>
                                     </div>
                                 )}
-
                             </div>
-                            <ModalEdit show={show} article={article} selected={selected} handleFormSubmit={handleFormSubmit} recibirValor={recibirValor} handleClose={handleClose} setArticleJodit={setArticleJodit} />
+                            <ModalEdit
+                                show={show}
+                                article={article}
+                                selected={selected}
+                                handleFormSubmit={handleFormSubmit}
+                                recibirValor={recibirValor}
+                                handleClose={handleClose}
+                                setArticleJodit={setArticleJodit}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
         </>
-    )
+    );
 }
