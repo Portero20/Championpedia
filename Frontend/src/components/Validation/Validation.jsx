@@ -24,7 +24,7 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
             let nickName = document.getElementById("nickName").value;
             let born = document.getElementById("born").value;
             let deathValue = document.getElementById("death").value;
-            let death = deathValue != "" ? death = deathValue : null
+            let death = deathValue != "" ? deathValue : null
             let height = document.getElementById("height").value;
             let weight = document.getElementById("weight").value;
             let nationality = document.getElementById("nationality").value;
