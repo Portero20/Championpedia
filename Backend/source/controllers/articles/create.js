@@ -34,7 +34,7 @@ module.exports = {
             let text = req.body.text.replace(/"/g, '\\"');
             let author = req.body.author.replace(/"/g, '\\"');
             let fullName = req.body.fullName.replace(/"/g, '\\"');
-            let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : null
+            let nickName = req.body.nickName && req.body.nickName != null ? req.body.nickName.replace(/"/g, '\\"') : null
             let death = req.body.death != "" ? req.body.death : null
             let retire = req.body.retire != "" ? req.body.retire : null
 
