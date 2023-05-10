@@ -171,10 +171,8 @@ const editPlayers = [
 
         return true
     }),
-    body("retire").optional({ checkFalsy: true }).isISO8601()
-        .withMessage('Fecha debe tener un formato válido ISO 8601. a(Año-mes-dia)').bail(),
-    body("death").optional({ checkFalsy: true }).isISO8601()
-        .withMessage('Fecha debe tener un formato válido ISO 8601. a(Año-mes-dia)').bail(),
+    body("retire").optional({ checkFalsy: true }),
+    body("death").optional({ checkFalsy: true }),
 ]
 
 module.exports = editPlayers;
