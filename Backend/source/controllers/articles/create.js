@@ -39,7 +39,7 @@ module.exports = {
             let retire = req.body.retire != "" ? req.body.retire : null
 
             if (category == "Players") {
-                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES (${null},"${title}","${text}","${author}", 1,"${now}",${null},"${fullName}", ${nickName != null ? `"${nickName}"` : null}),"${req.body.born}", ${death},"${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}", ${retire});`
+                query = `INSERT INTO players(id, title, text, author, category, date, views, fullName, nickName, born, death, height, weight, nationality, position, team, numbers, goals, debut, retire) VALUES (${null},"${title}","${text}","${author}", 1,"${now}",${null},"${fullName}", ${nickName != null ? `"${nickName}"` : null},"${req.body.born}", ${death},"${req.body.height}","${req.body.weight}","${req.body.nationality}","${req.body.position}","${req.body.team}","${req.body.numbers}","${req.body.goals}","${req.body.debut}", ${retire});`
             } else if (category == "Teams") {
                 query = `INSERT INTO teams(id, title, text, author, category, date, views, fullName, foundation, president, stadium, coach, nickName) VALUES (${null},"${title}","${text}","${author}", 2,"${now}",${null},"${fullName}","${req.body.foundation}","${req.body.president}","${req.body.stadium}","${req.body.coach}", ${nickName != null ? `"${nickName}"` : null});`
             } else if (category == "Trophies") {
