@@ -32,9 +32,11 @@ module.exports = {
             let text = req.body.text.replace(/"/g, '\\"');
             let fullName = req.body.fullName.replace(/"/g, '\\"');
             let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : "";
+            let death = req.body.death
+            let retire = req.body.retire
 
             if (category == "players") {
-                query = `UPDATE players SET title="${title}",text="${text}",fullName="${fullName}",nickName="${nickName}",born="${req.body.born}",death="${req.body.death}",height="${req.body.height}",weight="${req.body.weight}",nationality="${req.body.nationality}",position="${req.body.position}",team="${req.body.team}",numbers="${req.body.numbers}",goals="${req.body.goals}",debut="${req.body.debut}",retire="${req.body.retire}" WHERE id = ${req.body.id};`
+                query = `UPDATE players SET title="${title}",text="${text}",fullName="${fullName}",nickName="${nickName}",born="${req.body.born}",${death != null ? `"${death}"` : null},"${req.body.born}",height="${req.body.height}",weight="${req.body.weight}",nationality="${req.body.nationality}",position="${req.body.position}",team="${req.body.team}",numbers="${req.body.numbers}",goals="${req.body.goals}",debut="${req.body.debut}",${retire != null ? `"${retire}"` : null} WHERE id = ${req.body.id};`
             } else if (category == "teams") {
                 query = `UPDATE teams SET title="${title}",text="${text}",fullName="${fullName}",foundation="${req.body.foundation}",president="${req.body.president}",stadium="${req.body.stadium}",coach="${req.body.coach}",nickName="${nickName}" WHERE id = ${req.body.id};`
             } else if (category == "trophies") {
