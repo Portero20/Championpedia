@@ -23,7 +23,8 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
             let fullName = document.getElementById("fullName").value;
             let nickName = document.getElementById("nickName").value;
             let born = document.getElementById("born").value;
-            let death = document.getElementById("death").value;
+            let deathValue = document.getElementById("death").value;
+            let death = deathValue != "" ? death = deathValue : null
             let height = document.getElementById("height").value;
             let weight = document.getElementById("weight").value;
             let nationality = document.getElementById("nationality").value;
@@ -32,7 +33,8 @@ export const handleSubmit = async (selected, content, view, idCategory) => {
             let numbers = document.getElementById("numbers").value;
             let goals = document.getElementById("goals").value;
             let debut = document.getElementById("debut").value;
-            let retire = document.getElementById("retire").value;
+            let retireValue = document.getElementById("retire").value;
+            let retire = retireValue != "" ? retireValue : null;
             let tags = document.getElementById("tags").value;
             let category;
             let id;
