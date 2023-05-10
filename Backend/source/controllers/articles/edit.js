@@ -34,10 +34,7 @@ module.exports = {
             let nickName = req.body.nickName ? req.body.nickName.replace(/"/g, '\\"') : "";
             let death = req.body.death
             let retire = req.body.retire
-            console.log(retire)
-            console.log(retire.toString())
-            console.log(null)
-            console.log("null")
+            console.log()
 
             if (category == "players") {
                 query = `UPDATE players SET title="${title}",text="${text}",fullName="${fullName}",nickName="${nickName}",born="${req.body.born}", death=${death !== null ? `"${death}"` : null}, height="${req.body.height}",weight="${req.body.weight}",nationality="${req.body.nationality}",position="${req.body.position}",team="${req.body.team}",numbers="${req.body.numbers}",goals="${req.body.goals}",debut="${req.body.debut}", retire=${retire !== null ? `"${retire}"` : null} WHERE id = ${req.body.id};`
