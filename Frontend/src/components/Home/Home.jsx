@@ -18,8 +18,6 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
   const [newsArticle, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
-  console.log(NEWS);
 
   useEffect(() => {
     async function fetchData() {

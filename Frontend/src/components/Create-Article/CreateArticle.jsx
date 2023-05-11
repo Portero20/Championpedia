@@ -19,8 +19,8 @@ const CreateArticle = ({ placeholder }) => {
   const [content, setContent] = useState('');
   const [selected, setSelected] = useState('');
   const [categories, setCategories] = useState('');
-  const [valor, setValor] = useState("");
-
+  const [valor, setValor] = useState([]);
+  
   function recibirValor(valorHijo) {
     setValor(valorHijo);
   }
@@ -64,7 +64,7 @@ const CreateArticle = ({ placeholder }) => {
     const view = "create"
     await handleSubmit(selected, content, view);
 
-    if (valor.length > 0) {
+    if (valor.length >= 1) {
       toast.warning('Título en uso por otro artículo');
     }
   }

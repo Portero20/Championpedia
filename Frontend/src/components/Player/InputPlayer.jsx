@@ -10,17 +10,18 @@ const InputPlayer = ({ showValue, article, recibirValor }) => {
 
   const handleInputChange = async (event) => {
     const value = event.target.value;
-
+  
     if (value.length >= 1) {
       const result = await results(value);
       setSearchResults(result);
+      // Guardar la última búsqueda en una variable local
+      const lastSearch = result;
+      recibirValor(lastSearch);
     } else {
       setSearchResults([]);
+      recibirValor([]);
     }
-
-    recibirValor(searchResults)
-  }
-
+  };
 
   function funClear(data) {
 
