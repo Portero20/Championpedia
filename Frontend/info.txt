@@ -120,3 +120,23 @@ setImageBase64(base64String);: La línea establece el estado imageBase64 con la 
 solo agregamos la key al componente SwiperSlide ya que estamos haciendo un mapeo de un array para crear 
 multiples SwiperSlide y React requiere que cada una tenga una prop key unica para indetificarla en caso 
 de que se modifique o se deba actualizar.
+
+
+
+
+//Api de noticias 
+
+
+{isLoading && <div className='loaderArticles'><ClipLoader /></div>}
+              {!isLoading && newsArticle.length > 0 ? newsArticle.map((news, i) => (
+                <Link key={i} target="_blank" to={news.url}>
+                  <div key={i} className="hijoProximo1">
+                    <h3 className="titularProximo">
+                      {news.title}
+                    </h3>
+                    <p className="descripcionProximo">
+                      {news.description}
+                    </p>
+                  </div>
+                </Link>
+              )) : null}
