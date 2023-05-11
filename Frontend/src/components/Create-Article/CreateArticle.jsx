@@ -62,10 +62,10 @@ const CreateArticle = ({ placeholder }) => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const view = "create"
-    await handleSubmit(selected, content, view);
-
     if (valor.length >= 1) {
       toast.warning('Título en uso por otro artículo');
+    } else {
+      await handleSubmit(selected, content, view);
     }
   }
 
