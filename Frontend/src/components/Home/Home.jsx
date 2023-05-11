@@ -11,6 +11,7 @@ import { React, useState, useEffect } from 'react';
 import TextoHtml from '../TextoHtml';
 import { Link } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { NEWS } from '../../json/noticias';
 
 const Home = () => {
   const [lastArticle, setLastArticle] = useState({});
@@ -18,6 +19,7 @@ const Home = () => {
   const [newsArticle, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
+  console.log(NEWS);
 
   useEffect(() => {
     async function fetchData() {
@@ -254,7 +256,7 @@ const Home = () => {
               <h2 className="tituloProximo">NOTICIAS</h2>
 
               {isLoading && <div className='loaderArticles'><ClipLoader /></div>}
-              {!isLoading && newsArticle.length > 0 ? newsArticle.map((news, i) => (
+              {!isLoading && NEWS.articles.length > 0 ? NEWS.articles.map((news, i) => (
                 <Link key={i} target="_blank" to={news.url}>
                   <div key={i} className="hijoProximo1">
                     <h3 className="titularProximo">
