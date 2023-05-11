@@ -20,7 +20,7 @@ export function ViewDetail({ article, selected }) {
                 {article && article.height && <p className='parrafoJugador'><span className='spanParrafo'>Altura:</span> {article.height}</p>}
                 {article && article.weight && <p className='parrafoJugador'><span className='spanParrafo'>Peso:</span> {article.weight} kg</p>}
                 {article && article.debut && <p className='parrafoJugador'><span className='spanParrafo'>Debut deportivo:</span> {getDate(article.debut.split("T")[0])}</p>}
-                {article && article.team && <p className='parrafoJugador'><span className='spanParrafo'>Equipo actual:</span> {article.team}</p>}
+                {article && article.team && <p className='parrafoJugador'><span className='spanParrafo'>{article && article.retire && article.retire != "0000-00-00" ? "Equipos en los que jugó:" : "Equipo Actual:"}</span> {article.team}</p>}
                 {article && article.position && <p className='parrafoJugador'><span className='spanParrafo'>Posición(es):</span> {article.position}</p>}
                 {article && article.numbers && <p className='parrafoJugador'><span className='spanParrafo'>Dorsal(es):</span> {article.numbers}</p>}
                 {article && article.goals && <p className='parrafoJugador'><span className='spanParrafo'>Goles en clubes:</span> {article.goals}</p>}
