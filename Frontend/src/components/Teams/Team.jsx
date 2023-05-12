@@ -9,16 +9,19 @@ const Team = ({ showValue, article, recibirValor }) => {
 
     const handleInputChange = async (event) => {
         const value = event.target.value;
-
+    
         if (value.length >= 1) {
-            const result = await results(value);
-            setSearchResults(result);
+          const result = await results(value);
+          setSearchResults(result);
+    
+          const lastSearch = result;
+          recibirValor(lastSearch);
         } else {
-            setSearchResults([]);
+          setSearchResults([]);
+          recibirValor([]);
         }
-
-        recibirValor(searchResults)
-    }
+      };
+    
 
     let InputAuthor;
 
