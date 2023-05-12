@@ -3,11 +3,15 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: 1.5rem;
+    // gap: 1.5rem; aca
 
     .inputs__team {
         border: 1px solid #a0a2a9;
         border-radius: .7rem;
+    }
+
+    label {
+        margin-bottom: .5rem;
     }
 
     .inputFile3::-webkit-file-upload-button{

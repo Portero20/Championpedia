@@ -20,7 +20,7 @@ const CreateArticle = ({ placeholder }) => {
   const [selected, setSelected] = useState('');
   const [categories, setCategories] = useState('');
   const [valor, setValor] = useState([]);
-  
+
   function recibirValor(valorHijo) {
     setValor(valorHijo);
   }
@@ -96,7 +96,7 @@ const CreateArticle = ({ placeholder }) => {
             </div>
 
             <div className="inputsCategorias">
-            <SelectInput showValue={false} category={selected} recibirValor={recibirValor}/>
+              <SelectInput showValue={false} category={selected} recibirValor={recibirValor} />
             </div>
 
 
@@ -104,31 +104,34 @@ const CreateArticle = ({ placeholder }) => {
 
 
         </div>
-
         <div className="joditEditor">
 
-          {useMemo(
-            () => (
-              <JoditEditor
-                ref={editor}
-                value={content}
-                config={config}
-                tabIndex={1}
-                onChange={(newContent) => {
-                  setContent(newContent);
-                }}
-              />
-            ),
-            []
-          )}
+          <div className='div-msg-container msg-jodit'>
+            {useMemo(
+              () => (
+                <JoditEditor
+                  ref={editor}
+                  value={content}
+                  config={config}
+                  tabIndex={1}
+                  onChange={(newContent) => {
+                    setContent(newContent);
+                  }}
+                />
+              ),
+              []
+            )}
+            <p className="msg-error error-jodit"></p>
+          </div>
 
         </div>
-        <p className="msg-error error-jodit"></p>
 
         <div className="moverInputs">
 
-          <Tags />
-
+          <div className='div-msg-container'>
+            <Tags />
+            <p className="msg-error error-tags"></p>
+          </div>
           <div className="moverButtons">
 
             <button type="submit" className='agregarArticulo botonLink'>Crear</button>
@@ -137,7 +140,6 @@ const CreateArticle = ({ placeholder }) => {
           </div>
 
         </div>
-        <p className="msg-error error-tags"></p>
 
       </form>
 

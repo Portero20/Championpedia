@@ -1,5 +1,16 @@
+.div-msg-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 2rem; // aca
+}
+
 .msg-error, .msgErrorCategory {
     display: none;
+    position: absolute;
+    bottom: -1.8rem;
+    margin: 0;
 }
 
 .msg-error.invalid, .msgErrorCategory.invalid {
@@ -8,6 +19,7 @@
     color: red;
     width: 100%;
     text-align: center;
+    margin: 0;
 }
 
 .options {
@@ -35,7 +47,7 @@
 
 .inputs-first,
 .inputs-second {
-    gap: 1.5rem;
+    // gap: 1.5rem; aca
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -45,12 +57,9 @@
     width: 100%;
 }
 
-.inputs-second label {
-    color: #151515
-}
-
-.inputs-first label {
-    color: #151515
+.inputs-first label, .inputs-second label {
+    color: #151515;
+    margin-bottom: .5rem;
 }
 
 .flexInputs {
@@ -63,6 +72,10 @@
     width: 100%;
     padding: .7rem;
     margin: 2.5rem 0 1.5rem;
+}
+
+.msg-jodit {
+    margin-bottom: 1rem;
 }
 
 .moverInputs {
