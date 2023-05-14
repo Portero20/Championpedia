@@ -7,11 +7,13 @@ import Cookies from 'universal-cookie'
 import { detail, view } from '../../services/articles';
 import { useParams } from "react-router-dom";
 import { ContainerDetail } from '../ContainerDetail/ContainerDetail';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const ViewArticle = () => {
   const { category, id } = useParams();
   const [article, setarticle] = useState([])
   const [content, setContent] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     detail(category, id).then(setarticle)
@@ -40,11 +42,17 @@ const ViewArticle = () => {
   useEffect(() => {
     detail(category, id).then(article => {
       setContent(article.text);
+      setIsLoading(true)
     });
   }, [category, id]);
 
   return (
-    <ContainerDetail article={article} />
+    <div>
+
+      {isLoading && <ContainerDetail article={article} />}
+      {!isLoading && <div style={{display: 'flex', justifyContent: 'center', marginTop: '4rem'}}><ClipLoader/></div>}
+
+    </div>
   );
 }
 
