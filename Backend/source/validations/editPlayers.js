@@ -14,7 +14,7 @@ const editPlayers = [
 
         return true
     }),
-    body("nickName").optional({ checkFalsy: true }).isLength({ min: 2 }).withMessage("El apodo debe tener como mínimo dos caracteres").bail().isLength({ max: 100 }).withMessage("El o los apodos no deben superar los cien caracteres").bail().custom(value => {
+    body("nickName").optional({ checkFalsy: true }).isLength({ min: 2 }).withMessage("Apodo mínimo: 2 caracteres").bail().isLength({ max: 100 }).withMessage("El o los apodos no deben superar los cien caracteres").bail().custom(value => {
         apodos = value.split(",").map(a => {
             return a
         })
