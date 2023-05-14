@@ -50,7 +50,7 @@ const ViewArticle = () => {
     <div>
 
       {isLoading && <ContainerDetail article={article} />}
-      {!isLoading && <div style={{display: 'flex', justifyContent: 'center', marginTop: '4rem'}}><ClipLoader/></div>}
+      {!isLoading && <div className='loaderArticulos'><ClipLoader/></div>}
 
     </div>
   );
