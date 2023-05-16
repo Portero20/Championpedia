@@ -6,12 +6,12 @@ import 'swiper/css/scrollbar';
 
 import { A11y, Autoplay, Navigation, Scrollbar, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { lastProduct, moreViews, news } from '../../services/articles';
+import { lastProduct, moreViews } from '../../services/articles';
 import { React, useState, useEffect } from 'react';
-import TextoHtml from '../TextoHtml';
 import { Link } from 'react-router-dom';
-import ClipLoader from 'react-spinners/ClipLoader';
 import { NEWS } from '../../json/noticias';
+import TextoHtml from '../TextoHtml';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const Home = () => {
   const [lastArticle, setLastArticle] = useState({});
@@ -35,15 +35,6 @@ const Home = () => {
       setIsLoading(false);
     }
     fetchMore();
-  }, []);
-
-  useEffect(() => {
-    async function fetchNews() {
-      let data = await news();
-      setNews(data);
-      setIsLoading(false);
-    }
-    fetchNews();
   }, []);
 
   return (

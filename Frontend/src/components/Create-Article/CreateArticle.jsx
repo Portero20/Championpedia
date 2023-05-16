@@ -5,6 +5,7 @@ import '../../scss/partials/_variables.scss';
 import '../../scss/barrel.scss';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom'
 import { allCategories } from '../../services/articles';
 import { SelectInput } from '../SelectInput/SelectInput';
 import { handleSubmit } from "../Validation/Validation"
@@ -135,7 +136,7 @@ const CreateArticle = ({ placeholder }) => {
           <div className="moverButtons">
 
             <button type="submit" className='agregarArticulo botonLink'>Crear</button>
-            <button className='agregarArticulo'>Cancelar</button>
+            <Link to='/' className='agregarArticulo'>Cancelar</Link>
 
           </div>
 
