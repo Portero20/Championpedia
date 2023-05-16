@@ -48,10 +48,6 @@ export function ContainerDetail({ article }) {
         const idCategory = parseInt(id);
         const view = "edit";
         await handleSubmit(selected, content, view, idCategory);
-
-        if (valor.length > 0) {
-            toast.warning("Título en uso por otro artículo");
-        }
     };
 
     return (
